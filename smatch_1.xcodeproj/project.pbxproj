@@ -16,6 +16,7 @@
 		D83A181A1CA3B7C70048B629 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A18191CA3B7C70048B629 /* Messages.storyboard */; };
 		D83A181C1CA3B7F40048B629 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181B1CA3B7F40048B629 /* Notifications.storyboard */; };
 		D83A181E1CA3B80A0048B629 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181D1CA3B80A0048B629 /* Profile.storyboard */; };
+		D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */; };
 		D84A6BF21CA464F200045150 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A6BF11CA464F200045150 /* EventCell.swift */; };
 		D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */; };
 		D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D875B2701C9A5155007BBFF3 /* LoginViewController.swift */; };
@@ -73,6 +74,7 @@
 		D83A18191CA3B7C70048B629 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		D83A181B1CA3B7F40048B629 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		D83A181D1CA3B80A0048B629 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D84A6BF11CA464F200045150 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSportsCollectionViewController.swift; sourceTree = "<group>"; };
 		D875B2701C9A5155007BBFF3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -169,8 +171,8 @@
 			children = (
 				D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */,
 				D875B2701C9A5155007BBFF3 /* LoginViewController.swift */,
-				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
 				D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */,
+				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
 				D83A18141CA3B5A40048B629 /* Events */,
 			);
 			name = Controllers;
@@ -192,6 +194,7 @@
 				D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */,
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
+				D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */,
+				D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */,
 				D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */,
 				D8E0003A1CA07292006C50EC /* DataService.swift in Sources */,
 			);

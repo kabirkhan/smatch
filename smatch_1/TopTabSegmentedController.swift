@@ -32,6 +32,12 @@ import UIKit
         }
     }
     
+    @IBInspectable dynamic public var font: UIFont? {
+        didSet {
+            setupFonts()
+        }
+    }
+    
     func initUI(){
         setupBackground()
         setupFonts()

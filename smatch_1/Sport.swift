@@ -38,18 +38,29 @@ extension Sport {
 
 extension Sport {
     static func loadDefaultSports() -> [Sport]? {
+        print("loaded")
         return self.loadSportsFromPlistNamed("sports")
     }
     
     // actually load the sports from the plist
     static func loadSportsFromPlistNamed(plistName: String) -> [Sport]? {
+        
+        print(NSBundle.mainBundle().pathForResource(plistName, ofType: "plist"))
+        
         guard let path = NSBundle.mainBundle().pathForResource(plistName, ofType: "plist"),
             let array = NSArray(contentsOfFile: path) as? [[String: AnyObject]] else {
+                print("nil")
                 return nil
         }
         
+//        guard let path = NSBundle.mainBundle().pathForResource(plistName, ofType: "plist"),
+//            let dict = NSDictionary(contentsOfFile: path) as? [String: AnyObject] else {
+//                return nil
+//        }
+        
+        
         // map the array to a dictionary and filter out nil values
-        return array.map { Sport(dict: $0) }
+        return  array.map { Sport(dict: $0) }
             .filter { $0 != nil }
             .map { $0! }
     }

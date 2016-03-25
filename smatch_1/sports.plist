@@ -9,5 +9,47 @@
 		<key>icon_image_name</key>
 		<string></string>
 	</dict>
+	<key>Item 2</key>
+	<dict>
+		<key>name</key>
+		<string>Basketball</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
+	<key>Item 3</key>
+	<dict>
+		<key>name</key>
+		<string>Volleyball</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
+	<key>Item 4</key>
+	<dict>
+		<key>name</key>
+		<string>Football</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
+	<key>Item 5</key>
+	<dict>
+		<key>name</key>
+		<string>Baseball</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
+	<key>Item 6</key>
+	<dict>
+		<key>name</key>
+		<string>Tennis</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
+	<key>Item 7</key>
+	<dict>
+		<key>name</key>
+		<string>Badmitton</string>
+		<key>icon_image_name</key>
+		<string></string>
+	</dict>
 </dict>
 </plist>

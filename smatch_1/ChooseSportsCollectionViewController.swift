@@ -15,11 +15,20 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
 
     // MARK: ===================== OUTLETS =====================
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    var userData: Dictionary<String, AnyObject>?
+    var sports = SPORTS
+    var selectedSports = [String]()
     
     // MARK: ===================== VIEW LIFECYCLE =====================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if let seedSports = Sport.loadDefaultSports() {
+//            sports += seedSports
+//            // sports = sports.sort { $0.name < $1.name }
+//            print("1 \(sports)")
+//            print(seedSports)
+//        }
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -37,12 +46,94 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return sports.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath) as! SportCollectionViewCell
+        
+        let sport = sports[indexPath.row]
+        cell.nameLabel.text = sport
+        cell.nameLabel.textColor = UIColor.darkTextColor()
+        
         return cell
+    }
+    
+    // MARK: ============== COLLECTION VIEW DELEGATE ================
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SportCollectionViewCell
+        
+        toggleSelectedSport(cell, indexPath: indexPath)
+        
+    }
+    
+//    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SportCollectionViewCell
+//        
+//        if cell.nameLabel.textColor == UIColor.materialMainGreen {
+//            cell.nameLabel.textColor = UIColor.darkTextColor()
+//        }
+//    }
+    
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        
+        let uid = userData?.removeValueForKey(KEY_ID)
+        userData!["sports"] = selectedSports
+        
+        if userData!["provider"] as! String == "facebook" {
+            // create user in firebase database
+            DataService.ds.createFirebaseUser(uid! as! String, user: userData!)
+            
+            // set userid in userdefaults to check against
+            NSUserDefaults.standardUserDefaults().setValue(uid, forKey: KEY_ID)
+        } else if userData![KEY_PROVIDER] as! String == VALUE_EMAIL_PASSWORD_PROVIDER {
+            
+            DataService.ds.REF_BASE.createUser(userData![KEY_EMAIL] as! String, password: userData![KEY_PASSWORD] as! String, withValueCompletionBlock: { (error, result) -> Void in
+                if error != nil {
+                    self.presentViewController(showErrorAlert("Woah", msg: "Something went really wrong"), animated: true, completion: nil)
+                } else {
+                    //set the default key for the user and log them in
+                    NSUserDefaults.standardUserDefaults().setValue(result[KEY_ID], forKey: KEY_ID)
+                    DataService.ds.REF_BASE.authUser(self.userData![KEY_EMAIL] as! String, password: self.userData![KEY_PASSWORD] as! String, withCompletionBlock: { (error, authData) in
+                        
+                        //now that we've created the user we clean up the userdata
+                        self.userData?.removeValueForKey(KEY_EMAIL)
+                        self.userData?.removeValueForKey(KEY_PASSWORD)
+                        
+                        //create a user in firebase
+                        //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
+                        DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
+                    })
+                    
+                }
+            })
+            
+        }
+        
+        performSegueWithIdentifier(SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN, sender: nil)
+    }
+    
+    
+    private func toggleSelectedSport(cell: SportCollectionViewCell, indexPath: NSIndexPath) {
+        
+        if cell.nameLabel.textColor == UIColor.darkTextColor() {
+            
+            selectedSports.append(cell.nameLabel.text!)
+            
+            cell.nameLabel.textColor = UIColor.materialMainGreen
+        } else {
+            
+            for i in 0..<selectedSports.count {
+                if selectedSports[i] == cell.nameLabel.text {
+                    selectedSports.removeAtIndex(i)
+                    break
+                }
+            }
+            
+            cell.nameLabel.textColor = UIColor.darkTextColor()
+        }
+       
     }
     
 }

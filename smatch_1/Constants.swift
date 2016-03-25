@@ -37,3 +37,19 @@ let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 
 // MARK: CELL IDENTIFIERS
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"
+
+// MARK: THINGS
+var SPORTS: [String] {
+    get {
+        var sportDict = [String]()
+        sportDict.append("Softball")
+        sportDict.append("Football")
+        sportDict.append("Soccer")
+        sportDict.append("Tennis")
+        sportDict.append("Basketball")
+        sportDict.append("Badminton")
+        sportDict.append("Volleyball")
+        sportDict.append("Ultimate Frisbee")
+        return sportDict
+    }
+}
