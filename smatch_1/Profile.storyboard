@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BkW-if-hoH">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--My Profile-->
+        <scene sceneID="SVw-lN-2aZ">
+            <objects>
+                <viewController title="My Profile" id="BkW-if-hoH" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yl9-kw-OML"/>
+                        <viewControllerLayoutGuide type="bottom" id="oBe-Ne-rf3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JVY-Vb-iUy">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="jZx-Nn-21d">
+                                <rect key="frame" x="8" y="200" width="128" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="Qb5-2d-a6u"/>
+                                    <constraint firstAttribute="width" constant="128" id="kTa-xd-E7n"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fej-MQ-JUs">
+                                <rect key="frame" x="505" y="200" width="75" height="30"/>
+                                <state key="normal" title="Edit Profile"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXn-6W-kPS">
+                                <rect key="frame" x="440" y="200" width="57" height="30"/>
+                                <state key="normal" title="Settings"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="0Iu-Bh-LpK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fej-MQ-JUs" firstAttribute="leading" secondItem="hXn-6W-kPS" secondAttribute="trailing" constant="8" id="2BF-oa-hRL"/>
+                            <constraint firstItem="0Iu-Bh-LpK" firstAttribute="leading" secondItem="JVY-Vb-iUy" secondAttribute="leading" id="6Fw-cn-tJK"/>
+                            <constraint firstAttribute="trailing" secondItem="0Iu-Bh-LpK" secondAttribute="trailing" id="7J0-jY-bXI"/>
+                            <constraint firstItem="0Iu-Bh-LpK" firstAttribute="top" secondItem="JVY-Vb-iUy" secondAttribute="top" id="WVC-pT-s8s"/>
+                            <constraint firstItem="hXn-6W-kPS" firstAttribute="top" secondItem="0Iu-Bh-LpK" secondAttribute="bottom" constant="20" id="bTY-1G-OeU"/>
+                            <constraint firstItem="fej-MQ-JUs" firstAttribute="top" secondItem="0Iu-Bh-LpK" secondAttribute="bottom" constant="20" id="ewB-9E-bjw"/>
+                            <constraint firstItem="fej-MQ-JUs" firstAttribute="trailing" secondItem="JVY-Vb-iUy" secondAttribute="trailingMargin" id="jJL-OT-nnC"/>
+                            <constraint firstItem="0Iu-Bh-LpK" firstAttribute="height" secondItem="JVY-Vb-iUy" secondAttribute="height" multiplier="0.3" id="mSE-tG-fDk"/>
+                            <constraint firstItem="jZx-Nn-21d" firstAttribute="top" secondItem="0Iu-Bh-LpK" secondAttribute="bottom" constant="20" id="nPa-F2-czc"/>
+                            <constraint firstItem="jZx-Nn-21d" firstAttribute="leading" secondItem="JVY-Vb-iUy" secondAttribute="leading" constant="8" id="roA-H2-0HN"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="l05-Lg-Fz1"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WcG-uK-nzx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5061" y="569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Bitmap" width="999" height="668"/>
+    </resources>
+</document>

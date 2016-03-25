@@ -1,0 +1,6 @@
+framework module Pods_smatch_1UITests {
+  umbrella header "Pods-smatch_1UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
