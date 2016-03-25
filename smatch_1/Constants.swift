@@ -15,6 +15,8 @@ let KEY_DISPLAY_NAME = "name"
 let KEY_GENDER = "gender"
 let KEY_AGE = "age"
 let KEY_IMAGE_URL = "image_url"
+let KEY_EMAIL = "email"
+let KEY_PASSWORD = "password"
 
 // MARK: VALUES
 let VALUE_FACEBOOK_PROVIDER = "facebook"
@@ -25,8 +27,11 @@ let VALUE_CACHED_USER_PROFILE = "cachedUserProfile"
 let VALUE_GENDER = "gender"
 let VALUE_AGE = "age_range"
 
+// MARK: STATUS CODES
+let STATUS_ACCOUNT_NONEXIST = -8
+
 // MARK: SEGUES
-let SEGUE_LOGGED_IN = "confirm_account_information"
+let SEGUE_ACCOUNT_SETUP = "confirm_account_information"
 let SEGUE_CHOOSE_SPORTS = "choose_sports"
 let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 

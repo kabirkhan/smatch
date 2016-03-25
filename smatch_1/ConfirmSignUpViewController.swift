@@ -10,10 +10,9 @@ import UIKit
 import Firebase
 
 class ConfirmSignUpViewController: UIViewController {
-
+    
     // MARK: ===================== VARIABLES =====================
-    var authData: FAuthData?
-    var cachedUserProfile: AnyObject?
+    var userData: Dictionary<String, String>?
     
     // MARK: ===================== OUTLETS =====================
     @IBOutlet weak var nameTextField: UITextField!
@@ -24,17 +23,10 @@ class ConfirmSignUpViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        // set the cached user profile if it exists from facebook login
-        if let data = authData?.providerData[VALUE_CACHED_USER_PROFILE] {
-            cachedUserProfile = data
-        }
-        
-        // if cachedUserProfile exits prepopulate the the form with that information
-        if cachedUserProfile != nil {
-            nameTextField.text = authData?.providerData[VALUE_DISPLAY_NAME] as? String
-            genderTextField.text = cachedUserProfile![VALUE_GENDER] as? String
-            ageTextField.text = cachedUserProfile![VALUE_AGE] as? String
-        }
+        // populate data from the passed userData
+        nameTextField.text = userData![KEY_DISPLAY_NAME] ?? ""
+        genderTextField.text = userData![KEY_GENDER] ?? ""
+        //ageTextField.text = userData![KEY_AGE]
     }
     
     // MARK: ===================== ACTIONS =====================
@@ -45,26 +37,47 @@ class ConfirmSignUpViewController: UIViewController {
         // unwrap the text values of each text field
         if let name = nameTextField.text, gender = genderTextField.text, age = ageTextField.text where age != "" && name != "" && gender != "" {
             
-            // construct a user object from the information in the text fields
-            var user = [KEY_PROVIDER: VALUE_EMAIL_PASSWORD_PROVIDER,
-                        KEY_DISPLAY_NAME: name,
-                        KEY_GENDER: gender,
-                        KEY_AGE: age]
+            let uid = userData?.removeValueForKey(KEY_ID)
+            userData![KEY_DISPLAY_NAME] = name
+            userData![KEY_AGE] = age
+            userData![KEY_GENDER] = gender
             
+            
+            // This should be moved to Choose Sports when we eventually finish Account Creation
             // add the information from facebook if user logged in with facebook
-            if let authData = self.authData {
-                user[KEY_PROVIDER] = VALUE_FACEBOOK_PROVIDER
-                user[KEY_IMAGE_URL] = authData.providerData[VALUE_PROFILE_IMAGE_URL] as? String
+            if userData![KEY_PROVIDER] == VALUE_FACEBOOK_PROVIDER {
                 
                 // create user in firebase database
-                DataService.ds.createFirebaseUser(authData.uid, user: user)
+                DataService.ds.createFirebaseUser(uid!, user: userData!)
                 
                 // set userid in userdefaults to check against
-                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_ID)
+                NSUserDefaults.standardUserDefaults().setValue(uid, forKey: KEY_ID)
+            } else if userData![KEY_PROVIDER] == VALUE_EMAIL_PASSWORD_PROVIDER {
                 
-                // segue to the choos sports page
-                performSegueWithIdentifier(SEGUE_CHOOSE_SPORTS, sender: nil)
+                DataService.ds.REF_BASE.createUser(userData![KEY_EMAIL], password: userData![KEY_PASSWORD], withValueCompletionBlock: { (error, result) -> Void in
+                    if error != nil {
+                        self.presentViewController(showErrorAlert("Woah", msg: "Something went really wrong"), animated: true, completion: nil)
+                    } else {
+                        //set the default key for the user and log them in
+                        NSUserDefaults.standardUserDefaults().setValue(result[KEY_ID], forKey: KEY_ID)
+                        DataService.ds.REF_BASE.authUser(self.userData![KEY_EMAIL], password: self.userData![KEY_PASSWORD], withCompletionBlock: { (error, authData) in
+                            
+                            //now that we've created the user we clean up the userdata
+                            self.userData?.removeValueForKey(KEY_EMAIL)
+                            self.userData?.removeValueForKey(KEY_PASSWORD)
+                            
+                            //create a user in firebase
+                            //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
+                            DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
+                        })
+                        
+                    }
+                })
+                
             }
+            
+            // segue to the choos sports page
+            performSegueWithIdentifier(SEGUE_CHOOSE_SPORTS, sender: nil)
         }
     }
     

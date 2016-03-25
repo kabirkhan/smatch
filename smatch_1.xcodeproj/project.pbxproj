@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690A3E11CA5C16A00814106 /* AlertModel.swift */; };
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		11F089DA4235472635ED4D75 /* Pods-smatch_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4690A3E11CA5C16A00814106 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		7813C2E544B310223DB609FE /* Pods-smatch_1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.release.xcconfig"; sourceTree = "<group>"; };
 		9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 		D875B2781C9A519C007BBFF3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				4690A3E11CA5C16A00814106 /* AlertModel.swift */,
 				D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */,
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
@@ -597,6 +600,7 @@
 				D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */,
 				D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */,
 				D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */,
+				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */,
 				D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */,
