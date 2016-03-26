@@ -10,6 +10,7 @@ import Foundation
 import MapKit
 import AddressBook
 import CoreLocation
+
 class Event: NSObject {
     var description: String?
     var date: String?

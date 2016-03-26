@@ -23,7 +23,6 @@ class EventsTableViewController: UITableViewController {
         events.append(event1, event2, event3, event4, event5)
         tableView.tableFooterView? = MaterialView()
     }
-    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -33,7 +32,12 @@ class EventsTableViewController: UITableViewController {
         cell.eventNameLabel.text = events[indexPath.row].description
         cell.eventLocationLabel.text = events[indexPath.row].address
         //need to make the cells map view center on the address coordinates
-        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(events[indexPath.row].address) { (placemarks: [CLPlacemark]!, error: NSError!) -> Void in
+            if let placemark = placemarks[0] as! CLPlacemark {
+                cell.mapView.addAnnotation(MKPlacemark(placemark: placemark))
+            }
+        }
         return cell
     }
     
