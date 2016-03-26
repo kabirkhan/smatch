@@ -22,13 +22,13 @@ class EventsTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return events.count
     }
    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
-        cell.eventNameLabel.text = "Test Event"
-        cell.eventLocationLabel.text = "Test Location"
+        cell.eventNameLabel.text = events[indexPath.row].description
+        cell.eventLocationLabel.text = events[indexPath.row].address
         
         return cell
     }
