@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import AddressBook
 import CoreLocation
 
 class EventsTableViewController: UITableViewController {
@@ -20,7 +19,11 @@ class EventsTableViewController: UITableViewController {
     let event5 = Event(description: "Ultimate", date: "4-3-2016", sport: "Ultimate Frisbee", address: "Rainier Avenue South, Renton, WA", time: "7:30pm")
     override func viewDidLoad() {
         super.viewDidLoad()
-        events.append(event1, event2, event3, event4, event5)
+        events.append(event1)
+        events.append(event2)
+        events.append(event3)
+        events.append(event4)
+        events.append(event5)
         tableView.tableFooterView? = MaterialView()
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,6 +34,7 @@ class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
         cell.eventNameLabel.text = events[indexPath.row].description
         cell.eventLocationLabel.text = events[indexPath.row].address
+        
         //need to make the cells map view center on the address coordinates
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(events[indexPath.row].address) { (placemarks: [CLPlacemark]!, error: NSError!) -> Void in
