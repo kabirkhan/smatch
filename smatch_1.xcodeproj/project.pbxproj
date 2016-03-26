@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690A3E11CA5C16A00814106 /* AlertModel.swift */; };
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
+		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -64,6 +65,7 @@
 		7813C2E544B310223DB609FE /* Pods-smatch_1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.release.xcconfig"; sourceTree = "<group>"; };
 		9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		981564151CA72E67007E0F11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A61F4D925EFAC555B4D10904 /* Pods-smatch_1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A729460B76ED2CAC32054A48 /* Pods-smatch_1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D691F2D74415E078BD3C24A5 /* Pods_smatch_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				D836A7891CA22BF200CF9627 /* Sport.swift */,
+				981564151CA72E67007E0F11 /* Event.swift */,
 				D886943B1CA24524007DB508 /* sports.plist */,
 			);
 			name = Models;
@@ -597,6 +600,7 @@
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
 				D8EE2F3A1CA48AAD007DB652 /* Colors.swift in Sources */,
 				D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */,
+				981564161CA72E67007E0F11 /* Event.swift in Sources */,
 				D8E0003E1CA07C95006C50EC /* ConfirmSignUpViewController.swift in Sources */,
 				D84A6BF21CA464F200045150 /* EventCell.swift in Sources */,
 				D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */,

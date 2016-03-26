@@ -9,9 +9,8 @@
 import UIKit
 
 class EventCell: UITableViewCell {
-
-    @IBOutlet weak var eventImageView: UIImageView!
     
+    @IBOutlet weak var eventMapView: MKMapView!
     @IBOutlet weak var eventNameLabel: UILabel!
     
     @IBOutlet weak var eventLocationLabel: UILabel!

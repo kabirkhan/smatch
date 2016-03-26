@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -49,7 +49,7 @@
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="35"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -108,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFt-1V-brm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3266" y="-880"/>
+            <point key="canvasLocation" x="3244" y="-880"/>
         </scene>
         <!--Events Table View Controller-->
         <scene sceneID="BHg-P2-7Tm">
@@ -131,13 +131,13 @@
                                             <rect key="frame" x="10" y="5" width="580" height="262"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Event Name Event Name Event Name Event Name Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXK-ri-OXG">
-                                                    <rect key="frame" x="8" y="147" width="564" height="52"/>
+                                                    <rect key="frame" x="8" y="139" width="564" height="52"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="LocationLocationLocationLocation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgT-SM-JUh">
-                                                    <rect key="frame" x="8" y="199" width="221" height="17"/>
+                                                    <rect key="frame" x="8" y="191" width="221" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -151,24 +151,26 @@
                                                         <action selector="joinButttonPressed:" destination="tfq-Gu-wGI" eventType="touchUpInside" id="3oC-L6-1Yq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Bitmap" translatesAutoresizingMaskIntoConstraints="NO" id="RAh-ZT-JBi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="580" height="144"/>
-                                                </imageView>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="g5h-gL-0jQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="580" height="139"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="139" id="Oo7-kM-wad"/>
+                                                    </constraints>
+                                                </mapView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="cgT-SM-JUh" firstAttribute="top" secondItem="AXK-ri-OXG" secondAttribute="bottom" id="0nD-4d-ihl"/>
                                                 <constraint firstItem="RgR-o2-Zda" firstAttribute="leading" secondItem="AXK-ri-OXG" secondAttribute="leading" id="9Na-KG-3xq"/>
-                                                <constraint firstItem="RAh-ZT-JBi" firstAttribute="leading" secondItem="pwf-JV-dCH" secondAttribute="leading" id="FyH-1J-kRH"/>
-                                                <constraint firstItem="AXK-ri-OXG" firstAttribute="top" secondItem="RAh-ZT-JBi" secondAttribute="bottom" constant="2.5" id="Kow-Xb-Qb7"/>
+                                                <constraint firstItem="AXK-ri-OXG" firstAttribute="top" secondItem="g5h-gL-0jQ" secondAttribute="bottom" id="E97-lK-lH8"/>
+                                                <constraint firstItem="g5h-gL-0jQ" firstAttribute="top" secondItem="pwf-JV-dCH" secondAttribute="top" id="S1J-SD-zfH"/>
                                                 <constraint firstItem="AXK-ri-OXG" firstAttribute="leading" secondItem="pwf-JV-dCH" secondAttribute="leading" constant="8" id="aIc-99-7Ee"/>
-                                                <constraint firstItem="RAh-ZT-JBi" firstAttribute="top" secondItem="pwf-JV-dCH" secondAttribute="top" id="cdn-kZ-6ox"/>
-                                                <constraint firstItem="RAh-ZT-JBi" firstAttribute="height" secondItem="pwf-JV-dCH" secondAttribute="height" multiplier="0.55" id="fnb-Gn-Epf"/>
+                                                <constraint firstItem="g5h-gL-0jQ" firstAttribute="leading" secondItem="pwf-JV-dCH" secondAttribute="leading" id="hIp-ut-rg7"/>
                                                 <constraint firstAttribute="trailing" secondItem="AXK-ri-OXG" secondAttribute="trailing" constant="8" id="iOT-lP-WkI"/>
-                                                <constraint firstAttribute="trailing" secondItem="RAh-ZT-JBi" secondAttribute="trailing" id="moJ-ZK-MVI"/>
                                                 <constraint firstItem="cgT-SM-JUh" firstAttribute="leading" secondItem="AXK-ri-OXG" secondAttribute="leading" id="qT8-3e-s9H"/>
                                                 <constraint firstAttribute="bottom" secondItem="RgR-o2-Zda" secondAttribute="bottom" constant="2" id="qlm-oW-HQb"/>
                                                 <constraint firstItem="AXK-ri-OXG" firstAttribute="height" secondItem="pwf-JV-dCH" secondAttribute="height" multiplier="0.2" id="u3e-zo-hqI"/>
+                                                <constraint firstAttribute="trailing" secondItem="g5h-gL-0jQ" secondAttribute="trailing" id="yUG-qh-Gps"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -181,8 +183,8 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <outlet property="eventImageView" destination="RAh-ZT-JBi" id="Jm9-da-T0T"/>
                                     <outlet property="eventLocationLabel" destination="cgT-SM-JUh" id="3b5-aX-Gff"/>
+                                    <outlet property="eventMapView" destination="g5h-gL-0jQ" id="EM7-sX-TSy"/>
                                     <outlet property="eventNameLabel" destination="AXK-ri-OXG" id="vDM-RV-hWo"/>
                                 </connections>
                             </tableViewCell>
@@ -250,7 +252,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bitmap" width="999" height="668"/>
         <image name="segmented_selected_bg" width="1" height="45"/>
         <image name="segmented_separator_bg" width="38" height="45"/>
         <image name="segmented_unselected_bg" width="1" height="45"/>
