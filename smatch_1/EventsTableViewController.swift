@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import MapKit
+import AddressBook
+import CoreLocation
 
 class EventsTableViewController: UITableViewController {
     var events: [Event]
@@ -29,6 +32,7 @@ class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
         cell.eventNameLabel.text = events[indexPath.row].description
         cell.eventLocationLabel.text = events[indexPath.row].address
+        //need to make the cells map view center on the address coordinates
         
         return cell
     }
