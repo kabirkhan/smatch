@@ -42,26 +42,8 @@ class EventsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
         cell.eventNameLabel.text = events[indexPath.row].descript
         cell.eventLocationLabel.text = events[indexPath.row].address
-        
-        //Create function to center the Map that makes up the top half of the cell
-        
         let regionRadius: CLLocationDistance = 3000
-        func centerMapOnLocation(location: CLLocation) {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                regionRadius * 2.0, regionRadius * 2.0)
-            cell.eventMapView.setRegion(coordinateRegion, animated: true)
-        }
-        
-        //Geocode the address and get the coordinates, then set the maps center on those coordinates
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(events[indexPath.row].address) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            let placemark = placemarks![0]
-            let coordinate = placemark.location!
-            centerMapOnLocation(coordinate)
-            let mkplacemark = MKPlacemark.init(placemark: placemark)
-            cell.eventMapView.addAnnotation(mkplacemark)
-        }
-        //Return the cell
+        events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)
         return cell
     }
     

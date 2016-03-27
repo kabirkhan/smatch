@@ -24,32 +24,16 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocation(latitude: 47.608013, longitude: -122.335167)
-        centerMapOnLocation(initialLocation)
         events.append(event1)
         events.append(event2)
         events.append(event3)
         events.append(event4)
         events.append(event5)
-        
-        let geocoder = CLGeocoder()
-        var placemarkArray = [MKPlacemark]()
         for i in 0...events.count-1 {
-            geocoder.geocodeAddressString(events[i].address, completionHandler: { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-                for placemark in placemarks! {
-                    let mkplacemark = MKPlacemark.init(placemark: placemark)
-                    placemarkArray.append(mkplacemark)
-                }
-                
-            })
+            events[i].geocode(mapView, regionRadius: regionRadius, centeredOnPin: false)
         }
-        print("hello \(placemarkArray)")
+        
         mapView.delegate = self
-    }
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-            regionRadius * 2.0, regionRadius * 2.0)
-        mapView.setRegion(coordinateRegion, animated: true)
     }
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as?  Event {
