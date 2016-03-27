@@ -12,19 +12,22 @@ import AddressBook
 import CoreLocation
 
 class Event: NSObject {
-    var description: String?
-    var date: String?
-    var sport: String?
-    var address: String?
-    var time: String?
+    var descript: String
+    var date: String
+    var sport: String
+    var address: String
+    var time: String
+    var numberOfPlayers: Int
     
-    init (description: description, date: date, sport: sport, address: address, time: time) {
-        self.description = description
+    init (description: String, date: String, sport: String, address: String, time: String, numberOfPlayers: Int) {
+        self.descript = description
         self.date = date
         self.sport = sport
         self.address = address
         self.time = time
+        self.numberOfPlayers = numberOfPlayers
         super.init()
     }
-    //need built in function that takes in location string and returns usable coordinates. Create a variable called coordinates and make it a computed property.
+    let geocoder = CLGeocoder()
+    
 }
