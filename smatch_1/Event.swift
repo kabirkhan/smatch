@@ -43,24 +43,26 @@ class Event: NSObject, MKAnnotation {
     
     // MARK: - Map Functions
     
+    
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
+        
         // Create a CoreLocation Geocoder
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             //address has been geocoded into a placemark for use. This is the first entry in the placemark array.
             let placemark = placemarks![0]
-            print(placemark)
             self.coordinate = placemark.location!.coordinate
             if centeredOnPin == true {
                 //run when we want to center the map on the pin itself
                 self.centerMapOnLocation(placemark.location!, mapView: mapView, regionRadius: regionRadius)
             } else {
                 // This only applies to the Map View with all of the pins on the same map. At some point we would probably want to change this over to being centered on the users location rather than self.Seattle
-                self.centerMapOnLocation(self.Seattle, mapView: mapView, regionRadius: regionRadius)
+//                self.centerMapOnLocation(self.Seattle, mapView: mapView, regionRadius: regionRadius)
             }
             mapView.addAnnotation(self)
         }
     }
+    
     //function called from geocode()
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -106,7 +106,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="1wW-Kp-3LW">
-                                <rect key="frame" x="20" y="392" width="560" height="200"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="ccd-Vm-FwG"/>
                                 </constraints>
@@ -115,18 +115,24 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="Cml-nG-Qmm"/>
+                            <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" constant="-20" id="ENn-Rv-BHB"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="IdP-8d-Nxh"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="8" symbolic="YES" id="QZk-zi-fHu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" id="Sxv-7C-Ged"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" id="UVF-gA-kgy"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="cHG-kP-Ljq"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
+                            <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" constant="-20" id="zEs-XN-NxP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Cml-nG-Qmm"/>
                                 <exclude reference="IdP-8d-Nxh"/>
                                 <exclude reference="Sxv-7C-Ged"/>
+                                <exclude reference="cHG-kP-Ljq"/>
+                                <exclude reference="hTi-OH-2fL"/>
+                                <exclude reference="QZk-zi-fHu"/>
                                 <exclude reference="UVF-gA-kgy"/>
                             </mask>
                         </variation>
@@ -245,16 +251,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2hW-Tj-5dm">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="top" secondItem="XkT-va-T6R" secondAttribute="bottom" id="4m1-HH-9pe"/>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="leading" secondItem="CaM-1e-F7s" secondAttribute="leadingMargin" id="5VB-bi-JFE"/>
+                            <constraint firstItem="2hW-Tj-5dm" firstAttribute="leading" secondItem="CaM-1e-F7s" secondAttribute="leadingMargin" constant="-20" id="7eC-4y-BJO"/>
+                            <constraint firstItem="2hW-Tj-5dm" firstAttribute="top" secondItem="XkT-va-T6R" secondAttribute="bottom" id="HTt-Rm-RRf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2hW-Tj-5dm" secondAttribute="trailing" id="M1a-ED-nVM"/>
                             <constraint firstItem="Utz-w3-Bq1" firstAttribute="top" secondItem="2hW-Tj-5dm" secondAttribute="bottom" id="ZfO-bA-jSo"/>
+                            <constraint firstItem="2hW-Tj-5dm" firstAttribute="trailing" secondItem="CaM-1e-F7s" secondAttribute="trailingMargin" constant="20" id="oxI-8P-Sgp"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4m1-HH-9pe"/>
+                                <exclude reference="5VB-bi-JFE"/>
+                                <exclude reference="M1a-ED-nVM"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="2hW-Tj-5dm" id="btI-VB-vJG"/>
@@ -334,6 +350,6 @@
         <image name="segmented_unselected_bg" width="1" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="i9m-hh-sps"/>
+        <segue reference="D78-00-tXf"/>
     </inferredMetricsTieBreakers>
 </document>
