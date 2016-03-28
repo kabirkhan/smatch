@@ -34,6 +34,7 @@ let STATUS_ACCOUNT_NONEXIST = -8
 let SEGUE_ACCOUNT_SETUP = "confirm_account_information"
 let SEGUE_CHOOSE_SPORTS = "choose_sports"
 let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
+let SEGUE_LOGGED_IN = "logged_in"
 
 // MARK: CELL IDENTIFIERS
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"

@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
                     }
                 } else {
                     //log in suceeded segue to main app
-                    //self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                    self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
                 }
             })
         } else {
@@ -92,6 +92,17 @@ class LoginViewController: UIViewController {
         if segue.identifier == SEGUE_ACCOUNT_SETUP {
             let destVC = segue.destinationViewController as! ConfirmSignUpViewController
             destVC.userData = sender as? Dictionary<String, String>
+        }
+    }
+    
+    // MARK: =================================== VIEW LIFECYCLE ===================================
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //if there is already a logged in user, move forward
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
+            performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
     }
     

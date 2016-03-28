@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P9f-xl-YZk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="P9f-xl-YZk">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -105,9 +105,6 @@
                                                 <exclude reference="hfS-tB-Y2I"/>
                                             </mask>
                                         </variation>
-                                        <connections>
-                                            <segue destination="l6z-5m-tck" kind="show" id="qHg-gJ-hXZ"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.17254901959999999" blue="0.0078431372550000003" alpha="0.60348923139999999" colorSpace="calibratedRGB"/>
@@ -147,11 +144,12 @@
                     <navigationItem key="navigationItem" id="qPf-y7-nF4"/>
                     <connections>
                         <segue destination="l6z-5m-tck" kind="show" identifier="confirm_account_information" id="Gch-lG-GIj"/>
+                        <segue destination="gPw-D3-whE" kind="show" identifier="logged_in" id="dGc-Ld-2LH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62n-G3-ndy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2390" y="-134"/>
+            <point key="canvasLocation" x="2361" y="-134"/>
         </scene>
         <!--Confirm Sign Up View Controller-->
         <scene sceneID="zNk-oY-RhK">
@@ -244,17 +242,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUP-vd-fLL">
-                                <rect key="frame" x="250" y="450" width="100" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="Tnc-W8-S1x"/>
-                                    <constraint firstAttribute="height" constant="50" id="mCm-Ym-v53"/>
-                                </constraints>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="hlF-OG-Y3Y" kind="show" id="XaQ-0O-KSA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -264,11 +251,9 @@
                             <constraint firstItem="3Xq-wo-bc6" firstAttribute="top" secondItem="iql-LV-90b" secondAttribute="bottom" constant="20" id="9dn-gw-MF2"/>
                             <constraint firstItem="cWJ-sf-xWG" firstAttribute="leading" secondItem="Oon-3O-Ncy" secondAttribute="leadingMargin" id="B1J-m9-DpE"/>
                             <constraint firstItem="cWJ-sf-xWG" firstAttribute="trailing" secondItem="Oon-3O-Ncy" secondAttribute="trailingMargin" id="Cn1-lu-3tI"/>
-                            <constraint firstItem="aFT-ee-XWt" firstAttribute="top" secondItem="eUP-vd-fLL" secondAttribute="bottom" constant="50" id="KQr-BG-Y8Z"/>
                             <constraint firstItem="erK-ns-bJJ" firstAttribute="trailing" secondItem="Oon-3O-Ncy" secondAttribute="trailingMargin" id="NkJ-nq-aO1"/>
                             <constraint firstItem="0zV-og-tXG" firstAttribute="leading" secondItem="Oon-3O-Ncy" secondAttribute="leadingMargin" id="bgo-g5-NX7"/>
                             <constraint firstItem="3Xq-wo-bc6" firstAttribute="leading" secondItem="Oon-3O-Ncy" secondAttribute="leadingMargin" id="owd-W2-Zwc"/>
-                            <constraint firstItem="eUP-vd-fLL" firstAttribute="centerX" secondItem="Oon-3O-Ncy" secondAttribute="centerX" id="q7f-Kj-A9o"/>
                             <constraint firstItem="YMM-LK-Jgs" firstAttribute="top" secondItem="aFT-ee-XWt" secondAttribute="bottom" constant="20" id="qCq-Cx-UwB"/>
                             <constraint firstItem="0zV-og-tXG" firstAttribute="trailing" secondItem="Oon-3O-Ncy" secondAttribute="trailingMargin" id="sJ2-k0-hDz"/>
                             <constraint firstItem="0zV-og-tXG" firstAttribute="top" secondItem="erK-ns-bJJ" secondAttribute="bottom" constant="8" id="wUo-RF-alz"/>
@@ -285,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Or5-PV-1ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3015" y="-134"/>
+            <point key="canvasLocation" x="2355" y="616"/>
         </scene>
         <!--Choose Sports Collection View Controller-->
         <scene sceneID="gr0-tf-wMs">
@@ -385,7 +370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6bY-jj-4yC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3669" y="-138"/>
+            <point key="canvasLocation" x="3197" y="616"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Dhz-DJ-t0x">
@@ -491,7 +476,6 @@
         <image name="twitter login button" width="289" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XaQ-0O-KSA"/>
-        <segue reference="qHg-gJ-hXZ"/>
+        <segue reference="9Mi-2d-jBD"/>
     </inferredMetricsTieBreakers>
 </document>
