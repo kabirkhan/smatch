@@ -9,12 +9,21 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Firebase
 
-class EventsMapViewController: UIViewController, MKMapViewDelegate {
+class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    let regionRadius: CLLocationDistance = 15000
+    //need to create an array that holds all the sports the person has added. Should be in their Firebase AuthData
+    
+    // MARK: - Variables and Constants
+    
+    var ref = Firebase(url: "https://smatchfirstdraft.firebaseio.com")
+    var locationManager = UserLocation.userLocation
+    var initialLocation = CLLocation()
+    let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
     var events = [Event]()
+    var profileSports = [AnyObject]()
     
     // MARK: - Dummy Data
     
@@ -36,9 +45,24 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate {
         for i in 0...events.count-1 {
             events[i].geocode(mapView, regionRadius: regionRadius, centeredOnPin: false)
         }
-        
         mapView.delegate = self
+        
+        //Set up the User's Location. Prompts them to allow us to access if they havent already
+        
+        initialLocation = locationManager.returnLocation()
+        centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
+        
+        //Firebase
+        let authData = ref.authData.uid
+        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)/sports")
+        print(user)
+        user.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            print(snapshot.value)
+            self.profileSports.append(snapshot.value)
+        })
+        print(profileSports)
     }
+   
     
     // MARK: - MapViewAnnotations
     
@@ -55,15 +79,16 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate {
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
             }
             //make the pin color change depending on the sport
             switch annotation.sport {
                 case "Basketball":
                     view.pinTintColor = UIColor.redColor()
                 case "Tennis":
-                    view.pinTintColor = UIColor.yellowColor()
+                    view.pinTintColor = UIColor.materialMainGreen
                 case "Softball":
-                    view.pinTintColor = UIColor.whiteColor()
+                    view.pinTintColor = UIColor.materialAmberAccent
                 case "Soccer":
                     view.pinTintColor = UIColor.blueColor()
                 case "Football":
@@ -76,8 +101,6 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate {
                     view.pinTintColor = UIColor.grayColor()
                 
             }
-            
-            //need to add switch statment for pin color
             return view
         }
         return nil
@@ -93,10 +116,18 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEventDetails" {
-            let controller = segue.destinationViewController as! EventDetailViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
             controller.eventToDetail = sender as! Event
             
         }
     }
     
+    // MARK: - Function for Map Centering
+
+    func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+            regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
 }

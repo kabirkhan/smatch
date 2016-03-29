@@ -14,6 +14,7 @@
 		46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */; };
 		46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */; };
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
+		98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
@@ -75,6 +76,7 @@
 		7813C2E544B310223DB609FE /* Pods-smatch_1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.release.xcconfig"; sourceTree = "<group>"; };
 		9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		981564151CA72E67007E0F11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		A61F4D925EFAC555B4D10904 /* Pods-smatch_1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A729460B76ED2CAC32054A48 /* Pods-smatch_1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				D836A7891CA22BF200CF9627 /* Sport.swift */,
+				98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */,
 				981564151CA72E67007E0F11 /* Event.swift */,
 				D886943B1CA24524007DB508 /* sports.plist */,
 			);
@@ -627,6 +630,7 @@
 				D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */,
 				46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */,
 				46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */,
+				98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */,
 				D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */,
 				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,

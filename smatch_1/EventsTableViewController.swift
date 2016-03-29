@@ -12,6 +12,8 @@ import CoreLocation
 
 class EventsTableViewController: UITableViewController {
     
+    // MARK: - Variables and Constants
+    
     var events = [Event]()
     let regionRadius: CLLocationDistance = 3000
     
@@ -55,6 +57,10 @@ class EventsTableViewController: UITableViewController {
         //Send the event detail controller the event to display data for
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
     }
+    
+    // MARK: - Segues
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "show_event_detail" {
             let navigationController = segue.destinationViewController as! UINavigationController
