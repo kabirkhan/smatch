@@ -17,6 +17,8 @@ let KEY_AGE = "age"
 let KEY_IMAGE_URL = "image_url"
 let KEY_EMAIL = "email"
 let KEY_PASSWORD = "password"
+let KEY_SPORTS = "sports"
+
 
 // MARK: VALUES
 let VALUE_FACEBOOK_PROVIDER = "facebook"
@@ -35,6 +37,7 @@ let SEGUE_ACCOUNT_SETUP = "confirm_account_information"
 let SEGUE_CHOOSE_SPORTS = "choose_sports"
 let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 let SEGUE_LOGGED_IN = "logged_in"
+let SEGUE_EDIT_USERPROFILE = "edit_profile"
 
 // MARK: CELL IDENTIFIERS
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"

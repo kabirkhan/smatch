@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690A3E11CA5C16A00814106 /* AlertModel.swift */; };
 		46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */; };
+		46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */; };
+		46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */; };
+		46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */; };
+		46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */; };
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
@@ -64,6 +68,10 @@
 		331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4690A3E11CA5C16A00814106 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileViewController.swift; sourceTree = "<group>"; };
+		46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
+		46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoBackDelegate.swift; sourceTree = "<group>"; };
+		46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7813C2E544B310223DB609FE /* Pods-smatch_1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.release.xcconfig"; sourceTree = "<group>"; };
 		9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +186,7 @@
 				D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */,
 				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
 				46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */,
+				46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */,
 				D83A18141CA3B5A40048B629 /* Events */,
 			);
 			name = Controllers;
@@ -201,6 +210,8 @@
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
 				D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */,
+				46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */,
+				46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -226,6 +237,7 @@
 		D875B27B1C9A51BA007BBFF3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -600,9 +612,11 @@
 			files = (
 				D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */,
 				46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */,
+				46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */,
 				D8E0003C1CA07951006C50EC /* Constants.swift in Sources */,
 				D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */,
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
+				46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */,
 				D8EE2F3A1CA48AAD007DB652 /* Colors.swift in Sources */,
 				D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */,
 				981564161CA72E67007E0F11 /* Event.swift in Sources */,
@@ -611,6 +625,8 @@
 				D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */,
 				D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */,
 				D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */,
+				46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */,
+				46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */,
 				D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */,
 				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,

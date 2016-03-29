@@ -23,13 +23,6 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if let seedSports = Sport.loadDefaultSports() {
-//            sports += seedSports
-//            // sports = sports.sort { $0.name < $1.name }
-//            print("1 \(sports)")
-//            print(seedSports)
-//        }
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -66,15 +59,6 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         toggleSelectedSport(cell, indexPath: indexPath)
         
     }
-    
-//    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SportCollectionViewCell
-//        
-//        if cell.nameLabel.textColor == UIColor.materialMainGreen {
-//            cell.nameLabel.textColor = UIColor.darkTextColor()
-//        }
-//    }
     
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         
