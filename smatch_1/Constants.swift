@@ -17,6 +17,8 @@ let KEY_AGE = "age"
 let KEY_IMAGE_URL = "image_url"
 let KEY_EMAIL = "email"
 let KEY_PASSWORD = "password"
+let KEY_SPORTS = "sports"
+
 
 // MARK: VALUES
 let VALUE_FACEBOOK_PROVIDER = "facebook"
@@ -35,6 +37,16 @@ let SEGUE_ACCOUNT_SETUP = "confirm_account_information"
 let SEGUE_CHOOSE_SPORTS = "choose_sports"
 let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 let SEGUE_LOGGED_IN = "logged_in"
+let SEGUE_EDIT_USERPROFILE = "edit_profile"
+
+// NEW EVENT SEGUES
+let SEGUE_NEW_EVENT_TO_NAME_FROM_CHOOSE_SPORT = "new_event_name_and_description"
+let SEGUE_NEW_EVENT_TO_LOCATION_FROM_NAME = "new_event_location"
+let SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION = "new_event_date"
+let SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE = "new_event_num_players"
+let SEGUE_NEW_EVENT_TO_COMPETITION_FROM_NUM_PLAYERS = "new_event_competition"
+let SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION = "new_event_gender"
+let SEGUE_NEW_EVENT_FINISH_NEW_EVENT = "new_event_finish"
 
 // MARK: CELL IDENTIFIERS
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"

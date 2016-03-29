@@ -15,6 +15,8 @@ class DataService {
     
     static let ds = DataService()
     
+    private init() {}
+    
     private var _REF_BASE = Firebase(url: "\(URL_BASE)")
     private var _REF_USERS = Firebase(url: "\(URL_BASE)/users")
     private var _REF_EVENTS = Firebase(url: "\(URL_BASE)/events")
@@ -33,5 +35,11 @@ class DataService {
     
     func createFirebaseUser(uid: String, user: Dictionary<String, AnyObject>) {
         REF_USERS.childByAppendingPath(uid).setValue(user)
+    }
+    
+    func createEvent(event: Dictionary<String, String>) {
+        let newEventRef = REF_EVENTS.childByAutoId()
+        newEventRef.setValue(event)
+        print(newEventRef.key)
     }
 }

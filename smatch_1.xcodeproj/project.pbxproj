@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690A3E11CA5C16A00814106 /* AlertModel.swift */; };
+		46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */; };
+		46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */; };
+		46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */; };
+		46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */; };
+		46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */; };
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
 		98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
@@ -20,10 +25,23 @@
 		D83A181E1CA3B80A0048B629 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181D1CA3B80A0048B629 /* Profile.storyboard */; };
 		D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */; };
 		D84A6BF21CA464F200045150 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A6BF11CA464F200045150 /* EventCell.swift */; };
+		D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C51CA9B370006490B4 /* EventNameViewController.swift */; };
+		D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */; };
+		D86407CA1CA9B3ED006490B4 /* EventLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */; };
+		D86407CC1CA9B406006490B4 /* EventNumPlayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407CB1CA9B406006490B4 /* EventNumPlayersViewController.swift */; };
+		D86407D01CA9B533006490B4 /* CreateEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D86407CF1CA9B533006490B4 /* CreateEvent.storyboard */; };
+		D86407D21CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407D11CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift */; };
 		D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */; };
 		D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D875B2701C9A5155007BBFF3 /* LoginViewController.swift */; };
 		D875B2741C9A5162007BBFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D875B2731C9A5162007BBFF3 /* Images.xcassets */; };
 		D886943C1CA24524007DB508 /* sports.plist in Resources */ = {isa = PBXBuildFile; fileRef = D886943B1CA24524007DB508 /* sports.plist */; };
+		D890FC301CAA004100D9ADEA /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC2F1CAA004100D9ADEA /* Regex.swift */; };
+		D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC331CAA2AE800D9ADEA /* CreateEventDateViewController.swift */; };
+		D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC351CAA2B4400D9ADEA /* CreateEventGenderViewController.swift */; };
+		D890FC381CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC371CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift */; };
+		D890FC3A1CAA307A00D9ADEA /* CompetitionLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC391CAA307A00D9ADEA /* CompetitionLevel.swift */; };
+		D890FC3C1CAA30B400D9ADEA /* GenderForGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */; };
+		D890FC3E1CAA389500D9ADEA /* CreateEventFinishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC3D1CAA389500D9ADEA /* CreateEventFinishViewController.swift */; };
 		D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */; };
 		D8C18D5E1C9A39BC00E2E0D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8C18D5C1C9A39BC00E2E0D7 /* LaunchScreen.storyboard */; };
 		D8C18D691C9A39BC00E2E0D7 /* smatch_1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C18D681C9A39BC00E2E0D7 /* smatch_1Tests.swift */; };
@@ -63,6 +81,11 @@
 		11F089DA4235472635ED4D75 /* Pods-smatch_1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4690A3E11CA5C16A00814106 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileViewController.swift; sourceTree = "<group>"; };
+		46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
+		46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoBackDelegate.swift; sourceTree = "<group>"; };
+		46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
 		7813C2E544B310223DB609FE /* Pods-smatch_1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1UITests/Pods-smatch_1UITests.release.xcconfig"; sourceTree = "<group>"; };
 		79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.release.xcconfig"; sourceTree = "<group>"; };
 		9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,10 +103,23 @@
 		D83A181D1CA3B80A0048B629 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D84A6BF11CA464F200045150 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		D86407C51CA9B370006490B4 /* EventNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNameViewController.swift; sourceTree = "<group>"; };
+		D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSportCollectionViewController.swift; sourceTree = "<group>"; };
+		D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLocationViewController.swift; sourceTree = "<group>"; };
+		D86407CB1CA9B406006490B4 /* EventNumPlayersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNumPlayersViewController.swift; sourceTree = "<group>"; };
+		D86407CF1CA9B533006490B4 /* CreateEvent.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateEvent.storyboard; sourceTree = "<group>"; };
+		D86407D11CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewEventSportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseSportsCollectionViewController.swift; sourceTree = "<group>"; };
 		D875B2701C9A5155007BBFF3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D875B2731C9A5162007BBFF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D886943B1CA24524007DB508 /* sports.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sports.plist; sourceTree = "<group>"; };
+		D890FC2F1CAA004100D9ADEA /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
+		D890FC331CAA2AE800D9ADEA /* CreateEventDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventDateViewController.swift; sourceTree = "<group>"; };
+		D890FC351CAA2B4400D9ADEA /* CreateEventGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventGenderViewController.swift; sourceTree = "<group>"; };
+		D890FC371CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventCompetitionViewController.swift; sourceTree = "<group>"; };
+		D890FC391CAA307A00D9ADEA /* CompetitionLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompetitionLevel.swift; sourceTree = "<group>"; };
+		D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenderForGame.swift; sourceTree = "<group>"; };
+		D890FC3D1CAA389500D9ADEA /* CreateEventFinishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventFinishViewController.swift; sourceTree = "<group>"; };
 		D8C18D501C9A39BC00E2E0D7 /* smatch_1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smatch_1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D8C18D5D1C9A39BC00E2E0D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -161,13 +197,29 @@
 		D83A18141CA3B5A40048B629 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				D86407C41CA9B356006490B4 /* CreateEvent */,
 				D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */,
 				D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */,
 				D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */,
-				D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */,
 				D8EE2F3D1CA4B665007DB652 /* EventDetailViewController.swift */,
 			);
 			name = Events;
+			sourceTree = "<group>";
+		};
+		D86407C41CA9B356006490B4 /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */,
+				D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */,
+				D86407C51CA9B370006490B4 /* EventNameViewController.swift */,
+				D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */,
+				D86407CB1CA9B406006490B4 /* EventNumPlayersViewController.swift */,
+				D890FC331CAA2AE800D9ADEA /* CreateEventDateViewController.swift */,
+				D890FC371CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift */,
+				D890FC351CAA2B4400D9ADEA /* CreateEventGenderViewController.swift */,
+				D890FC3D1CAA389500D9ADEA /* CreateEventFinishViewController.swift */,
+			);
+			name = CreateEvent;
 			sourceTree = "<group>";
 		};
 		D875B2751C9A5173007BBFF3 /* Controllers */ = {
@@ -177,6 +229,8 @@
 				D875B2701C9A5155007BBFF3 /* LoginViewController.swift */,
 				D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */,
 				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
+				46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */,
+				46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */,
 				D83A18141CA3B5A40048B629 /* Events */,
 			);
 			name = Controllers;
@@ -188,7 +242,10 @@
 				D836A7891CA22BF200CF9627 /* Sport.swift */,
 				98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */,
 				981564151CA72E67007E0F11 /* Event.swift */,
+				D890FC2F1CAA004100D9ADEA /* Regex.swift */,
 				D886943B1CA24524007DB508 /* sports.plist */,
+				D890FC391CAA307A00D9ADEA /* CompetitionLevel.swift */,
+				D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -201,6 +258,9 @@
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
 				D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */,
+				46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */,
+				46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */,
+				D86407D11CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -226,6 +286,7 @@
 		D875B27B1C9A51BA007BBFF3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -246,6 +307,7 @@
 				D83A181B1CA3B7F40048B629 /* Notifications.storyboard */,
 				D83A18191CA3B7C70048B629 /* Messages.storyboard */,
 				D83A18171CA3B7820048B629 /* Events.storyboard */,
+				D86407CF1CA9B533006490B4 /* CreateEvent.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -444,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D83A181A1CA3B7C70048B629 /* Messages.storyboard in Resources */,
+				D86407D01CA9B533006490B4 /* CreateEvent.storyboard in Resources */,
 				D8C18D5E1C9A39BC00E2E0D7 /* LaunchScreen.storyboard in Resources */,
 				D83A181E1CA3B80A0048B629 /* Profile.storyboard in Resources */,
 				D886943C1CA24524007DB508 /* sports.plist in Resources */,
@@ -599,24 +662,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */,
+				46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */,
+				46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */,
 				D8E0003C1CA07951006C50EC /* Constants.swift in Sources */,
 				D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */,
+				D86407D21CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift in Sources */,
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
+				46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */,
+				D890FC3E1CAA389500D9ADEA /* CreateEventFinishViewController.swift in Sources */,
 				D8EE2F3A1CA48AAD007DB652 /* Colors.swift in Sources */,
+				D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */,
 				D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */,
 				981564161CA72E67007E0F11 /* Event.swift in Sources */,
+				D86407CA1CA9B3ED006490B4 /* EventLocationViewController.swift in Sources */,
 				D8E0003E1CA07C95006C50EC /* ConfirmSignUpViewController.swift in Sources */,
 				D84A6BF21CA464F200045150 /* EventCell.swift in Sources */,
 				D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */,
+				D86407CC1CA9B406006490B4 /* EventNumPlayersViewController.swift in Sources */,
+				D890FC381CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift in Sources */,
 				D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */,
+				D890FC3C1CAA30B400D9ADEA /* GenderForGame.swift in Sources */,
 				D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */,
+				46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */,
+				46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */,
 				98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */,
 				D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */,
 				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
+				D890FC3A1CAA307A00D9ADEA /* CompetitionLevel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */,
+				D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */,
+				D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */,
 				D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */,
+				D890FC301CAA004100D9ADEA /* Regex.swift in Sources */,
 				D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */,
+				D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */,
 				D8E0003A1CA07292006C50EC /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
