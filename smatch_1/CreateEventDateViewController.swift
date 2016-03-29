@@ -21,7 +21,7 @@ class CreateEventDateViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
-        newEvent?.date = datePicker.date
+        newEvent?.date = NSDateFormatter.localizedStringFromDate(datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE, sender: nil)
     }
     

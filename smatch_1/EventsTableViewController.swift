@@ -17,16 +17,11 @@ class EventsTableViewController: UITableViewController {
     var events = [Event]()
     let regionRadius: CLLocationDistance = 3000
     
-    // MARK: - Dummy Data
-    
-    let event1 = Event(title: "Pick-Up Basketball", date: NSDate(), sport: "Basketball", address: "1053 25th Ave East, Seattle, WA", numberOfPlayers: 10, gender: Gender.Coed, competition: CompetitionLevel.DoesNotMatter)
-    
 
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        events.append(event1)
         tableView.tableFooterView? = MaterialView()
     }
     // MARK: - Table View Data Source

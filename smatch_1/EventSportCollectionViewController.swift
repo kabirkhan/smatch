@@ -11,7 +11,7 @@ import UIKit
 class EventSportCollectionViewController: UICollectionViewController {
     
     var userSports = SPORTS
-    var newEvent = Event(title: "", date: NSDate(), sport: "", address: "", numberOfPlayers: 0, gender: Gender.Coed, competition: CompetitionLevel.DoesNotMatter)
+    var newEvent = Event(title: "", date: "", sport: "", address: "", numberOfPlayers: "0", gender: Gender.Coed.rawValue, competition: CompetitionLevel.DoesNotMatter.rawValue)
     
     override func viewDidLoad() {
         super.viewDidLoad()

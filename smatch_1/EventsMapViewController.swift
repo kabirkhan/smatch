@@ -14,8 +14,7 @@ import Firebase
 class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // MARK: - Variables and Constants
-    
-    var ref = Firebase(url: "https://smatchfirstdraft.firebaseio.com")
+
     
     //references singleton in UserLocationClass. We will set initial location to the user's location provided by the class
     var locationManager = UserLocation.userLocation
@@ -24,45 +23,59 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
-    
-    //events to display
-    var events = [Event]()
-    
-    //sports the user currently has on their profile
-    var profileSports = [AnyObject]()
-    
-    // MARK: - Dummy Data
-    
-    let event1 = Event(title: "Pick-Up Basketball", date: NSDate(), sport: "Basketball", address: "1053 25th Ave East, Seattle, WA", numberOfPlayers: 10, gender: Gender.Coed, competition: CompetitionLevel.DoesNotMatter)
 
-    
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
-        events.append(event1)
+        // Firebase - Populate our sports array with the sports the users is subscribed to
+        let ref = DataService.ds.REF_BASE
+        let authData = ref.authData.uid
+        var mySports = [String]()
+        var events = [Event]()
+        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
+        user.observeEventType(.Value, withBlock: { snapshot in
+            let userSports = snapshot.value.objectForKey("sports")
+            mySports = userSports as! [String]
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        let eventsRef = DataService.ds.REF_EVENTS
         
-        for i in 0...events.count-1 {
-            events[i].geocode(mapView, regionRadius: regionRadius, centeredOnPin: false)
-        }
+        eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let sport = snapshot.value.objectForKey("sport") {
+                for i in 0...mySports.count-1 {
+                    if sport as! String == mySports[i] {
+                        let eventName = snapshot.value.objectForKey("name") as! String
+                        let eventAddress = snapshot.value.objectForKey("address") as! String
+                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                        let eventDate = snapshot.value.objectForKey("date") as! String
+                        let eventGender = snapshot.value.objectForKey("gender") as! String
+                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                        let eventSport = snapshot.value.objectForKey("sport") as! String
+                        let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                        events.append(newEvent)
+                    }
+                }
+            }
+            print(events[0])
+            for i in events {
+                i.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+            }
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+
+        mapView.delegate = self
+        
         
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location
         
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
         
-        // Firebase - Populate our sports array with the sports the users is subscribed to
-        let authData = ref.authData.uid
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)/sports")
-        print(user)
-        user.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
-            self.profileSports.append(snapshot.value)
-        })
-        print(profileSports)
+        
     }
-   
     
     // MARK: - MapViewAnnotations
     
