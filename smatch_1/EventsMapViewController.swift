@@ -13,30 +13,37 @@ import Firebase
 
 class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    //need to create an array that holds all the sports the person has added. Should be in their Firebase AuthData
-    
     // MARK: - Variables and Constants
     
     var ref = Firebase(url: "https://smatchfirstdraft.firebaseio.com")
+    
+    //references singleton in UserLocationClass. We will set initial location to the user's location provided by the class
     var locationManager = UserLocation.userLocation
     var initialLocation = CLLocation()
+    
+    
     let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
+    
+    //events to display
     var events = [Event]()
+    
+    //sports the user currently has on their profile
     var profileSports = [AnyObject]()
     
     // MARK: - Dummy Data
     
-    let event1 = Event(title: "Pick-Up Basketball", date: "3-30-2016", sport: "Basketball", address: "1053 25th Ave East, Seattle, WA", time: "12:00pm", numberOfPlayers: 10)
-    let event2 = Event(title: "Sand Volleyball", date: "3-31-2016", sport: "Volleyball", address: "130th Avenue Northeast, Bellevue, WA", time: "2:00pm", numberOfPlayers: 12)
-    let event3 = Event(title: "Badminton in the Park", date: "4-2-2016", sport: "Badminton", address: "4311 University Way Northeast, Seattle, WA", time: "1:00pm", numberOfPlayers: 4)
-    let event4 = Event(title: "Pick-Up Soccer", date: "3-29-2016", sport: "Soccer", address: "3510 Fremont Avenue North, Seattle, WA", time: "4:00pm", numberOfPlayers: 20)
-    let event5 = Event(title: "Ultimate", date: "4-3-2016", sport: "Ultimate Frisbee", address: "Rainier Avenue South, Renton, WA", time: "7:30pm", numberOfPlayers: 12)
+    let event1 = Event(title: "Pick-Up Basketball", date: "3-30-2016", sport: "Basketball", address: "1053 25th Ave East, Seattle, WA", time: "12:00pm", numberOfPlayers: 10, gender: "Coed", competitiveness: "competitive")
+    let event2 = Event(title: "Sand Volleyball", date: "3-31-2016", sport: "Volleyball", address: "130th Avenue Northeast, Bellevue, WA", time: "2:00pm", numberOfPlayers: 12, gender: "Coed", competitiveness: "competitive")
+    let event3 = Event(title: "Badminton in the Park", date: "4-2-2016", sport: "Badminton", address: "4311 University Way Northeast, Seattle, WA", time: "1:00pm", numberOfPlayers: 4, gender: "Coed", competitiveness: "competitive")
+    let event4 = Event(title: "Pick-Up Soccer", date: "3-29-2016", sport: "Soccer", address: "3510 Fremont Avenue North, Seattle, WA", time: "4:00pm", numberOfPlayers: 20, gender: "Coed", competitiveness: "competitive")
+    let event5 = Event(title: "Ultimate", date: "4-3-2016", sport: "Ultimate Frisbee", address: "Rainier Avenue South, Renton, WA", time: "7:30pm", numberOfPlayers: 12, gender: "Coed", competitiveness: "competitive")
     
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         events.append(event1)
         events.append(event2)
         events.append(event3)
@@ -45,14 +52,13 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         for i in 0...events.count-1 {
             events[i].geocode(mapView, regionRadius: regionRadius, centeredOnPin: false)
         }
-        mapView.delegate = self
         
-        //Set up the User's Location. Prompts them to allow us to access if they havent already
+        //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location
         
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
         
-        //Firebase
+        // Firebase - Populate our sports array with the sports the users is subscribed to
         let authData = ref.authData.uid
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)/sports")
         print(user)

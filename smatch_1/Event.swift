@@ -21,6 +21,8 @@ class Event: NSObject, MKAnnotation {
     var address: String
     var time: String
     var numberOfPlayers: Int
+    var gender: String
+    var competitiveness: String
     //subtitle and title are used for the annotations
     var subtitle: String? {
         return address
@@ -30,13 +32,15 @@ class Event: NSObject, MKAnnotation {
     //variable for seattle in order to center the large map on it. need to set up grabbing users location
     
     var Seattle = CLLocation(latitude: 47.608013, longitude: -122.335167)
-    init (title: String, date: String, sport: String, address: String, time: String, numberOfPlayers: Int) {
+    init (title: String, date: String, sport: String, address: String, time: String, numberOfPlayers: Int, gender: String, competitiveness: String) {
         self.title = title
         self.date = date
         self.sport = sport
         self.address = address
         self.time = time
         self.numberOfPlayers = numberOfPlayers
+        self.gender = gender
+        self.competitiveness = competitiveness
         super.init()
     }
     
