@@ -294,29 +294,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new Event" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB3-kB-FaS">
-                                <rect key="frame" x="226" y="28" width="148" height="21"/>
+                                <rect key="frame" x="226" y="40" width="148" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dri-b8-2dX" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="79" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVX-4h-T27">
+                                <rect key="frame" x="30" y="250" width="540" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="jzk-2n-AC1"/>
+                                </constraints>
+                                <state key="normal" title="Create A New Event!"/>
+                                <connections>
+                                    <segue destination="Dny-Ze-kob" kind="presentation" id="YLl-Ru-UhP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="KB3-kB-FaS" firstAttribute="top" secondItem="bKQ-li-fcX" secondAttribute="bottom" constant="8" id="7bU-G3-4Et"/>
-                            <constraint firstItem="dri-b8-2dX" firstAttribute="leading" secondItem="t8b-RV-VVC" secondAttribute="leadingMargin" id="FCU-gQ-8On"/>
-                            <constraint firstItem="dri-b8-2dX" firstAttribute="top" secondItem="KB3-kB-FaS" secondAttribute="bottom" constant="30" id="Ljh-oG-zRt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="dri-b8-2dX" secondAttribute="trailing" id="TOU-TH-Yu1"/>
+                            <constraint firstItem="KB3-kB-FaS" firstAttribute="top" secondItem="bKQ-li-fcX" secondAttribute="bottom" constant="20" id="7bU-G3-4Et"/>
+                            <constraint firstItem="AVX-4h-T27" firstAttribute="centerY" secondItem="t8b-RV-VVC" secondAttribute="centerY" id="9Ch-d6-LIb"/>
+                            <constraint firstItem="AVX-4h-T27" firstAttribute="width" secondItem="t8b-RV-VVC" secondAttribute="width" multiplier="0.9" id="VER-0V-Kpg"/>
                             <constraint firstItem="KB3-kB-FaS" firstAttribute="centerX" secondItem="t8b-RV-VVC" secondAttribute="centerX" id="foP-zA-mQ5"/>
+                            <constraint firstItem="AVX-4h-T27" firstAttribute="centerX" secondItem="t8b-RV-VVC" secondAttribute="centerX" id="tOy-KR-TV9"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -342,6 +342,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDi-rc-xaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3244" y="-880"/>
+        </scene>
+        <!--CreateEvent-->
+        <scene sceneID="2dZ-nx-nof">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateEvent" id="Dny-Ze-kob" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="st8-0k-ir9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6728" y="-880"/>
         </scene>
     </scenes>
     <resources>
