@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class EventsTableViewController: UITableViewController {
     
@@ -16,12 +17,13 @@ class EventsTableViewController: UITableViewController {
     
     var events = [Event]()
     let regionRadius: CLLocationDistance = 3000
-    
+    var mySports = [String]()
 
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayFireBaseEvents()
         tableView.tableFooterView? = MaterialView()
     }
     // MARK: - Table View Data Source
@@ -35,28 +37,73 @@ class EventsTableViewController: UITableViewController {
         cell.eventNameLabel.text = events[indexPath.row].title
         cell.eventLocationLabel.text = events[indexPath.row].address
         
-        //Geocode the event and pin it on the map
+        //Geocode the event and pin it on the mini event map
         
         events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)
         return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //Send the event detail controller the event to display data for
+        //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
     }
     
     // MARK: - Segues
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "show_event_detail" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as! Event
+            controller.eventToDetail = sender as? Event
             controller.delegate = self
             
         }
     }
     
+    // MARK: - Firebase
+    
+    func displayFireBaseEvents() {
+        let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
+        
+        //Set mySports - Array of sports the user has on their profile
+        
+        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
+        user.observeEventType(.Value, withBlock: { snapshot in
+            let userSports = snapshot.value.objectForKey("sports")
+            self.mySports = userSports as! [String]
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+        //Set events - Array of events that only include events of sports that are inside mySports
+        
+        let eventsRef = DataService.ds.REF_EVENTS
+        eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let sport = snapshot.value.objectForKey("sport") {
+                for i in 0...self.mySports.count-1 {
+                    
+                    //if the sport is one of "mySports" create an event and append it to our events array.
+                    
+                    if sport as! String == self.mySports[i] {
+                        let eventName = snapshot.value.objectForKey("name") as! String
+                        let eventAddress = snapshot.value.objectForKey("address") as! String
+                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                        let eventDate = snapshot.value.objectForKey("date") as! String
+                        let eventGender = snapshot.value.objectForKey("gender") as! String
+                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                        let eventSport = snapshot.value.objectForKey("sport") as! String
+                        let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                        self.events.append(newEvent)
+                    }
+                }
+                
+                //reload the table data. Otherwise the table will load without data and be empty/blank.
+                
+                self.tableView.reloadData()
+            }
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+    }
+
 }

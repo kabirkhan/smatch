@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Alamofire
 
 class UserProfileViewController :UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GoBackDelegate {
     
@@ -37,6 +40,7 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
         layout.itemSize = CGSize(width: width, height: width)
         
         sportsCollectionView.hidden = true
+        returnUserData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -48,9 +52,7 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
         let ref = Firebase(url: url)
         
         ref.observeEventType(.Value, withBlock: { snapshot in
-            
-            print("hello")
-            print(snapshot.value)
+
             
             self.userInfo[KEY_DISPLAY_NAME] = snapshot.value.objectForKey("name")
             self.userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
@@ -112,6 +114,55 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
     // MARK: =================================== DELEGATE FUNCTION ===================================
     func goBack(controller: UIViewController) {
         controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // MARK: =================================== FACEBOOK PICTURES ===================================
+    
+    func returnUserData() {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"cover"])
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                
+                if let id: NSString = result.valueForKey("id") as? NSString {
+                    self.returnUserProfileImages(id)
+                } else {
+                    print("ID es null")
+                }
+                var sourceString: String!
+                let imgURLCoverPhoto = "https://graph.facebook.com/\(FBSDKAccessToken.currentAccessToken().userID)/?fields=cover&access_token=\(FBSDKAccessToken.currentAccessToken().tokenString)"
+                Alamofire.request(.GET, imgURLCoverPhoto).validate().responseJSON(completionHandler: { (response) -> Void in
+                    guard response.result.isSuccess else {
+                        print(response.result.error)
+                        return
+                    }
+                    if let JSON = response.result.value {
+                        if let info = JSON as? [String: AnyObject]{
+                            if let cover = info["cover"] as? [String: AnyObject] {
+                                sourceString = cover["source"] as! String
+                                let facebookCoverUrl = NSURL(string: sourceString)
+                                if let data = NSData(contentsOfURL: facebookCoverUrl!) {
+                                    self.coverPhoto.image = UIImage(data: data)
+                                }
+                            }
+                        }
+                    }
+                })
+            }
+        })
+    }
+    func returnUserProfileImages(accessToken: NSString){
+        let userID = accessToken as NSString
+        let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
+        if let data = NSData(contentsOfURL: facebookProfileUrl!) {
+            profilePhoto.image = UIImage(data: data)
+        }
     }
     
 }

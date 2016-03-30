@@ -15,12 +15,13 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     // MARK: - Variables and Constants
 
+    //need arrays to hold the user's sports and the events that are of those sports. We dont want to display all the events in the database.
+    var mySports = [String]()
+    var events = [Event]()
     
-    //references singleton in UserLocationClass. We will set initial location to the user's location provided by the class
+    //reference the singleton in UserLocationClass. We will set initial location to the user's location provided by the class
     var locationManager = UserLocation.userLocation
     var initialLocation = CLLocation()
-    
-    
     let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
 
@@ -28,53 +29,13 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Firebase - Populate our sports array with the sports the users is subscribed to
-        let ref = DataService.ds.REF_BASE
-        let authData = ref.authData.uid
-        var mySports = [String]()
-        var events = [Event]()
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
-        user.observeEventType(.Value, withBlock: { snapshot in
-            let userSports = snapshot.value.objectForKey("sports")
-            mySports = userSports as! [String]
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
-        let eventsRef = DataService.ds.REF_EVENTS
-        
-        eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
-            if let sport = snapshot.value.objectForKey("sport") {
-                for i in 0...mySports.count-1 {
-                    if sport as! String == mySports[i] {
-                        let eventName = snapshot.value.objectForKey("name") as! String
-                        let eventAddress = snapshot.value.objectForKey("address") as! String
-                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                        let eventDate = snapshot.value.objectForKey("date") as! String
-                        let eventGender = snapshot.value.objectForKey("gender") as! String
-                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                        let eventSport = snapshot.value.objectForKey("sport") as! String
-                        let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
-                        events.append(newEvent)
-                    }
-                }
-            }
-            print(events[0])
-            for i in events {
-                i.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-            }
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
-
         mapView.delegate = self
         
-        
-        //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location
+        //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
-        
-        
+        displayFireBaseEvents()
     }
     
     // MARK: - MapViewAnnotations
@@ -85,10 +46,10 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
                 as? MKPinAnnotationView {
-                    dequeuedView.annotation = annotation as? MKAnnotation
+                    dequeuedView.annotation = annotation as MKAnnotation
                     view = dequeuedView
             } else {
-                view = MKPinAnnotationView(annotation: annotation as? MKAnnotation, reuseIdentifier: identifier)
+                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.calloutOffset = CGPoint(x: -5, y: 5)
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
@@ -131,7 +92,7 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         if segue.identifier == "showEventDetails" {
             let navigationController = segue.destinationViewController as! UINavigationController
             let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as! Event
+            controller.eventToDetail = sender as? Event
             
         }
     }
@@ -142,5 +103,52 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    // MARK: - Firebase
+    
+    func displayFireBaseEvents() {
+        let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
+        
+        //Set mySports - Array of sports the user has on their profile
+        
+        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
+        user.observeEventType(.Value, withBlock: { snapshot in
+            let userSports = snapshot.value.objectForKey("sports")
+            self.mySports = userSports as! [String]
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
+        
+        //Set events - Array of events that only include events of sports that are inside mySports
+        
+        let eventsRef = DataService.ds.REF_EVENTS
+        eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            if let sport = snapshot.value.objectForKey("sport") {
+                for i in 0...self.mySports.count-1 {
+                    
+                    //if the sport is one of "mySports" create an event and append it to our events array.
+                    
+                    if sport as! String == self.mySports[i] {
+                        let eventName = snapshot.value.objectForKey("name") as! String
+                        let eventAddress = snapshot.value.objectForKey("address") as! String
+                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                        let eventDate = snapshot.value.objectForKey("date") as! String
+                        let eventGender = snapshot.value.objectForKey("gender") as! String
+                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                        let eventSport = snapshot.value.objectForKey("sport") as! String
+                        let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                        self.events.append(newEvent)
+                    }
+                }
+            }
+            //geocode all the events inside our events array on the mapView
+            
+            for i in self.events {
+                i.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+            }
+            }, withCancelBlock: { error in
+                print(error.description)
+        })
     }
 }

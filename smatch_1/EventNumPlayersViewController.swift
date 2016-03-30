@@ -46,7 +46,7 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
         
         if numPlayers != nil {
-            newEvent?.numberOfPlayers = numPlayers! as! String
+            newEvent?.numberOfPlayers = String(numPlayers)
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_COMPETITION_FROM_NUM_PLAYERS, sender: nil)
         } else {
             let alert = showErrorAlert("You need some players", msg: "Add an approximate number of players to continue")
