@@ -137,6 +137,7 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
                 }
                 var sourceString: String!
                 let imgURLCoverPhoto = "https://graph.facebook.com/\(FBSDKAccessToken.currentAccessToken().userID)/?fields=cover&access_token=\(FBSDKAccessToken.currentAccessToken().tokenString)"
+                print(imgURLCoverPhoto)
                 Alamofire.request(.GET, imgURLCoverPhoto).validate().responseJSON(completionHandler: { (response) -> Void in
                     guard response.result.isSuccess else {
                         print(response.result.error)
