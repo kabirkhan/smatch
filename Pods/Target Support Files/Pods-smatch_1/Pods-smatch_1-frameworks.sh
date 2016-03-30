@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-smatch_1/Alamofire.framework"
   install_framework "Pods-smatch_1/Bolts.framework"
   install_framework "Pods-smatch_1/FBSDKCoreKit.framework"
   install_framework "Pods-smatch_1/FBSDKLoginKit.framework"
@@ -93,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-smatch_1/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-smatch_1/Alamofire.framework"
   install_framework "Pods-smatch_1/Bolts.framework"
   install_framework "Pods-smatch_1/FBSDKCoreKit.framework"
   install_framework "Pods-smatch_1/FBSDKLoginKit.framework"

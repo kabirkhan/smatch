@@ -25,7 +25,7 @@ class CreateEventCompetitionViewController: UIViewController {
         default:
             competitionLevel = CompetitionLevel.DoesNotMatter
         }
-        newEvent?.competition = competitionLevel!
+        newEvent?.competition = competitionLevel!.rawValue
         performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION, sender: nil)
     }
     

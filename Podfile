@@ -10,6 +10,7 @@ target 'smatch_1' do
     pod 'Firebase'
     pod 'TextFieldEffects'
     pod 'JSQMessagesViewController'
+    pod 'Alamofire', '3.2.1'
 end
 
 target 'smatch_1Tests' do

@@ -25,7 +25,7 @@ class CreateEventGenderViewController: UIViewController {
             gender = Gender.Coed
         }
         
-        newEvent?.gender = gender!
+        newEvent?.gender = gender!.rawValue
         performSegueWithIdentifier(SEGUE_NEW_EVENT_FINISH_NEW_EVENT, sender: nil)
     }
     

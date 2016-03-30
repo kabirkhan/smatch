@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum CompetitionLevel {
-    case DoesNotMatter
-    case NotCompetitive
-    case Competitive
+enum CompetitionLevel: String {
+    case DoesNotMatter = "DoesNotMatter"
+    case NotCompetitive = "NotCompetitive"
+    case Competitive = "Competitive"
 }

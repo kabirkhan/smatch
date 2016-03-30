@@ -34,8 +34,12 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        
+        locationTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: .EditingChanged)
 
-        locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+
+//        locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+        
         
     }
     
