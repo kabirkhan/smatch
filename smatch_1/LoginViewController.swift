@@ -53,9 +53,10 @@ class LoginViewController: UIViewController {
                 })
             }
         }
-        
+
     }
-    
+
+
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
         
         if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {

@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum Gender {
-    case OnlyGuys
-    case OnlyGirls
-    case Coed
+enum Gender: String {
+    case OnlyGuys = "Only Guys"
+    case OnlyGirls = "Only Girls"
+    case Coed = "Coed"
 }

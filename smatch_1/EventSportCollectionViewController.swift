@@ -5,16 +5,55 @@
 //  Created by Kabir Khan on 3/28/16.
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
+//  User creating event picks the sport that they want, set sport to the
+//  newEvent object and send it to next vc through segue
 
 import UIKit
+import Firebase
 
 class EventSportCollectionViewController: UICollectionViewController {
     
-    var userSports = SPORTS
-    var newEvent = Event(title: "", date: NSDate(), sport: "", address: "", numberOfPlayers: 0, gender: Gender.Coed, competition: CompetitionLevel.DoesNotMatter)
+    var newEvent = Event(title: "", date: "", sport: "", address: "", numberOfPlayers: "0", gender: Gender.Coed.rawValue, competition: CompetitionLevel.DoesNotMatter.rawValue)
+
+    // MARK: - VARIABLES
+    var userSports = [String]()
+    var userId: String?
+    let font = UIFont(name: "Avenir", size: 18)
+    let fontColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // DISPLAY INSTRUCTIONS ALERT
+        let alert = showErrorAlert("Choose a sport", msg: "Follow the steps to create your event")
+        presentViewController(alert, animated: true, completion: nil)
+        
+        // =========== NAVBAR SETUP ==============
+        // set navbar fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
+        
+        // set navbar shadow
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0).CGColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
+        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+
+        // set navbar color
+        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
+        
+        // get user's id if stored in defaults which it has to be to get here
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
+            userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String?
+        }
+        
+        DataService.ds.REF_USERS.childByAppendingPath(userId).observeEventType(.Value, withBlock: { (snapshot) in
+            
+            self.userSports = snapshot.value.objectForKey("sports") as! [String]
+            self.collectionView?.reloadData()
+            
+            }) { (error) in
+                print(error)
+        }
         
         // cell is square and half the width of the view to create two columns
         let width = CGRectGetWidth(view.frame) / 2 - 1
@@ -28,6 +67,7 @@ class EventSportCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("new_event_sport_cell", forIndexPath: indexPath) as! NewEventSportCollectionViewCell
         
         let sport = userSports[indexPath.item]
@@ -52,6 +92,7 @@ class EventSportCollectionViewController: UICollectionViewController {
     
     // deselect old sport and select new one when a different item is selected
     override func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewEventSportCollectionViewCell
         
         if cell.nameLabel.textColor == UIColor.materialMainGreen {
@@ -68,14 +109,15 @@ class EventSportCollectionViewController: UICollectionViewController {
             let alert = showErrorAlert("Pick A Sport", msg: "Pick a sport to continue")
             presentViewController(alert, animated: true, completion: nil)
         }
-        
     }
     
+    // send newEvent object to be build up
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        let destinationViewController = segue.destinationViewController as! EventNameViewController
-        destinationViewController.newEvent = newEvent
+        if segue.identifier == SEGUE_NEW_EVENT_TO_NAME_FROM_CHOOSE_SPORT {
+            let destinationViewController = segue.destinationViewController as! EventNameViewController
+            destinationViewController.newEvent = newEvent
+        }
         
     }
-    
 }

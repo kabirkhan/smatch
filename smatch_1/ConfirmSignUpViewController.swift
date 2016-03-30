@@ -44,7 +44,6 @@ class ConfirmSignUpViewController: UIViewController {
             userData![KEY_AGE] = age
             userData![KEY_GENDER] = gender
             
-            
             // This should be moved to Choose Sports when we eventually finish Account Creation
             // add the information from facebook if user logged in with facebook
                         

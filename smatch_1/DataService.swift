@@ -37,9 +37,18 @@ class DataService {
         REF_USERS.childByAppendingPath(uid).setValue(user)
     }
     
-    func createEvent(event: Dictionary<String, String>) {
+    func createEvent(event: Dictionary<String, AnyObject>) -> String {
         let newEventRef = REF_EVENTS.childByAutoId()
         newEventRef.setValue(event)
-        print(newEventRef.key)
+        
+        // post first message for event
+        let newEventMessagesRef = REF_EVENTS.childByAppendingPath(newEventRef.key).childByAppendingPath("messages").childByAutoId() 
+        
+        let message: Dictionary<NSObject, AnyObject> = ["message_content": "Join Now!", "created_at": String(NSDate().timeIntervalSince1970 * 1000), "sender_id": event["creator_id"]!]
+        
+        newEventMessagesRef.updateChildValues(message)
+        
+        // return the key for use in creation file
+        return newEventRef.key
     }
 }
