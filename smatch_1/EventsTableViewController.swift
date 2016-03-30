@@ -71,39 +71,41 @@ class EventsTableViewController: UITableViewController {
         user.observeEventType(.Value, withBlock: { snapshot in
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
-            }, withCancelBlock: { error in
-                print(error.description)
-        })
-        
-        //Set events - Array of events that only include events of sports that are inside mySports
-        
-        let eventsRef = DataService.ds.REF_EVENTS
-        eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
-            if let sport = snapshot.value.objectForKey("sport") {
-                for i in 0...self.mySports.count-1 {
-                    
-                    //if the sport is one of "mySports" create an event and append it to our events array.
-                    
-                    if sport as! String == self.mySports[i] {
-                        let eventName = snapshot.value.objectForKey("name") as! String
-                        let eventAddress = snapshot.value.objectForKey("address") as! String
-                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                        let eventDate = snapshot.value.objectForKey("date") as! String
-                        let eventGender = snapshot.value.objectForKey("gender") as! String
-                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                        let eventSport = snapshot.value.objectForKey("sport") as! String
-                        let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
-                        self.events.append(newEvent)
+            
+            //Set events - Array of events that only include events of sports that are inside mySports
+            let eventsRef = DataService.ds.REF_EVENTS
+            eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+                if let sport = snapshot.value.objectForKey("sport") {
+                    for i in 0...self.mySports.count-1 {
+                        
+                        //if the sport is one of "mySports" create an event and append it to our events array.
+                        
+                        if sport as! String == self.mySports[i] {
+                            let eventName = snapshot.value.objectForKey("name") as! String
+                            let eventAddress = snapshot.value.objectForKey("address") as! String
+                            let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                            let eventDate = snapshot.value.objectForKey("date") as! String
+                            let eventGender = snapshot.value.objectForKey("gender") as! String
+                            let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                            let eventSport = snapshot.value.objectForKey("sport") as! String
+                            let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                            self.events.append(newEvent)
+                        }
                     }
+                    
+                    //reload the table data. Otherwise the table will load without data and be empty/blank.
+                    
+                    self.tableView.reloadData()
                 }
-                
-                //reload the table data. Otherwise the table will load without data and be empty/blank.
-                
-                self.tableView.reloadData()
-            }
+                }, withCancelBlock: { error in
+                    print(error.description)
+            })
+            
             }, withCancelBlock: { error in
                 print(error.description)
         })
+        
+
     }
 
 }
