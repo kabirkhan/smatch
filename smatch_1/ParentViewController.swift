@@ -1,9 +1,9 @@
 //
-//  ParentViewController.swift
-//  UISegmentedControlAsTabbarDemo
+//  CreateEventFinish.swift
+//  smatch_1
 //
-//  Created by Ahmed Abdurrahman on 9/15/15.
-//  Copyright © 2015 A. Abdurrahman. All rights reserved.
+//  Created by Kabir Khan on 3/28/16.
+//  Copyright © 2016 Kabir Khan. All rights reserved.
 //
 //  Container View Controller to handle the transition between the events table view
 //  to the events map view controllers from the top custom segmented control
@@ -12,6 +12,9 @@ import UIKit
 
 class ParentViewController: UIViewController {
 
+    let font = UIFont(name: "Avenir", size: 18)
+    let fontColor = UIColor.whiteColor()
+    
     enum TabIndex : Int {
         case FirstChildTab = 0
         case SecondChildTab = 1
@@ -44,6 +47,8 @@ class ParentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
         
         // Remove the shadow between navbar and segmented controller
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)

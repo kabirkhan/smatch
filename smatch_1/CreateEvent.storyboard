@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Sport-->
+        <!--New-->
         <scene sceneID="Px2-kD-Ebz">
             <objects>
                 <collectionViewController id="tvK-8G-eYE" customClass="EventSportCollectionViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,8 +32,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="271" height="232"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALa-Py-VAS">
-                                                    <rect key="frame" x="114" y="203" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="117.5" y="204.5" width="35.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -63,7 +63,14 @@
                             <outlet property="delegate" destination="tvK-8G-eYE" id="Y3h-Im-Hgj"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Sport" id="RE1-A6-Fe3">
+                    <navigationItem key="navigationItem" title="New" id="RE1-A6-Fe3">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Ncu-uM-0sB"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ofR-VC-AAa">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="l5q-Se-hDW" kind="unwind" unwindAction="eventCreationCancelled:" id="9Yc-pF-6ea"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Wsa-dh-kAG">
                             <connections>
                                 <action selector="nextButtonPressed:" destination="tvK-8G-eYE" id="sce-L9-z2q"/>
@@ -75,10 +82,11 @@
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sTk-gH-u3d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="l5q-Se-hDW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7363" y="-880"/>
         </scene>
-        <!--Name and Description-->
+        <!--New-->
         <scene sceneID="vqq-N7-N9N">
             <objects>
                 <viewController id="VPV-RZ-qvF" customClass="EventNameViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,7 +103,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5c8-8g-3lc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -134,19 +142,36 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-t8-sxA">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="UJo-UU-Zea">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="xR0-f4-LJH" kind="unwind" unwindAction="eventCreationCancelled:" id="Zxx-f3-r7I"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GUO-Vk-drI" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="3iL-uQ-vt1"/>
+                            <constraint firstItem="AtG-Mo-3Mp" firstAttribute="top" secondItem="A7Q-t8-sxA" secondAttribute="bottom" id="Dg0-Q7-QJ9"/>
                             <constraint firstItem="GUO-Vk-drI" firstAttribute="top" secondItem="FpB-FF-gwe" secondAttribute="bottom" constant="15" id="Dk0-c1-zpZ"/>
                             <constraint firstItem="FpB-FF-gwe" firstAttribute="top" secondItem="Oz6-FK-drm" secondAttribute="bottom" constant="100" id="MS1-VH-ioN"/>
                             <constraint firstItem="FpB-FF-gwe" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="UGA-Tb-EWV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FpB-FF-gwe" secondAttribute="trailing" id="hsI-2j-O95"/>
                             <constraint firstItem="GUO-Vk-drI" firstAttribute="trailing" secondItem="Bcn-XI-rA3" secondAttribute="trailingMargin" id="sO5-fM-QlG"/>
+                            <constraint firstItem="A7Q-t8-sxA" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leading" id="wwg-8r-5M5"/>
+                            <constraint firstAttribute="trailing" secondItem="A7Q-t8-sxA" secondAttribute="trailing" id="xHE-2e-ecZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Name and Description" id="xDZ-xa-qHu">
+                    <navigationItem key="navigationItem" title="New" id="xDZ-xa-qHu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="UcJ-Gi-CGT"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="t7A-Qh-pzW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="nextButtonPressed:" destination="VPV-RZ-qvF" id="0T7-p4-BkB"/>
                             </connections>
@@ -159,10 +184,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PYA-5u-TXG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xR0-f4-LJH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="7996" y="-880"/>
         </scene>
-        <!--Number of Players-->
+        <!--New-->
         <scene sceneID="Ewf-f3-wZN">
             <objects>
                 <viewController id="Y0v-LW-bvK" customClass="EventLocationViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -179,7 +205,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Hau-K6-oJc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -197,14 +223,14 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QnP-Ur-lM1">
-                                <rect key="frame" x="20" y="224" width="560" height="356"/>
+                                <rect key="frame" x="10" y="224" width="570" height="332"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="location_search_cell" textLabel="X4c-I2-DP1" detailTextLabel="35F-3m-ofI" style="IBUITableViewCellStyleSubtitle" id="5gD-hF-qnr">
-                                        <rect key="frame" x="0.0" y="28" width="560" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="570" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5gD-hF-qnr" id="K3N-Dw-Q5N">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X4c-I2-DP1">
@@ -226,20 +252,36 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rxg-Ih-7uA">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="82F-cG-qjt">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="N8N-w2-ltY" kind="unwind" unwindAction="eventCreationCancelled:" id="mCX-0P-Phe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rxg-Ih-7uA" secondAttribute="trailing" id="76q-0X-OhF"/>
+                            <constraint firstItem="Rxg-Ih-7uA" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leading" id="AVm-mO-eRh"/>
                             <constraint firstItem="Pql-2Q-ckV" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" id="LvA-Jb-4RX"/>
                             <constraint firstItem="QnP-Ur-lM1" firstAttribute="top" secondItem="Pql-2Q-ckV" secondAttribute="bottom" constant="20" id="TNN-hH-V9I"/>
-                            <constraint firstItem="QnP-Ur-lM1" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" id="bwl-QH-dg5"/>
+                            <constraint firstItem="QnP-Ur-lM1" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" constant="-10" id="bwl-QH-dg5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pql-2Q-ckV" secondAttribute="trailing" id="frC-h7-tf3"/>
-                            <constraint firstItem="eAv-rM-11Q" firstAttribute="top" secondItem="QnP-Ur-lM1" secondAttribute="bottom" constant="20" id="h2e-CU-b6N"/>
                             <constraint firstItem="QnP-Ur-lM1" firstAttribute="trailing" secondItem="TW2-T4-t51" secondAttribute="trailingMargin" id="hHb-kY-6bb"/>
                             <constraint firstItem="Pql-2Q-ckV" firstAttribute="top" secondItem="7Cd-8m-kJ4" secondAttribute="bottom" constant="100" id="nde-67-Rnc"/>
+                            <constraint firstItem="Rxg-Ih-7uA" firstAttribute="top" secondItem="QnP-Ur-lM1" secondAttribute="bottom" symbolic="YES" id="rFA-x4-lDn"/>
+                            <constraint firstItem="eAv-rM-11Q" firstAttribute="top" secondItem="Rxg-Ih-7uA" secondAttribute="bottom" id="vJq-wS-Bjc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Number of Players" id="yfN-Tf-HXc">
+                    <navigationItem key="navigationItem" title="New" id="yfN-Tf-HXc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7D5-yN-n6x"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="YEE-vB-CnM">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="nextButtonPressed:" destination="Y0v-LW-bvK" id="cHj-st-SGi"/>
                             </connections>
@@ -252,10 +294,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYV-fv-Vrj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="N8N-w2-ltY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="8616" y="-880"/>
         </scene>
-        <!--Date-->
+        <!--New-->
         <scene sceneID="NaX-D0-Vz9">
             <objects>
                 <viewController id="f21-WU-WJS" customClass="CreateEventDateViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -267,38 +310,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cmR-nB-R1x">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <date key="date" timeIntervalSinceReferenceDate="480913962.17846602">
-                                    <!--2016-03-29 03:12:42 +0000-->
-                                </date>
-                            </datePicker>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date and time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MnH-t2-PAR" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="G86-qh-mXg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHg-ea-Azu">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="PR1-0Q-lPD">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="djC-y6-5kj" kind="unwind" unwindAction="eventCreationCancelled:" id="sYA-ze-7aE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cmR-nB-R1x" firstAttribute="top" secondItem="O94-FR-JMK" secondAttribute="bottom" id="BYz-YH-Zxf"/>
-                            <constraint firstItem="cmR-nB-R1x" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leading" id="TYE-Kd-evg"/>
-                            <constraint firstItem="Knr-wW-3kw" firstAttribute="top" secondItem="cmR-nB-R1x" secondAttribute="bottom" id="baV-jB-Sfg"/>
-                            <constraint firstAttribute="trailing" secondItem="cmR-nB-R1x" secondAttribute="trailing" id="yTc-wO-HTn"/>
+                            <constraint firstItem="MnH-t2-PAR" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leadingMargin" id="3cL-eD-UTm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MnH-t2-PAR" secondAttribute="trailing" id="3ew-fN-nL5"/>
+                            <constraint firstAttribute="trailing" secondItem="DHg-ea-Azu" secondAttribute="trailing" id="CvC-Ua-GVO"/>
+                            <constraint firstItem="Knr-wW-3kw" firstAttribute="top" secondItem="DHg-ea-Azu" secondAttribute="bottom" id="Yw4-a2-QIY"/>
+                            <constraint firstItem="DHg-ea-Azu" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leading" id="a42-fT-dOe"/>
+                            <constraint firstItem="MnH-t2-PAR" firstAttribute="top" secondItem="O94-FR-JMK" secondAttribute="bottom" constant="100" id="cuZ-3r-hYn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Date" id="VtK-4S-axF">
+                    <navigationItem key="navigationItem" title="New" id="VtK-4S-axF">
+                        <barButtonItem key="backBarButtonItem" title=" " id="uoy-KF-lHN"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="du2-YQ-35s">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="nextButtonPressed:" destination="f21-WU-WJS" id="gWi-iX-0cF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="datePicker" destination="cmR-nB-R1x" id="ghA-RH-iEi"/>
+                        <outlet property="dateAndTimeTextField" destination="MnH-t2-PAR" id="fqi-CJ-eLg"/>
                         <segue destination="6uJ-qb-rzp" kind="show" identifier="new_event_num_players" id="8yE-7b-InU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qYA-Mk-Shw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="djC-y6-5kj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="9262" y="-880"/>
         </scene>
-        <!--Number of players-->
+        <!--New-->
         <scene sceneID="F65-Fi-pAq">
             <objects>
                 <viewController id="6uJ-qb-rzp" customClass="EventNumPlayersViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -310,35 +385,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9W1-Rl-rGh">
-                                <rect key="frame" x="20" y="64" width="560" height="536"/>
-                            </pickerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of players" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPA-Ij-lp0" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="bcA-g0-I4X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r02-nc-rgH">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="vNG-et-tha">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="xGx-V2-hbF" kind="unwind" unwindAction="eventCreationCancelled:" id="jIX-Ce-okE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9W1-Rl-rGh" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leadingMargin" id="GhA-jz-PbX"/>
-                            <constraint firstItem="2vn-1v-5I3" firstAttribute="top" secondItem="9W1-Rl-rGh" secondAttribute="bottom" id="arV-Yo-Gy8"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9W1-Rl-rGh" secondAttribute="trailing" id="lDB-O4-4YV"/>
-                            <constraint firstItem="9W1-Rl-rGh" firstAttribute="top" secondItem="vqk-z6-v4z" secondAttribute="bottom" id="zUR-T7-gmX"/>
+                            <constraint firstItem="yPA-Ij-lp0" firstAttribute="top" secondItem="vqk-z6-v4z" secondAttribute="bottom" constant="100" id="CeU-ZF-i3N"/>
+                            <constraint firstItem="yPA-Ij-lp0" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leadingMargin" id="FY5-hW-S2i"/>
+                            <constraint firstItem="r02-nc-rgH" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leading" id="aHC-1X-mXY"/>
+                            <constraint firstAttribute="trailing" secondItem="r02-nc-rgH" secondAttribute="trailing" id="cD4-yd-PzA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yPA-Ij-lp0" secondAttribute="trailing" id="tRa-uH-6Z5"/>
+                            <constraint firstItem="2vn-1v-5I3" firstAttribute="top" secondItem="r02-nc-rgH" secondAttribute="bottom" id="tk0-LO-jfA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Number of players" id="TPG-6F-OH5">
+                    <navigationItem key="navigationItem" title="New" id="TPG-6F-OH5">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Gtd-pm-8ui"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="J6J-1T-ZsO">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="nextButtonPressed:" destination="6uJ-qb-rzp" id="dap-Qx-xTk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="numberPlayersPickerView" destination="9W1-Rl-rGh" id="OCb-Jf-GBc"/>
+                        <outlet property="numPlayersTextField" destination="yPA-Ij-lp0" id="nTi-99-UwU"/>
                         <segue destination="lHB-VD-Cqn" kind="show" identifier="new_event_competition" id="I7j-4h-zjJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gt8-Mm-fcP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xGx-V2-hbF" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="9931" y="-880"/>
         </scene>
-        <!--Competition-->
+        <!--New-->
         <scene sceneID="Kqh-2r-UiS">
             <objects>
                 <viewController id="lHB-VD-Cqn" customClass="CreateEventCompetitionViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -357,17 +467,34 @@
                                     <segment title="Not Competitive"/>
                                     <segment title="Competitive"/>
                                 </segments>
+                                <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDU-2g-PIk">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="HH2-r0-7bw">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="uGf-JE-BHq" kind="unwind" unwindAction="eventCreationCancelled:" id="ook-4Z-T2B"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Vvg-Mj-6ra" secondAttribute="trailing" id="8rc-61-6Yi"/>
+                            <constraint firstAttribute="trailing" secondItem="oDU-2g-PIk" secondAttribute="trailing" id="JHb-7y-rGJ"/>
                             <constraint firstItem="Vvg-Mj-6ra" firstAttribute="leading" secondItem="K6K-9F-643" secondAttribute="leadingMargin" id="PD9-BZ-QiL"/>
                             <constraint firstItem="Vvg-Mj-6ra" firstAttribute="top" secondItem="J5j-ii-i4g" secondAttribute="bottom" constant="100" id="dBt-LU-k3O"/>
+                            <constraint firstItem="oDU-2g-PIk" firstAttribute="leading" secondItem="K6K-9F-643" secondAttribute="leading" id="nzx-Jt-UDF"/>
+                            <constraint firstItem="SSM-0S-Tw7" firstAttribute="top" secondItem="oDU-2g-PIk" secondAttribute="bottom" id="zXS-3O-DhH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Competition" id="M9F-We-FHr">
+                    <navigationItem key="navigationItem" title="New" id="M9F-We-FHr">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Ugd-n3-hYF"/>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="4DE-oj-qZW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="createButtonPressed:" destination="lHB-VD-Cqn" id="m69-fT-MTu"/>
                             </connections>
@@ -379,10 +506,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W1u-8e-A0P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="uGf-JE-BHq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="10568" y="-880"/>
         </scene>
-        <!--Gender-->
+        <!--New-->
         <scene sceneID="syB-PY-6GI">
             <objects>
                 <viewController id="wfP-3Q-CeS" customClass="CreateEventGenderViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -401,17 +529,34 @@
                                     <segment title="Only Girls"/>
                                     <segment title="Coed"/>
                                 </segments>
+                                <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWr-tH-Odp">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem title="Cancel" id="vaG-sC-xlJ">
+                                        <color key="tintColor" red="0.93241159539999996" green="0.27945913150000001" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <segue destination="SGl-sD-czb" kind="unwind" unwindAction="eventCreationCancelled:" id="VSi-Lf-Sa7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="aDf-gz-da2" firstAttribute="top" secondItem="xCL-Vz-5yy" secondAttribute="bottom" constant="100" id="E93-gf-uRY"/>
+                            <constraint firstItem="OqA-j8-Mhj" firstAttribute="top" secondItem="VWr-tH-Odp" secondAttribute="bottom" id="JMB-ve-D5I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aDf-gz-da2" secondAttribute="trailing" id="Lzr-6F-jPl"/>
+                            <constraint firstItem="VWr-tH-Odp" firstAttribute="leading" secondItem="E7Z-cM-BDb" secondAttribute="leading" id="Pra-YV-PR5"/>
                             <constraint firstItem="aDf-gz-da2" firstAttribute="leading" secondItem="E7Z-cM-BDb" secondAttribute="leadingMargin" id="hz7-q5-Adn"/>
+                            <constraint firstAttribute="trailing" secondItem="VWr-tH-Odp" secondAttribute="trailing" id="xtD-zj-Ifz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Gender" id="29O-ZM-F2L">
+                    <navigationItem key="navigationItem" title="New" id="29O-ZM-F2L">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Oh9-Nh-SQE"/>
                         <barButtonItem key="rightBarButtonItem" title="Finish" id="xFL-DJ-9QZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="finishedButtonPressed:" destination="wfP-3Q-CeS" id="6AS-Eg-uRQ"/>
                             </connections>
@@ -423,10 +568,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPg-Mg-DP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="SGl-sD-czb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="11211" y="-880"/>
         </scene>
-        <!--Finish-->
+        <!--New-->
         <scene sceneID="pW3-bD-fg2">
             <objects>
                 <viewController id="Wgr-b9-7UA" customClass="CreateEventFinishViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -438,27 +584,238 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T0-8R-GUA">
-                                <rect key="frame" x="229" y="275" width="143" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-Rx-QFU" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="20" y="530" width="560" height="50"/>
+                                <color key="backgroundColor" red="0.93241159539473684" green="0.27945913151052632" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="NqH-gJ-WSe"/>
-                                    <constraint firstAttribute="width" constant="143" id="PgG-HT-muI"/>
+                                    <constraint firstAttribute="height" constant="50" id="Y5x-4k-QrO"/>
                                 </constraints>
-                                <state key="normal" title="Finish"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="I changed my mind. Don't create this event">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="finishButtonPressed:" destination="Wgr-b9-7UA" eventType="touchUpInside" id="wBM-24-ms7"/>
+                                    <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="finishCreatingEvent:" id="sMG-jK-s2B"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fx-Q9-Iwl" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="84" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7nz-IZ-aA2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sport" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-s3-Grv" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="135" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LL3-4i-kRt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-Ey-760" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="186" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Zhr-nP-Oag"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGE-XI-kL3" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="237" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ePu-Dj-EFq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of players" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-vk-ki6" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="288" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RRS-u7-bcW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Competition Level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmB-Xq-M0F" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="339" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="sw7-ca-KHA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j9l-T4-zFb" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                <rect key="frame" x="20" y="390" width="560" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="x2Q-8k-F7N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T0-8R-GUA" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="20" y="472" width="560" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="vxM-Re-9Ul"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="I'm Done. Create my event!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="finishButtonPressed:" destination="Wgr-b9-7UA" eventType="touchUpInside" id="C3K-f0-OaH"/>
+                                    <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="finishCreatingEvent:" id="shk-OD-OHx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9T0-8R-GUA" firstAttribute="centerY" secondItem="mON-i2-KJW" secondAttribute="centerY" id="L6T-Qx-tKj"/>
-                            <constraint firstItem="9T0-8R-GUA" firstAttribute="centerX" secondItem="mON-i2-KJW" secondAttribute="centerX" id="t4o-vN-3g9"/>
+                            <constraint firstItem="9T0-8R-GUA" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="0BI-SI-hgJ"/>
+                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="2ou-7z-2xw"/>
+                            <constraint firstItem="KbQ-Rx-QFU" firstAttribute="top" secondItem="9T0-8R-GUA" secondAttribute="bottom" constant="8" id="4Ms-AX-uNR"/>
+                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="6bf-z6-0Uu"/>
+                            <constraint firstItem="lyf-Ey-760" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="BfV-S1-ChH"/>
+                            <constraint firstItem="j9l-T4-zFb" firstAttribute="top" secondItem="pmB-Xq-M0F" secondAttribute="bottom" constant="11" id="E4J-27-rlk"/>
+                            <constraint firstItem="oGE-XI-kL3" firstAttribute="top" secondItem="lyf-Ey-760" secondAttribute="bottom" constant="11" id="FM8-5Y-5B1"/>
+                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="top" secondItem="Zpk-vk-ki6" secondAttribute="bottom" constant="11" id="IhQ-9K-7nY"/>
+                            <constraint firstItem="lyf-Ey-760" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="V4Y-I5-Zkd"/>
+                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="VfL-Eg-fjQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6fx-Q9-Iwl" secondAttribute="trailing" id="XaO-L8-2ea"/>
+                            <constraint firstItem="oGE-XI-kL3" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="YKj-4q-nXY"/>
+                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="top" secondItem="oGE-XI-kL3" secondAttribute="bottom" constant="11" id="dWy-je-IP0"/>
+                            <constraint firstItem="6fx-Q9-Iwl" firstAttribute="top" secondItem="R6L-9T-HaA" secondAttribute="bottom" constant="20" id="dbW-uO-LcI"/>
+                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="top" secondItem="6fx-Q9-Iwl" secondAttribute="bottom" constant="11" id="dvr-E0-EoR"/>
+                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="eSg-pQ-3dN"/>
+                            <constraint firstItem="j9l-T4-zFb" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="emm-iD-3P3"/>
+                            <constraint firstItem="j9l-T4-zFb" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="fcz-9P-LgZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KbQ-Rx-QFU" secondAttribute="trailing" id="gqt-nJ-fwQ"/>
+                            <constraint firstItem="oGE-XI-kL3" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="iUL-Xx-dPD"/>
+                            <constraint firstItem="9T0-8R-GUA" firstAttribute="centerX" secondItem="mON-i2-KJW" secondAttribute="centerX" id="pAK-jA-dMz"/>
+                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="rzc-oD-6bB"/>
+                            <constraint firstItem="6fx-Q9-Iwl" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="tnP-x1-3Ey"/>
+                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="tyz-eT-tPZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9T0-8R-GUA" secondAttribute="trailing" id="vjd-SR-97b"/>
+                            <constraint firstItem="KbQ-Rx-QFU" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="xdQ-tV-jxp"/>
+                            <constraint firstItem="box-IB-KDg" firstAttribute="top" secondItem="KbQ-Rx-QFU" secondAttribute="bottom" constant="20" id="xuk-xr-IP4"/>
+                            <constraint firstItem="lyf-Ey-760" firstAttribute="top" secondItem="Kd3-s3-Grv" secondAttribute="bottom" constant="11" id="yye-6Y-8mC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Finish" id="RhV-XO-aSG"/>
+                    <navigationItem key="navigationItem" title="New" id="RhV-XO-aSG">
+                        <barButtonItem key="backBarButtonItem" title=" " id="dlz-gv-vnK"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="coedTextField" destination="j9l-T4-zFb" id="cFM-Ry-ITm"/>
+                        <outlet property="competitivenessTextField" destination="pmB-Xq-M0F" id="8Yb-yu-pdG"/>
+                        <outlet property="dateAndTimeTextField" destination="oGE-XI-kL3" id="myl-Fl-hXp"/>
+                        <outlet property="locationTextField" destination="lyf-Ey-760" id="j3e-8E-jCo"/>
+                        <outlet property="nameTextField" destination="6fx-Q9-Iwl" id="hpe-cJ-gZ8"/>
+                        <outlet property="numPlayersTextField" destination="Zpk-vk-ki6" id="cdQ-io-Jtx"/>
+                        <outlet property="sportTextField" destination="Kd3-s3-Grv" id="WpQ-cs-v9f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkr-eD-INN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xSh-Di-fwl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="11846" y="-880"/>
         </scene>
@@ -470,6 +827,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZD6-BW-XAq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -30,8 +30,11 @@ class CreateEventCompetitionViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationViewController = segue.destinationViewController as! CreateEventGenderViewController
-        destinationViewController.newEvent = newEvent
+        
+        if segue.identifier == SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION {
+            let destinationViewController = segue.destinationViewController as! CreateEventGenderViewController
+            destinationViewController.newEvent = newEvent
+        }
     }
     
 }

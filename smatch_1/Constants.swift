@@ -6,7 +6,7 @@
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // MARK: KEYS
 let KEY_ID = "uid"
@@ -18,7 +18,6 @@ let KEY_IMAGE_URL = "image_url"
 let KEY_EMAIL = "email"
 let KEY_PASSWORD = "password"
 let KEY_SPORTS = "sports"
-
 
 // MARK: VALUES
 let VALUE_FACEBOOK_PROVIDER = "facebook"
@@ -39,7 +38,7 @@ let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 let SEGUE_LOGGED_IN = "logged_in"
 let SEGUE_EDIT_USERPROFILE = "edit_profile"
 
-// NEW EVENT SEGUES
+// MARK: NEW EVENT SEGUES
 let SEGUE_NEW_EVENT_TO_NAME_FROM_CHOOSE_SPORT = "new_event_name_and_description"
 let SEGUE_NEW_EVENT_TO_LOCATION_FROM_NAME = "new_event_location"
 let SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION = "new_event_date"
@@ -50,6 +49,9 @@ let SEGUE_NEW_EVENT_FINISH_NEW_EVENT = "new_event_finish"
 
 // MARK: CELL IDENTIFIERS
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"
+
+// MARK: COLORS
+let SHADOW_COLOR: CGFloat = 0.3
 
 // MARK: THINGS
 var SPORTS: [String] {

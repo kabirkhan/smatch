@@ -65,6 +65,7 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         let uid = userData?.removeValueForKey(KEY_ID)
         userData!["sports"] = selectedSports
         userData!["joined_events"] = [String]()
+        
         if userData!["provider"] as! String == "facebook" {
             // create user in firebase database
             DataService.ds.createFirebaseUser(uid! as! String, user: userData!)

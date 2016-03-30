@@ -1,4 +1,4 @@
-//
+ //
 //  EventLocationViewController.swift
 //  smatch_1
 //
@@ -19,17 +19,25 @@ import MapKit
 
 class EventLocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // VARIBALES
     var newEvent: Event?
     var searchResults = [MKMapItem]()
+    var locationManager = UserLocation.userLocation
+    var currentLocation = CLLocation()
 
+    // OUTLETS
     @IBOutlet weak var locationTextField: HoshiTextField!
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: ======================== VIEW LIFECYCLE ========================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.hidden = true
+        
+        currentLocation = locationManager.returnLocation()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -38,18 +46,22 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         locationTextField.addTarget(self, action: "textFieldDidChange:", forControlEvents: .EditingChanged)
 
 
-//        locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
-        
-        
+        locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     }
     
+    // ============================ SEARCH FUNCTION ============================
     func textFieldDidChange(textField: HoshiTextField) {
+        
         if let place = textField.text where place != "" {
+            tableView.hidden = false
             searchResults = []
-            let worldRegion = MKCoordinateRegionForMapRect(MKMapRectWorld)
+            
+            let span = MKCoordinateSpan(latitudeDelta: 30000, longitudeDelta: 30000)
+            
+            let mapRegion = MKCoordinateRegionMake(currentLocation.coordinate, span)
             let request = MKLocalSearchRequest()
             request.naturalLanguageQuery = place
-            request.region = worldRegion
+            request.region = mapRegion
             
             let search = MKLocalSearch(request: request)
             
@@ -72,7 +84,9 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         return searchResults.count
     }
     
+    // setup tableview to display the search results
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("location_search_cell")
         
         // build up an address string
@@ -97,7 +111,9 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         return cell!
     }
     
+    // When a row (location) is selected, set the text field text to that row's title
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let location = cell?.textLabel?.text {
             locationTextField.text = location
@@ -105,8 +121,9 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    
+    // if their is a location selected, continue
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
+        
         if let location = locationTextField.text where location != "" {
             newEvent?.address = location
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION, sender: nil)
@@ -116,10 +133,12 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    // send newEvent on
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationViewController = segue.destinationViewController as! CreateEventDateViewController
-        destinationViewController.newEvent = newEvent
+        
+        if segue.identifier == SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION {
+            let destinationViewController = segue.destinationViewController as! CreateEventDateViewController
+            destinationViewController.newEvent = newEvent
+        }
     }
-    
 }
-
