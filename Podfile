@@ -9,6 +9,7 @@ target 'smatch_1' do
     pod 'FBSDKLoginKit'
     pod 'Firebase'
     pod 'TextFieldEffects'
+    pod 'JSQMessagesViewController'
 end
 
 target 'smatch_1Tests' do

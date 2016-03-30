@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MessagesTableViewController: UITableViewController, GoToEventMessagesDelegate {
+class MessagesTableViewController: UITableViewController {
     var eventList = [Dictionary<String, AnyObject>]()
     
     override func viewDidLoad() {
@@ -22,14 +22,17 @@ class MessagesTableViewController: UITableViewController, GoToEventMessagesDeleg
         
         ref.observeEventType(.Value, withBlock: { user in
             
-            let eventsIDList = user.value.objectForKey("joined_events") as! [String]
+            guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
+                else {
+                 return
+            }
             
             for i in 0..<eventsIDList.count {
                 let eventID = eventsIDList[i]
                 let url = "\(DataService.ds.REF_EVENTS)/\(eventID)"
                 let ref = Firebase(url: url)
                 
-                ref.observeEventType(.Value, withBlock: { event in
+                ref.observeSingleEventOfType(.Value, withBlock: { event in
                     var eventDictionary = Dictionary<String, AnyObject>()
                     eventDictionary["event_title"] = event.value.objectForKey("name")
                     eventDictionary["event_id"] = eventID
@@ -69,6 +72,10 @@ class MessagesTableViewController: UITableViewController, GoToEventMessagesDeleg
         cell.eventId = event["event_id"] as? String
         return cell
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("eventmessages", sender: eventList[indexPath.row]["event_id"])
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -105,15 +112,19 @@ class MessagesTableViewController: UITableViewController, GoToEventMessagesDeleg
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "eventmessages" {
+            let controller = segue.destinationViewController as! MessagesViewController
+            controller.eventId = sender as? String
+            controller.senderId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as? String
+            //TODO: Load user name
+            controller.senderDisplayName = ""
+        }
     }
-    */
     
     // MARK: =================================== DELEGATE FUNCTION ===================================
 //    func goToEventMessages(cell: EventsListTableViewCell) {
