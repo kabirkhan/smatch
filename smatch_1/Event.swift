@@ -16,7 +16,7 @@ class Event: NSObject, MKAnnotation {
     // MARK: - Variables and Initialization
     
     var title: String?
-    var eventDescription: String?
+    var eventKey: String
     var date: String
     var sport: String
     var address: String
@@ -32,8 +32,9 @@ class Event: NSObject, MKAnnotation {
     
     //variable for seattle in order to center the large map on it. need to set up grabbing users location
 
-    init (title: String, date: String, sport: String, address: String, numberOfPlayers: String, gender: String, competition: String) {
+    init (title: String, eventKey: String, date: String, sport: String, address: String, numberOfPlayers: String, gender: String, competition: String) {
         self.title = title
+        self.eventKey = eventKey
         self.date = date
         self.sport = sport
         self.address = address

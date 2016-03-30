@@ -74,7 +74,7 @@ class EventsTableViewController: UITableViewController {
             
             //Set events - Array of events that only include events of sports that are inside mySports
             let eventsRef = DataService.ds.REF_EVENTS
-            eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            eventsRef.queryOrderedByKey().observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
                 if let sport = snapshot.value.objectForKey("sport") {
                     for i in 0...self.mySports.count-1 {
                         
@@ -82,13 +82,14 @@ class EventsTableViewController: UITableViewController {
                         
                         if sport as! String == self.mySports[i] {
                             let eventName = snapshot.value.objectForKey("name") as! String
+                            let eventKey = snapshot.key
                             let eventAddress = snapshot.value.objectForKey("address") as! String
                             let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
                             let eventDate = snapshot.value.objectForKey("date") as! String
                             let eventGender = snapshot.value.objectForKey("gender") as! String
                             let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
                             let eventSport = snapshot.value.objectForKey("sport") as! String
-                            let newEvent = Event(title: eventName, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                            let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
                             self.events.append(newEvent)
                         }
                     }

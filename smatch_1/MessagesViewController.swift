@@ -54,7 +54,7 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-        getAvatars()
+        // getAvatars()
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
@@ -67,18 +67,18 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     //MARK: -Get Avatars
-    private func getAvatars() {
-        attendeesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let attendeesIdList = snapshot as! [String]
-            
-            for i in 0..<attendeesIdList.count {
-                
-            }
-        
-        }, withCancelBlock: { error in
-            
-        })
-    }
+//    private func getAvatars() {
+//        attendeesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+//            let attendeesIdList = snapshot as! [String]
+//            
+//            for i in 0..<attendeesIdList.count {
+//                
+//            }
+//        
+//        }, withCancelBlock: { error in
+//            
+//        })
+//    }
     
     //MARK: - JSQMessagesViewControllerDelegate Functions
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {

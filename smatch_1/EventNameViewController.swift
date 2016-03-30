@@ -24,7 +24,6 @@ class EventNameViewController: UIViewController {
         // unwrap and check that name field is not empty, set values to newEvent and segue to location view
         if let name = eventNameTextField.text, description = eventDescriptionTextField.text where name != "" {
             newEvent?.title = "\(newEvent!.sport): \(name)"
-            newEvent?.eventDescription = description
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_LOCATION_FROM_NAME, sender: nil)
         } else {
             // name is empty show alert

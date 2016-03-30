@@ -65,7 +65,6 @@ class CreateEventFinishViewController: UIViewController {
             newEventDict = [
                 "sport": event.sport,
                 "name": event.title!,
-                "description": event.eventDescription!,
                 "address": event.address,
                 "date": String(event.date),
                 "number_of_players": String(event.numberOfPlayers),
@@ -86,8 +85,8 @@ class CreateEventFinishViewController: UIViewController {
                 // change joined_events to be created_events at some point to handle admin services
                 DataService.ds.REF_USERS.queryLimitedToLast(1).observeEventType(.ChildAdded, withBlock: { (snapshot) in
                     
-                    if snapshot.value.objectForKey("joined_events") != nil {
-                        self.events = snapshot.value.objectForKey("joined_events") as! [String]
+                    if let joined_events = snapshot.value.objectForKey("joined_events") {
+                        self.events = joined_events as! [String]
                     }
                     
                     self.events.append(eventId)

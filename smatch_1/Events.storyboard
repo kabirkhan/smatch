@@ -50,7 +50,7 @@
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="35"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -111,6 +111,16 @@
                                     <constraint firstAttribute="height" constant="200" id="ccd-Vm-FwG"/>
                                 </constraints>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-le-0Co" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="466" y="249" width="104" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Join this game!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="bnb-UA-9VS" eventType="touchUpInside" id="Jv7-Pt-KUB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -122,7 +132,9 @@
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" id="UVF-gA-kgy"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="cHG-kP-Ljq"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e8z-le-0Co" secondAttribute="trailing" constant="10" id="heQ-ac-Tmc"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
+                            <constraint firstItem="e8z-le-0Co" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="-15" id="yms-V8-Pn3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" constant="-20" id="zEs-XN-NxP"/>
                         </constraints>
                         <variation key="default">
