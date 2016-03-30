@@ -20,7 +20,7 @@ class MessagesTableViewController: UITableViewController {
         let url = "\(DataService.ds.REF_USERS)/\(uid)"
         let ref = Firebase(url: url)
         
-        ref.observeEventType(.Value, withBlock: { user in
+        ref.observeSingleEventOfType(.Value, withBlock: { user in
             
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
                 else {
