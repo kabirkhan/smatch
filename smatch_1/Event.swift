@@ -20,8 +20,8 @@ class Event: NSObject, MKAnnotation {
     var date: String
     var sport: String
     var address: String
-    var numberOfPlayers: String?
-    var gender: String?
+    var numberOfPlayers: String
+    var gender: String
     var competition: String
     var attendees: [String]
     var creator_id: String

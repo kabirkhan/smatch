@@ -41,11 +41,10 @@ class CreateEventFinishViewController: UIViewController {
             sportTextField.text = newEvent.sport
             locationTextField.text = newEvent.address
             dateAndTimeTextField.text = String(newEvent.date)
-            numPlayersTextField.text = String(newEvent.numberOfPlayers)
+            numPlayersTextField.text = newEvent.numberOfPlayers
             competitivenessTextField.text = String(newEvent.competition)
             coedTextField.text = String(newEvent.gender)
         }
-        
     }
     
     // When finished button pressed, construct the event dictionary and add it to firebase

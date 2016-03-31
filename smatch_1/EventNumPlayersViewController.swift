@@ -13,7 +13,7 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
 
     // VARIABLES
     var newEvent: Event?
-    var numPlayers: Int?
+    var numPlayers = 0
     var datasource = [Int]() // Int values 2 - 50
     let numberPlayersPickerView = UIPickerView()
     
@@ -22,6 +22,11 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
     // MARK: ================= VIEW LIFECYCLE ==================
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup a number of players datasource for the pickeview 2 - 50 players
+        for i in 2...50 {
+            datasource.append(i)
+        }
         
         // create a pickerview
         numberPlayersPickerView.delegate = self
@@ -45,11 +50,9 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
         // setup the textfield to get information from the pickerview
         numPlayersTextField.inputView = numberPlayersPickerView
         numPlayersTextField.inputAccessoryView = toolBar
+        numPlayersTextField.text = String(datasource[0])
+        numPlayers = Int(numPlayersTextField.text!)!
 
-        // setup a number of players datasource for the pickeview 2 - 50 players
-        for i in 2...50 {
-            datasource.append(i)
-        }
     }
     
     // MARK: ================= PICKER VIEW DATASOURCE ===================
@@ -62,6 +65,7 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        print(String(datasource[row]))
         return String(datasource[row])
     }
     
@@ -82,8 +86,8 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
     // INITIATE THE SEGUE
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
         
-        if numPlayers != nil {
-            newEvent?.numberOfPlayers = String(numPlayers)
+        if numPlayers != 0 {
+            newEvent!.numberOfPlayers = String(numPlayers)
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_COMPETITION_FROM_NUM_PLAYERS, sender: nil)
         } else {
             let alert = showErrorAlert("You need some players", msg: "Add an approximate number of players to continue")

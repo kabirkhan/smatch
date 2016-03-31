@@ -31,6 +31,7 @@
 		D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */; };
 		D84A6BF21CA464F200045150 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A6BF11CA464F200045150 /* EventCell.swift */; };
 		D86312BB1CAD8F0200AEC07B /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86312BA1CAD8F0200AEC07B /* EventDetail.swift */; };
+		D86312BD1CADA2F000AEC07B /* SegueOnOKAlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86312BC1CADA2F000AEC07B /* SegueOnOKAlertModel.swift */; };
 		D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C51CA9B370006490B4 /* EventNameViewController.swift */; };
 		D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */; };
 		D86407CA1CA9B3ED006490B4 /* EventLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */; };
@@ -116,6 +117,7 @@
 		D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D84A6BF11CA464F200045150 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D86312BA1CAD8F0200AEC07B /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
+		D86312BC1CADA2F000AEC07B /* SegueOnOKAlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegueOnOKAlertModel.swift; sourceTree = "<group>"; };
 		D86407C51CA9B370006490B4 /* EventNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNameViewController.swift; sourceTree = "<group>"; };
 		D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSportCollectionViewController.swift; sourceTree = "<group>"; };
 		D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLocationViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				D86407D11CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift */,
 				46F6E2381CAB4F1F0064CC18 /* EventsListTableViewCell.swift */,
 				D8EF28851CAC3DBA00150411 /* MaterialButton.swift */,
+				D86312BC1CADA2F000AEC07B /* SegueOnOKAlertModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				460AB9B51CAB5877006ECF99 /* MessagesViewController.swift in Sources */,
 				D84A6BF21CA464F200045150 /* EventCell.swift in Sources */,
 				D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */,
+				D86312BD1CADA2F000AEC07B /* SegueOnOKAlertModel.swift in Sources */,
 				D86407CC1CA9B406006490B4 /* EventNumPlayersViewController.swift in Sources */,
 				D890FC381CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift in Sources */,
 				D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */,

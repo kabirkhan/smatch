@@ -9,11 +9,19 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    // ALLOW OFFLINE DATA PERSISTANCE
+    override init() {
+        super.init()
+        Firebase.defaultConfig().persistenceEnabled = true
+    }
+    
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
             return FBSDKApplicationDelegate.sharedInstance()

@@ -120,28 +120,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GUO-Vk-drI" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="219" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="2ti-ii-s3V"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-t8-sxA">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
@@ -157,13 +135,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="GUO-Vk-drI" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="3iL-uQ-vt1"/>
                             <constraint firstItem="AtG-Mo-3Mp" firstAttribute="top" secondItem="A7Q-t8-sxA" secondAttribute="bottom" id="Dg0-Q7-QJ9"/>
-                            <constraint firstItem="GUO-Vk-drI" firstAttribute="top" secondItem="FpB-FF-gwe" secondAttribute="bottom" constant="15" id="Dk0-c1-zpZ"/>
                             <constraint firstItem="FpB-FF-gwe" firstAttribute="top" secondItem="Oz6-FK-drm" secondAttribute="bottom" constant="100" id="MS1-VH-ioN"/>
                             <constraint firstItem="FpB-FF-gwe" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="UGA-Tb-EWV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FpB-FF-gwe" secondAttribute="trailing" id="hsI-2j-O95"/>
-                            <constraint firstItem="GUO-Vk-drI" firstAttribute="trailing" secondItem="Bcn-XI-rA3" secondAttribute="trailingMargin" id="sO5-fM-QlG"/>
                             <constraint firstItem="A7Q-t8-sxA" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leading" id="wwg-8r-5M5"/>
                             <constraint firstAttribute="trailing" secondItem="A7Q-t8-sxA" secondAttribute="trailing" id="xHE-2e-ecZ"/>
                         </constraints>
@@ -178,7 +153,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="eventDescriptionTextField" destination="GUO-Vk-drI" id="Cjp-A1-r2H"/>
                         <outlet property="eventNameTextField" destination="FpB-FF-gwe" id="yWu-2z-dAP"/>
                         <segue destination="Y0v-LW-bvK" kind="show" identifier="new_event_location" id="iJ0-U8-A87"/>
                     </connections>

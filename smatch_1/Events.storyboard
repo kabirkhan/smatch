@@ -110,14 +110,14 @@
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-le-0Co" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="430" y="239" width="140" height="50"/>
+                                <rect key="frame" x="500" y="239" width="70" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="UYx-bg-M9b"/>
+                                    <constraint firstAttribute="width" constant="70" id="UYx-bg-M9b"/>
                                     <constraint firstAttribute="height" constant="50" id="r8e-S8-QzZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
-                                <state key="normal" title="Join this game!">
+                                <state key="normal" title="Join">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -125,53 +125,120 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer: Event Nameasdfasdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9K-7H-hGs">
-                                <rect key="frame" x="20" y="303" width="261" height="28"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <rect key="frame" x="20" y="300" width="235" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-jS-JxL">
-                                <rect key="frame" x="399" y="305" width="171" height="25"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-jS-JxL">
+                                <rect key="frame" x="20" y="272" width="134" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-WV-GIT">
-                                <rect key="frame" x="20" y="338" width="40" height="40"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-WV-GIT">
+                                <rect key="frame" x="20" y="333" width="35" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="sFe-lV-yWA"/>
-                                    <constraint firstAttribute="height" constant="40" id="wm5-oF-k3l"/>
+                                    <constraint firstAttribute="width" constant="35" id="sFe-lV-yWA"/>
+                                    <constraint firstAttribute="height" constant="35" id="wm5-oF-k3l"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Location / Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxt-xd-usN">
-                                <rect key="frame" x="68" y="338" width="206" height="40"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Location / Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxt-xd-usN">
+                                <rect key="frame" x="63" y="333" width="160" height="35"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="moR-QU-BN0">
+                                <rect key="frame" x="20" y="371" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ICx-t3-Sdx"/>
+                                    <constraint firstAttribute="width" constant="35" id="utZ-1n-vBs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Crs-cT-6Gm">
+                                <rect key="frame" x="63" y="379" width="119" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jt-JI-EQ3">
+                                <rect key="frame" x="20" y="409" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="DIt-wZ-WFe"/>
+                                    <constraint firstAttribute="height" constant="35" id="Wg9-b3-Jfa"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7v1-Ym-7Ve">
+                                <rect key="frame" x="20" y="447" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="MDf-AY-LFR"/>
+                                    <constraint firstAttribute="width" constant="35" id="kej-CI-4ve"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJy-iQ-X0K">
+                                <rect key="frame" x="63" y="455" width="48" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o9a-86-GyH">
+                                <rect key="frame" x="20" y="485" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="7hg-Ob-9aA"/>
+                                    <constraint firstAttribute="height" constant="35" id="nmw-cW-AZp"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O12-pg-sL4">
+                                <rect key="frame" x="63" y="493" width="36" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Competition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-fs-piC">
+                                <rect key="frame" x="63" y="417" width="80" height="20"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="LUl-jS-JxL" firstAttribute="trailing" secondItem="e8z-le-0Co" secondAttribute="trailing" id="0zB-PL-BaP"/>
+                            <constraint firstItem="o9a-86-GyH" firstAttribute="top" secondItem="7v1-Ym-7Ve" secondAttribute="bottom" constant="3" id="5RA-yk-i68"/>
+                            <constraint firstItem="O12-pg-sL4" firstAttribute="leading" secondItem="o9a-86-GyH" secondAttribute="trailing" constant="8" id="6UY-ts-saD"/>
+                            <constraint firstItem="LUl-jS-JxL" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="7pa-Dd-o56"/>
+                            <constraint firstItem="u9K-7H-hGs" firstAttribute="top" secondItem="LUl-jS-JxL" secondAttribute="bottom" constant="8" symbolic="YES" id="8w5-Wv-IYG"/>
+                            <constraint firstItem="2jt-JI-EQ3" firstAttribute="top" secondItem="moR-QU-BN0" secondAttribute="bottom" constant="3" id="9EO-wZ-Sqv"/>
+                            <constraint firstItem="o9a-86-GyH" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="C3K-Yr-wpm"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="Cml-nG-Qmm"/>
-                            <constraint firstItem="u9K-7H-hGs" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="39" id="DJa-31-lWQ"/>
+                            <constraint firstItem="YJy-iQ-X0K" firstAttribute="leading" secondItem="7v1-Ym-7Ve" secondAttribute="trailing" constant="8" id="DxJ-l1-DKa"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" constant="-20" id="ENn-Rv-BHB"/>
                             <constraint firstAttribute="leadingMargin" secondItem="u9K-7H-hGs" secondAttribute="leading" id="Fv6-jx-SOE"/>
                             <constraint firstItem="5nn-WV-GIT" firstAttribute="top" secondItem="u9K-7H-hGs" secondAttribute="bottom" constant="8" id="Gvf-Ws-Gie"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="IdP-8d-Nxh"/>
+                            <constraint firstItem="LUl-jS-JxL" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="8" symbolic="YES" id="JyB-Er-uXS"/>
+                            <constraint firstItem="YJy-iQ-X0K" firstAttribute="centerY" secondItem="7v1-Ym-7Ve" secondAttribute="centerY" id="L0K-zh-xzr"/>
                             <constraint firstItem="rxt-xd-usN" firstAttribute="leading" secondItem="5nn-WV-GIT" secondAttribute="trailing" constant="8" id="P2q-X4-Cqq"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="8" symbolic="YES" id="QZk-zi-fHu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" id="Sxv-7C-Ged"/>
-                            <constraint firstItem="LUl-jS-JxL" firstAttribute="baseline" secondItem="u9K-7H-hGs" secondAttribute="baseline" id="UCn-wK-CSU"/>
+                            <constraint firstItem="7v1-Ym-7Ve" firstAttribute="top" secondItem="2jt-JI-EQ3" secondAttribute="bottom" constant="3" id="UQF-p3-GZU"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" id="UVF-gA-kgy"/>
-                            <constraint firstItem="LUl-jS-JxL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u9K-7H-hGs" secondAttribute="trailing" constant="8" symbolic="YES" id="X2W-nJ-X7h"/>
+                            <constraint firstItem="3kK-fs-piC" firstAttribute="centerY" secondItem="2jt-JI-EQ3" secondAttribute="centerY" id="W1T-24-49c"/>
+                            <constraint firstItem="moR-QU-BN0" firstAttribute="top" secondItem="5nn-WV-GIT" secondAttribute="bottom" constant="3" id="YPS-bj-GtY"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="cHG-kP-Ljq"/>
                             <constraint firstItem="rxt-xd-usN" firstAttribute="centerY" secondItem="5nn-WV-GIT" secondAttribute="centerY" id="gFj-IO-OEw"/>
+                            <constraint firstItem="3kK-fs-piC" firstAttribute="leading" secondItem="2jt-JI-EQ3" secondAttribute="trailing" constant="8" id="hH6-mS-URS"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8z-le-0Co" secondAttribute="trailing" constant="10" id="heQ-ac-Tmc"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
+                            <constraint firstItem="moR-QU-BN0" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="lIP-iu-k9d"/>
+                            <constraint firstItem="Crs-cT-6Gm" firstAttribute="centerY" secondItem="moR-QU-BN0" secondAttribute="centerY" id="ldY-x7-V3F"/>
+                            <constraint firstItem="2jt-JI-EQ3" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="mai-Nu-8Ec"/>
                             <constraint firstItem="rxt-xd-usN" firstAttribute="top" secondItem="u9K-7H-hGs" secondAttribute="bottom" constant="8" id="nhI-l6-PBg"/>
+                            <constraint firstItem="Crs-cT-6Gm" firstAttribute="leading" secondItem="moR-QU-BN0" secondAttribute="trailing" constant="8" id="oCx-K8-oRD"/>
                             <constraint firstItem="5nn-WV-GIT" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="r87-VZ-vsH"/>
+                            <constraint firstItem="O12-pg-sL4" firstAttribute="centerY" secondItem="o9a-86-GyH" secondAttribute="centerY" id="w1k-Tw-SIu"/>
+                            <constraint firstItem="7v1-Ym-7Ve" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="xCs-pR-mfO"/>
                             <constraint firstItem="e8z-le-0Co" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="-25" id="yms-V8-Pn3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" constant="-20" id="zEs-XN-NxP"/>
                         </constraints>
@@ -196,8 +263,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="competitionLabel" destination="3kK-fs-piC" id="YXD-pQ-kv4"/>
+                        <outlet property="dateAndTimeLabel" destination="LUl-jS-JxL" id="Imw-6W-GVW"/>
+                        <outlet property="genderLabel" destination="YJy-iQ-X0K" id="ZeR-sU-nXh"/>
                         <outlet property="individualMapView" destination="1wW-Kp-3LW" id="Jwq-GY-EMS"/>
                         <outlet property="joinButton" destination="e8z-le-0Co" id="mTN-oh-kS7"/>
+                        <outlet property="locationLabel" destination="rxt-xd-usN" id="OGp-C3-KXp"/>
+                        <outlet property="nameLabel" destination="u9K-7H-hGs" id="U60-Hl-HV0"/>
+                        <outlet property="numPlayersLabel" destination="Crs-cT-6Gm" id="Q4a-c2-Ks9"/>
+                        <outlet property="sportLabel" destination="O12-pg-sL4" id="fRA-rA-BOQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFt-1V-brm" userLabel="First Responder" sceneMemberID="firstResponder"/>
