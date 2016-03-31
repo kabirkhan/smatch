@@ -24,7 +24,6 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayFireBaseEvents()
-        events = [Event]()
     }
     // MARK: - Table View Data Source
     
@@ -52,18 +51,22 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     // MARK: ==================== FIREBASE ======================
     
     func displayFireBaseEvents() {
+        
         let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         
         //Set mySports - Array of sports the user has on their profile
         
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
         user.observeEventType(.Value, withBlock: { snapshot in
+            
+             self.events = [Event]()
+            
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
             
             //Set events - Array of events that only include events of sports that are inside mySports
             let eventsRef = DataService.ds.REF_EVENTS
-            eventsRef.queryOrderedByKey().observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
+            eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
                 if let sport = snapshot.value.objectForKey("sport") {
                     for i in 0...self.mySports.count-1 {
                         

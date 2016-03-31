@@ -83,6 +83,8 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         let userRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
         userRef.observeEventType(.Value, withBlock: { snapshot in
             
+            self.events = [Event]()
+            
             let userEvents = snapshot.value.objectForKey("joined_events")
             
             // unwrap the snapshot to check for nil events
