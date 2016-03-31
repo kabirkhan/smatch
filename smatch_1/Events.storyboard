@@ -213,6 +213,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="Uab-0G-QA2">
+                            <rect key="frame" x="0.0" y="253" width="600" height="348"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="225" id="tfq-Gu-wGI" customClass="EventCell" customModule="smatch_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="225"/>
@@ -417,6 +422,11 @@
                                 <rect key="frame" x="0.0" y="110" width="600" height="490"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="b3I-Rz-MiL">
+                                    <rect key="frame" x="0.0" y="253" width="600" height="336"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="225" id="IXz-uu-Imq" customClass="EventCell" customModule="smatch_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="225"/>
@@ -541,7 +551,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="AVX-4h-T27" firstAttribute="centerX" secondItem="t8b-RV-VVC" secondAttribute="centerX" id="HLp-Qs-G7N"/>
                             <constraint firstItem="aTJ-R2-Vm8" firstAttribute="top" secondItem="P5C-RM-x7o" secondAttribute="bottom" id="IKy-6y-yli"/>
@@ -595,6 +605,6 @@
         <image name="segment_selected-1" width="1" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uFB-gd-6Fj"/>
+        <segue reference="i9m-hh-sps"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -34,8 +34,6 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        tableView.tableFooterView? = MaterialView()
     }
     
   
