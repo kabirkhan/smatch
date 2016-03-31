@@ -74,47 +74,56 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     @IBAction func joinButtonPressed(sender: UIButton) {
         
         
-        
+        switch viewState! {
+        case EventDetailViewState.Creator:
+            // creator
+            break
+        case EventDetailViewState.Attendee:
+            // attendee
+            break
+        default:
+            // References in database
+            print(userId)
+            print(eventToDetail!.eventKey as String)
+            
+            let eventRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/events/\(eventToDetail!.eventKey)")
+            let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userId)")
+            
+            // update attendees list to hold current user
+            
+            var attendees = eventToDetail!.attendees
+            var attendeesDict = Dictionary<String, AnyObject>()
+            attendees.append(userId)
+            
+            attendeesDict["attendees"] = attendees
+            eventRef.updateChildValues(attendeesDict)
+            
+            
+            // update user's joined events with current event
+            userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                
+                var joinedEventsDict = Dictionary<String, AnyObject>()
+                print(snapshot)
+                print(snapshot.value)
+                
+                var joined_events = [String]()
+                
+                if let events = snapshot.value.objectForKey("joined_events") {
+                    joined_events = events as! [String]
+                }
+                
+                joined_events.append(self.eventToDetail!.eventKey)
+                
+                joinedEventsDict["joined_events"] = joined_events
+                userRef.updateChildValues(joinedEventsDict)
+                
+            }) { (error) in
+                print(error)
+            }
+            break
+        }
 
         
-        // References in database
-        print(userId)
-        print(eventToDetail!.eventKey as String)
-        
-        let eventRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/events/\(eventToDetail!.eventKey)")
-        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userId)")
-        
-        // update attendees list to hold current user
-        
-        var attendees = eventToDetail!.attendees
-        var attendeesDict = Dictionary<String, AnyObject>()
-        attendees.append(userId)
-        
-        attendeesDict["attendees"] = attendees
-        eventRef.updateChildValues(attendeesDict)
-        
-        
-        // update user's joined events with current event
-        userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            
-            var joinedEventsDict = Dictionary<String, AnyObject>()
-            print(snapshot)
-            print(snapshot.value)
-            
-            var joined_events = [String]()
-            
-            if let events = snapshot.value.objectForKey("joined_events") {
-                joined_events = events as! [String]
-            }
-            
-            joined_events.append(self.eventToDetail!.eventKey)
-            
-            joinedEventsDict["joined_events"] = joined_events
-            userRef.updateChildValues(joinedEventsDict)
-            
-        }) { (error) in
-            print(error)
-        }
     }
     
     // Go back to the previous view
