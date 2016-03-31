@@ -329,11 +329,11 @@
 			isa = PBXGroup;
 			children = (
 				D8C18D811C9A3B3400E2E0D7 /* Main.storyboard */,
-				D83A181D1CA3B80A0048B629 /* Profile.storyboard */,
-				D83A181B1CA3B7F40048B629 /* Notifications.storyboard */,
-				D83A18191CA3B7C70048B629 /* Messages.storyboard */,
 				D83A18171CA3B7820048B629 /* Events.storyboard */,
 				D86407CF1CA9B533006490B4 /* CreateEvent.storyboard */,
+				D83A18191CA3B7C70048B629 /* Messages.storyboard */,
+				D83A181D1CA3B80A0048B629 /* Profile.storyboard */,
+				D83A181B1CA3B7F40048B629 /* Notifications.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";

@@ -31,7 +31,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFf-y8-ugQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3872" y="-1537"/>
+            <point key="canvasLocation" x="3958" y="-1537"/>
         </scene>
         <!--Parent View Controller-->
         <scene sceneID="2h6-3J-pp9">
@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f30-Pz-PM5" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4605" y="-1566"/>
+            <point key="canvasLocation" x="4587" y="-1537"/>
         </scene>
         <!--Event Details-->
         <scene sceneID="1hF-xB-KwX">
@@ -110,8 +110,12 @@
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-le-0Co" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="466" y="249" width="104" height="30"/>
+                                <rect key="frame" x="440" y="239" width="130" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="UYx-bg-M9b"/>
+                                    <constraint firstAttribute="height" constant="50" id="r8e-S8-QzZ"/>
+                                </constraints>
                                 <state key="normal" title="Join this game!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -132,7 +136,7 @@
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8z-le-0Co" secondAttribute="trailing" constant="10" id="heQ-ac-Tmc"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
-                            <constraint firstItem="e8z-le-0Co" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="-15" id="yms-V8-Pn3"/>
+                            <constraint firstItem="e8z-le-0Co" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="-25" id="yms-V8-Pn3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" constant="-20" id="zEs-XN-NxP"/>
                         </constraints>
                         <variation key="default">
@@ -147,14 +151,18 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Event Details" id="rDB-iJ-HL2"/>
+                    <navigationItem key="navigationItem" title="Event Details" id="rDB-iJ-HL2">
+                        <barButtonItem key="leftBarButtonItem" title="Games" id="5sY-pG-m24">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="individualMapView" destination="1wW-Kp-3LW" id="Jwq-GY-EMS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFt-1V-brm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4056" y="-880"/>
+            <point key="canvasLocation" x="4588" y="-202"/>
         </scene>
         <!--Events Table View Controller-->
         <scene sceneID="BHg-P2-7Tm">
@@ -246,7 +254,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPT-gJ-bQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4772" y="-880"/>
+            <point key="canvasLocation" x="3958" y="-880"/>
         </scene>
         <!--Events Map View Controller-->
         <scene sceneID="t0L-mB-e0Y">
@@ -289,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3hW-lZ-W6V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5417" y="-880"/>
+            <point key="canvasLocation" x="4588" y="-880"/>
         </scene>
         <!--Create New Event View Controller-->
         <scene sceneID="000-iq-rNl">
@@ -405,7 +413,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TUg-kz-diB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6073" y="-880"/>
+            <point key="canvasLocation" x="5214" y="-880"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="deU-6z-pWB">
@@ -424,7 +432,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDi-rc-xaI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3244" y="-880"/>
+            <point key="canvasLocation" x="3958" y="-202"/>
         </scene>
         <!--CreateEvent-->
         <scene sceneID="2dZ-nx-nof">
@@ -432,7 +440,7 @@
                 <viewControllerPlaceholder storyboardName="CreateEvent" id="Dny-Ze-kob" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="st8-0k-ir9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6728" y="-880"/>
+            <point key="canvasLocation" x="6594.5" y="-880"/>
         </scene>
     </scenes>
     <resources>
