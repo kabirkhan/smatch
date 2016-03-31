@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Messages Table View Controller-->
+        <!--My Messages-->
         <scene sceneID="NT4-Is-Fzf">
             <objects>
                 <tableViewController id="RDp-XI-iH5" customClass="MessagesTableViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
                             <outlet property="delegate" destination="RDp-XI-iH5" id="aeo-de-tay"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yLO-Sv-AHm"/>
+                    <navigationItem key="navigationItem" title="My Messages" id="yLO-Sv-AHm"/>
                     <connections>
                         <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="PDn-Y7-c8M"/>
                     </connections>
@@ -48,7 +48,7 @@
             </objects>
             <point key="canvasLocation" x="5819" y="-136"/>
         </scene>
-        <!--Messages View Controller-->
+        <!--Name-->
         <scene sceneID="h4t-Yq-Y9C">
             <objects>
                 <viewController id="BV4-Zb-BMm" customClass="MessagesViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,6 +61,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Name" id="iWM-Ca-Z80"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hda-SN-XBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,10 +71,13 @@
         <scene sceneID="KYS-hj-Ail">
             <objects>
                 <navigationController title="Messages" automaticallyAdjustsScrollViewInsets="NO" id="CU2-Zm-IyN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messages" image="messages" id="8jd-Ks-CkE"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ob-fF-NdG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -85,4 +89,7 @@
             <point key="canvasLocation" x="5007" y="-136"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="messages" width="28" height="25"/>
+    </resources>
 </document>

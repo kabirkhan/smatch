@@ -11,22 +11,16 @@ import UIKit
 
 class SportCollectionViewCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var cellView: UIView!
+    var sport: Sport?
     
-    func toggleTextColor() {
+    func toggleColor() {
         if nameLabel.textColor == UIColor.materialMainGreen {
             nameLabel.textColor = UIColor.blackColor()
         } else {
             nameLabel.textColor = UIColor.materialMainGreen
         }
     }
-    
-//    var sport: Sport? {
-//        didSet {
-//            if let sport = sport {
-//                nameLabel.text = sport.name
-//            }
-//        }
-//    }
 }

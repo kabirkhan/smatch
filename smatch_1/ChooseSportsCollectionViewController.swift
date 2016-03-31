@@ -46,8 +46,10 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath) as! SportCollectionViewCell
         
         let sport = sports[indexPath.row]
-        cell.nameLabel.text = sport
-        cell.nameLabel.textColor = UIColor.darkTextColor() // change to materialDarkTextColor, using system font right now
+        cell.sport = sport
+        cell.nameLabel.text = sport.name
+        cell.nameLabel.textColor = UIColor.materialDarkTextColor // change to materialDarkTextColor, using system font right now
+        cell.iconImageView.image = UIImage(named: sport.iconImageName)
         
         return cell
     }
@@ -60,18 +62,20 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         
     }
     
+    // MARK: =============== CREATE USER =================
     @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
         
-        let uid = userData?.removeValueForKey(KEY_ID)
+        let userId = userData?.removeValueForKey(KEY_ID)
         userData!["sports"] = selectedSports
         userData!["joined_events"] = [String]()
         
         if userData!["provider"] as! String == "facebook" {
+            
             // create user in firebase database
-            DataService.ds.createFirebaseUser(uid! as! String, user: userData!)
+            DataService.ds.createFirebaseUser(userId! as! String, user: userData!)
             
             // set userid in userdefaults to check against
-            NSUserDefaults.standardUserDefaults().setValue(uid, forKey: KEY_ID)
+            NSUserDefaults.standardUserDefaults().setValue(userId, forKey: KEY_ID)
         } else if userData![KEY_PROVIDER] as! String == VALUE_EMAIL_PASSWORD_PROVIDER {
             
             DataService.ds.REF_BASE.createUser(userData![KEY_EMAIL] as! String, password: userData![KEY_PASSWORD] as! String, withValueCompletionBlock: { (error, result) -> Void in
@@ -90,23 +94,21 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
                         //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
                         DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
                     })
-                    
                 }
             })
-            
         }
-        
         performSegueWithIdentifier(SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN, sender: nil)
     }
     
-    
+    // toggle the color of the cell when tapped, toggle in selected sports
     private func toggleSelectedSport(cell: SportCollectionViewCell, indexPath: NSIndexPath) {
         
-        if cell.nameLabel.textColor == UIColor.darkTextColor() {
+        if cell.nameLabel.textColor == UIColor.materialDarkTextColor {
             
             selectedSports.append(cell.nameLabel.text!)
-            
             cell.nameLabel.textColor = UIColor.materialMainGreen
+            cell.iconImageView.image = UIImage(named: "\(cell.sport!.iconImageName)_selected")
+            cell.cellView.backgroundColor = UIColor.materialLightGreen
         } else {
             
             for i in 0..<selectedSports.count {
@@ -115,10 +117,9 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
                     break
                 }
             }
-            
-            cell.nameLabel.textColor = UIColor.darkTextColor()
+            cell.nameLabel.textColor = UIColor.materialDarkTextColor
+            cell.iconImageView.image = UIImage(named: cell.sport!.iconImageName)
+            cell.cellView.backgroundColor = UIColor.whiteColor()
         }
-       
     }
-    
 }

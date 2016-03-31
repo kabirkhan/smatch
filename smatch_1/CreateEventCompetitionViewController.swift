@@ -10,11 +10,16 @@ import UIKit
 
 class CreateEventCompetitionViewController: UIViewController {
 
+    // MARK: ============= VARIABLES =================
     var newEvent: Event?
     var competitionLevel: CompetitionLevel?
     
+    // MARK: ============= OUTLETS =================
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-   
+    
+    // MARK: ============= ACTIONS AND SEGUES =================
+    //
+    // Set competition level based on segmentedControl value
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
        
         switch segmentedControl.selectedSegmentIndex {

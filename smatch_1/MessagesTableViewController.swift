@@ -10,11 +10,28 @@ import UIKit
 import Firebase
 
 class MessagesTableViewController: UITableViewController {
+    
+    // MARK: ================= VARIABLES ====================
     var eventList = [Dictionary<String, AnyObject>]()
+    let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
+    let fontColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // =========== NAVBAR SETUP ==============
+        // set navbar fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
+        
+        // set navbar shadow
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
+        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        
+        // set navbar color
+        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
+        
         //we force the uid unwrapp because they have a UID from log in
         let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         let url = "\(DataService.ds.REF_USERS)/\(uid)"

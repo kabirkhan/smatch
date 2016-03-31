@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -11,7 +11,7 @@
         <scene sceneID="Epj-H7-WvG">
             <objects>
                 <navigationController storyboardIdentifier="UINavigationController-62b-Ld-YVn" automaticallyAdjustsScrollViewInsets="NO" id="62b-Ld-YVn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="rF2-Zd-SMa"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="rF2-Zd-SMa"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU6-S6-eOr">
@@ -63,9 +63,7 @@
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="unselectedBackgroundImage" value="segmented_unselected_bg"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="selectedBackgroundImage" value="segment_selected-1"/>
-                                    <userDefinedRuntimeAttribute type="image" keyPath="segmentDividerImage" value="segmented_separator_bg"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="switchTabs:" destination="eY2-90-VRb" eventType="valueChanged" id="hiR-YA-OkR"/>
@@ -438,9 +436,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="home" width="24" height="24"/>
         <image name="segment_selected-1" width="1" height="35"/>
-        <image name="segmented_separator_bg" width="38" height="45"/>
-        <image name="segmented_unselected_bg" width="1" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uFB-gd-6Fj"/>

@@ -38,6 +38,7 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
         let layout = sportsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
     }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -56,13 +57,15 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath) as! EditUserProfileSportsColletionViewCell
+        
         let sport = SPORTS[indexPath.row]
-        if selectedSports!.contains(sport) {
-            cell.nameLabel.text = sport
+        if selectedSports!.contains(sport.name) {
+            cell.nameLabel.text = sport.name
             cell.nameLabel.textColor = UIColor.materialMainGreen
         } else {
-            cell.nameLabel.text = sport
+            cell.nameLabel.text = sport.name
             cell.nameLabel.textColor = UIColor.darkTextColor()
         }
         

@@ -12,16 +12,41 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import TextFieldEffects
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: =================================== OUTLETS ===================================
     
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
     
-    // MARK: =================================== ACTIONS ===================================
+    // MARK: =================================== VIEW LIFECYCLE ===================================
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //if there is already a logged in user, move forward
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
+            performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+        }
+        
+        // setup keyboard dismiss on view tap
+        self.hideKeyboardWhenTappedAround()
+        
+        // setup text field delegates to use delegate functions
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
     
-    // Login with facebook when facebook button pressed
+    // MARK: ===================== TEXT FIELD DELEGATE =====================
+    //
+    // dismiss keyboard when return button pressed
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+
+    // MARK: =================================== ACTIONS ===================================
+    //
+    // FACEBOOK LOGIN
     @IBAction func loginWithFacebookPressed(sender: UIButton) {
         
         let facebookLogin = FBSDKLoginManager()
@@ -56,7 +81,7 @@ class LoginViewController: UIViewController {
 
     }
 
-
+    // EMAIL LOGIN
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
         
         if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
@@ -95,16 +120,4 @@ class LoginViewController: UIViewController {
             destVC.userData = sender as? Dictionary<String, String>
         }
     }
-    
-    // MARK: =================================== VIEW LIFECYCLE ===================================
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        //if there is already a logged in user, move forward
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
-            performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-        }
-    }
-    
 }

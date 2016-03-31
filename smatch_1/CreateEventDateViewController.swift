@@ -22,6 +22,7 @@ class CreateEventDateViewController: UIViewController {
         // setup datepicker
         datePicker.datePickerMode = .DateAndTime
         datePicker.minimumDate = NSDate(timeIntervalSinceNow: 21600) // need to give at least 6 hours notice for game
+        datePicker.backgroundColor = UIColor.whiteColor()
         
         datePicker.addTarget(self, action: #selector(CreateEventDateViewController.datePickerDidChange(_:)), forControlEvents: .ValueChanged)
         
@@ -33,7 +34,7 @@ class CreateEventDateViewController: UIViewController {
         toolBar.sizeToFit()
         
         // create a barbutton for done to dismiss the pickerview
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: #selector(CreateEventDateViewController.donePicker(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton, doneButton], animated: false)

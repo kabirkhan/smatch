@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ne2-gq-qYb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ne2-gq-qYb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -137,7 +137,7 @@
                             <constraint firstItem="XtC-F0-CQM" firstAttribute="leading" secondItem="JVY-Vb-iUy" secondAttribute="leading" constant="50" id="eP5-rz-Bbg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3Np-Tc-CN2"/>
+                    <navigationItem key="navigationItem" title="Me" id="3Np-Tc-CN2"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageLabel" destination="UnJ-C8-teI" id="UyF-hs-Mcb"/>
@@ -152,7 +152,7 @@
             </objects>
             <point key="canvasLocation" x="5873" y="569"/>
         </scene>
-        <!--Edit User Profile View Controller-->
+        <!--Edit-->
         <scene sceneID="DkC-um-eVb">
             <objects>
                 <viewController id="mFC-2W-crd" customClass="EditUserProfileViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
@@ -255,8 +255,9 @@
                             <constraint firstItem="vIp-8r-zBa" firstAttribute="top" secondItem="kXM-pP-GtQ" secondAttribute="bottom" constant="8" id="h7Q-9a-2cB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="x5E-tH-UIV">
+                    <navigationItem key="navigationItem" title="Edit" id="x5E-tH-UIV">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="aFo-Z2-RqD">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="mFC-2W-crd" id="DvS-2H-cn8"/>
                             </connections>
@@ -273,15 +274,16 @@
             </objects>
             <point key="canvasLocation" x="6535" y="569"/>
         </scene>
-        <!--Profile-->
+        <!--Me-->
         <scene sceneID="pwg-yJ-9Zc">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ne2-gq-qYb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="l05-Lg-Fz1"/>
+                    <tabBarItem key="tabBarItem" title="Me" image="user_profile" id="l05-Lg-Fz1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kXR-Hs-lJj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -295,5 +297,6 @@
     </scenes>
     <resources>
         <image name="Bitmap" width="999" height="668"/>
+        <image name="user_profile" width="26" height="24"/>
     </resources>
 </document>

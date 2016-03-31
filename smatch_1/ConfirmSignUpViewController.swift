@@ -10,7 +10,7 @@
 import UIKit
 import Firebase
 
-class ConfirmSignUpViewController: UIViewController {
+class ConfirmSignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: ===================== VARIABLES =====================
     var userData: Dictionary<String, AnyObject>?
@@ -29,7 +29,22 @@ class ConfirmSignUpViewController: UIViewController {
             nameTextField.text = name as? String
             genderTextField.text = gender as? String
         }
-        //ageTextField.text = userData![KEY_AGE]
+        
+        // setup keyboard dismiss on view tap
+        self.hideKeyboardWhenTappedAround()
+        
+        // setup text field delegates to use delegate functions
+        nameTextField.delegate = self
+        ageTextField.delegate = self
+        genderTextField.delegate = self
+    }
+    
+    // MARK: ===================== TEXT FIELD DELEGATE =====================
+    
+    // dismiss keyboard when return button pressed
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
     
     // MARK: ===================== ACTIONS =====================

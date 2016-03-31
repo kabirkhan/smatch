@@ -18,22 +18,18 @@ class EventSportCollectionViewController: UICollectionViewController {
     // MARK: - VARIABLES
     var userSports = [String]()
     var userId: String?
-    let font = UIFont(name: "Avenir", size: 18)
+    let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // DISPLAY INSTRUCTIONS ALERT
-        let alert = showErrorAlert("Choose a sport", msg: "Follow the steps to create your event")
-        presentViewController(alert, animated: true, completion: nil)
         
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
         
         // set navbar shadow
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0).CGColor
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
         self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
         self.navigationController?.navigationBar.layer.shadowRadius = 5.0
         self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)

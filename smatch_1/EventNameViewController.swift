@@ -22,7 +22,7 @@ class EventNameViewController: UIViewController {
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
         
         // unwrap and check that name field is not empty, set values to newEvent and segue to location view
-        if let name = eventNameTextField.text, description = eventDescriptionTextField.text where name != "" {
+        if let name = eventNameTextField.text where name != "" {
             newEvent?.title = "\(newEvent!.sport): \(name)"
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_LOCATION_FROM_NAME, sender: nil)
         } else {

@@ -12,7 +12,7 @@ import UIKit
     
     // MARK: ==================== Segment Images ====================
     // background image to display when segment is unselected
-    @IBInspectable dynamic public var unselectedBackgroundImage: UIImage? {
+    @IBInspectable dynamic public var unselectedBackgroundImage: UIImage = UIImage() {
         didSet {
             setupBackground()
         }
@@ -26,11 +26,11 @@ import UIKit
     }
     
     // image to display inbetween segments
-    @IBInspectable dynamic public var segmentDividerImage: UIImage? {
-        didSet {
-            setupBackground()
-        }
-    }
+//    @IBInspectable dynamic public var segmentDividerImage: UIImage? {
+//        didSet {
+//            setupBackground()
+//        }
+//    }
     
     @IBInspectable dynamic public var font: UIFont? {
         didSet {

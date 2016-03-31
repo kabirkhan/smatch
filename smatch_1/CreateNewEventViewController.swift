@@ -95,33 +95,45 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
         user.observeEventType(.Value, withBlock: { snapshot in
-            let userEvents = snapshot.value.objectForKey("joined_events")
-            self.myEvents = userEvents as! [String]
-            print(self.myEvents)
             
-            for event in self.myEvents {
-                let singleEventRef = DataService.ds.REF_EVENTS.childByAppendingPath(event)
-                print(singleEventRef)
-                singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    
-                    print(snapshot)
-                    print(snapshot.value)
-                    let eventName = snapshot.value.objectForKey("name") as! String
-                    let eventKey = snapshot.key
-                    let eventAddress = snapshot.value.objectForKey("address") as! String
-                    let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                    let eventDate = snapshot.value.objectForKey("date") as! String
-                    let eventGender = snapshot.value.objectForKey("gender") as! String
-                    let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                    let eventSport = snapshot.value.objectForKey("sport") as! String
-                    let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
-                    self.events.append(newEvent)
-                    self.tableView.reloadData()
+            let userEvents = snapshot.value.objectForKey("joined_events")
+            
+            // unwrap the snapshot to check for nil events
+            if let events = userEvents {
+                self.myEvents = events as! [String]
+            }
+            
+            // if user has games display them in a table
+            if self.myEvents.count != 0 {
+                for event in self.myEvents {
+                    let singleEventRef = DataService.ds.REF_EVENTS.childByAppendingPath(event)
+                    print(singleEventRef)
+                    singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                        
+                        print(snapshot)
+                        print(snapshot.value)
+                        let eventName = snapshot.value.objectForKey("name") as! String
+                        let eventKey = snapshot.key
+                        let eventAddress = snapshot.value.objectForKey("address") as! String
+                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                        let eventDate = snapshot.value.objectForKey("date") as! String
+                        let eventGender = snapshot.value.objectForKey("gender") as! String
+                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                        let eventSport = snapshot.value.objectForKey("sport") as! String
+                        let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                        self.events.append(newEvent)
+                        self.tableView.reloadData()
 
-                    
-                    }, withCancelBlock: { (error) in
-                        print(error)
-                })
+                        
+                        }, withCancelBlock: { (error) in
+                            print(error)
+                    })
+                }
+            } else {
+                
+                // if they don't have games show alert telling them to join/make games
+                let alert = showErrorAlert("You don't have any games!", msg: "You can create a game here or join one in the events section")
+                self.presentViewController(alert, animated: true, completion: nil)
             }
 
             }, withCancelBlock: { error in

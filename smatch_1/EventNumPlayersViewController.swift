@@ -26,6 +26,7 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
         // create a pickerview
         numberPlayersPickerView.delegate = self
         numberPlayersPickerView.dataSource = self
+        numberPlayersPickerView.backgroundColor = UIColor.whiteColor()
         
         // set a toolbar for the pickerview with a done button
         let toolBar = UIToolbar()
@@ -35,7 +36,7 @@ class EventNumPlayersViewController: UIViewController, UIPickerViewDelegate, UIP
         toolBar.sizeToFit()
         
         // create a barbutton for done to dismiss the pickerview
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("donePicker:"))
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: #selector(EventNumPlayersViewController.donePicker(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton, doneButton], animated: false)
