@@ -66,7 +66,7 @@ var SPORTS: [Sport] {
         var sports = [Sport]()
         sports.append(Sport(name: "Soccer", iconImageName: "soccer"))
         sports.append(Sport(name: "Ultimate Frisbee", iconImageName: "frisbee"))
-        sports.append(Sport(name: "Baskteball", iconImageName: "basketball"))
+        sports.append(Sport(name: "Basketball", iconImageName: "basketball"))
         sports.append(Sport(name: "Football", iconImageName: "football"))
         sports.append(Sport(name: "Tennis", iconImageName: "tennis"))
         sports.append(Sport(name: "Volleyball", iconImageName: "volleyball"))
