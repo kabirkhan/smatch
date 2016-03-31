@@ -39,6 +39,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         //Geocode the event and pin it on the mini event map
         
         events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)
+        cell.eventMapView.scrollEnabled = false
         return cell
     }
     
