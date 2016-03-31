@@ -16,18 +16,43 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     
     // MARK: ================== VARIABLES =====================
     var eventToDetail: Event?
-    var userId: String?
     var delegate: GoBackDelegate?
-    
+    let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+    let regionRadius: CLLocationDistance = 5000
+    var viewState: EventDetailViewState?
+
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
     
     // MARK: ================== OUTLETS =====================
     @IBOutlet weak var individualMapView: MKMapView!
-    let regionRadius: CLLocationDistance = 5000
+    @IBOutlet weak var joinButton: MaterialButton!
     
+    // MARK: ============== VIEW LIFECYCLE =============
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let attendees = eventToDetail!.attendees
+        let creator = eventToDetail!.creator_id
+        
+        // user is creator
+        if creator == userId {
+            
+            viewState = EventDetailViewState.Creator
+            joinButton.backgroundColor = UIColor.materialCancelRedColor
+            joinButton.setTitle("Delete game", forState: .Normal)
+            
+        // user is attendee but not creator
+        } else if attendees.contains(userId) {
+            
+            viewState = EventDetailViewState.Attendee
+            joinButton.backgroundColor = UIColor.materialCancelRedColor
+            joinButton.setTitle("Leave this game", forState: .Normal)
+            
+        // user is neither and can join the game
+        } else {
+            viewState = EventDetailViewState.Viewer
+        }
         
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
@@ -42,19 +67,15 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         // set navbar color
         self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
         
-        // get user's id if stored in defaults which it has to be to get here
-        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
-            userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String?
-        }
-        
         eventToDetail?.geocode(individualMapView, regionRadius: regionRadius, centeredOnPin: true)
     }
     
     // MARK: ==================== ACTIONS AND SEGUES =====================
     @IBAction func joinButtonPressed(sender: UIButton) {
         
-        // Get userId from User Defaults
-        let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+        
+        
+
         
         // References in database
         print(userId)
@@ -64,20 +85,14 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userId)")
         
         // update attendees list to hold current user
-        eventRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-            
-            var attendeesDict = Dictionary<String, AnyObject>()
-            print(snapshot)
-            print(snapshot.value)
-            var attendees = snapshot.value.objectForKey("attendees") as! [String]
-            attendees.append(userId)
-            
-            attendeesDict["attendees"] = attendees
-            eventRef.updateChildValues(attendeesDict)
-            
-            }) { (error) in
-                print(error)
-        }
+        
+        var attendees = eventToDetail!.attendees
+        var attendeesDict = Dictionary<String, AnyObject>()
+        attendees.append(userId)
+        
+        attendeesDict["attendees"] = attendees
+        eventRef.updateChildValues(attendeesDict)
+        
         
         // update user's joined events with current event
         userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in

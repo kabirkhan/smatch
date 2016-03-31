@@ -13,7 +13,7 @@ import Firebase
 
 class EventSportCollectionViewController: UICollectionViewController {
     
-    var newEvent = Event(title: "", eventKey: "", date: "", sport: "", address: "", numberOfPlayers: "0", gender: Gender.Coed.rawValue, competition: CompetitionLevel.DoesNotMatter.rawValue)
+    var newEvent = Event(title: "", eventKey: "", date: "", sport: "", address: "", numberOfPlayers: "0", gender: Gender.Coed.rawValue, competition: CompetitionLevel.DoesNotMatter.rawValue, attendees: [String](), creator_id: "")
 
     // MARK: - VARIABLES
     var userSports = [String]()

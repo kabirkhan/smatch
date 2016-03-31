@@ -24,7 +24,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         displayFireBaseEvents()
-        tableView.tableFooterView? = MaterialView()
+        events = [Event]()
     }
     // MARK: - Table View Data Source
     
@@ -78,7 +78,10 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
                             let eventGender = snapshot.value.objectForKey("gender") as! String
                             let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
                             let eventSport = snapshot.value.objectForKey("sport") as! String
-                            let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition)
+                            let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
+                            let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
+                            
+                            let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
                             self.events.append(newEvent)
                         }
                     }

@@ -65,7 +65,13 @@ extension UIColor {
             return UIColor(netHex: 0xE7E7E7)
         }
     }
-    
+
+    // Cancel/ Delete red color
+    static var materialCancelRedColor : UIColor {
+        get {
+            return UIColor(netHex: 0xEE4750)
+        }
+    }
 }
 
 // use hex values to create UIColors
