@@ -15,9 +15,12 @@ class MessagesTableViewController: UITableViewController {
     var eventList = [Dictionary<String, AnyObject>]()
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
+    var userName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("loading...")
 
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
@@ -38,7 +41,8 @@ class MessagesTableViewController: UITableViewController {
         let ref = Firebase(url: url)
         
         ref.observeSingleEventOfType(.Value, withBlock: { user in
-            
+            print("hello: start")
+            self.userName = (user.value.objectForKey(KEY_DISPLAY_NAME) as? String)!
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
                 else {
                  return
@@ -64,6 +68,8 @@ class MessagesTableViewController: UITableViewController {
                     print(err.description)
                 })
             }
+            
+            print("hello end")
             
             }, withCancelBlock: { error in
                 print("error")
@@ -139,7 +145,7 @@ class MessagesTableViewController: UITableViewController {
             controller.eventId = sender as? String
             controller.senderId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as? String
             //TODO: Load user name
-            controller.senderDisplayName = ""
+            controller.senderDisplayName = userName
         }
     }
     

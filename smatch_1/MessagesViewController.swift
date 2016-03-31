@@ -29,10 +29,6 @@ class MessagesViewController: JSQMessagesViewController {
         print("hello event: \(eventId)")
         setupBubbles()
         
-//        // No avatars (Remove this)
-//        collectionView!.collectionViewLayout.incomingAvatarViewSize = CGSizeZero
-//        collectionView!.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero
-        
         messageRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/messages")
         attendeesRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/attendees")
     }
@@ -48,37 +44,72 @@ class MessagesViewController: JSQMessagesViewController {
     }
 
     //MARK: - Messaging Methods
-    private func addMessage(id: String, text: String) {
-        let message = JSQMessage(senderId: id, displayName: "", text: text)
+    private func addMessage(id: String, text: String, displayName: String) {
+        print(senderDisplayName)
+        let message = JSQMessage(senderId: id, displayName: displayName, text: text)
         messages.append(message)
     }
     
     private func observeMessages() {
-        // getAvatars()
+         getAvatars()
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
+            let displayName = snapshot.value["senderDisplayName"] as! String
             
-            self.addMessage(id, text: text)
+            self.addMessage(id, text: text, displayName: displayName)
 
             self.finishReceivingMessage()
         }
     }
     
+    override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        let message = messages[indexPath.item]
+        switch message.senderId {
+        case NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String:
+            return CGFloat(0)
+        default:
+            return CGFloat(20)
+        }
+    }
+    
+    //get the display name
+    override func collectionView(collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
+        let message = messages[indexPath.item]
+        switch message.senderId {
+        case NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String:
+            return nil
+        default:
+            guard let senderDisplayName = message.senderDisplayName else {
+                assertionFailure()
+                return nil
+            }
+            return NSAttributedString(string: senderDisplayName)
+            
+        }
+    }
+    
     //MARK: -Get Avatars
-//    private func getAvatars() {
-//        attendeesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            let attendeesIdList = snapshot as! [String]
-//            
-//            for i in 0..<attendeesIdList.count {
-//                
-//            }
-//        
-//        }, withCancelBlock: { error in
-//            
-//        })
-//    }
+    private func getAvatars() {
+        attendeesRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/attendees")
+        attendeesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let attendeesIdList = snapshot.value as! [String]
+            
+            for attendee in attendeesIdList  {
+                let facebookId = attendee.substringFromIndex(attendee.startIndex.advancedBy(9))
+                
+                let userID = NSString(string: facebookId)
+                let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
+                if let data = NSData(contentsOfURL: facebookProfileUrl!) {
+                    self.avatars[attendee] = data
+                }
+            }
+        
+        }, withCancelBlock: { error in
+            
+        })
+    }
     
     //MARK: - JSQMessagesViewControllerDelegate Functions
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
@@ -101,7 +132,13 @@ class MessagesViewController: JSQMessagesViewController {
     
     //removes avatar support, probably want to override this
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
-       return nil
+       let message = self.messages[indexPath.item]
+        
+        if let data = avatars[message.senderId] {
+            return JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: data)!, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault));
+        }
+        
+        return nil
     }
     
     //MARK: -Factory
@@ -117,17 +154,18 @@ class MessagesViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
                                      senderDisplayName: String!, date: NSDate!) {
         
-        let itemRef = messageRef.childByAutoId() // 1
+        let itemRef = messageRef.childByAutoId()
         let messageItem = [ // 2
             "text": text,
-            "senderId": senderId
+            "senderId": senderId,
+            "senderDisplayName": senderDisplayName
         ]
-        itemRef.setValue(messageItem) // 3
+        itemRef.setValue(messageItem)
         
-        // 4
+        
         JSQSystemSoundPlayer.jsq_playMessageSentSound()
         
-        // 5
+        
         finishSendingMessage()
     }
     
