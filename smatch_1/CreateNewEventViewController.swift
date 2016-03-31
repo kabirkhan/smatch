@@ -57,7 +57,7 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
         cell.eventNameLabel.text = events[indexPath.row].title
         cell.eventLocationLabel.text = events[indexPath.row].address
-        
+        cell.dateLabel.text = events[indexPath.row].date
         //Geocode the event and pin it on the mini event map
         
         events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)

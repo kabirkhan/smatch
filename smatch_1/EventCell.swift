@@ -15,9 +15,7 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var eventMapView: MKMapView!
     @IBOutlet weak var eventNameLabel: UILabel!
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var eventLocationLabel: UILabel!
     
-    @IBAction func joinButttonPressed(sender: UIButton) {
-        
-    }
 }
