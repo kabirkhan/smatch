@@ -82,14 +82,14 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         let userRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
         userRef.observeEventType(.Value, withBlock: { snapshot in
             
-            self.events = [Event]()
-            
             let userEvents = snapshot.value.objectForKey("joined_events")
             
             // unwrap the snapshot to check for nil events
             if let events = userEvents {
                 self.myEvents = events as! [String]
             }
+            
+            self.events = [Event]()
             
             // if user has games display them in a table
             if self.myEvents.count != 0 {

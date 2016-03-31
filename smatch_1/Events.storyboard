@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer: Event Nameasdfasdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9K-7H-hGs">
-                                <rect key="frame" x="20" y="300" width="235" height="25"/>
+                                <rect key="frame" x="20" y="300" width="560" height="25"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
@@ -137,66 +137,66 @@
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-WV-GIT">
-                                <rect key="frame" x="20" y="333" width="35" height="35"/>
+                                <rect key="frame" x="20" y="333" width="35" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="sFe-lV-yWA"/>
-                                    <constraint firstAttribute="height" constant="35" id="wm5-oF-k3l"/>
+                                    <constraint firstAttribute="height" constant="42" id="wm5-oF-k3l"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Location / Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxt-xd-usN">
-                                <rect key="frame" x="63" y="333" width="160" height="35"/>
+                                <rect key="frame" x="63" y="333" width="517" height="42"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="moR-QU-BN0">
-                                <rect key="frame" x="20" y="371" width="35" height="35"/>
+                                <rect key="frame" x="20" y="378" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="ICx-t3-Sdx"/>
                                     <constraint firstAttribute="width" constant="35" id="utZ-1n-vBs"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Crs-cT-6Gm">
-                                <rect key="frame" x="63" y="379" width="119" height="20"/>
+                                <rect key="frame" x="63" y="386" width="119" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jt-JI-EQ3">
-                                <rect key="frame" x="20" y="409" width="35" height="35"/>
+                                <rect key="frame" x="20" y="416" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="DIt-wZ-WFe"/>
                                     <constraint firstAttribute="height" constant="35" id="Wg9-b3-Jfa"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7v1-Ym-7Ve">
-                                <rect key="frame" x="20" y="447" width="35" height="35"/>
+                                <rect key="frame" x="20" y="454" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="MDf-AY-LFR"/>
                                     <constraint firstAttribute="width" constant="35" id="kej-CI-4ve"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJy-iQ-X0K">
-                                <rect key="frame" x="63" y="455" width="48" height="20"/>
+                                <rect key="frame" x="63" y="462" width="48" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o9a-86-GyH">
-                                <rect key="frame" x="20" y="485" width="35" height="35"/>
+                                <rect key="frame" x="20" y="492" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="7hg-Ob-9aA"/>
                                     <constraint firstAttribute="height" constant="35" id="nmw-cW-AZp"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O12-pg-sL4">
-                                <rect key="frame" x="63" y="493" width="36" height="20"/>
+                                <rect key="frame" x="63" y="500" width="36" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Competition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-fs-piC">
-                                <rect key="frame" x="63" y="417" width="80" height="20"/>
+                                <rect key="frame" x="63" y="424" width="80" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -224,12 +224,14 @@
                             <constraint firstItem="7v1-Ym-7Ve" firstAttribute="top" secondItem="2jt-JI-EQ3" secondAttribute="bottom" constant="3" id="UQF-p3-GZU"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" id="UVF-gA-kgy"/>
                             <constraint firstItem="3kK-fs-piC" firstAttribute="centerY" secondItem="2jt-JI-EQ3" secondAttribute="centerY" id="W1T-24-49c"/>
+                            <constraint firstItem="u9K-7H-hGs" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="Wbb-6z-Nje"/>
                             <constraint firstItem="moR-QU-BN0" firstAttribute="top" secondItem="5nn-WV-GIT" secondAttribute="bottom" constant="3" id="YPS-bj-GtY"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="cHG-kP-Ljq"/>
                             <constraint firstItem="rxt-xd-usN" firstAttribute="centerY" secondItem="5nn-WV-GIT" secondAttribute="centerY" id="gFj-IO-OEw"/>
                             <constraint firstItem="3kK-fs-piC" firstAttribute="leading" secondItem="2jt-JI-EQ3" secondAttribute="trailing" constant="8" id="hH6-mS-URS"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8z-le-0Co" secondAttribute="trailing" constant="10" id="heQ-ac-Tmc"/>
+                            <constraint firstItem="rxt-xd-usN" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="jWE-IT-TcN"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
                             <constraint firstItem="moR-QU-BN0" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="lIP-iu-k9d"/>
                             <constraint firstItem="Crs-cT-6Gm" firstAttribute="centerY" secondItem="moR-QU-BN0" secondAttribute="centerY" id="ldY-x7-V3F"/>
@@ -593,10 +595,10 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="tCL-tL-5tA"/>
                                                             <exclude reference="971-co-7xO"/>
-                                                            <exclude reference="gQa-QJ-dyU"/>
                                                             <exclude reference="9Kb-Bv-I0B"/>
+                                                            <exclude reference="gQa-QJ-dyU"/>
+                                                            <exclude reference="tCL-tL-5tA"/>
                                                             <exclude reference="fy6-S1-ygP"/>
                                                             <exclude reference="uMg-9J-3hF"/>
                                                         </mask>
