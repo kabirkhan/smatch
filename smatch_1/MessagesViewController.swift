@@ -108,7 +108,7 @@ class MessagesViewController: JSQMessagesViewController {
     private func setupBubbles() {
         let factory = JSQMessagesBubbleImageFactory()
         outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(
-            UIColor.jsq_messageBubbleBlueColor())
+            UIColor.jsq_messageBubbleGreenColor())
         incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(
             UIColor.jsq_messageBubbleLightGrayColor())
     }

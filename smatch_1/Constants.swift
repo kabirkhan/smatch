@@ -37,6 +37,7 @@ let SEGUE_CHOOSE_SPORTS = "choose_sports"
 let SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN = "finish_signup_to_main_screen"
 let SEGUE_LOGGED_IN = "logged_in"
 let SEGUE_EDIT_USERPROFILE = "edit_profile"
+let SEGUE_FROM_MY_EVENTS_TO_DETAIL = "myevents_to_event_detail"
 
 // MARK: NEW EVENT SEGUES
 let SEGUE_NEW_EVENT_TO_NAME_FROM_CHOOSE_SPORT = "new_event_name_and_description"

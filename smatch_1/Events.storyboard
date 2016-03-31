@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -50,8 +50,8 @@
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="600" height="35"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="600" height="45"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="KEa-eu-eZC"/>
@@ -59,7 +59,7 @@
                                 <segments>
                                     <segment title="List"/>
                                     <segment title="Map"/>
-                                    <segment title="New"/>
+                                    <segment title="My Events"/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -306,7 +306,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVX-4h-T27" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="40" y="275" width="520" height="50"/>
+                                <rect key="frame" x="40" y="40" width="520" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="zFV-KK-mcG"/>
@@ -319,15 +319,91 @@
                                     <segue destination="Dny-Ze-kob" kind="presentation" id="YLl-Ru-UhP"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="272" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P5C-RM-x7o">
+                                <rect key="frame" x="0.0" y="110" width="600" height="490"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="272" id="Jmh-7m-59j" customClass="EventCell" customModule="smatch_1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="272"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jmh-7m-59j" id="BiM-W8-ZaM">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="272"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcB-SD-QOD" customClass="MaterialView" customModule="smatch_1" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="5" width="580" height="262"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Event Name Event Name Event Name Event Name Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjM-Pv-asg">
+                                                            <rect key="frame" x="8" y="139" width="564" height="52"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="LocationLocationLocationLocation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hj-AG-bZB">
+                                                            <rect key="frame" x="8" y="191" width="221" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="tpJ-P2-79L">
+                                                            <rect key="frame" x="0.0" y="0.0" width="580" height="139"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="139" id="K1v-du-nsu"/>
+                                                            </constraints>
+                                                        </mapView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="tpJ-P2-79L" firstAttribute="top" secondItem="dcB-SD-QOD" secondAttribute="top" id="2IM-a4-Wgx"/>
+                                                        <constraint firstItem="tjM-Pv-asg" firstAttribute="height" secondItem="dcB-SD-QOD" secondAttribute="height" multiplier="0.2" id="45g-bd-ARz"/>
+                                                        <constraint firstItem="tpJ-P2-79L" firstAttribute="leading" secondItem="dcB-SD-QOD" secondAttribute="leading" id="EBw-Lf-zBZ"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tjM-Pv-asg" secondAttribute="trailing" constant="8" id="NWT-00-Plx"/>
+                                                        <constraint firstItem="2hj-AG-bZB" firstAttribute="leading" secondItem="tjM-Pv-asg" secondAttribute="leading" id="O2U-ms-Cfg"/>
+                                                        <constraint firstItem="tjM-Pv-asg" firstAttribute="top" secondItem="tpJ-P2-79L" secondAttribute="bottom" id="ThD-YM-5cs"/>
+                                                        <constraint firstItem="tjM-Pv-asg" firstAttribute="leading" secondItem="dcB-SD-QOD" secondAttribute="leading" constant="8" id="UhG-gn-rT9"/>
+                                                        <constraint firstItem="2hj-AG-bZB" firstAttribute="top" secondItem="tjM-Pv-asg" secondAttribute="bottom" id="Vzd-Nj-4n3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="tpJ-P2-79L" secondAttribute="trailing" id="l2k-AO-b3E"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dcB-SD-QOD" firstAttribute="leading" secondItem="BiM-W8-ZaM" secondAttribute="leading" constant="10" id="eg1-vK-RRG"/>
+                                                <constraint firstItem="dcB-SD-QOD" firstAttribute="top" secondItem="BiM-W8-ZaM" secondAttribute="top" constant="5" id="gU1-Zb-6xL"/>
+                                                <constraint firstAttribute="bottom" secondItem="dcB-SD-QOD" secondAttribute="bottom" constant="5" id="kal-Hm-abh"/>
+                                                <constraint firstAttribute="trailing" secondItem="dcB-SD-QOD" secondAttribute="trailing" constant="10" id="wi7-dW-o7X"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="eventLocationLabel" destination="2hj-AG-bZB" id="2qB-xv-erd"/>
+                                            <outlet property="eventMapView" destination="tpJ-P2-79L" id="o2K-YW-RXh"/>
+                                            <outlet property="eventNameLabel" destination="tjM-Pv-asg" id="166-ZF-ndv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1Fp-ee-R5k" id="Yx7-xv-YHb"/>
+                                    <outlet property="delegate" destination="1Fp-ee-R5k" id="vou-kl-E0L"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="AVX-4h-T27" firstAttribute="centerY" secondItem="t8b-RV-VVC" secondAttribute="centerY" id="HC5-VA-hBu"/>
                             <constraint firstItem="AVX-4h-T27" firstAttribute="centerX" secondItem="t8b-RV-VVC" secondAttribute="centerX" id="HLp-Qs-G7N"/>
+                            <constraint firstItem="aTJ-R2-Vm8" firstAttribute="top" secondItem="P5C-RM-x7o" secondAttribute="bottom" id="IKy-6y-yli"/>
                             <constraint firstItem="AVX-4h-T27" firstAttribute="leading" secondItem="t8b-RV-VVC" secondAttribute="leadingMargin" constant="20" id="V7H-Pf-WJv"/>
+                            <constraint firstAttribute="trailing" secondItem="P5C-RM-x7o" secondAttribute="trailing" id="ZGR-Kv-oaB"/>
+                            <constraint firstItem="P5C-RM-x7o" firstAttribute="top" secondItem="AVX-4h-T27" secondAttribute="bottom" constant="20" id="dYZ-Yh-357"/>
+                            <constraint firstItem="AVX-4h-T27" firstAttribute="top" secondItem="bKQ-li-fcX" secondAttribute="bottom" constant="20" id="hFx-Lh-KAr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AVX-4h-T27" secondAttribute="trailing" constant="20" id="q04-gN-3rh"/>
+                            <constraint firstItem="P5C-RM-x7o" firstAttribute="leading" secondItem="t8b-RV-VVC" secondAttribute="leading" id="r2H-ui-w7O"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="P5C-RM-x7o" id="avx-PR-Tdm"/>
+                        <segue destination="YRC-B4-tNf" kind="presentation" identifier="myevents_to_event_detail" id="uFB-gd-6Fj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TUg-kz-diB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -367,6 +443,6 @@
         <image name="segmented_unselected_bg" width="1" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D78-00-tXf"/>
+        <segue reference="uFB-gd-6Fj"/>
     </inferredMetricsTieBreakers>
 </document>
