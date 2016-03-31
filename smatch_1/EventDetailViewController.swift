@@ -13,20 +13,47 @@ import AddressBookUI
 import Firebase
 
 class EventDetailViewController: UIViewController, MKMapViewDelegate {
-    var delegate: UITableViewController?
+    
+    // MARK: ================== VARIABLES =====================
     var eventToDetail: Event?
+    var userId: String?
+    var delegate: GoBackDelegate?
+    
+    let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
+    let fontColor = UIColor.whiteColor()
+    
+    // MARK: ================== OUTLETS =====================
     @IBOutlet weak var individualMapView: MKMapView!
     let regionRadius: CLLocationDistance = 5000
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // =========== NAVBAR SETUP ==============
+        // set navbar fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
+        
+        // set navbar shadow
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
+        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        
+        // set navbar color
+        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
+        
+        // get user's id if stored in defaults which it has to be to get here
+        if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
+            userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String?
+        }
+        
         eventToDetail?.geocode(individualMapView, regionRadius: regionRadius, centeredOnPin: true)
     }
     
-    // MARK: ACTIONS AND SEGUES
+    // MARK: ==================== ACTIONS AND SEGUES =====================
     @IBAction func joinButtonPressed(sender: UIButton) {
         
-        // userid
+        // Get userId from User Defaults
         let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
         
         // References in database
@@ -73,6 +100,12 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         }) { (error) in
             print(error)
         }
-        
     }
+    
+    // Go back to the previous view
+    @IBAction func allGamesButtonPressed(sender: UIBarButtonItem) {
+        
+        delegate?.goBack(self)
+    }
+    
 }

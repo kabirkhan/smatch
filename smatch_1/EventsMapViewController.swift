@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import Firebase
 
-class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GoBackDelegate {
     
     // MARK: - Variables and Constants
 
@@ -79,23 +79,7 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
         return nil
     }
-    
-    // MARK: - Segues
-    
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
-        calloutAccessoryControlTapped control: UIControl) {
-            let specificEvent = view.annotation as! Event
-            performSegueWithIdentifier("showEventDetails", sender: specificEvent)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showEventDetails" {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as? Event
-            
-        }
-    }
+
     
     // MARK: - Function for Map Centering
 
@@ -108,11 +92,12 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     // MARK: - Firebase
     
     func displayFireBaseEvents() {
-        let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
+        
+        let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         
         //Set mySports - Array of sports the user has on their profile
         
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
+        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
         user.observeEventType(.Value, withBlock: { snapshot in
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
@@ -121,11 +106,12 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             let eventsRef = DataService.ds.REF_EVENTS
             eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
                 if let sport = snapshot.value.objectForKey("sport") {
-                    for i in 0...self.mySports.count-1 {
+                    for index in self.mySports {
                         
                         //if the sport is one of "mySports" create an event and append it to our events array.
                         
-                        if sport as! String == self.mySports[i] {
+                        if sport as! String == index {
+                            
                             let eventName = snapshot.value.objectForKey("name") as! String
                             let eventKey = snapshot.key
                             let eventAddress = snapshot.value.objectForKey("address") as! String
@@ -139,10 +125,10 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                         }
                     }
                 }
-                //geocode all the events inside our events array on the mapView
                 
-                for i in self.events {
-                    i.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+                //geocode all the events inside our events array on the mapView
+                for index in self.events {
+                    index.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
                 }
                 }, withCancelBlock: { error in
                     print(error.description)
@@ -150,7 +136,27 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             }, withCancelBlock: { error in
                 print(error.description)
         })
-        
-        
+    }
+    
+    // MARK: - Segues
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let specificEvent = view.annotation as! Event
+        performSegueWithIdentifier("showEventDetails", sender: specificEvent)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEventDetails" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
+            controller.eventToDetail = sender as? Event
+            controller.delegate = self
+
+        }
+    }
+    
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

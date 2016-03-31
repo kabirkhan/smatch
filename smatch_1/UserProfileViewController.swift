@@ -134,16 +134,15 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
     // MARK: =================================== FACEBOOK PICTURES ===================================
     
     func returnUserData() {
+        
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"cover"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
-            if ((error) != nil)
-            {
+            if ((error) != nil) {
+                
                 // Process error
                 print("Error: \(error)")
-            }
-            else
-            {
+            } else {
                 
                 if let id: NSString = result.valueForKey("id") as? NSString {
                     self.returnUserProfileImages(id)

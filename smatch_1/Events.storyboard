@@ -45,11 +45,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yl2-5v-Vfd" userLabel="Content View">
-                                <rect key="frame" x="0.0" y="99" width="600" height="452"/>
-                                <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="59" width="600" height="45"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,6 +64,11 @@
                                     <action selector="switchTabs:" destination="eY2-90-VRb" eventType="valueChanged" id="hiR-YA-OkR"/>
                                 </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yl2-5v-Vfd" userLabel="Content View">
+                                <rect key="frame" x="0.0" y="99" width="600" height="452"/>
+                                <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -110,12 +110,13 @@
                                 </constraints>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8z-le-0Co" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="440" y="239" width="130" height="50"/>
+                                <rect key="frame" x="430" y="239" width="140" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="UYx-bg-M9b"/>
+                                    <constraint firstAttribute="width" constant="140" id="UYx-bg-M9b"/>
                                     <constraint firstAttribute="height" constant="50" id="r8e-S8-QzZ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                 <state key="normal" title="Join this game!">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -123,19 +124,54 @@
                                     <action selector="joinButtonPressed:" destination="bnb-UA-9VS" eventType="touchUpInside" id="Jv7-Pt-KUB"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Soccer: Event Nameasdfasdf" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9K-7H-hGs">
+                                <rect key="frame" x="20" y="303" width="261" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Date and Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-jS-JxL">
+                                <rect key="frame" x="398.5" y="305" width="171.5" height="25"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5nn-WV-GIT">
+                                <rect key="frame" x="20" y="338" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="sFe-lV-yWA"/>
+                                    <constraint firstAttribute="height" constant="40" id="wm5-oF-k3l"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Location / Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxt-xd-usN">
+                                <rect key="frame" x="68" y="338" width="205.5" height="40"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="highlightedColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="LUl-jS-JxL" firstAttribute="trailing" secondItem="e8z-le-0Co" secondAttribute="trailing" id="0zB-PL-BaP"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="Cml-nG-Qmm"/>
+                            <constraint firstItem="u9K-7H-hGs" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="39" id="DJa-31-lWQ"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" constant="-20" id="ENn-Rv-BHB"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="u9K-7H-hGs" secondAttribute="leading" id="Fv6-jx-SOE"/>
+                            <constraint firstItem="5nn-WV-GIT" firstAttribute="top" secondItem="u9K-7H-hGs" secondAttribute="bottom" constant="8" id="Gvf-Ws-Gie"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="IdP-8d-Nxh"/>
+                            <constraint firstItem="rxt-xd-usN" firstAttribute="leading" secondItem="5nn-WV-GIT" secondAttribute="trailing" constant="8" id="P2q-X4-Cqq"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="8" symbolic="YES" id="QZk-zi-fHu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" id="Sxv-7C-Ged"/>
+                            <constraint firstItem="LUl-jS-JxL" firstAttribute="baseline" secondItem="u9K-7H-hGs" secondAttribute="baseline" id="UCn-wK-CSU"/>
                             <constraint firstItem="dTX-5A-mKi" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" id="UVF-gA-kgy"/>
+                            <constraint firstItem="LUl-jS-JxL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="u9K-7H-hGs" secondAttribute="trailing" constant="8" symbolic="YES" id="X2W-nJ-X7h"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="cHG-kP-Ljq"/>
+                            <constraint firstItem="rxt-xd-usN" firstAttribute="centerY" secondItem="5nn-WV-GIT" secondAttribute="centerY" id="gFj-IO-OEw"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="trailing" secondItem="yhK-KK-vR3" secondAttribute="trailingMargin" id="hTi-OH-2fL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="e8z-le-0Co" secondAttribute="trailing" constant="10" id="heQ-ac-Tmc"/>
                             <constraint firstItem="1wW-Kp-3LW" firstAttribute="top" secondItem="UPh-mQ-CBu" secondAttribute="bottom" id="jto-s9-Fi0"/>
+                            <constraint firstItem="rxt-xd-usN" firstAttribute="top" secondItem="u9K-7H-hGs" secondAttribute="bottom" constant="8" id="nhI-l6-PBg"/>
+                            <constraint firstItem="5nn-WV-GIT" firstAttribute="leading" secondItem="yhK-KK-vR3" secondAttribute="leadingMargin" id="r87-VZ-vsH"/>
                             <constraint firstItem="e8z-le-0Co" firstAttribute="top" secondItem="1wW-Kp-3LW" secondAttribute="bottom" constant="-25" id="yms-V8-Pn3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1wW-Kp-3LW" secondAttribute="trailing" constant="-20" id="zEs-XN-NxP"/>
                         </constraints>
@@ -152,8 +188,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Event Details" id="rDB-iJ-HL2">
-                        <barButtonItem key="leftBarButtonItem" title="Games" id="5sY-pG-m24">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="5sY-pG-m24">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="allGamesButtonPressed:" destination="bnb-UA-9VS" id="EDK-mX-KYE"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

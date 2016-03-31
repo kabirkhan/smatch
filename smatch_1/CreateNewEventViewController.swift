@@ -11,42 +11,25 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoBackDelegate {
 
+    // MARK: =================== VARIBALES =====================
     var alert = UIViewController()
     var timer = NSTimer()
-    @IBOutlet weak var tableView: UITableView!
-    
-    // unwind segue to here if you get to the end and save the event
-    @IBAction func finishCreatingEvent(segue: UIStoryboardSegue) {
-        alert = showErrorAlert("Game Created Successfully!", msg: "View your game in the my events tab")
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
-        
-    }
-    
-    // unwind segue if event creation is cancelled at any point
-    @IBAction func eventCreationCancelled(segue: UIStoryboardSegue) {
-        alert = showErrorAlert("Game Creation Cancelled", msg: "Not right now? Make a game later!")
-        
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
-    }
-    
-    func presentAlert() {
-        presentViewController(alert, animated: true, completion: nil)
-        timer.invalidate()
-    }
-    
-    // MARK: - Variables and Constants
     
     var events = [Event]()
-    let regionRadius: CLLocationDistance = 3000
     var myEvents = [String]()
+    let regionRadius: CLLocationDistance = 3000
     
-    // MARK: - View Controller Lifecycle
+    // MARK: =================== OUTLETS ======================
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: ================== View Lifecycle ====================
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // load the user's joined events
         displayFireBaseEvents()
         
         tableView.delegate = self
@@ -54,7 +37,17 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.tableFooterView? = MaterialView()
     }
-    // MARK: - Table View Data Source
+    
+  
+    
+    // ALERT CREATION
+    func presentAlert() {
+        presentViewController(alert, animated: true, completion: nil)
+        timer.invalidate()
+    }
+    
+    
+    // MARK: =================== TABLEVIEW DATASOURCE =====================
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -71,30 +64,24 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
+    // MARK: =================== TABLEVIEW DELEGATE =====================
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier(SEGUE_FROM_MY_EVENTS_TO_DETAIL, sender: events[indexPath.row])
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
     }
     
-    // MARK: - Segues
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == SEGUE_FROM_MY_EVENTS_TO_DETAIL {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as? Event
-        }
-    }
-    
-    // MARK: - Firebase
-    
+    // MARK: ==================== Firebase ====================
+    // 
+    // Display the user's joined events
     func displayFireBaseEvents() {
-        let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         
-        //Set mySports - Array of sports the user has on their profile
+        // Get current user_id from User Defaults
+        let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
-        user.observeEventType(.Value, withBlock: { snapshot in
+        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
+        userRef.observeEventType(.Value, withBlock: { snapshot in
             
             let userEvents = snapshot.value.objectForKey("joined_events")
             
@@ -139,10 +126,38 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
             }, withCancelBlock: { error in
                 print(error.description)
         })
+    }
+    
+    // MARK: =================== ACTIONS AND SEGUES =====================
+    //
+    // EVENT CREATION COMPLETED SUCCESSFULLY
+    // unwind segue to here if you get to the end and save the event
+    @IBAction func finishCreatingEvent(segue: UIStoryboardSegue) {
+        alert = showErrorAlert("Game Created Successfully!", msg: "View your game in the my events tab")
         
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
         
     }
     
-
+    // EVENT CREATION CANCELLED
+    // unwind segue if event creation is cancelled at any point
+    @IBAction func eventCreationCancelled(segue: UIStoryboardSegue) {
+        alert = showErrorAlert("Game Creation Cancelled", msg: "Not right now? Make a game later!")
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
+    }
     
+    // GoBack Delegate to send the user back here from event detail
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SEGUE_FROM_MY_EVENTS_TO_DETAIL {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
+            controller.eventToDetail = sender as? Event
+            controller.delegate = self
+        }
+    }
 }

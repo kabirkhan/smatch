@@ -11,7 +11,7 @@ import MapKit
 import CoreLocation
 import Firebase
 
-class EventsTableViewController: UITableViewController {
+class EventsTableViewController: UITableViewController, GoBackDelegate {
     
     // MARK: - Variables and Constants
     
@@ -46,21 +46,10 @@ class EventsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
-    // MARK: - Segues
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "show_event_detail" {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as? Event
-            controller.delegate = self
-            
-        }
-    }
-    
-    // MARK: - Firebase
+    // MARK: ==================== FIREBASE ======================
     
     func displayFireBaseEvents() {
         let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
@@ -107,6 +96,21 @@ class EventsTableViewController: UITableViewController {
         })
         
 
+    }
+    
+    // MARK: ================= ACTIONS AND SEGUES ===================
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "show_event_detail" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
+            controller.eventToDetail = sender as? Event
+            controller.delegate = self
+        }
+    }
+    
+    // GoBackDelegate implementation
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 
 }
