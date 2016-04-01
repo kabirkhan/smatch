@@ -31,6 +31,7 @@ class Event: NSObject, MKAnnotation {
         return address
     }
     var coordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
+    var mapItem: MKMapItem?
     
     //variable for seattle in order to center the large map on it. need to set up grabbing users location
 
@@ -51,6 +52,14 @@ class Event: NSObject, MKAnnotation {
     
     // MARK: - Map Functions
     
+    func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle!]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
     
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
         
@@ -59,7 +68,9 @@ class Event: NSObject, MKAnnotation {
         geocoder.geocodeAddressString(address) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             //address has been geocoded into a placemark for use. This is the first entry in the placemark array.
             if let placemark = placemarks?[0] {
+
                 self.coordinate = placemark.location!.coordinate
+                self.mapItem = self.mapItem(self.coordinate)
                 if centeredOnPin == true {
                     //run when we want to center the map on the pin itself
                     self.centerMapOnLocation(placemark.location!, mapView: mapView, regionRadius: regionRadius)
