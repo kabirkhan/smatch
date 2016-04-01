@@ -98,8 +98,6 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
                     print(singleEventRef)
                     singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                         
-                        print(snapshot)
-                        print(snapshot.value)
                         let eventName = snapshot.value.objectForKey("name") as! String
                         let eventKey = snapshot.key
                         let eventAddress = snapshot.value.objectForKey("address") as! String

@@ -13,7 +13,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
 
-class UserProfileViewController :UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, GoBackDelegate {
+class UserProfileViewController :UIViewController, GoBackDelegate {
     
     // MARK: =================================== VARIABLES ===================================
     var userInfo = Dictionary<String, AnyObject>()
@@ -26,10 +26,29 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var sportsCollectionView: UICollectionView!
+    
+    // sport image icons
+    @IBOutlet weak var iconImage1: UIImageView!
+    @IBOutlet weak var iconImage2: UIImageView!
+    @IBOutlet weak var iconImage3: UIImageView!
+    @IBOutlet weak var iconImage4: UIImageView!
+    @IBOutlet weak var iconImage5: UIImageView!
+    @IBOutlet weak var iconImage6: UIImageView!
+    @IBOutlet weak var iconImage7: UIImageView!
+    @IBOutlet weak var iconImage8: UIImageView!
+    
     
     // MARK: =================================== VIEW LIFECYCLE ===================================
     override func viewDidLoad() {
+        
+        iconImage1.image = UIImage(named: "soccer")
+        iconImage2.image = UIImage(named: "frisbee")
+        iconImage3.image = UIImage(named: "basketball")
+        iconImage4.image = UIImage(named: "football")
+        iconImage5.image = UIImage(named: "tennis")
+        iconImage6.image = UIImage(named: "volleyball")
+        iconImage7.image = UIImage(named: "badminton")
+        iconImage8.image = UIImage(named: "softball")
         
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
@@ -43,19 +62,8 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
         
         // set navbar color
         self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
-        
-        // CollectionView setup
-        sportsCollectionView.dataSource = self
-        sportsCollectionView.delegate = self
-        
-        // set collection view item size to be half the
-        // width of the frame to create two columns
-        let width = CGRectGetWidth(view.frame) / 2 - 1
-        let layout = sportsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
-        
-        sportsCollectionView.hidden = true
-        returnUserData()
+
+            returnUserData()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,7 +76,6 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
         
         ref.observeEventType(.Value, withBlock: { snapshot in
 
-            
             self.userInfo[KEY_DISPLAY_NAME] = snapshot.value.objectForKey("name")
             self.userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
             self.userInfo[KEY_AGE] = snapshot.value.objectForKey("age")
@@ -78,12 +85,36 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
             self.genderLabel.text = self.userInfo[KEY_GENDER] as? String
             self.ageLabel.text = self.userInfo[KEY_AGE] as? String
             
-            print(self.userInfo[KEY_SPORTS] as! [String])
-            
-            self.sportsCollectionView.reloadData()
-            self.sportsCollectionView.hidden = false
-            
-            //TODO: set sports
+            for sport in self.userInfo[KEY_SPORTS] as! [String] {
+                switch sport {
+                case "Soccer":
+                    self.iconImage1.image = UIImage(named: "soccer_selected")
+                    break
+                case "Ultimate Frisbee":
+                    self.iconImage2.image = UIImage(named: "frisbee_selected")
+                    break
+                case "Basketball":
+                    self.iconImage3.image = UIImage(named: "basketball_selected")
+                    break
+                case "Football":
+                    self.iconImage4.image = UIImage(named: "football_selected")
+                    break
+                case "Tennis":
+                    self.iconImage5.image = UIImage(named: "tennis_selected")
+                    break
+                case "Volleyball":
+                    self.iconImage6.image = UIImage(named: "volleyball_selected")
+                    break
+                case "Badminton":
+                    self.iconImage7.image = UIImage(named: "badminton_selected")
+                    break
+                case "Softball":
+                    self.iconImage8.image = UIImage(named: "softball_selected")
+                    break
+                default:
+                    break
+                }
+            }
             
         }, withCancelBlock: { error in
             print("error")
@@ -91,30 +122,6 @@ class UserProfileViewController :UIViewController, UICollectionViewDataSource, U
         })
     }
     
-    // MARK: ============== COLLECTION VIEW DATA SOURCE ================
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let sportsCount = (userInfo[KEY_SPORTS] as? [String])?.count {
-            return sportsCount
-        } else {
-            return 0
-        }
-    }
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath) as! UserProfileSportsColletionViewCell
-        if let sportsArr = userInfo[KEY_SPORTS] as? [String] {
-            let sport = sportsArr[indexPath.row]
-            cell.nameLabel.text = sport
-            cell.nameLabel.textColor = UIColor.darkTextColor()
-            
-        }
-        return cell
-    }
-        
     // MARK: =================================== NAVIGATION ===================================
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
