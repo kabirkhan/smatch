@@ -66,9 +66,9 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 case "Softball":
                     view.pinTintColor = UIColor.materialAmberAccent
                 case "Soccer":
-                    view.pinTintColor = UIColor.blueColor()
+                    view.pinTintColor = UIColor.cyanColor()
                 case "Football":
-                    view.pinTintColor = UIColor.blackColor()
+                    view.pinTintColor = UIColor.materialLightGreen
                 case "Ultimate Frisbee":
                     view.pinTintColor = UIColor.purpleColor()
                 case "Volleyball":

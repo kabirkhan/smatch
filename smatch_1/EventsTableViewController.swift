@@ -27,7 +27,12 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         
         tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         displayFireBaseEvents()
+
     }
     
     override func viewWillDisappear(animated: Bool) {
