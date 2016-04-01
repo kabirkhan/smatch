@@ -85,14 +85,12 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
             self.userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
             self.userInfo[KEY_AGE] = snapshot.value.objectForKey("age")
             self.userInfo[KEY_SPORTS] = snapshot.value.objectForKey("sports")
-            print(self.userInfo[KEY_SPORTS])
             
             self.nameLabel.text = self.userInfo[KEY_DISPLAY_NAME] as? String
             self.genderLabel.text = self.userInfo[KEY_GENDER] as? String
             self.ageLabel.text = self.userInfo[KEY_AGE] as? String
             
             for sport in self.userInfo[KEY_SPORTS] as! [String] {
-                print(self.userInfo[KEY_SPORTS])
                 switch sport {
                 case "Soccer":
                     self.iconImage1.image = UIImage(named: "soccer_selected")
@@ -173,7 +171,6 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
                 }
                 var sourceString: String!
                 let imgURLCoverPhoto = "https://graph.facebook.com/\(FBSDKAccessToken.currentAccessToken().userID)/?fields=cover&access_token=\(FBSDKAccessToken.currentAccessToken().tokenString)"
-                print(imgURLCoverPhoto)
                 Alamofire.request(.GET, imgURLCoverPhoto).validate().responseJSON(completionHandler: { (response) -> Void in
                     guard response.result.isSuccess else {
                         print(response.result.error)

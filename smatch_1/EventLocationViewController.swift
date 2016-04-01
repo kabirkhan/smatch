@@ -93,7 +93,6 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         var addressString = ""
         let placemark = searchResults[indexPath.row].placemark.description
         let address = placemark.componentsSeparatedByString(", ")
-        
         // get the place name and address and set to address string
         if address[0] == address[1] {
             addressString = address[0]
@@ -115,8 +114,8 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if let location = cell?.textLabel?.text {
-            locationTextField.text = location
+        if let address = cell?.textLabel?.text, city = cell?.detailTextLabel?.text {
+            locationTextField.text = "\(address) \(city)"
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

@@ -43,6 +43,8 @@ class EventSportCollectionViewController: UICollectionViewController {
             userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String?
         }
         
+        // get the user's sports as strings from firebase
+        // create an array of sport objects from the strings
         DataService.ds.REF_USERS.childByAppendingPath(userId).observeEventType(.Value, withBlock: { (snapshot) in
             
             self.userSports = snapshot.value.objectForKey("sports") as! [String]
@@ -85,7 +87,7 @@ class EventSportCollectionViewController: UICollectionViewController {
     
     // MARK: ====================== COLLECTION VIEW DELEGATE ======================
     // 
-    // select the sport and set it tot the current sport of the newEvent
+    // select the sport and set it to the current sport of the newEvent
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NewEventSportCollectionViewCell
@@ -96,6 +98,7 @@ class EventSportCollectionViewController: UICollectionViewController {
             cell.imageView.image = UIImage(named: "\(userSportsAsSports[indexPath.item].iconImageName)_selected")
             cell.cellView.backgroundColor = UIColor.materialLightGreen
         }
+//        collectionView.deselectItemAtIndexPath(indexPath, animated: true)
     }
     
     // deselect old sport and select new one when a different item is selected

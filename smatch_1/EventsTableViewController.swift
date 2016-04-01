@@ -18,13 +18,23 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     var events = [Event]()
     let regionRadius: CLLocationDistance = 3000
     var mySports = [String]()
+    var query: UInt?
 
     // MARK: - View Controller Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
+        
         displayFireBaseEvents()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        if query != nil {
+            DataService.ds.REF_EVENTS.removeAllObservers()
+        }
     }
     // MARK: - Table View Data Source
     
@@ -59,7 +69,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         //Set mySports - Array of sports the user has on their profile
         
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
-        user.observeEventType(.Value, withBlock: { snapshot in
+        query = user.observeEventType(.Value, withBlock: { snapshot in
             
              self.events = [Event]()
             

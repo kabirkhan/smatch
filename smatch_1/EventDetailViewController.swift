@@ -59,6 +59,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
         
         eventToDetail?.geocode(individualMapView, regionRadius: regionRadius, centeredOnPin: true)
+        individualMapView.scrollEnabled = false
     }
     
     // MARK: ==================== ACTIONS AND SEGUES =====================

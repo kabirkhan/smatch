@@ -54,8 +54,15 @@ class CreateEventDateViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
-        newEvent?.date = NSDateFormatter.localizedStringFromDate(datePicker.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-        performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE, sender: nil)
+        
+        if let date = dateAndTimeTextField.text where date != "" {
+            newEvent?.date = date
+        
+            performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE, sender: nil)
+        } else {
+            let alert = showErrorAlert("You need a date!", msg: "Your new game needs a date and time for people to show up!")
+            presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
