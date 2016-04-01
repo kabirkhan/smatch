@@ -108,11 +108,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name your event" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FpB-FF-gwe" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <rect key="frame" x="20" y="177" width="560" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="5c8-8g-3lc"/>
+                                    <constraint firstAttribute="height" constant="55" id="5c8-8g-3lc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -140,14 +140,23 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How about a name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHA-2b-O9c">
+                                <rect key="frame" x="20" y="114" width="560" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="FpB-FF-gwe" firstAttribute="top" secondItem="XHA-2b-O9c" secondAttribute="bottom" constant="30" id="6La-Y9-3mE"/>
+                            <constraint firstItem="XHA-2b-O9c" firstAttribute="top" secondItem="Oz6-FK-drm" secondAttribute="bottom" constant="50" id="BVg-5O-GvX"/>
                             <constraint firstItem="AtG-Mo-3Mp" firstAttribute="top" secondItem="A7Q-t8-sxA" secondAttribute="bottom" id="Dg0-Q7-QJ9"/>
-                            <constraint firstItem="FpB-FF-gwe" firstAttribute="top" secondItem="Oz6-FK-drm" secondAttribute="bottom" constant="100" id="MS1-VH-ioN"/>
                             <constraint firstItem="FpB-FF-gwe" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="UGA-Tb-EWV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FpB-FF-gwe" secondAttribute="trailing" id="hsI-2j-O95"/>
+                            <constraint firstItem="XHA-2b-O9c" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leadingMargin" id="mJN-BG-zbv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XHA-2b-O9c" secondAttribute="trailing" id="orv-Af-eOq"/>
                             <constraint firstItem="A7Q-t8-sxA" firstAttribute="leading" secondItem="Bcn-XI-rA3" secondAttribute="leading" id="wwg-8r-5M5"/>
                             <constraint firstAttribute="trailing" secondItem="A7Q-t8-sxA" secondAttribute="trailing" id="xHE-2e-ecZ"/>
                         </constraints>
@@ -184,11 +193,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location of the game" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pql-2Q-ckV" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <rect key="frame" x="20" y="167" width="560" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Hau-K6-oJc"/>
+                                    <constraint firstAttribute="height" constant="55" id="Hau-K6-oJc"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -206,7 +215,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QnP-Ur-lM1">
-                                <rect key="frame" x="10" y="224" width="570" height="332"/>
+                                <rect key="frame" x="10" y="242" width="570" height="314"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="location_search_cell" textLabel="X4c-I2-DP1" detailTextLabel="35F-3m-ofI" style="IBUITableViewCellStyleSubtitle" id="5gD-hF-qnr">
@@ -246,18 +255,27 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you playing?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3p-Va-7K0">
+                                <rect key="frame" x="20" y="104" width="560" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rxg-Ih-7uA" secondAttribute="trailing" id="76q-0X-OhF"/>
                             <constraint firstItem="Rxg-Ih-7uA" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leading" id="AVm-mO-eRh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i3p-Va-7K0" secondAttribute="trailing" id="CQ1-kZ-ffy"/>
+                            <constraint firstItem="Pql-2Q-ckV" firstAttribute="top" secondItem="i3p-Va-7K0" secondAttribute="bottom" constant="30" id="LWZ-ko-wEo"/>
                             <constraint firstItem="Pql-2Q-ckV" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" id="LvA-Jb-4RX"/>
                             <constraint firstItem="QnP-Ur-lM1" firstAttribute="top" secondItem="Pql-2Q-ckV" secondAttribute="bottom" constant="20" id="TNN-hH-V9I"/>
                             <constraint firstItem="QnP-Ur-lM1" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" constant="-10" id="bwl-QH-dg5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Pql-2Q-ckV" secondAttribute="trailing" id="frC-h7-tf3"/>
                             <constraint firstItem="QnP-Ur-lM1" firstAttribute="trailing" secondItem="TW2-T4-t51" secondAttribute="trailingMargin" id="hHb-kY-6bb"/>
-                            <constraint firstItem="Pql-2Q-ckV" firstAttribute="top" secondItem="7Cd-8m-kJ4" secondAttribute="bottom" constant="100" id="nde-67-Rnc"/>
+                            <constraint firstItem="i3p-Va-7K0" firstAttribute="top" secondItem="7Cd-8m-kJ4" secondAttribute="bottom" constant="40" id="r0s-ZK-PqB"/>
                             <constraint firstItem="Rxg-Ih-7uA" firstAttribute="top" secondItem="QnP-Ur-lM1" secondAttribute="bottom" symbolic="YES" id="rFA-x4-lDn"/>
+                            <constraint firstItem="i3p-Va-7K0" firstAttribute="leading" secondItem="TW2-T4-t51" secondAttribute="leadingMargin" id="v2Q-ZP-HNb"/>
                             <constraint firstItem="eAv-rM-11Q" firstAttribute="top" secondItem="Rxg-Ih-7uA" secondAttribute="bottom" id="vJq-wS-Bjc"/>
                         </constraints>
                     </view>
@@ -294,11 +312,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date and time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MnH-t2-PAR" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <rect key="frame" x="20" y="214" width="560" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="G86-qh-mXg"/>
+                                    <constraint firstAttribute="height" constant="55" id="G86-qh-mXg"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -326,15 +344,27 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When is your game taking place?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VbK-pC-PYn">
+                                <rect key="frame" x="20" y="114" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Wec-Hg-J5u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MnH-t2-PAR" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leadingMargin" id="3cL-eD-UTm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MnH-t2-PAR" secondAttribute="trailing" id="3ew-fN-nL5"/>
                             <constraint firstAttribute="trailing" secondItem="DHg-ea-Azu" secondAttribute="trailing" id="CvC-Ua-GVO"/>
+                            <constraint firstItem="MnH-t2-PAR" firstAttribute="top" secondItem="VbK-pC-PYn" secondAttribute="bottom" constant="30" id="T5b-Sb-mYb"/>
                             <constraint firstItem="Knr-wW-3kw" firstAttribute="top" secondItem="DHg-ea-Azu" secondAttribute="bottom" id="Yw4-a2-QIY"/>
                             <constraint firstItem="DHg-ea-Azu" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leading" id="a42-fT-dOe"/>
-                            <constraint firstItem="MnH-t2-PAR" firstAttribute="top" secondItem="O94-FR-JMK" secondAttribute="bottom" constant="100" id="cuZ-3r-hYn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VbK-pC-PYn" secondAttribute="trailing" id="dau-NH-bRC"/>
+                            <constraint firstItem="VbK-pC-PYn" firstAttribute="leading" secondItem="HTQ-dh-bbg" secondAttribute="leadingMargin" id="eou-Lw-0EX"/>
+                            <constraint firstItem="VbK-pC-PYn" firstAttribute="top" secondItem="O94-FR-JMK" secondAttribute="bottom" constant="50" id="uur-DV-dbE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New" id="VtK-4S-axF">
@@ -369,11 +399,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of players" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yPA-Ij-lp0" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="164" width="560" height="40"/>
+                                <rect key="frame" x="20" y="214" width="560" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="bcA-g0-I4X"/>
+                                    <constraint firstAttribute="height" constant="55" id="bcA-g0-I4X"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
@@ -401,13 +431,25 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How many players do you want for your game?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB2-yl-9dZ">
+                                <rect key="frame" x="20" y="114" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="4vq-We-Ip1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yPA-Ij-lp0" firstAttribute="top" secondItem="vqk-z6-v4z" secondAttribute="bottom" constant="100" id="CeU-ZF-i3N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FB2-yl-9dZ" secondAttribute="trailing" id="4MX-dH-Z9m"/>
+                            <constraint firstItem="FB2-yl-9dZ" firstAttribute="top" secondItem="vqk-z6-v4z" secondAttribute="bottom" constant="50" id="9vt-bu-u8S"/>
                             <constraint firstItem="yPA-Ij-lp0" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leadingMargin" id="FY5-hW-S2i"/>
+                            <constraint firstItem="FB2-yl-9dZ" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leadingMargin" id="SDB-0M-4rW"/>
                             <constraint firstItem="r02-nc-rgH" firstAttribute="leading" secondItem="Iv9-bo-HNW" secondAttribute="leading" id="aHC-1X-mXY"/>
                             <constraint firstAttribute="trailing" secondItem="r02-nc-rgH" secondAttribute="trailing" id="cD4-yd-PzA"/>
+                            <constraint firstItem="yPA-Ij-lp0" firstAttribute="top" secondItem="FB2-yl-9dZ" secondAttribute="bottom" constant="30" id="fWV-2U-Cvr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="yPA-Ij-lp0" secondAttribute="trailing" id="tRa-uH-6Z5"/>
                             <constraint firstItem="2vn-1v-5I3" firstAttribute="top" secondItem="r02-nc-rgH" secondAttribute="bottom" id="tk0-LO-jfA"/>
                         </constraints>
@@ -444,7 +486,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Vvg-Mj-6ra">
-                                <rect key="frame" x="20" y="164" width="560" height="29"/>
+                                <rect key="frame" x="20" y="214" width="560" height="29"/>
                                 <segments>
                                     <segment title="Don't Care"/>
                                     <segment title="Not Competitive"/>
@@ -463,13 +505,25 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How competitive is your game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p47-Y7-I4S">
+                                <rect key="frame" x="20" y="114" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="sdh-Dp-Vbu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="p47-Y7-I4S" firstAttribute="top" secondItem="J5j-ii-i4g" secondAttribute="bottom" constant="50" id="5Fp-o8-bjI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vvg-Mj-6ra" secondAttribute="trailing" id="8rc-61-6Yi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p47-Y7-I4S" secondAttribute="trailing" id="AXo-wI-lAS"/>
                             <constraint firstAttribute="trailing" secondItem="oDU-2g-PIk" secondAttribute="trailing" id="JHb-7y-rGJ"/>
+                            <constraint firstItem="Vvg-Mj-6ra" firstAttribute="top" secondItem="p47-Y7-I4S" secondAttribute="bottom" constant="30" id="Map-66-LTh"/>
+                            <constraint firstItem="p47-Y7-I4S" firstAttribute="leading" secondItem="K6K-9F-643" secondAttribute="leadingMargin" id="N1E-0u-utW"/>
                             <constraint firstItem="Vvg-Mj-6ra" firstAttribute="leading" secondItem="K6K-9F-643" secondAttribute="leadingMargin" id="PD9-BZ-QiL"/>
-                            <constraint firstItem="Vvg-Mj-6ra" firstAttribute="top" secondItem="J5j-ii-i4g" secondAttribute="bottom" constant="100" id="dBt-LU-k3O"/>
                             <constraint firstItem="oDU-2g-PIk" firstAttribute="leading" secondItem="K6K-9F-643" secondAttribute="leading" id="nzx-Jt-UDF"/>
                             <constraint firstItem="SSM-0S-Tw7" firstAttribute="top" secondItem="oDU-2g-PIk" secondAttribute="bottom" id="zXS-3O-DhH"/>
                         </constraints>
@@ -506,7 +560,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aDf-gz-da2">
-                                <rect key="frame" x="20" y="164" width="560" height="29"/>
+                                <rect key="frame" x="20" y="214" width="560" height="29"/>
                                 <segments>
                                     <segment title="Only Guys"/>
                                     <segment title="Only Girls"/>
@@ -525,14 +579,26 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is your game coed or not?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJ4-Eo-kbU">
+                                <rect key="frame" x="20" y="114" width="560" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Huu-vr-tj5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aDf-gz-da2" firstAttribute="top" secondItem="xCL-Vz-5yy" secondAttribute="bottom" constant="100" id="E93-gf-uRY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mJ4-Eo-kbU" secondAttribute="trailing" id="8FB-YI-x5a"/>
                             <constraint firstItem="OqA-j8-Mhj" firstAttribute="top" secondItem="VWr-tH-Odp" secondAttribute="bottom" id="JMB-ve-D5I"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aDf-gz-da2" secondAttribute="trailing" id="Lzr-6F-jPl"/>
                             <constraint firstItem="VWr-tH-Odp" firstAttribute="leading" secondItem="E7Z-cM-BDb" secondAttribute="leading" id="Pra-YV-PR5"/>
+                            <constraint firstItem="aDf-gz-da2" firstAttribute="top" secondItem="mJ4-Eo-kbU" secondAttribute="bottom" constant="30" id="SLd-go-Kjt"/>
+                            <constraint firstItem="mJ4-Eo-kbU" firstAttribute="top" secondItem="xCL-Vz-5yy" secondAttribute="bottom" constant="50" id="akb-lD-GJK"/>
                             <constraint firstItem="aDf-gz-da2" firstAttribute="leading" secondItem="E7Z-cM-BDb" secondAttribute="leadingMargin" id="hz7-q5-Adn"/>
+                            <constraint firstItem="mJ4-Eo-kbU" firstAttribute="leading" secondItem="E7Z-cM-BDb" secondAttribute="leadingMargin" id="n4f-YN-Enk"/>
                             <constraint firstAttribute="trailing" secondItem="VWr-tH-Odp" secondAttribute="trailing" id="xtD-zj-Ifz"/>
                         </constraints>
                     </view>
@@ -547,7 +613,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="segmentedControl" destination="aDf-gz-da2" id="rEx-tB-RbW"/>
-                        <segue destination="Wgr-b9-7UA" kind="show" identifier="new_event_finish" id="AjT-k2-w4E"/>
+                        <segue destination="Wgr-b9-7UA" kind="presentation" identifier="new_event_finish" id="AjT-k2-w4E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPg-Mg-DP9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -567,221 +633,255 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-Rx-QFU" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="20" y="530" width="560" height="50"/>
-                                <color key="backgroundColor" red="0.93241159539473684" green="0.27945913151052632" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="Naj-0J-0EW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xs-hJ-3SS">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-Rx-QFU" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="530" width="584" height="50"/>
+                                        <color key="backgroundColor" red="0.93241159539473684" green="0.27945913151052632" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="WF4-Hb-kJ2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <state key="normal" title="Don't create my event">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="eventCreationCancelled:" id="7xy-8t-FQ3"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-Ey-760" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="16" y="176" width="568" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="FTA-1F-u9I"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGE-XI-kL3" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="16" y="239" width="568" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="tbM-1C-BAz"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="C1F-vx-r63">
+                                        <rect key="frame" x="16" y="365" width="576" height="55"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Competition Level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmB-Xq-M0F" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="55"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j9l-T4-zFb" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="292" y="0.0" width="284" height="55"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="B7C-dA-Th6"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T0-8R-GUA" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="472" width="584" height="50"/>
+                                        <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="xnT-JK-yMR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                        <state key="normal" title="I'm Done. Create my event!">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="finishButtonPressed:" destination="Wgr-b9-7UA" eventType="touchUpInside" id="C3K-f0-OaH"/>
+                                            <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="finishCreatingEvent:" id="shk-OD-OHx"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="zzb-dP-mJo">
+                                        <rect key="frame" x="16" y="302" width="576" height="55"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sport" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-s3-Grv" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="55"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of players" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-vk-ki6" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                                <rect key="frame" x="292" y="0.0" width="284" height="55"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="dzN-Kc-HmP"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is everything correct?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QLh-5X-7kx">
+                                        <rect key="frame" x="16" y="35" width="568" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="75L-q3-W8I"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fx-Q9-Iwl" customClass="HoshiTextField" customModule="TextFieldEffects">
+                                        <rect key="frame" x="16" y="113" width="568" height="55"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="IuD-Ee-njf"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" white="1" alpha="0.70423353040000003" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Y5x-4k-QrO"/>
+                                    <constraint firstItem="C1F-vx-r63" firstAttribute="leading" secondItem="zzb-dP-mJo" secondAttribute="leading" id="5nX-yn-9Tg"/>
+                                    <constraint firstItem="C1F-vx-r63" firstAttribute="top" secondItem="zzb-dP-mJo" secondAttribute="bottom" constant="8" id="8R2-p1-xsW"/>
+                                    <constraint firstItem="lyf-Ey-760" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" constant="8" id="8iG-p0-aVz"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="oGE-XI-kL3" secondAttribute="trailing" constant="8" id="CHi-4v-QjE"/>
+                                    <constraint firstItem="oGE-XI-kL3" firstAttribute="top" secondItem="lyf-Ey-760" secondAttribute="bottom" constant="8" id="Egc-FT-YLa"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="KbQ-Rx-QFU" secondAttribute="trailing" id="FOb-F5-4ut"/>
+                                    <constraint firstItem="KbQ-Rx-QFU" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" id="FkE-be-yLz"/>
+                                    <constraint firstItem="QLh-5X-7kx" firstAttribute="top" secondItem="2xs-hJ-3SS" secondAttribute="top" constant="35" id="KkV-ph-vL8"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="C1F-vx-r63" secondAttribute="trailing" id="NQa-UQ-Vr1"/>
+                                    <constraint firstItem="lyf-Ey-760" firstAttribute="top" secondItem="6fx-Q9-Iwl" secondAttribute="bottom" constant="8" id="Ntu-LH-HlJ"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="9T0-8R-GUA" secondAttribute="trailing" id="OPE-BG-3bY"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="6fx-Q9-Iwl" secondAttribute="trailing" constant="8" id="T91-mg-RZa"/>
+                                    <constraint firstItem="zzb-dP-mJo" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" constant="8" id="TQ6-7v-3al"/>
+                                    <constraint firstAttribute="bottom" secondItem="KbQ-Rx-QFU" secondAttribute="bottom" constant="20" id="TvN-73-PSI"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zzb-dP-mJo" secondAttribute="trailing" id="Ucn-6L-N38"/>
+                                    <constraint firstItem="oGE-XI-kL3" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" constant="8" id="V7u-3J-YLW"/>
+                                    <constraint firstItem="6fx-Q9-Iwl" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" constant="8" id="Vmh-uJ-mYc"/>
+                                    <constraint firstItem="6fx-Q9-Iwl" firstAttribute="top" secondItem="QLh-5X-7kx" secondAttribute="bottom" constant="8" id="Vsm-GW-lh5"/>
+                                    <constraint firstItem="9T0-8R-GUA" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" id="cf1-K3-wW7"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="QLh-5X-7kx" secondAttribute="trailing" constant="8" id="dJc-Sz-kxn"/>
+                                    <constraint firstItem="KbQ-Rx-QFU" firstAttribute="top" secondItem="9T0-8R-GUA" secondAttribute="bottom" constant="8" id="fC7-Jy-aMY"/>
+                                    <constraint firstItem="zzb-dP-mJo" firstAttribute="top" secondItem="oGE-XI-kL3" secondAttribute="bottom" constant="8" id="kAr-YY-wxH"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="lyf-Ey-760" secondAttribute="trailing" constant="8" id="q62-ct-PGP"/>
+                                    <constraint firstItem="QLh-5X-7kx" firstAttribute="leading" secondItem="2xs-hJ-3SS" secondAttribute="leadingMargin" constant="8" id="ze0-eE-9VI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="I changed my mind. Don't create this event">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="finishButtonPressed:" destination="Wgr-b9-7UA" eventType="touchUpInside" id="wBM-24-ms7"/>
-                                    <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="finishCreatingEvent:" id="sMG-jK-s2B"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fx-Q9-Iwl" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="84" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="7nz-IZ-aA2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sport" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kd3-s3-Grv" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="135" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="LL3-4i-kRt"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyf-Ey-760" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="186" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Zhr-nP-Oag"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oGE-XI-kL3" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="237" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ePu-Dj-EFq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of players" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zpk-vk-ki6" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="288" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="RRS-u7-bcW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Competition Level" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pmB-Xq-M0F" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="339" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="sw7-ca-KHA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j9l-T4-zFb" customClass="HoshiTextField" customModule="TextFieldEffects">
-                                <rect key="frame" x="20" y="390" width="560" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="x2Q-8k-F7N"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderInactiveColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderActiveColor">
-                                        <color key="value" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9T0-8R-GUA" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="20" y="472" width="560" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="vxM-Re-9Ul"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                <state key="normal" title="I'm Done. Create my event!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="finishButtonPressed:" destination="Wgr-b9-7UA" eventType="touchUpInside" id="C3K-f0-OaH"/>
-                                    <segue destination="xSh-Di-fwl" kind="unwind" unwindAction="finishCreatingEvent:" id="shk-OD-OHx"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9T0-8R-GUA" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="0BI-SI-hgJ"/>
-                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="2ou-7z-2xw"/>
-                            <constraint firstItem="KbQ-Rx-QFU" firstAttribute="top" secondItem="9T0-8R-GUA" secondAttribute="bottom" constant="8" id="4Ms-AX-uNR"/>
-                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="6bf-z6-0Uu"/>
-                            <constraint firstItem="lyf-Ey-760" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="BfV-S1-ChH"/>
-                            <constraint firstItem="j9l-T4-zFb" firstAttribute="top" secondItem="pmB-Xq-M0F" secondAttribute="bottom" constant="11" id="E4J-27-rlk"/>
-                            <constraint firstItem="oGE-XI-kL3" firstAttribute="top" secondItem="lyf-Ey-760" secondAttribute="bottom" constant="11" id="FM8-5Y-5B1"/>
-                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="top" secondItem="Zpk-vk-ki6" secondAttribute="bottom" constant="11" id="IhQ-9K-7nY"/>
-                            <constraint firstItem="lyf-Ey-760" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="V4Y-I5-Zkd"/>
-                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="VfL-Eg-fjQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="6fx-Q9-Iwl" secondAttribute="trailing" id="XaO-L8-2ea"/>
-                            <constraint firstItem="oGE-XI-kL3" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="YKj-4q-nXY"/>
-                            <constraint firstItem="Zpk-vk-ki6" firstAttribute="top" secondItem="oGE-XI-kL3" secondAttribute="bottom" constant="11" id="dWy-je-IP0"/>
-                            <constraint firstItem="6fx-Q9-Iwl" firstAttribute="top" secondItem="R6L-9T-HaA" secondAttribute="bottom" constant="20" id="dbW-uO-LcI"/>
-                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="top" secondItem="6fx-Q9-Iwl" secondAttribute="bottom" constant="11" id="dvr-E0-EoR"/>
-                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="eSg-pQ-3dN"/>
-                            <constraint firstItem="j9l-T4-zFb" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="emm-iD-3P3"/>
-                            <constraint firstItem="j9l-T4-zFb" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="fcz-9P-LgZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="KbQ-Rx-QFU" secondAttribute="trailing" id="gqt-nJ-fwQ"/>
-                            <constraint firstItem="oGE-XI-kL3" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="iUL-Xx-dPD"/>
-                            <constraint firstItem="9T0-8R-GUA" firstAttribute="centerX" secondItem="mON-i2-KJW" secondAttribute="centerX" id="pAK-jA-dMz"/>
-                            <constraint firstItem="pmB-Xq-M0F" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="rzc-oD-6bB"/>
-                            <constraint firstItem="6fx-Q9-Iwl" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="tnP-x1-3Ey"/>
-                            <constraint firstItem="Kd3-s3-Grv" firstAttribute="trailing" secondItem="mON-i2-KJW" secondAttribute="trailingMargin" id="tyz-eT-tPZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9T0-8R-GUA" secondAttribute="trailing" id="vjd-SR-97b"/>
-                            <constraint firstItem="KbQ-Rx-QFU" firstAttribute="leading" secondItem="mON-i2-KJW" secondAttribute="leadingMargin" id="xdQ-tV-jxp"/>
-                            <constraint firstItem="box-IB-KDg" firstAttribute="top" secondItem="KbQ-Rx-QFU" secondAttribute="bottom" constant="20" id="xuk-xr-IP4"/>
-                            <constraint firstItem="lyf-Ey-760" firstAttribute="top" secondItem="Kd3-s3-Grv" secondAttribute="bottom" constant="11" id="yye-6Y-8mC"/>
+                            <constraint firstItem="Naj-0J-0EW" firstAttribute="height" secondItem="mON-i2-KJW" secondAttribute="height" id="GrZ-MC-9Uf"/>
+                            <constraint firstItem="Naj-0J-0EW" firstAttribute="centerX" secondItem="mON-i2-KJW" secondAttribute="centerX" id="JSd-63-Vxo"/>
+                            <constraint firstItem="Naj-0J-0EW" firstAttribute="centerY" secondItem="mON-i2-KJW" secondAttribute="centerY" id="XfF-w9-WOD"/>
+                            <constraint firstItem="2xs-hJ-3SS" firstAttribute="width" secondItem="Naj-0J-0EW" secondAttribute="width" id="Ykb-nG-XKA"/>
+                            <constraint firstItem="2xs-hJ-3SS" firstAttribute="centerY" secondItem="mON-i2-KJW" secondAttribute="centerY" id="azh-6Y-Bgv"/>
+                            <constraint firstItem="2xs-hJ-3SS" firstAttribute="centerX" secondItem="mON-i2-KJW" secondAttribute="centerX" id="cuO-L3-YkK"/>
+                            <constraint firstItem="Naj-0J-0EW" firstAttribute="width" secondItem="mON-i2-KJW" secondAttribute="width" id="hMY-pi-IkR"/>
+                            <constraint firstItem="2xs-hJ-3SS" firstAttribute="height" secondItem="Naj-0J-0EW" secondAttribute="height" id="nXQ-rp-She"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New" id="RhV-XO-aSG">
@@ -800,7 +900,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wkr-eD-INN" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="xSh-Di-fwl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="11846" y="-880"/>
+            <point key="canvasLocation" x="11913" y="-880"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9IR-h8-CJh">
@@ -827,4 +927,7 @@
             <point key="canvasLocation" x="6754" y="-880"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bg2" width="375" height="667"/>
+    </resources>
 </document>

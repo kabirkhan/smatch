@@ -47,6 +47,7 @@ let SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE        = "new_event_num_players"
 let SEGUE_NEW_EVENT_TO_COMPETITION_FROM_NUM_PLAYERS = "new_event_competition"
 let SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION      = "new_event_gender"
 let SEGUE_NEW_EVENT_FINISH_NEW_EVENT                = "new_event_finish"
+let SEGUE_NEW_EVENT_TO_SPORTS = "new_event_sports"
 
 // MARK: =================== CELL IDENTIFIERS ===================
 let CELL_IDENTIFIER_FOR_EVENT_CELL = "event_cell"

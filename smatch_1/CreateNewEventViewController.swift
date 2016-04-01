@@ -36,14 +36,11 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         tableView.dataSource = self
     }
     
-  
-    
     // ALERT CREATION
     func presentAlert() {
         presentViewController(alert, animated: true, completion: nil)
         timer.invalidate()
     }
-    
     
     // MARK: =================== TABLEVIEW DATASOURCE =====================
     

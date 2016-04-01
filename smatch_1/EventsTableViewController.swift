@@ -23,6 +23,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         displayFireBaseEvents()
     }
     // MARK: - Table View Data Source
