@@ -16,10 +16,21 @@ class MessagesTableViewController: UITableViewController {
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
     var userName = ""
+    var query: UInt?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+     
+        if query != nil {
+            DataService.ds.REF_USERS.removeAllObservers()
+            DataService.ds.REF_EVENTS.removeAllObservers()
+        }
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        eventList = [Dictionary<String, AnyObject>]()
         print("loading...")
 
         // =========== NAVBAR SETUP ==============
@@ -40,7 +51,7 @@ class MessagesTableViewController: UITableViewController {
         let url = "\(DataService.ds.REF_USERS)/\(uid)"
         let ref = Firebase(url: url)
         
-        ref.observeSingleEventOfType(.Value, withBlock: { user in
+        query = ref.observeEventType(.Value, withBlock: { user in
             print("hello: start")
             self.userName = (user.value.objectForKey(KEY_DISPLAY_NAME) as? String)!
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
