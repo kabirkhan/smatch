@@ -82,10 +82,12 @@ class CreateEventFinishViewController: UIViewController {
                 // observe the most recent addition of events
                 //
                 // change joined_events to be created_events at some point to handle admin services
-                DataService.ds.REF_USERS.queryLimitedToLast(1).observeEventType(.ChildAdded, withBlock: { (snapshot) in
+                DataService.ds.REF_USERS.childByAppendingPath(userId).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                     
                     if let joined_events = snapshot.value.objectForKey("joined_events") {
                         self.events = joined_events as! [String]
+                    } else {
+                        self.events = [String]()
                     }
                     
                     self.events.append(eventId)
