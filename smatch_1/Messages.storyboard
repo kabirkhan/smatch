@@ -3,31 +3,39 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--My Messages-->
         <scene sceneID="NT4-Is-Fzf">
             <objects>
                 <tableViewController id="RDp-XI-iH5" customClass="MessagesTableViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rg8-IW-DT5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rg8-IW-DT5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventcell" id="Ck9-Pq-h4b" customClass="EventsListTableViewCell" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ck9-Pq-h4b" id="6We-qK-gJF">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofh-2g-6vS">
-                                            <rect key="frame" x="8" y="11" width="551" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofh-2g-6vS">
+                                            <rect key="frame" x="8" y="8" width="551" height="37"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="leading" secondItem="6We-qK-gJF" secondAttribute="leadingMargin" id="2KE-wg-KZt"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="centerY" secondItem="6We-qK-gJF" secondAttribute="centerY" id="3ZA-Oa-ulP"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="top" secondItem="6We-qK-gJF" secondAttribute="topMargin" id="LMO-wU-jda"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ofh-2g-6vS" secondAttribute="bottom" id="SKi-Tw-c0C"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="trailing" secondItem="6We-qK-gJF" secondAttribute="trailingMargin" id="eal-da-i9F"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="eventNameLabel" destination="Ofh-2g-6vS" id="KZ9-xX-mMp"/>
@@ -39,7 +47,9 @@
                             <outlet property="delegate" destination="RDp-XI-iH5" id="aeo-de-tay"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Messages" id="yLO-Sv-AHm"/>
+                    <navigationItem key="navigationItem" title="My Messages" id="yLO-Sv-AHm">
+                        <barButtonItem key="backBarButtonItem" title=" " id="DWO-td-Zcg"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="PDn-Y7-c8M"/>
                     </connections>
@@ -61,7 +71,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Name" id="iWM-Ca-Z80"/>
+                    <navigationItem key="navigationItem" title="Name" id="iWM-Ca-Z80">
+                        <barButtonItem key="backBarButtonItem" title=" " id="MDP-gL-zdh"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hda-SN-XBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -77,6 +89,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ob-fF-NdG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

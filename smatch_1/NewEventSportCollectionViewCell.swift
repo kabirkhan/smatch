@@ -12,6 +12,9 @@ class NewEventSportCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var cellView: UIView!
+    
+    var sport: Sport?
     
     func toggleTextColor() {
         if nameLabel.textColor == UIColor.materialMainGreen {

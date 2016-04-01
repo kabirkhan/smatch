@@ -12,4 +12,9 @@ import UIKit
 class EditUserProfileSportsColletionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var cellView: UIView!
+    
+    var sport: Sport?
+
 }

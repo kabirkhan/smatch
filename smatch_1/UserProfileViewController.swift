@@ -13,7 +13,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
 
-class UserProfileViewController :UIViewController, GoBackDelegate {
+class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDelegate {
     
     // MARK: =================================== VARIABLES ===================================
     var userInfo = Dictionary<String, AnyObject>()
@@ -41,14 +41,6 @@ class UserProfileViewController :UIViewController, GoBackDelegate {
     // MARK: =================================== VIEW LIFECYCLE ===================================
     override func viewDidLoad() {
         
-        iconImage1.image = UIImage(named: "soccer")
-        iconImage2.image = UIImage(named: "frisbee")
-        iconImage3.image = UIImage(named: "basketball")
-        iconImage4.image = UIImage(named: "football")
-        iconImage5.image = UIImage(named: "tennis")
-        iconImage6.image = UIImage(named: "volleyball")
-        iconImage7.image = UIImage(named: "badminton")
-        iconImage8.image = UIImage(named: "softball")
         
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
@@ -66,8 +58,21 @@ class UserProfileViewController :UIViewController, GoBackDelegate {
             returnUserData()
     }
     
+    func updateImages() {
+        iconImage1.image = UIImage(named: "soccer")
+        iconImage2.image = UIImage(named: "frisbee")
+        iconImage3.image = UIImage(named: "basketball")
+        iconImage4.image = UIImage(named: "football")
+        iconImage5.image = UIImage(named: "tennis")
+        iconImage6.image = UIImage(named: "volleyball")
+        iconImage7.image = UIImage(named: "badminton")
+        iconImage8.image = UIImage(named: "softball")
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        updateImages()
         
         //we force the uid unwrapp because they have a UID from log in
         let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
@@ -80,12 +85,14 @@ class UserProfileViewController :UIViewController, GoBackDelegate {
             self.userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
             self.userInfo[KEY_AGE] = snapshot.value.objectForKey("age")
             self.userInfo[KEY_SPORTS] = snapshot.value.objectForKey("sports")
+            print(self.userInfo[KEY_SPORTS])
             
             self.nameLabel.text = self.userInfo[KEY_DISPLAY_NAME] as? String
             self.genderLabel.text = self.userInfo[KEY_GENDER] as? String
             self.ageLabel.text = self.userInfo[KEY_AGE] as? String
             
             for sport in self.userInfo[KEY_SPORTS] as! [String] {
+                print(self.userInfo[KEY_SPORTS])
                 switch sport {
                 case "Soccer":
                     self.iconImage1.image = UIImage(named: "soccer_selected")
@@ -115,6 +122,7 @@ class UserProfileViewController :UIViewController, GoBackDelegate {
                     break
                 }
             }
+            self.view.setNeedsDisplay()
             
         }, withCancelBlock: { error in
             print("error")
@@ -129,12 +137,19 @@ class UserProfileViewController :UIViewController, GoBackDelegate {
             let controller = segue.destinationViewController as! EditUserProfileViewController
             controller.userInfo = userInfo
             controller.goBackDelegate = self
+            controller.saveProfileDelegate = self
             controller.selectedSports = userInfo[KEY_SPORTS] as? [String]
         }
     }
     
     // MARK: =================================== DELEGATE FUNCTION ===================================
     func goBack(controller: UIViewController) {
+        controller.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func saveProfile(controller: EditUserProfileViewController) {
+        self.userInfo = controller.userInfo!
+        self.view.setNeedsDisplay()
         controller.navigationController?.popViewControllerAnimated(true)
     }
     

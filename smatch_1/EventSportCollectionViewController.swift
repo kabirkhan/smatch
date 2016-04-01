@@ -17,6 +17,7 @@ class EventSportCollectionViewController: UICollectionViewController {
 
     // MARK: - VARIABLES
     var userSports = [String]()
+    var userSportsAsSports = [Sport]()
     var userId: String?
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
@@ -45,6 +46,13 @@ class EventSportCollectionViewController: UICollectionViewController {
         DataService.ds.REF_USERS.childByAppendingPath(userId).observeEventType(.Value, withBlock: { (snapshot) in
             
             self.userSports = snapshot.value.objectForKey("sports") as! [String]
+            
+            for sport in SPORTS {
+                if self.userSports.contains(sport.name) {
+                    self.userSportsAsSports.append(sport)
+                }
+            }
+        
             self.collectionView?.reloadData()
             
             }) { (error) in
@@ -59,16 +67,18 @@ class EventSportCollectionViewController: UICollectionViewController {
     
     // MARK: ====================== COLLECTION VIEW DATASOURCE ======================
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userSports.count
+        return userSportsAsSports.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("new_event_sport_cell", forIndexPath: indexPath) as! NewEventSportCollectionViewCell
         
-        let sport = userSports[indexPath.item]
-        cell.nameLabel.text = sport
+        let sport = userSportsAsSports[indexPath.item]
+        cell.sport = sport
+        cell.nameLabel.text = sport.name
         cell.nameLabel.textColor = UIColor.materialDarkTextColor
+        cell.imageView.image = UIImage(named: sport.iconImageName)
 
         return cell
     }
@@ -83,6 +93,8 @@ class EventSportCollectionViewController: UICollectionViewController {
         if cell.nameLabel.textColor == UIColor.materialDarkTextColor {
             newEvent.sport = cell.nameLabel.text!
             cell.nameLabel.textColor = UIColor.materialMainGreen
+            cell.imageView.image = UIImage(named: "\(userSportsAsSports[indexPath.item].iconImageName)_selected")
+            cell.cellView.backgroundColor = UIColor.materialLightGreen
         }
     }
     
@@ -94,6 +106,8 @@ class EventSportCollectionViewController: UICollectionViewController {
         if cell.nameLabel.textColor == UIColor.materialMainGreen {
             newEvent.sport = ""
             cell.nameLabel.textColor = UIColor.materialDarkTextColor
+            cell.imageView.image = UIImage(named: "\(userSportsAsSports[indexPath.item].iconImageName)")
+            cell.cellView.backgroundColor = UIColor.whiteColor()
         }
     }
     

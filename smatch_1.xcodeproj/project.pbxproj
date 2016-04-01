@@ -21,6 +21,7 @@
 		98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
+		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
 		D83A18181CA3B7820048B629 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A18171CA3B7820048B629 /* Events.storyboard */; };
@@ -106,6 +107,7 @@
 		A729460B76ED2CAC32054A48 /* Pods-smatch_1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D691F2D74415E078BD3C24A5 /* Pods_smatch_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EDDA08FB634FEB8FBAD634 /* Pods-smatch_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.debug.xcconfig"; sourceTree = "<group>"; };
+		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		D83A18171CA3B7820048B629 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */,
 				46F6E23A1CAB51480064CC18 /* GoToEventMessagesDelegate.swift */,
+				D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */,
 				D86407D21CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift in Sources */,
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
+				D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */,
 				46F6E23B1CAB51480064CC18 /* GoToEventMessagesDelegate.swift in Sources */,
 				46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */,
 				D890FC3E1CAA389500D9ADEA /* CreateEventFinishViewController.swift in Sources */,

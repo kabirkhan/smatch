@@ -26,15 +26,17 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
     
     // MARK: =================================== DELEGATES ===================================
     var goBackDelegate: GoBackDelegate?
+    var saveProfileDelegate: SaveProfileDelegate?
     
     // MARK: =================================== VIEW LIFECYCLE ===================================
     override func viewDidLoad() {
+        
         sportsCollectionView.dataSource = self
         sportsCollectionView.delegate = self
         
         // set collection view item size to be half the
         // width of the frame to create two columns
-        let width = CGRectGetWidth(view.frame) / 2 - 1
+        let width = CGRectGetWidth(view.frame) / 4
         let layout = sportsCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
     }
@@ -61,12 +63,18 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("sportscell", forIndexPath: indexPath) as! EditUserProfileSportsColletionViewCell
         
         let sport = SPORTS[indexPath.row]
+        cell.sport = sport
         if selectedSports!.contains(sport.name) {
             cell.nameLabel.text = sport.name
             cell.nameLabel.textColor = UIColor.materialMainGreen
+            cell.iconImageView.image = UIImage(named: "\(sport.iconImageName)_selected")
+            cell.cellView.backgroundColor = UIColor.materialLightGreen
+
         } else {
             cell.nameLabel.text = sport.name
-            cell.nameLabel.textColor = UIColor.darkTextColor()
+            cell.nameLabel.textColor = UIColor.materialDarkTextColor
+            cell.iconImageView.image = UIImage(named: sport.iconImageName)
+
         }
         
         
@@ -82,11 +90,12 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
     
     private func toggleSelectedSport(cell: EditUserProfileSportsColletionViewCell, indexPath: NSIndexPath) {
         
-        if cell.nameLabel.textColor == UIColor.darkTextColor() {
+        if cell.nameLabel.textColor == UIColor.materialDarkTextColor {
             
             selectedSports!.append(cell.nameLabel.text!)
-            
             cell.nameLabel.textColor = UIColor.materialMainGreen
+            cell.iconImageView.image = UIImage(named: "\(cell.sport!.iconImageName)_selected")
+            cell.cellView.backgroundColor = UIColor.materialLightGreen
         } else {
             
             for i in 0..<selectedSports!.count {
@@ -95,10 +104,10 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
                     break
                 }
             }
-            
-            cell.nameLabel.textColor = UIColor.darkTextColor()
+            cell.nameLabel.textColor = UIColor.materialDarkTextColor
+            cell.iconImageView.image = UIImage(named: cell.sport!.iconImageName)
+            cell.cellView.backgroundColor = UIColor.whiteColor()
         }
-        
     }
     
     // MARK: =================================== ACTIONS ===================================
@@ -115,9 +124,7 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
             let ref = Firebase(url: url)
             ref.updateChildValues(userInfo)
             
-            goBackDelegate?.goBack(self)
+            saveProfileDelegate?.saveProfile(self)
         }
     }
-    
-    
 }

@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol GoBackDelegate: class {
-    func goBack (controller:UIViewController)
+    func goBack(controller: UIViewController)
 }

@@ -48,7 +48,7 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         let sport = sports[indexPath.row]
         cell.sport = sport
         cell.nameLabel.text = sport.name
-        cell.nameLabel.textColor = UIColor.materialDarkTextColor // change to materialDarkTextColor, using system font right now
+        cell.nameLabel.textColor = UIColor.materialDarkTextColor
         cell.iconImageView.image = UIImage(named: sport.iconImageName)
         
         return cell
