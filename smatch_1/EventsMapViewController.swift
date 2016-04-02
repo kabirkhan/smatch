@@ -20,7 +20,6 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     var events = [Event]()
     
     //reference the singleton in UserLocationClass. We will set initial location to the user's location provided by the class
-    var locationManager = UserLocation.userLocation
     var initialLocation = CLLocation()
     let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
@@ -29,14 +28,13 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let locationManager = UserLocation.userLocation
+        
         mapView.delegate = self
         
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
-//        initialLocation = locationManager.returnLocation()
-//        centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
-        //Map should only center on coding Dojo for our presentation. Simulator wasnt simulating location well. Delete this and uncomment the previous centerMapOnLocation function call after the presentation is finished.
-        let codingDojo = CLLocation(latitude: 47.609811, longitude: -122.196569)
-        centerMapOnLocation(codingDojo, mapView: mapView, regionRadius: regionRadius)
+        initialLocation = locationManager.returnLocation()
+        centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
         displayFireBaseEvents()
     }
     

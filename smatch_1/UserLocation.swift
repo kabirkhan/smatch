@@ -13,7 +13,9 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     private override init(){
         super.init()
         manager.delegate = self
+        manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
+        print("initializing")
     }
     var initialLocation = CLLocation()
     let manager = CLLocationManager()
