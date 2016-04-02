@@ -182,7 +182,10 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
                                 sourceString = cover["source"] as! String
                                 let facebookCoverUrl = NSURL(string: sourceString)
                                 if let data = NSData(contentsOfURL: facebookCoverUrl!) {
-                                    self.coverPhoto.image = UIImage(data: data)
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        self.coverPhoto.image = UIImage(data: data)
+                                    })
                                 }
                             }
                         }

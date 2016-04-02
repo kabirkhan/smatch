@@ -107,8 +107,9 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
                     }
                     
                     //reload the table data. Otherwise the table will load without data and be empty/blank.
-                    
-                    self.tableView.reloadData()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                    })
                 }
                 }, withCancelBlock: { error in
                     print(error.description)
