@@ -20,7 +20,6 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     let regionRadius: CLLocationDistance = 3000
     var mySports = [String]()
     var query: UInt?
-    var sports = [String]()
 
     // MARK: - View Controller Lifecycle
     
@@ -33,16 +32,15 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     override func viewDidDisappear(animated: Bool) {
         sports = [String]()
         filteredSports = [String]()
-        filteredGenders = ["Coed", "Men", "Women"]
-        filteredCompetitiveness = ["Don't Care", "Easy Going", "Competitive"]
-//        factory = [Game]()
-//        games = [Game]()
+        filteredGenders = ["Coed", "Only Guys", "Only Girls"]
+        filteredCompetitiveness = ["NotCompetitive", "Competitive"]
+        factory = [Event]()
+        events = [Event]()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         displayFireBaseEvents()
-
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -90,7 +88,9 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
             
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
-            
+            self.sports = userSports as! [String]
+            self.filteredSports = userSports as! [String]
+            print(self.sports)
             //Set events - Array of events that only include events of sports that are inside mySports
             let eventsRef = DataService.ds.REF_EVENTS
             eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -113,9 +113,9 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
                             
                             let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
                             self.events.append(newEvent)
+                            self.factory.append(newEvent)
                         }
                     }
-                    
                     //reload the table data. Otherwise the table will load without data and be empty/blank.
                     dispatch_async(dispatch_get_main_queue(), {
                         self.tableView.reloadData()
@@ -148,16 +148,18 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     }
 
     // MARK: - CZPicker
+    var factory = [Event]()
+    var sports = [String]()
     var sort = false
     var filter = String()
     var bool = false
     var choices = ["Sports", "Gender", "Competitiveness Level"]
     var sortChoices = ["Date (Soonest)", "Date (Latest)", "Distance (Closest)", "Distance (Farthest)"]
-    var genders = ["Coed", "Men", "Women"]
-    var competitiveness = ["Don't Care", "Easy Going", "Competitive"]
+    var genders = ["Coed", "Only Guys", "Only Girls"]
+    var competitiveness = ["NotCompetitive", "Competitive"]
     var filteredSports = [String]()
-    var filteredGenders = ["Coed", "Men", "Women"]
-    var filteredCompetitiveness = ["Don't Care", "Easy Going", "Competitive"]
+    var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
+    var filteredCompetitiveness = ["NotCompetitive", "Competitive"]
     var pickerWithImage: CZPickerView?
     
     @IBAction func filterButtonClicked(sender: AnyObject) {
@@ -299,46 +301,46 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         
-//        if filter == "Sports" {
-//            filteredSports = [String]()
-//            for row in rows {
-//                if let row = row as? Int {
-//                    filteredSports.append(sports[row])
-//                }
-//            }
-//        } else if filter == "Gender"{
-//            filteredGenders = [String]()
-//            for row in rows {
-//                if let row = row as? Int {
-//                    filteredGenders.append(genders[row])
-//                }
-//            }
-//        } else {
-//            filteredCompetitiveness = [String]()
-//            for row in rows {
-//                if let row = row as? Int {
-//                    filteredCompetitiveness.append(competitiveness[row])
-//                }
-//            }
-//        }
-//        print(filteredCompetitiveness)
-//        print(filteredSports)
-//        print(filteredGenders)
-//        games = [Game]()
-//        filter = String()
-//        bool = false
-//        for game in factory {
-//            for filteredSport in filteredSports {
-//                for filteredCompetition in filteredCompetitiveness {
-//                    for filteredGender in filteredGenders {
-//                        if filteredSport == game.sport && filteredCompetition == game.competition && filteredGender == game.gender {
-//                            games.append(game)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        tableView.reloadData()
+        if filter == "Sports" {
+            filteredSports = [String]()
+            for row in rows {
+                if let row = row as? Int {
+                    filteredSports.append(sports[row])
+                }
+            }
+        } else if filter == "Gender"{
+            filteredGenders = [String]()
+            for row in rows {
+                if let row = row as? Int {
+                    filteredGenders.append(genders[row])
+                }
+            }
+        } else {
+            filteredCompetitiveness = [String]()
+            for row in rows {
+                if let row = row as? Int {
+                    filteredCompetitiveness.append(competitiveness[row])
+                }
+            }
+        }
+        print(filteredCompetitiveness)
+        print(filteredSports)
+        print(filteredGenders)
+        events = [Event]()
+        filter = String()
+        bool = false
+        for event in factory {
+            for filteredSport in filteredSports {
+                for filteredCompetition in filteredCompetitiveness {
+                    for filteredGender in filteredGenders {
+                        if filteredSport == event.sport && filteredCompetition == event.competition && filteredGender == event.gender {
+                            events.append(event)
+                        }
+                    }
+                }
+            }
+        }
+        tableView.reloadData()
     }
     func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
         if sort == false {
