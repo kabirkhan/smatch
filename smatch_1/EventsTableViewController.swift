@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Firebase
+import CZPicker
 
 class EventsTableViewController: UITableViewController, GoBackDelegate {
     
@@ -19,6 +20,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     let regionRadius: CLLocationDistance = 3000
     var mySports = [String]()
     var query: UInt?
+    var sports = [String]()
 
     // MARK: - View Controller Lifecycle
     
@@ -27,6 +29,14 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         
         tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
         
+    }
+    override func viewDidDisappear(animated: Bool) {
+        sports = [String]()
+        filteredSports = [String]()
+        filteredGenders = ["Coed", "Men", "Women"]
+        filteredCompetitiveness = ["Don't Care", "Easy Going", "Competitive"]
+//        factory = [Game]()
+//        games = [Game]()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -137,4 +147,206 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    // MARK: - CZPicker
+    var sort = false
+    var filter = String()
+    var bool = false
+    var choices = ["Sports", "Gender", "Competitiveness Level"]
+    var sortChoices = ["Date (Soonest)", "Date (Latest)", "Distance (Closest)", "Distance (Farthest)"]
+    var genders = ["Coed", "Men", "Women"]
+    var competitiveness = ["Don't Care", "Easy Going", "Competitive"]
+    var filteredSports = [String]()
+    var filteredGenders = ["Coed", "Men", "Women"]
+    var filteredCompetitiveness = ["Don't Care", "Easy Going", "Competitive"]
+    var pickerWithImage: CZPickerView?
+    
+    @IBAction func filterButtonClicked(sender: AnyObject) {
+        showWithOneSelectionFilters(sender)
+    }
+    
+//    @IBAction func sortByButtonClicked(sender: AnyObject) {
+//        sort = true
+//        showWithOneSelectionSort(sender)
+//    }
+    func showWithOneSelectionFilters(sender: AnyObject) {
+        let picker1 = CZPickerView(headerTitle: "Filter By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.needFooterView = false
+        picker1.allowMultipleSelection = false
+        picker1.headerBackgroundColor = UIColor.materialAmberAccent
+        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker1.cancelButtonNormalColor = UIColor.blackColor()
+        picker1.confirmButtonNormalColor = UIColor.whiteColor()
+        picker1.checkmarkColor = UIColor.materialMainGreen
+        picker1.show()
+    }
+    func showWithMultipleSportsSelections(sender: AnyObject) {
+        let picker1 = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.needFooterView = false
+        picker1.allowMultipleSelection = true
+        picker1.headerBackgroundColor = UIColor.materialAmberAccent
+        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker1.cancelButtonNormalColor = UIColor.blackColor()
+        picker1.confirmButtonNormalColor = UIColor.whiteColor()
+        picker1.checkmarkColor = UIColor.materialMainGreen
+        picker1.show()
+    }
+    func showWithMultipleGenderSelections(sender: AnyObject) {
+        let picker1 = CZPickerView(headerTitle: "Gender", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.needFooterView = false
+        picker1.allowMultipleSelection = true
+        picker1.headerBackgroundColor = UIColor.materialAmberAccent
+        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker1.cancelButtonNormalColor = UIColor.blackColor()
+        picker1.confirmButtonNormalColor = UIColor.whiteColor()
+        picker1.checkmarkColor = UIColor.materialMainGreen
+        picker1.show()
+    }
+    func showWithMultipleCompetitivenessSelections(sender: AnyObject) {
+        let picker1 = CZPickerView(headerTitle: "Competitiveness Level", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.needFooterView = false
+        picker1.allowMultipleSelection = true
+        picker1.headerBackgroundColor = UIColor.materialAmberAccent
+        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker1.cancelButtonNormalColor = UIColor.blackColor()
+        picker1.confirmButtonNormalColor = UIColor.whiteColor()
+        picker1.checkmarkColor = UIColor.materialMainGreen
+        picker1.show()
+    }
+    func showWithOneSelectionSort(sender: AnyObject) {
+        let picker1 = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker1.delegate = self
+        picker1.dataSource = self
+        picker1.needFooterView = false
+        picker1.allowMultipleSelection = false
+        picker1.headerBackgroundColor = UIColor.materialAmberAccent
+        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker1.cancelButtonNormalColor = UIColor.blackColor()
+        picker1.confirmButtonNormalColor = UIColor.whiteColor()
+        picker1.checkmarkColor = UIColor.materialMainGreen
+        picker1.show()
+    }
+}
+extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
+    
+    func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
+        if sort == false {
+            if bool == false {
+                return choices.count
+            } else {
+                if filter == "Sports" {
+                    return sports.count
+                } else if filter == "Gender"{
+                    return genders.count
+                } else {
+                    return competitiveness.count
+                }
+            }
+        } else {
+            return sortChoices.count
+        }
+    }
+    
+    func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
+        if sort == false {
+            if bool == false {
+                return choices[row]
+            } else {
+                if filter == "Sports" {
+                    return sports[row]
+                } else if filter == "Gender"{
+                    return genders[row]
+                } else {
+                    return competitiveness[row]
+                }
+            }
+        } else {
+            return sortChoices[row]
+        }
+    }
+    
+    func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
+        if sort == false {
+            bool = true
+            if choices[row] == "Sports"{
+                filter = "Sports"
+                showWithMultipleSportsSelections(choices[row])
+            } else if choices[row] == "Gender" {
+                filter = "Gender"
+                showWithMultipleGenderSelections(choices[row])
+            } else if choices[row] == "Competitiveness Level" {
+                filter = "Competitveness"
+                showWithMultipleCompetitivenessSelections(choices[row])
+            }
+        } else {
+            sort = false
+            if sortChoices[row] == "Date (Soonest)" {
+                events = events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
+            } else if sortChoices[row] == "Date (Latest)"{
+                events = events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
+            }
+            tableView.reloadData()
+        }
+        
+    }
+    
+    func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
+        
+//        if filter == "Sports" {
+//            filteredSports = [String]()
+//            for row in rows {
+//                if let row = row as? Int {
+//                    filteredSports.append(sports[row])
+//                }
+//            }
+//        } else if filter == "Gender"{
+//            filteredGenders = [String]()
+//            for row in rows {
+//                if let row = row as? Int {
+//                    filteredGenders.append(genders[row])
+//                }
+//            }
+//        } else {
+//            filteredCompetitiveness = [String]()
+//            for row in rows {
+//                if let row = row as? Int {
+//                    filteredCompetitiveness.append(competitiveness[row])
+//                }
+//            }
+//        }
+//        print(filteredCompetitiveness)
+//        print(filteredSports)
+//        print(filteredGenders)
+//        games = [Game]()
+//        filter = String()
+//        bool = false
+//        for game in factory {
+//            for filteredSport in filteredSports {
+//                for filteredCompetition in filteredCompetitiveness {
+//                    for filteredGender in filteredGenders {
+//                        if filteredSport == game.sport && filteredCompetition == game.competition && filteredGender == game.gender {
+//                            games.append(game)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        tableView.reloadData()
+    }
+    func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
+        if sort == false {
+            filter = String()
+            bool = false
+        } else {
+            sort = false
+        }
+        
+    }
 }

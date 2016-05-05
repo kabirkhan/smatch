@@ -25,40 +25,6 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     let regionRadius: CLLocationDistance = 30000
     @IBOutlet weak var mapView: MKMapView!
     
-    // MARK: - CZPicker
-    var sports = [String]()
-    var filteredSports = [String]()
-    func showWithMultipleSelections(sender: AnyObject) {
-        let picker = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        picker.delegate = self
-        picker.dataSource = self
-        picker.needFooterView = false
-        picker.allowMultipleSelection = true
-        picker.headerBackgroundColor = UIColor.materialAmberAccent
-        picker.confirmButtonBackgroundColor = UIColor.materialAmberAccent
-        picker.cancelButtonNormalColor = UIColor.blackColor()
-        picker.confirmButtonNormalColor = UIColor.whiteColor()
-        picker.checkmarkColor = UIColor.materialMainGreen
-        picker.show()
-    }
-    @IBAction func filterButtonClicked(sender: AnyObject) {
-        showWithMultipleSelections(sender)
-    }
-//    func removeAllGames(){
-//        for game in self.games {
-//            game.remove(self.mapView)
-//        }
-//    }
-//    
-//    func geocodeAllGames(){
-//        for game in self.games {
-//            for sport in self.filteredSports {
-//                if sport == game.sport {
-//                    game.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-//                }
-//            }
-//        }
-//    }
 
     // MARK: - View Controller Lifecycle
     
@@ -71,8 +37,8 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
-        filteredSports = mySports
         displayFireBaseEvents()
+        filteredSports = mySports
     }
     
     // MARK: - MapViewAnnotations
@@ -199,6 +165,40 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     func goBack(controller: UIViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
+    // MARK: - CZPicker
+    var sports = [String]()
+    var filteredSports = [String]()
+    func showWithMultipleSelections(sender: AnyObject) {
+        let picker = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        picker.delegate = self
+        picker.dataSource = self
+        picker.needFooterView = false
+        picker.allowMultipleSelection = true
+        picker.headerBackgroundColor = UIColor.materialAmberAccent
+        picker.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker.cancelButtonNormalColor = UIColor.blackColor()
+        picker.confirmButtonNormalColor = UIColor.whiteColor()
+        picker.checkmarkColor = UIColor.materialMainGreen
+        picker.show()
+    }
+    @IBAction func filterButtonClicked(sender: AnyObject) {
+        showWithMultipleSelections(sender)
+    }
+    //    func removeAllGames(){
+    //        for game in self.games {
+    //            game.remove(self.mapView)
+    //        }
+    //    }
+    //
+    //    func geocodeAllGames(){
+    //        for game in self.games {
+    //            for sport in self.filteredSports {
+    //                if sport == game.sport {
+    //                    game.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+    //                }
+    //            }
+    //        }
+    //    }
 }
 extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     

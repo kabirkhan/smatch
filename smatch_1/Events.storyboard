@@ -289,14 +289,53 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="hcn-Vc-cgt">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azb-Mv-yej">
+                                    <rect key="frame" x="10" y="25" width="582" height="38"/>
+                                    <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="38" id="1w5-NE-kxI"/>
+                                        <constraint firstAttribute="width" constant="288" id="6ia-op-ZSx"/>
+                                        <constraint firstAttribute="width" constant="288" id="r3y-DG-H9s"/>
+                                    </constraints>
+                                    <state key="normal" title="Filters">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="6ia-op-ZSx"/>
+                                            <exclude reference="r3y-DG-H9s"/>
+                                        </mask>
+                                    </variation>
+                                    <connections>
+                                        <action selector="filterButtonClicked:" destination="1Fp-ee-R5k" eventType="touchUpInside" id="NhN-CM-Vlq"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="azb-Mv-yej" secondAttribute="trailing" constant="8" id="8y1-78-iJV"/>
+                                <constraint firstAttribute="trailing" secondItem="azb-Mv-yej" secondAttribute="trailing" constant="302" id="Hty-1T-HDS"/>
+                                <constraint firstItem="azb-Mv-yej" firstAttribute="leading" secondItem="hcn-Vc-cgt" secondAttribute="leading" constant="10" id="Nds-do-SWw"/>
+                                <constraint firstItem="azb-Mv-yej" firstAttribute="top" secondItem="hcn-Vc-cgt" secondAttribute="top" constant="25" id="b2s-gx-Rd4"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Hty-1T-HDS"/>
+                                </mask>
+                            </variation>
+                        </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Uab-0G-QA2">
-                            <rect key="frame" x="0.0" y="253" width="600" height="348"/>
+                            <rect key="frame" x="0.0" y="316" width="600" height="348"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="225" id="tfq-Gu-wGI" customClass="EventCell" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="225"/>
+                                <rect key="frame" x="0.0" y="91" width="600" height="225"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tfq-Gu-wGI" id="46a-yL-DA2">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="225"/>
@@ -712,6 +751,6 @@
         <image name="sport" width="82" height="91"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D78-00-tXf"/>
+        <segue reference="i9m-hh-sps"/>
     </inferredMetricsTieBreakers>
 </document>
