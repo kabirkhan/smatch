@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -50,7 +50,7 @@
                                 <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="600" height="35"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -440,16 +440,34 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2hW-Tj-5dm">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cSo-zc-2oU">
+                                <rect key="frame" x="494" y="28" width="86" height="30"/>
+                                <color key="backgroundColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GLb-c8-UfM"/>
+                                    <constraint firstAttribute="width" constant="86" id="Mhh-2r-FUS"/>
+                                </constraints>
+                                <state key="normal" title="Filter">
+                                    <color key="titleColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="filterButtonClicked:" destination="tNy-J5-116" eventType="touchUpInside" id="6g0-K2-DzR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="top" secondItem="XkT-va-T6R" secondAttribute="bottom" id="4m1-HH-9pe"/>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="leading" secondItem="CaM-1e-F7s" secondAttribute="leadingMargin" id="5VB-bi-JFE"/>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="leading" secondItem="CaM-1e-F7s" secondAttribute="leadingMargin" constant="-20" id="7eC-4y-BJO"/>
+                            <constraint firstItem="cSo-zc-2oU" firstAttribute="leading" secondItem="CaM-1e-F7s" secondAttribute="leadingMargin" constant="474" id="9O2-9y-pWD"/>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="top" secondItem="XkT-va-T6R" secondAttribute="bottom" id="HTt-Rm-RRf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2hW-Tj-5dm" secondAttribute="trailing" id="M1a-ED-nVM"/>
                             <constraint firstItem="Utz-w3-Bq1" firstAttribute="top" secondItem="2hW-Tj-5dm" secondAttribute="bottom" id="ZfO-bA-jSo"/>
+                            <constraint firstItem="cSo-zc-2oU" firstAttribute="trailing" secondItem="CaM-1e-F7s" secondAttribute="trailingMargin" id="aOs-hT-r6l"/>
+                            <constraint firstItem="cSo-zc-2oU" firstAttribute="top" secondItem="XkT-va-T6R" secondAttribute="bottom" constant="8" id="izy-lV-DQF"/>
                             <constraint firstItem="2hW-Tj-5dm" firstAttribute="trailing" secondItem="CaM-1e-F7s" secondAttribute="trailingMargin" constant="20" id="oxI-8P-Sgp"/>
+                            <constraint firstItem="Utz-w3-Bq1" firstAttribute="top" secondItem="cSo-zc-2oU" secondAttribute="bottom" constant="542" id="rBQ-4W-CP2"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -692,6 +710,6 @@
         <image name="sport" width="82" height="91"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uFB-gd-6Fj"/>
+        <segue reference="D78-00-tXf"/>
     </inferredMetricsTieBreakers>
 </document>

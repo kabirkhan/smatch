@@ -11,6 +11,8 @@ target 'smatch_1' do
     pod 'TextFieldEffects'
     pod 'JSQMessagesViewController'
     pod 'Alamofire', '3.2.1'
+    pod 'CZPicker'
+    pod 'NVActivityIndicatorView'
 end
 
 target 'smatch_1Tests' do

@@ -86,20 +86,24 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-smatch_1/Alamofire.framework"
   install_framework "Pods-smatch_1/Bolts.framework"
+  install_framework "Pods-smatch_1/CZPicker.framework"
   install_framework "Pods-smatch_1/FBSDKCoreKit.framework"
   install_framework "Pods-smatch_1/FBSDKLoginKit.framework"
   install_framework "Pods-smatch_1/Firebase.framework"
   install_framework "Pods-smatch_1/JSQMessagesViewController.framework"
   install_framework "Pods-smatch_1/JSQSystemSoundPlayer.framework"
+  install_framework "Pods-smatch_1/NVActivityIndicatorView.framework"
   install_framework "Pods-smatch_1/TextFieldEffects.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-smatch_1/Alamofire.framework"
   install_framework "Pods-smatch_1/Bolts.framework"
+  install_framework "Pods-smatch_1/CZPicker.framework"
   install_framework "Pods-smatch_1/FBSDKCoreKit.framework"
   install_framework "Pods-smatch_1/FBSDKLoginKit.framework"
   install_framework "Pods-smatch_1/Firebase.framework"
   install_framework "Pods-smatch_1/JSQMessagesViewController.framework"
   install_framework "Pods-smatch_1/JSQSystemSoundPlayer.framework"
+  install_framework "Pods-smatch_1/NVActivityIndicatorView.framework"
   install_framework "Pods-smatch_1/TextFieldEffects.framework"
 fi
