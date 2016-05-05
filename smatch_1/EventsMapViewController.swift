@@ -44,21 +44,21 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBAction func filterButtonClicked(sender: AnyObject) {
         showWithMultipleSelections(sender)
     }
-    func removeAllGames(){
-        for game in self.games {
-            game.remove(self.mapView)
-        }
-    }
-    
-    func geocodeAllGames(){
-        for game in self.games {
-            for sport in self.filteredSports {
-                if sport == game.sport {
-                    game.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-                }
-            }
-        }
-    }
+//    func removeAllGames(){
+//        for game in self.games {
+//            game.remove(self.mapView)
+//        }
+//    }
+//    
+//    func geocodeAllGames(){
+//        for game in self.games {
+//            for sport in self.filteredSports {
+//                if sport == game.sport {
+//                    game.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+//                }
+//            }
+//        }
+//    }
 
     // MARK: - View Controller Lifecycle
     
@@ -71,6 +71,7 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
+        filteredSports = mySports
         displayFireBaseEvents()
     }
     
@@ -202,21 +203,21 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
 extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
-        return sports.count
+        return filteredSports.count
     }
     
     func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        return sports[row]
+        return filteredSports[row]
     }
     
-    func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
-        filteredSports = [String]()
-        for row in rows {
-            if let row = row as? Int {
-                filteredSports.append(sports[row])
-            }
-        }
-        removeAllGames()
-        geocodeAllGames()
-    }
+//    func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
+//        filteredSports = [String]()
+//        for row in rows {
+//            if let row = row as? Int {
+//                filteredSports.append(sports[row])
+//            }
+//        }
+//        removeAllGames()
+//        geocodeAllGames()
+//    }
 }
