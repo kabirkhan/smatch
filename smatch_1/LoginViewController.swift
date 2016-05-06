@@ -58,6 +58,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(facebookError)
             } else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print(FBSDKAccessToken.currentAccessToken().userID)
                 
                 // log the user in to firebase
                 DataService.ds.REF_BASE.authWithOAuthProvider(VALUE_FACEBOOK_PROVIDER, token: accessToken, withCompletionBlock: { (error, authData) -> Void in

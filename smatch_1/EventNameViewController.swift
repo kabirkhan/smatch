@@ -16,7 +16,6 @@ class EventNameViewController: UIViewController {
     var newEvent: Event?
     
     @IBOutlet weak var eventNameTextField: HoshiTextField!
-    @IBOutlet weak var eventDescriptionTextField: HoshiTextField!
     
     // MARK: ================== ACTIONS AND SEGUES ==================
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
