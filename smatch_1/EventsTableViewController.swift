@@ -17,7 +17,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     // MARK: - Variables and Constants
     
     var events = [Event]()
-    let regionRadius: CLLocationDistance = 3000
+    let regionRadius: CLLocationDistance = 10000
     var mySports = [String]()
     var query: UInt?
 
@@ -300,7 +300,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
     }
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
-        
+        print("")
         if filter == "Sports" {
             filteredSports = [String]()
             for row in rows {
@@ -333,6 +333,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             for filteredSport in filteredSports {
                 for filteredCompetition in filteredCompetitiveness {
                     for filteredGender in filteredGenders {
+                        print(event)
                         if filteredSport == event.sport && filteredCompetition == event.competition && filteredGender == event.gender {
                             events.append(event)
                         }

@@ -89,5 +89,8 @@ class Event: NSObject, MKAnnotation {
             regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    func remove(mapView: MKMapView) {
+        mapView.removeAnnotation(self)
+    }
     
 }
