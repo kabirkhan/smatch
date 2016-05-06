@@ -150,11 +150,9 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     // MARK: - CZPicker
     var factory = [Event]()
     var sports = [String]()
-    var sort = false
     var filter = String()
     var bool = false
     var choices = ["Sports", "Gender", "Competitiveness Level"]
-    var sortChoices = ["Date (Soonest)", "Date (Latest)", "Distance (Closest)", "Distance (Farthest)"]
     var genders = ["Coed", "Only Guys", "Only Girls"]
     var competitiveness = ["NotCompetitive", "Competitive"]
     var filteredSports = [String]()
@@ -165,11 +163,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     @IBAction func filterButtonClicked(sender: AnyObject) {
         showWithOneSelectionFilters(sender)
     }
-    
-//    @IBAction func sortByButtonClicked(sender: AnyObject) {
-//        sort = true
-//        showWithOneSelectionSort(sender)
-//    }
+
     func showWithOneSelectionFilters(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Filter By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -222,79 +216,48 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
-    func showWithOneSelectionSort(sender: AnyObject) {
-        let picker1 = CZPickerView(headerTitle: "Sort By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        picker1.delegate = self
-        picker1.dataSource = self
-        picker1.needFooterView = false
-        picker1.allowMultipleSelection = false
-        picker1.headerBackgroundColor = UIColor.materialAmberAccent
-        picker1.confirmButtonBackgroundColor = UIColor.materialAmberAccent
-        picker1.cancelButtonNormalColor = UIColor.blackColor()
-        picker1.confirmButtonNormalColor = UIColor.whiteColor()
-        picker1.checkmarkColor = UIColor.materialMainGreen
-        picker1.show()
-    }
 }
 extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
-        if sort == false {
-            if bool == false {
-                return choices.count
-            } else {
-                if filter == "Sports" {
-                    return sports.count
-                } else if filter == "Gender"{
-                    return genders.count
-                } else {
-                    return competitiveness.count
-                }
-            }
+        if bool == false {
+            return choices.count
         } else {
-            return sortChoices.count
+            if filter == "Sports" {
+                return sports.count
+            } else if filter == "Gender"{
+                return genders.count
+            } else {
+                return competitiveness.count
+            }
         }
     }
     
     func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        if sort == false {
-            if bool == false {
-                return choices[row]
-            } else {
-                if filter == "Sports" {
-                    return sports[row]
-                } else if filter == "Gender"{
-                    return genders[row]
-                } else {
-                    return competitiveness[row]
-                }
-            }
+        if bool == false {
+            return choices[row]
         } else {
-            return sortChoices[row]
+            if filter == "Sports" {
+                return sports[row]
+            } else if filter == "Gender"{
+                return genders[row]
+            } else {
+                return competitiveness[row]
+            }
         }
     }
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
-        if sort == false {
-            bool = true
-            if choices[row] == "Sports"{
-                filter = "Sports"
-                showWithMultipleSportsSelections(choices[row])
-            } else if choices[row] == "Gender" {
-                filter = "Gender"
-                showWithMultipleGenderSelections(choices[row])
-            } else if choices[row] == "Competitiveness Level" {
-                filter = "Competitveness"
-                showWithMultipleCompetitivenessSelections(choices[row])
-            }
-        } else {
-            sort = false
-            if sortChoices[row] == "Date (Soonest)" {
-                events = events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedAscending })
-            } else if sortChoices[row] == "Date (Latest)"{
-                events = events.sort({ $0.date.compare($1.date) == NSComparisonResult.OrderedDescending })
-            }
-            tableView.reloadData()
+        bool = true
+        if choices[row] == "Sports"{
+            filter = "Sports"
+            showWithMultipleSportsSelections(choices[row])
+        } else if choices[row] == "Gender" {
+            filter = "Gender"
+            showWithMultipleGenderSelections(choices[row])
+        } else if choices[row] == "Competitiveness Level" {
+            filter = "Competitveness"
+            showWithMultipleCompetitivenessSelections(choices[row])
         }
         
     }
@@ -344,12 +307,8 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         tableView.reloadData()
     }
     func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
-        if sort == false {
-            filter = String()
-            bool = false
-        } else {
-            sort = false
-        }
+        filter = String()
+        bool = false
         
     }
 }
