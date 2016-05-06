@@ -542,7 +542,7 @@
         <image name="twitter login button-1" width="289" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dGc-Ld-2LH"/>
+        <segue reference="9Mi-2d-jBD"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
