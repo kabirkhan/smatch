@@ -13,19 +13,16 @@ import Firebase
 import CZPicker
 
 class EventsTableViewController: UITableViewController, GoBackDelegate {
-
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
     
-    var events = [Event]()
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
+    
     let regionRadius: CLLocationDistance = 10000
-    var mySports = [String]()
-    var query: UInt?
     
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     
     var factory = [Event]()
     var sports = [String]()
@@ -38,23 +35,26 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
     var filteredCompetitiveness = ["NotCompetitive", "Competitive"]
     var pickerWithImage: CZPickerView?
+    var mySports = [String]()
+    var query: UInt?
+    var events = [Event]()
     
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     
     
-
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
+    
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
         
     }
+    
     override func viewDidDisappear(animated: Bool) {
         sports = [String]()
         filteredSports = [String]()
@@ -76,20 +76,18 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         }
     }
     
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
     
     @IBAction func filterButtonClicked(sender: AnyObject) {
         showWithOneSelectionFilters(sender)
     }
     
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
-    func goBack(controller: UIViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
+    //--------------------------------------------------
+    // MARK: - Segues
+    //--------------------------------------------------
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "show_event_detail" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -99,9 +97,14 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         }
     }
     
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
     
     func displayFireBaseEvents() {
         
@@ -178,11 +181,11 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         return cell
     }
 }
-    
+
 //--------------------------------------------------
 // MARK: - Extensions
 //--------------------------------------------------
-    
+
 extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func showWithOneSelectionFilters(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Filter By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")

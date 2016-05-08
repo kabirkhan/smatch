@@ -14,21 +14,30 @@ import Firebase
 
 class EventDetailViewController: UIViewController, MKMapViewDelegate {
     
-    // MARK: ================== VARIABLES =====================
-    var eventToDetail: Event?
-    var delegate: GoBackDelegate?
-    let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
-    let regionRadius: CLLocationDistance = 5000
-    var viewState: EventDetailViewState?
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
     
-    var alert = UIAlertController()
+    let regionRadius: CLLocationDistance = 5000
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
+    let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
     
-    // MARK: ================== OUTLETS =====================
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
+    
+    var eventToDetail: Event?
+    var delegate: GoBackDelegate?
+    var viewState: EventDetailViewState?
+    var alert = UIAlertController()
+
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
     @IBOutlet weak var individualMapView: MKMapView!
     @IBOutlet weak var joinButton: MaterialButton!
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateAndTimeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
@@ -37,8 +46,10 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
     
-    // MARK: ============== VIEW LIFECYCLE =============
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,63 +73,14 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         eventToDetail?.geocode(individualMapView, regionRadius: regionRadius, centeredOnPin: true)
         individualMapView.scrollEnabled = false
     }
-    
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as?  Event {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView {
-                dequeuedView.annotation = annotation as MKAnnotation
-                view = dequeuedView
-            } else {
-                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
-                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
-            }
-            //make the pin color change depending on the sport
-            switch annotation.sport {
-            case "Basketball":
-                view.pinTintColor = UIColor.redColor()
-            case "Tennis":
-                view.pinTintColor = UIColor.materialMainGreen
-            case "Softball":
-                view.pinTintColor = UIColor.yellowColor()
-            case "Soccer":
-                view.pinTintColor = UIColor.cyanColor()
-            case "Football":
-                view.pinTintColor = UIColor.orangeColor()
-            case "Ultimate Frisbee":
-                view.pinTintColor = UIColor.purpleColor()
-            case "Volleyball":
-                view.pinTintColor = UIColor.blueColor()
-            default:
-                view.pinTintColor = UIColor.grayColor()
-                
-            }
-            return view
-        }
-        return nil
-    }
 
     
-    // MARK: ==================== ACTIONS AND SEGUES =====================
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        
-        let mapItem = eventToDetail?.mapItem
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        
-        mapItem!.openInMapsWithLaunchOptions(launchOptions)
-        
-    }
-    
-    
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
     
     @IBAction func joinButtonPressed(sender: UIButton) {
-
+        
         // References in database
         let eventRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/events/\(eventToDetail!.eventKey)")
         let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userId)")
@@ -138,7 +100,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
             attendeesDict["attendees"] = attendees
             eventRef.updateChildValues(attendeesDict)
             eventToDetail!.attendees = attendees
-
+            
             // update user's joined events with current event
             userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
@@ -154,7 +116,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
                 joinedEventsDict["joined_events"] = joined_events
                 
                 userRef.updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
-
+                    
                     // self.alert = showErrorAlert("Joined Successfully", msg: "You joined a new game!")
                     self.viewState = EventDetailViewState.Viewer
                     self.reloadView()
@@ -210,7 +172,66 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         delegate?.goBack(self)
     }
     
-    // reload the view when the user's state changes (e.g. joining and leaving)
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as?  Event {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation as MKAnnotation
+                view = dequeuedView
+            } else {
+                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
+            }
+            //make the pin color change depending on the sport
+            switch annotation.sport {
+            case "Basketball":
+                view.pinTintColor = UIColor.redColor()
+            case "Tennis":
+                view.pinTintColor = UIColor.materialMainGreen
+            case "Softball":
+                view.pinTintColor = UIColor.yellowColor()
+            case "Soccer":
+                view.pinTintColor = UIColor.cyanColor()
+            case "Football":
+                view.pinTintColor = UIColor.orangeColor()
+            case "Ultimate Frisbee":
+                view.pinTintColor = UIColor.purpleColor()
+            case "Volleyball":
+                view.pinTintColor = UIColor.blueColor()
+            default:
+                view.pinTintColor = UIColor.grayColor()
+                
+            }
+            return view
+        }
+        return nil
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        
+        let mapItem = eventToDetail?.mapItem
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        
+        mapItem!.openInMapsWithLaunchOptions(launchOptions)
+        
+    }
+    
     func reloadView() {
         
         let attendees = eventToDetail!.attendees
@@ -238,7 +259,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         }
         
         dispatch_async(dispatch_get_main_queue()) {
-            self.view.setNeedsDisplay() 
+            self.view.setNeedsDisplay()
         }
     }
     
@@ -251,4 +272,60 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         genderLabel.text = eventToDetail?.gender
         sportLabel.text = eventToDetail?.sport
     }
+    
 }
+
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
+
+
+
+
+
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
+    
+
+    
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
+
+
+    
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
+    
+
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
+
+
+    
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
+    
+
+    
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    
+
+    
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
+    
+
+
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
+
