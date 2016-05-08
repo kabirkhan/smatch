@@ -15,11 +15,4 @@ target 'smatch_1' do
     pod 'NVActivityIndicatorView'
 end
 
-target 'smatch_1Tests' do
-
-end
-
-target 'smatch_1UITests' do
-
-end
 
