@@ -11,29 +11,92 @@
 
 import UIKit
 
-class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class ChooseSportsCollectionViewController: UIViewController {
 
-    // MARK: ===================== OUTLETS =====================
-    @IBOutlet weak var collectionView: UICollectionView!
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var userData: Dictionary<String, AnyObject>?
     var sports = SPORTS
     var selectedSports = [String]()
     
-    // MARK: ===================== VIEW LIFECYCLE =====================
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        Setup Collection View Layout and delegate/datasource.
+        Register SportCell
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        // set collection view item size to be half the 
-        // width of the frame to create two columns
         let width = CGRectGetWidth(view.frame) / 2 - 1
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
     }
     
-    // MARK: ============== COLLECTION VIEW DATA SOURCE ================
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /*
+        Create user when they press done. 
+        Create sessionID in UserDefaults.
+        Save how the created their account 
+        (i.e facebook, twitter, email/password).
+     */
+    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
+        
+        let userId = userData?.removeValueForKey(KEY_ID)
+        userData!["sports"] = selectedSports
+        userData!["joined_events"] = [String]()
+        
+        if userData!["provider"] as! String == "facebook" {
+            
+            // create user in firebase database
+            DataService.ds.createFirebaseUser(userId! as! String, user: userData!)
+            
+            // set userid in userdefaults to check against
+            NSUserDefaults.standardUserDefaults().setValue(userId, forKey: KEY_ID)
+        } else if userData![KEY_PROVIDER] as! String == VALUE_EMAIL_PASSWORD_PROVIDER {
+            
+            DataService.ds.REF_BASE.createUser(userData![KEY_EMAIL] as! String, password: userData![KEY_PASSWORD] as! String, withValueCompletionBlock: { (error, result) -> Void in
+                if error != nil {
+                    self.presentViewController(showAlert("Woah", msg: "Something went really wrong"), animated: true, completion: nil)
+                } else {
+                    //set the default key for the user and log them in
+                    NSUserDefaults.standardUserDefaults().setValue(result[KEY_ID], forKey: KEY_ID)
+                    DataService.ds.REF_BASE.authUser(self.userData![KEY_EMAIL] as! String, password: self.userData![KEY_PASSWORD] as! String, withCompletionBlock: { (error, authData) in
+                        
+                        //now that we've created the user we clean up the userdata
+                        self.userData?.removeValueForKey(KEY_EMAIL)
+                        self.userData?.removeValueForKey(KEY_PASSWORD)
+                        
+                        //create a user in firebase
+                        //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
+                        DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
+                    })
+                }
+            })
+        }
+        performSegueWithIdentifier(SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN, sender: nil)
+    }
+}
+
+//--------------------------------------------------
+// MARK: - Collection View Datasource
+//--------------------------------------------------
+extension ChooseSportsCollectionViewController: UICollectionViewDataSource {
+    
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -53,51 +116,16 @@ class ChooseSportsCollectionViewController: UIViewController, UICollectionViewDa
         
         return cell
     }
+}
+
+//--------------------------------------------------
+// MARK: - Collection View Delegate
+//--------------------------------------------------
+extension ChooseSportsCollectionViewController: UICollectionViewDelegate {
     
-    // MARK: ============== COLLECTION VIEW DELEGATE ================
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! SportCollectionViewCell
-        
         toggleSelectedSport(cell, indexPath: indexPath)
-        
-    }
-    
-    // MARK: =============== CREATE USER =================
-    @IBAction func doneButtonPressed(sender: UIBarButtonItem) {
-        
-        let userId = userData?.removeValueForKey(KEY_ID)
-        userData!["sports"] = selectedSports
-        userData!["joined_events"] = [String]()
-        
-        if userData!["provider"] as! String == "facebook" {
-            
-            // create user in firebase database
-            DataService.ds.createFirebaseUser(userId! as! String, user: userData!)
-            
-            // set userid in userdefaults to check against
-            NSUserDefaults.standardUserDefaults().setValue(userId, forKey: KEY_ID)
-        } else if userData![KEY_PROVIDER] as! String == VALUE_EMAIL_PASSWORD_PROVIDER {
-            
-            DataService.ds.REF_BASE.createUser(userData![KEY_EMAIL] as! String, password: userData![KEY_PASSWORD] as! String, withValueCompletionBlock: { (error, result) -> Void in
-                if error != nil {
-                    self.presentViewController(showErrorAlert("Woah", msg: "Something went really wrong"), animated: true, completion: nil)
-                } else {
-                    //set the default key for the user and log them in
-                    NSUserDefaults.standardUserDefaults().setValue(result[KEY_ID], forKey: KEY_ID)
-                    DataService.ds.REF_BASE.authUser(self.userData![KEY_EMAIL] as! String, password: self.userData![KEY_PASSWORD] as! String, withCompletionBlock: { (error, authData) in
-                        
-                        //now that we've created the user we clean up the userdata
-                        self.userData?.removeValueForKey(KEY_EMAIL)
-                        self.userData?.removeValueForKey(KEY_PASSWORD)
-                        
-                        //create a user in firebase
-                        //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
-                        DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
-                    })
-                }
-            })
-        }
-        performSegueWithIdentifier(SEGUE_FINISH_SIGNUP_TO_MAIN_SCREEN, sender: nil)
     }
     
     // toggle the color of the cell when tapped, toggle in selected sports

@@ -9,20 +9,14 @@
 import Foundation
 import MapKit
 import AddressBook
+import Contacts
 import CoreLocation
 
 class Event: NSObject, MKAnnotation {
     
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var title: String?
     var eventKey: String
     var date: String
@@ -33,22 +27,11 @@ class Event: NSObject, MKAnnotation {
     var competition: String
     var attendees: [String]
     var creator_id: String
-    //subtitle and title are used for the annotations
     var subtitle: String? {
         return address
     }
     var coordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
     var mapItem: MKMapItem?
-    
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
     
     init (title: String, eventKey: String, date: String, sport: String, address: String, numberOfPlayers: String, gender: String, competition: String, attendees: [String], creator_id: String) {
         self.title = title
@@ -64,21 +47,17 @@ class Event: NSObject, MKAnnotation {
         super.init()
     }
     
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
+    func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
+        let addressDictionary = [String(CNPostalAddressStreetKey): subtitle!]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
+    }
     
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
         
@@ -102,15 +81,6 @@ class Event: NSObject, MKAnnotation {
         }
     }
     
-    func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
-        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle!]
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = title
-        return mapItem
-    }
-    
-    //function called from geocode()
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
@@ -120,9 +90,4 @@ class Event: NSObject, MKAnnotation {
     func remove(mapView: MKMapView) {
         mapView.removeAnnotation(self)
     }
-    
 }
-
-//--------------------------------------------------
-// MARK: - Extensions
-//--------------------------------------------------

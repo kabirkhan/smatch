@@ -95,8 +95,8 @@
                                             </imageView>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1i8-PN-rIK">
-                                        <rect key="frame" x="247" y="288" width="108" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1i8-PN-rIK">
+                                        <rect key="frame" x="246" y="288" width="108" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="Gdf-Kr-u2r"/>
                                             <constraint firstAttribute="height" constant="44" id="e7J-g4-5aM"/>

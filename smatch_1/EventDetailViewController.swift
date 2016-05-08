@@ -5,6 +5,8 @@
 //  Created by Kabir Khan on 3/24/16.
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
+//  The detail view for a single event
+//  User sees all information and can get directions 
 
 import UIKit
 import MapKit
@@ -14,28 +16,25 @@ import Firebase
 
 class EventDetailViewController: UIViewController, MKMapViewDelegate {
     
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
     let regionRadius: CLLocationDistance = 5000
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
     let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
     
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var eventToDetail: Event?
     var delegate: GoBackDelegate?
     var viewState: EventDetailViewState?
     var alert = UIAlertController()
 
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var individualMapView: MKMapView!
     @IBOutlet weak var joinButton: MaterialButton!
     @IBOutlet weak var nameLabel: UILabel!
@@ -46,39 +45,38 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var sportLabel: UILabel!
     
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.removeShadowOnBottomOfBarAndSetColorWith(UIColor.materialMainGreen)
+        self.navigationController?.navigationBar.setNavbarFonts()
         
         individualMapView.delegate = self
         displayEventInfo()
         reloadView()
         
-        // =========== NAVBAR SETUP ==============
-        // set navbar fonts
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
-        
-        // set navbar shadow
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
-        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
-        
-        // set navbar color
-        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
-        
         eventToDetail?.geocode(individualMapView, regionRadius: regionRadius, centeredOnPin: true)
         individualMapView.scrollEnabled = false
     }
 
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
     
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
-    
+    /*
+        Creator: If user is the creator of the event
+        delete the event when they press the button.
+     
+        Attendee: If the user is a current attendee, remove the user
+        from the event and the event from their joined
+        events
+     
+        Viewer: If user is a viewer and joins, add them to the event
+        and the event to their joined events.
+     */
     @IBAction func joinButtonPressed(sender: UIButton) {
         
         // References in database
@@ -96,7 +94,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
             var attendees = eventToDetail!.attendees
             var attendeesDict = Dictionary<String, AnyObject>()
             
-            attendees = attendees.filter() {$0 != userId}
+            attendees = attendees.filter() { $0 != userId }
             attendeesDict["attendees"] = attendees
             eventRef.updateChildValues(attendeesDict)
             eventToDetail!.attendees = attendees
@@ -116,8 +114,6 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
                 joinedEventsDict["joined_events"] = joined_events
                 
                 userRef.updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
-                    
-                    // self.alert = showErrorAlert("Joined Successfully", msg: "You joined a new game!")
                     self.viewState = EventDetailViewState.Viewer
                     self.reloadView()
                 })
@@ -155,11 +151,9 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
                 joinedEventsDict["joined_events"] = joined_events
                 userRef.updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
                     
-                    // self.alert = showErrorAlert("Joined Successfully", msg: "You joined a new game!")
                     self.viewState = EventDetailViewState.Attendee
                     self.reloadView()
                 })
-                
             }) { (error) in
                 print(error)
             }
@@ -167,21 +161,16 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    // Go back to the previous view
+    /*
+        Go back to the previous view
+     */
     @IBAction func allGamesButtonPressed(sender: UIBarButtonItem) {
         delegate?.goBack(self)
     }
     
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
-    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as?  Event {
             let identifier = "pin"
@@ -222,47 +211,37 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         return nil
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
-                 calloutAccessoryControlTapped control: UIControl) {
-        
-        let mapItem = eventToDetail?.mapItem
-        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-        
-        mapItem!.openInMapsWithLaunchOptions(launchOptions)
-        
-    }
-    
+    /*
+        Reload the button to change based off the user's status.
+     */
     func reloadView() {
         
         let attendees = eventToDetail!.attendees
         let creator = eventToDetail!.creator_id
         
-        // user is creator
         if creator == userId {
             
             viewState = EventDetailViewState.Creator
             joinButton.backgroundColor = UIColor.materialCancelRedColor
             joinButton.setTitle("Delete", forState: .Normal)
-            
-            // user is attendee but not creator
         } else if attendees.contains(userId) {
             
             viewState = EventDetailViewState.Attendee
             joinButton.backgroundColor = UIColor.materialCancelRedColor
             joinButton.setTitle("Leave", forState: .Normal)
-            
-            // user is neither and can join the game
         } else {
             viewState = EventDetailViewState.Viewer
             joinButton.backgroundColor = UIColor.materialAmberAccent
             joinButton.setTitle("Join", forState: .Normal)
         }
-        
         dispatch_async(dispatch_get_main_queue()) {
             self.view.setNeedsDisplay()
         }
     }
     
+    /*
+        Initialize event information
+     */
     func displayEventInfo() {
         nameLabel.text = eventToDetail!.title
         dateAndTimeLabel.text = eventToDetail!.date
@@ -273,59 +252,13 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         sportLabel.text = eventToDetail?.sport
     }
     
+    /*
+        Get directions when tapping map pin
+     */
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
+                 calloutAccessoryControlTapped control: UIControl) {
+        let mapItem = eventToDetail?.mapItem
+        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+        mapItem!.openInMapsWithLaunchOptions(launchOptions)
+    }
 }
-
-//--------------------------------------------------
-// MARK: - Extensions
-//--------------------------------------------------
-
-
-
-
-
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
-
-
-
-//--------------------------------------------------
-// MARK: - Extensions
-//--------------------------------------------------
-

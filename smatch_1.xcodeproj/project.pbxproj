@@ -21,6 +21,10 @@
 		98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
 		CA961776E8E44C22B0316ADA /* Pods_smatch_1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9441928263ADF32C305C965F /* Pods_smatch_1UITests.framework */; };
+		D81C61BF1CDFEDB00086F5E1 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */; };
+		D81C61C31CDFEDCE0086F5E1 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */; };
+		D81C61C41CDFEDCE0086F5E1 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */; };
+		D81C61C51CDFEDCE0086F5E1 /* ToolBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C21CDFEDCE0086F5E1 /* ToolBarExtension.swift */; };
 		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -28,7 +32,6 @@
 		D83A181A1CA3B7C70048B629 /* Messages.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A18191CA3B7C70048B629 /* Messages.storyboard */; };
 		D83A181C1CA3B7F40048B629 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181B1CA3B7F40048B629 /* Notifications.storyboard */; };
 		D83A181E1CA3B80A0048B629 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181D1CA3B80A0048B629 /* Profile.storyboard */; };
-		D83DCD8F1CACAAC200E1DFD5 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83DCD8E1CACAAC200E1DFD5 /* Keyboard.swift */; };
 		D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */; };
 		D84A6BF21CA464F200045150 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A6BF11CA464F200045150 /* EventCell.swift */; };
 		D86312BB1CAD8F0200AEC07B /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86312BA1CAD8F0200AEC07B /* EventDetail.swift */; };
@@ -61,7 +64,6 @@
 		D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */; };
 		D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */; };
 		D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F371CA47F44007DB652 /* MaterialView.swift */; };
-		D8EE2F3A1CA48AAD007DB652 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F391CA48AAD007DB652 /* Colors.swift */; };
 		D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */; };
 		D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F3D1CA4B665007DB652 /* EventDetailViewController.swift */; };
 		D8EF28861CAC3DBA00150411 /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF28851CAC3DBA00150411 /* MaterialButton.swift */; };
@@ -107,6 +109,10 @@
 		A729460B76ED2CAC32054A48 /* Pods-smatch_1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1Tests/Pods-smatch_1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D691F2D74415E078BD3C24A5 /* Pods_smatch_1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_smatch_1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EDDA08FB634FEB8FBAD634 /* Pods-smatch_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.debug.xcconfig"; sourceTree = "<group>"; };
+		D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
+		D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
+		D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
+		D81C61C21CDFEDCE0086F5E1 /* ToolBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarExtension.swift; sourceTree = "<group>"; };
 		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +120,6 @@
 		D83A18191CA3B7C70048B629 /* Messages.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Messages.storyboard; sourceTree = "<group>"; };
 		D83A181B1CA3B7F40048B629 /* Notifications.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
 		D83A181D1CA3B80A0048B629 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
-		D83DCD8E1CACAAC200E1DFD5 /* Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D84A6BF11CA464F200045150 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		D86312BA1CAD8F0200AEC07B /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
@@ -153,7 +158,6 @@
 		D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsMapViewController.swift; sourceTree = "<group>"; };
 		D8EE2F371CA47F44007DB652 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
-		D8EE2F391CA48AAD007DB652 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewEventViewController.swift; sourceTree = "<group>"; };
 		D8EE2F3D1CA4B665007DB652 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		D8EF28851CAC3DBA00150411 /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
@@ -325,8 +329,10 @@
 		D875B27C1C9A51C2007BBFF3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				D8EE2F391CA48AAD007DB652 /* Colors.swift */,
-				D83DCD8E1CACAAC200E1DFD5 /* Keyboard.swift */,
+				D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */,
+				D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */,
+				D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */,
+				D81C61C21CDFEDCE0086F5E1 /* ToolBarExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */,
+				D81C61C31CDFEDCE0086F5E1 /* KeyboardExtension.swift in Sources */,
 				46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */,
 				46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */,
 				46F6E2391CAB4F1F0064CC18 /* EventsListTableViewCell.swift in Sources */,
@@ -735,10 +742,10 @@
 				D86407D21CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift in Sources */,
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
 				D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */,
+				D81C61C51CDFEDCE0086F5E1 /* ToolBarExtension.swift in Sources */,
 				46F6E23B1CAB51480064CC18 /* GoToEventMessagesDelegate.swift in Sources */,
 				46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */,
 				D890FC3E1CAA389500D9ADEA /* CreateEventFinishViewController.swift in Sources */,
-				D8EE2F3A1CA48AAD007DB652 /* Colors.swift in Sources */,
 				D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */,
 				D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */,
 				981564161CA72E67007E0F11 /* Event.swift in Sources */,
@@ -758,7 +765,7 @@
 				98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */,
 				D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */,
 				4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */,
-				D83DCD8F1CACAAC200E1DFD5 /* Keyboard.swift in Sources */,
+				D81C61C41CDFEDCE0086F5E1 /* NavigationBarExtension.swift in Sources */,
 				D890FC3A1CAA307A00D9ADEA /* CompetitionLevel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */,
@@ -770,6 +777,7 @@
 				D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */,
 				D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */,
 				D8E0003A1CA07292006C50EC /* DataService.swift in Sources */,
+				D81C61BF1CDFEDB00086F5E1 /* ColorsExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
