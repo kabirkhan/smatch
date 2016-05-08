@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // Base Colors to use in project
 //
 // All colors start with .material
@@ -18,58 +17,64 @@ import UIKit
 extension UIColor {
     
     // dark green primary color
-    static var materialDarkGreen : UIColor {
+    static var materialDarkGreen: UIColor {
         get {
             return UIColor(netHex: 0x388E3C)
         }
     }
     
     // bright green main color for project
-    static var materialMainGreen : UIColor {
+    static var materialMainGreen: UIColor {
         get {
             return UIColor(netHex: 0x4CAF50)
         }
     }
     
     // light green color, use sparingly
-    static var materialLightGreen : UIColor {
+    static var materialLightGreen: UIColor {
         get {
             return UIColor(netHex: 0xC8E6C9)
         }
     }
     
     // Orange/Yellow (i.e Amber) color for all accents
-    static var materialAmberAccent : UIColor {
+    static var materialAmberAccent: UIColor {
         get {
             return UIColor(netHex: 0xFFC107)
         }
     }
     
     // Dark, near black text color for all text on white backgrounds
-    static var materialDarkTextColor : UIColor {
+    static var materialDarkTextColor: UIColor {
         get {
             return UIColor(netHex: 0x212121)
         }
     }
     
     // Lighter gray text color for secondary text
-    static var materialLighterSecondaryTextColor : UIColor {
+    static var materialLighterSecondaryTextColor: UIColor {
         get {
             return UIColor(netHex: 0x727272)
         }
     }
     
     // Light gray color used for divisions between elements, backgrounds of tableview
-    static var materialDividerColor : UIColor {
+    static var materialDividerColor: UIColor {
         get {
             return UIColor(netHex: 0xE7E7E7)
         }
     }
 
     // Cancel/ Delete red color
-    static var materialCancelRedColor : UIColor {
+    static var materialCancelRedColor: UIColor {
         get {
             return UIColor(netHex: 0xEE4750)
+        }
+    }
+    
+    static var shadowColor: UIColor {
+        get {
+            return UIColor(netHex: 0xBABABA)
         }
     }
 }

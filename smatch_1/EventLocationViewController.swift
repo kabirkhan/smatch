@@ -17,39 +17,79 @@ import UIKit
 import TextFieldEffects
 import MapKit
 
-class EventLocationViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventLocationViewController: UIViewController {
 
-    // VARIBALES
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var newEvent: Event?
     var searchResults = [MKMapItem]()
     var locationManager = UserLocation.userLocation
     var currentLocation = CLLocation()
 
-    // OUTLETS
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var locationTextField: HoshiTextField!
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: ======================== VIEW LIFECYCLE ========================
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        Get user's current location and setup tableview
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.hidden = true
-        
         currentLocation = locationManager.returnLocation()
     }
     
+    /*
+        Add selector to check when TextField changes.
+     */
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
-        
-        locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
-
-
         locationTextField.addTarget(self, action: #selector(EventLocationViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
     }
     
-    // ============================ SEARCH FUNCTION ============================
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
+        
+        if let location = locationTextField.text where location != "" {
+            newEvent?.address = location
+            performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION, sender: nil)
+        } else {
+            let alert = showAlert("You forgot a location", msg: "Please enter an address for people to meet up for your event")
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION {
+            let destinationViewController = segue.destinationViewController as! CreateEventDateViewController
+            destinationViewController.newEvent = newEvent
+        }
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
+    
+    /*
+        Get address based on area around user's current location.
+        Reload results each time TextField changes
+     */
     func textFieldDidChange(textField: HoshiTextField) {
         
         if let place = textField.text where place != "" {
@@ -78,8 +118,12 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
             })
         }
     }
-    
-    // MARK: ======================== TABLE VIEW DATASOURCE ========================
+}
+ 
+//--------------------------------------------------
+// MARK: - TableView DataSource
+//--------------------------------------------------
+extension EventLocationViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -103,13 +147,18 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
         // e.g Seattle, WA 98133
         let cityString = "\(address[2]), \(address[3])"
         
-        // set up tableviewcell 
+        // set up tableviewcell
         cell?.textLabel?.text = addressString
         cell?.detailTextLabel?.text = cityString
         
         return cell!
     }
-    
+}
+
+//--------------------------------------------------
+// MARK: - TableView Delegate
+//--------------------------------------------------
+extension EventLocationViewController: UITableViewDelegate {
     // When a row (location) is selected, set the text field text to that row's title
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -118,26 +167,5 @@ class EventLocationViewController: UIViewController, UITableViewDelegate, UITabl
             locationTextField.text = "\(address) \(city)"
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-    
-    // if their is a location selected, continue
-    @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
-        
-        if let location = locationTextField.text where location != "" {
-            newEvent?.address = location
-            performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION, sender: nil)
-        } else {
-            let alert = showErrorAlert("You forgot a location", msg: "Please enter an address for people to meet up for your event")
-            presentViewController(alert, animated: true, completion: nil)
-        }
-    }
-    
-    // send newEvent on
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == SEGUE_NEW_EVENT_TO_DATE_FROM_LOCATION {
-            let destinationViewController = segue.destinationViewController as! CreateEventDateViewController
-            destinationViewController.newEvent = newEvent
-        }
     }
 }

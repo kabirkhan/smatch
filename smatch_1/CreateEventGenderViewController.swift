@@ -10,14 +10,24 @@ import UIKit
 
 class CreateEventGenderViewController: UIViewController {
 
-    // VARIABLES
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var newEvent: Event?
     var gender: Gender?
     
-    // OUTLETS
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    // get the current value of the segmented control and set gender from it
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /* 
+        Set gender based on SegmentedControl value
+     */
     @IBAction func finishedButtonPressed(sender: UIBarButtonItem) {
         
         switch segmentedControl.selectedSegmentIndex {
@@ -28,14 +38,14 @@ class CreateEventGenderViewController: UIViewController {
         default:
             gender = Gender.Coed
         }
-        
         newEvent?.gender = gender!.rawValue
-
         
         performSegueWithIdentifier(SEGUE_NEW_EVENT_FINISH_NEW_EVENT, sender: nil)
     }
     
-    // send newEvent to next screen
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == SEGUE_NEW_EVENT_FINISH_NEW_EVENT {
