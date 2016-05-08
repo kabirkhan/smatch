@@ -13,15 +13,41 @@ import Firebase
 import CZPicker
 
 class EventsTableViewController: UITableViewController, GoBackDelegate {
-    
-    // MARK: - Variables and Constants
+
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
     
     var events = [Event]()
     let regionRadius: CLLocationDistance = 10000
     var mySports = [String]()
     var query: UInt?
+    
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
+    
+    var factory = [Event]()
+    var sports = [String]()
+    var filter = String()
+    var bool = false
+    var choices = ["Sports", "Gender", "Competitiveness Level"]
+    var genders = ["Coed", "Only Guys", "Only Girls"]
+    var competitiveness = ["NotCompetitive", "Competitive"]
+    var filteredSports = [String]()
+    var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
+    var filteredCompetitiveness = ["NotCompetitive", "Competitive"]
+    var pickerWithImage: CZPickerView?
+    
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
+    
 
-    // MARK: - View Controller Lifecycle
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,31 +75,33 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
             DataService.ds.REF_EVENTS.removeAllObservers()
         }
     }
-    // MARK: - Table View Data Source
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
-    }
-   
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
-        cell.eventNameLabel.text = events[indexPath.row].title
-        cell.eventLocationLabel.text = events[indexPath.row].address
-        cell.dateLabel.text = events[indexPath.row].date
-        //Geocode the event and pin it on the mini event map
-        
-        events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)
-        cell.eventMapView.scrollEnabled = false
-        return cell
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
+    
+    @IBAction func filterButtonClicked(sender: AnyObject) {
+        showWithOneSelectionFilters(sender)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //Send the event detail controller the event to display data for as "sender"
-        performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "show_event_detail" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
+            controller.eventToDetail = sender as? Event
+            controller.delegate = self
+        }
     }
     
-    // MARK: ==================== FIREBASE ======================
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
     
     func displayFireBaseEvents() {
         
@@ -84,7 +112,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
         query = user.observeEventType(.Value, withBlock: { snapshot in
             
-             self.events = [Event]()
+            self.events = [Event]()
             
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
@@ -128,42 +156,34 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
             }, withCancelBlock: { error in
                 print(error.description)
         })
+    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        //Send the event detail controller the event to display data for as "sender"
+        performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return events.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(CELL_IDENTIFIER_FOR_EVENT_CELL) as! EventCell
+        cell.eventNameLabel.text = events[indexPath.row].title
+        cell.eventLocationLabel.text = events[indexPath.row].address
+        cell.dateLabel.text = events[indexPath.row].date
+        //Geocode the event and pin it on the mini event map
         
-
+        events[indexPath.row].geocode(cell.eventMapView, regionRadius: regionRadius, centeredOnPin: true)
+        cell.eventMapView.scrollEnabled = false
+        return cell
     }
+}
     
-    // MARK: ================= ACTIONS AND SEGUES ===================
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "show_event_detail" {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as? Event
-            controller.delegate = self
-        }
-    }
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
     
-    // GoBackDelegate implementation
-    func goBack(controller: UIViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-
-    // MARK: - CZPicker
-    var factory = [Event]()
-    var sports = [String]()
-    var filter = String()
-    var bool = false
-    var choices = ["Sports", "Gender", "Competitiveness Level"]
-    var genders = ["Coed", "Only Guys", "Only Girls"]
-    var competitiveness = ["NotCompetitive", "Competitive"]
-    var filteredSports = [String]()
-    var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
-    var filteredCompetitiveness = ["NotCompetitive", "Competitive"]
-    var pickerWithImage: CZPickerView?
-    
-    @IBAction func filterButtonClicked(sender: AnyObject) {
-        showWithOneSelectionFilters(sender)
-    }
-
+extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func showWithOneSelectionFilters(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Filter By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -216,9 +236,6 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
-}
-extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
-    
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         if bool == false {
             return choices.count
@@ -232,7 +249,6 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             }
         }
     }
-    
     func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
         if bool == false {
             return choices[row]
@@ -246,7 +262,6 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             }
         }
     }
-    
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         bool = true
         if choices[row] == "Sports"{
@@ -261,9 +276,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         }
         
     }
-    
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
-        print("")
         if filter == "Sports" {
             filteredSports = [String]()
             for row in rows {
@@ -286,9 +299,6 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
                 }
             }
         }
-        print(filteredCompetitiveness)
-        print(filteredSports)
-        print(filteredGenders)
         events = [Event]()
         filter = String()
         bool = false

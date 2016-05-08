@@ -12,21 +12,34 @@ import MapKit
 import Firebase
 import CZPicker
 
-class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, GoBackDelegate {
+class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBackDelegate {
     
-    // MARK: - Variables and Constants
-
-    //need arrays to hold the user's sports and the events that are of those sports. We dont want to display all the events in the database.
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
+    
+    let seattle = CLLocation(latitude: 47.61, longitude: -122.33)
+    let regionRadius: CLLocationDistance = 30000
+    
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
+    
     var mySports = [String]()
     var events = [Event]()
-    
-    //reference the singleton in UserLocationClass. We will set initial location to the user's location provided by the class
     var initialLocation = CLLocation()
-    let regionRadius: CLLocationDistance = 30000
+    var sports = [String]()
+    var filteredSports = [String]()
+    
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
     @IBOutlet weak var mapView: MKMapView!
     
-
-    // MARK: - View Controller Lifecycle
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,66 +49,39 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         let locationManager = UserLocation.userLocation
         initialLocation = locationManager.returnLocation()
-        let seattle = CLLocation(latitude: 47.61, longitude: -122.33)
         centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
         displayFireBaseEvents()
     }
     
-    // MARK: - MapViewAnnotations
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as?  Event {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView {
-                    dequeuedView.annotation = annotation as MKAnnotation
-                    view = dequeuedView
-            } else {
-                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
-                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
-            }
-            //make the pin color change depending on the sport
-            switch annotation.sport {
-                case "Basketball":
-                    view.pinTintColor = UIColor.redColor()
-                case "Tennis":
-                    view.pinTintColor = UIColor.materialMainGreen
-                case "Softball":
-                    view.pinTintColor = UIColor.yellowColor()
-                case "Soccer":
-                    view.pinTintColor = UIColor.cyanColor()
-                case "Football":
-                    view.pinTintColor = UIColor.orangeColor()
-                case "Ultimate Frisbee":
-                    view.pinTintColor = UIColor.purpleColor()
-                case "Volleyball":
-                    view.pinTintColor = UIColor.blueColor()
-                default:
-                    view.pinTintColor = UIColor.grayColor()
-                
-            }
-            return view
+    @IBAction func filterButtonClicked(sender: AnyObject) {
+        showWithMultipleSelections(sender)
+    }
+    
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showEventDetails" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! EventDetailViewController
+            controller.eventToDetail = sender as? Event
+            controller.delegate = self
         }
-        return nil
     }
-
-    
-    // MARK: - Function for Map Centering
-
-    func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-            regionRadius * 2.0, regionRadius * 2.0)
-        mapView.setRegion(coordinateRegion, animated: true)
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: - Firebase
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
     
     func displayFireBaseEvents() {
-        
         let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
         
         //Set mySports - Array of sports the user has on their profile
@@ -144,31 +130,65 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 print(error.description)
         })
     }
-    
-    // MARK: - Segues
-    
+}
+
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
+
+extension EventsMapViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        if let annotation = annotation as?  Event {
+            let identifier = "pin"
+            var view: MKPinAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
+                as? MKPinAnnotationView {
+                dequeuedView.annotation = annotation as MKAnnotation
+                view = dequeuedView
+            } else {
+                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
+                view.canShowCallout = true
+                view.calloutOffset = CGPoint(x: -5, y: 5)
+                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
+                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
+            }
+            //make the pin color change depending on the sport
+            switch annotation.sport {
+            case "Basketball":
+                view.pinTintColor = UIColor.redColor()
+            case "Tennis":
+                view.pinTintColor = UIColor.materialMainGreen
+            case "Softball":
+                view.pinTintColor = UIColor.yellowColor()
+            case "Soccer":
+                view.pinTintColor = UIColor.cyanColor()
+            case "Football":
+                view.pinTintColor = UIColor.orangeColor()
+            case "Ultimate Frisbee":
+                view.pinTintColor = UIColor.purpleColor()
+            case "Volleyball":
+                view.pinTintColor = UIColor.blueColor()
+            default:
+                view.pinTintColor = UIColor.grayColor()
+                
+            }
+            return view
+        }
+        return nil
+    }
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
         let specificEvent = view.annotation as! Event
         performSegueWithIdentifier("showEventDetails", sender: specificEvent)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showEventDetails" {
-            let navigationController = segue.destinationViewController as! UINavigationController
-            let controller = navigationController.topViewController as! EventDetailViewController
-            controller.eventToDetail = sender as? Event
-            controller.delegate = self
+    func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
+}
 
-        }
-    }
-    
-    func goBack(controller: UIViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    // MARK: - CZPicker
-    var sports = [String]()
-    var filteredSports = [String]()
+extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     func showWithMultipleSelections(sender: AnyObject) {
         let picker = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker.delegate = self
@@ -182,30 +202,6 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         picker.checkmarkColor = UIColor.materialMainGreen
         picker.show()
     }
-    @IBAction func filterButtonClicked(sender: AnyObject) {
-        showWithMultipleSelections(sender)
-    }
-        func removeAllGames(){
-            print("removing")
-            for event in self.events {
-                event.remove(self.mapView)
-            }
-        }
-    
-        func geocodeAllGames(){
-            print("geocoding")
-            for event in self.events {
-                for sport in self.filteredSports {
-                    if sport == event.sport {
-                        print(event.title)
-                        event.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-                    }
-                }
-            }
-        }
-}
-extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource {
-    
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         return sports.count
     }
@@ -224,4 +220,21 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         removeAllGames()
         geocodeAllGames()
     }
+    func removeAllGames(){
+        for event in self.events {
+            event.remove(self.mapView)
+        }
+    }
+    
+    func geocodeAllGames(){
+        for event in self.events {
+            for sport in self.filteredSports {
+                if sport == event.sport {
+                    print(event.title)
+                    event.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+                }
+            }
+        }
+    }
 }
+
