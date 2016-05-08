@@ -160,11 +160,13 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
                 print(error.description)
         })
     }
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -187,6 +189,7 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
 //--------------------------------------------------
 
 extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
+    
     func showWithOneSelectionFilters(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Filter By", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -200,6 +203,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
+    
     func showWithMultipleSportsSelections(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -213,6 +217,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
+    
     func showWithMultipleGenderSelections(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Gender", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -226,6 +231,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
+    
     func showWithMultipleCompetitivenessSelections(sender: AnyObject) {
         let picker1 = CZPickerView(headerTitle: "Competitiveness Level", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker1.delegate = self
@@ -239,6 +245,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         picker1.checkmarkColor = UIColor.materialMainGreen
         picker1.show()
     }
+    
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         if bool == false {
             return choices.count
@@ -252,6 +259,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             }
         }
     }
+    
     func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
         if bool == false {
             return choices[row]
@@ -265,6 +273,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             }
         }
     }
+    
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         bool = true
         if choices[row] == "Sports"{
@@ -279,6 +288,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         }
         
     }
+    
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         if filter == "Sports" {
             filteredSports = [String]()
@@ -319,6 +329,7 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
         }
         tableView.reloadData()
     }
+    
     func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
         filter = String()
         bool = false

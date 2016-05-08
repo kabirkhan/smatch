@@ -45,6 +45,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
         super.viewDidLoad()
         mapView.delegate = self
     }
+    
     override func viewDidAppear(animated: Bool) {
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         let locationManager = UserLocation.userLocation
@@ -73,6 +74,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
             controller.delegate = self
         }
     }
+    
     func goBack(controller: UIViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -176,11 +178,13 @@ extension EventsMapViewController: MKMapViewDelegate {
         }
         return nil
     }
+    
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
         let specificEvent = view.annotation as! Event
         performSegueWithIdentifier("showEventDetails", sender: specificEvent)
     }
+    
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
@@ -202,6 +206,7 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         picker.checkmarkColor = UIColor.materialMainGreen
         picker.show()
     }
+    
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         return sports.count
     }
@@ -220,6 +225,7 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         removeAllGames()
         geocodeAllGames()
     }
+    
     func removeAllGames(){
         for event in self.events {
             event.remove(self.mapView)

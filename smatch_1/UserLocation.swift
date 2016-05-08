@@ -9,7 +9,30 @@
 import CoreLocation
 
 class UserLocation: NSObject, CLLocationManagerDelegate {
+    
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
+    
+    let manager = CLLocationManager()
+    
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
+    
     static var userLocation = UserLocation()
+    var initialLocation = CLLocation()
+    
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
+    
     private override init(){
         super.init()
         manager.delegate = self
@@ -17,19 +40,34 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         manager.startUpdatingLocation()
         print("initializing")
     }
-    var initialLocation = CLLocation()
-    let manager = CLLocationManager()
+    
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
+    
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if initialLocation != locations[0] {
             initialLocation = locations[0]
         }
     }
+    
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
     }
-    func locationManager(manager: CLLocationManager,
-        didChangeAuthorizationStatus status: CLAuthorizationStatus)
-    {
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             manager.startUpdatingLocation()
         }
@@ -39,3 +77,12 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
 }
+
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
+
+
+
+
+    

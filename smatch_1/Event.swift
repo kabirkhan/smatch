@@ -13,7 +13,15 @@ import CoreLocation
 
 class Event: NSObject, MKAnnotation {
     
-    // MARK: - Variables and Initialization
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
     
     var title: String?
     var eventKey: String
@@ -25,7 +33,6 @@ class Event: NSObject, MKAnnotation {
     var competition: String
     var attendees: [String]
     var creator_id: String
-    
     //subtitle and title are used for the annotations
     var subtitle: String? {
         return address
@@ -33,8 +40,16 @@ class Event: NSObject, MKAnnotation {
     var coordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
     var mapItem: MKMapItem?
     
-    //variable for seattle in order to center the large map on it. need to set up grabbing users location
-
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
+    
     init (title: String, eventKey: String, date: String, sport: String, address: String, numberOfPlayers: String, gender: String, competition: String, attendees: [String], creator_id: String) {
         self.title = title
         self.eventKey = eventKey
@@ -49,17 +64,21 @@ class Event: NSObject, MKAnnotation {
         super.init()
     }
     
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
     
-    // MARK: - Map Functions
     
-    func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
-        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle!]
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = title
-        
-        return mapItem
-    }
+    
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
+    
+    
+    
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
     
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
         
@@ -68,7 +87,7 @@ class Event: NSObject, MKAnnotation {
         geocoder.geocodeAddressString(address) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             //address has been geocoded into a placemark for use. This is the first entry in the placemark array.
             if let placemark = placemarks?[0] {
-
+                
                 self.coordinate = placemark.location!.coordinate
                 self.mapItem = self.mapItem(self.coordinate)
                 if centeredOnPin == true {
@@ -76,21 +95,34 @@ class Event: NSObject, MKAnnotation {
                     self.centerMapOnLocation(placemark.location!, mapView: mapView, regionRadius: regionRadius)
                 } else {
                     // This only applies to the Map View with all of the pins on the same map. At some point we would probably want to change this over to being centered on the users location rather than self.Seattle
-    //                self.centerMapOnLocation(self.Seattle, mapView: mapView, regionRadius: regionRadius)
+                    //                self.centerMapOnLocation(self.Seattle, mapView: mapView, regionRadius: regionRadius)
                 }
                 mapView.addAnnotation(self)
             }
         }
     }
     
+    func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): subtitle!]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        return mapItem
+    }
+    
     //function called from geocode()
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-            regionRadius * 2.0, regionRadius * 2.0)
+                                                                  regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
     func remove(mapView: MKMapView) {
         mapView.removeAnnotation(self)
     }
     
 }
+
+//--------------------------------------------------
+// MARK: - Extensions
+//--------------------------------------------------
