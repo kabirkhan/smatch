@@ -37,7 +37,7 @@ class EventsMapViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         let locationManager = UserLocation.userLocation
         initialLocation = locationManager.returnLocation()
         let seattle = CLLocation(latitude: 47.61, longitude: -122.33)
-        centerMapOnLocation(seattle, mapView: mapView, regionRadius: regionRadius)
+        centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
         displayFireBaseEvents()
     }
     
