@@ -11,26 +11,26 @@ import Firebase
 import JSQMessagesViewController
 
 class MessagesViewController: JSQMessagesViewController {
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var eventId :String?
-    
     var messages = [JSQMessage]()
     var avatars = Dictionary<String, NSData>()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
-    
     var messageRef: Firebase!
     var attendeesRef: Firebase!
 
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     override func viewDidLoad() {
-        self.tabBarController?.tabBar.hidden = true
-        
         super.viewDidLoad()
-        //load messages here probably
-        print("hello event: \(eventId)")
+        self.tabBarController?.tabBar.hidden = true
         setupBubbles()
-        
-        messageRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/messages")
-        attendeesRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/attendees")
+        messageRef = DataService.ds.getReferenceForEventMessages(eventId!)
+        attendeesRef = DataService.ds.getReferenceForEventAttendees(eventId!)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -42,8 +42,26 @@ class MessagesViewController: JSQMessagesViewController {
         super.viewWillDisappear(true)
         self.tabBarController?.tabBar.hidden = false
     }
-
-    //MARK: - Messaging Methods
+    
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
+                                     senderDisplayName: String!, date: NSDate!) {
+        let itemRef = messageRef.childByAutoId()
+        let messageItem = [ // 2
+            "text": text,
+            "senderId": senderId,
+            "senderDisplayName": senderDisplayName
+        ]
+        itemRef.setValue(messageItem)
+        JSQSystemSoundPlayer.jsq_playMessageSentSound()
+        finishSendingMessage()
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
     private func addMessage(id: String, text: String, displayName: String) {
         print(senderDisplayName)
         let message = JSQMessage(senderId: id, displayName: displayName, text: text)
@@ -51,19 +69,44 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     private func observeMessages() {
-         getAvatars()
+        getAvatars()
         let messagesQuery = messageRef.queryLimitedToLast(25)
         messagesQuery.observeEventType(.ChildAdded) { (snapshot: FDataSnapshot!) in
             let id = snapshot.value["senderId"] as! String
             let text = snapshot.value["text"] as! String
             let displayName = snapshot.value["senderDisplayName"] as! String
-            
             self.addMessage(id, text: text, displayName: displayName)
-
             self.finishReceivingMessage()
         }
     }
     
+    private func getAvatars() {
+        attendeesRef.observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
+            let attendeesIdList = snapshot.value as! [String]
+            for attendee in attendeesIdList  {
+                let facebookId = attendee.substringFromIndex(attendee.startIndex.advancedBy(9))
+                
+                let userID = NSString(string: facebookId)
+                let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
+                if let data = NSData(contentsOfURL: facebookProfileUrl!) {
+                    self.avatars[attendee] = data
+                }
+            }
+            }, withCancelBlock: { error in
+        })
+    }
+    
+    private func setupBubbles() {
+        let factory = JSQMessagesBubbleImageFactory()
+        outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(
+            UIColor.jsq_messageBubbleGreenColor())
+        incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(
+            UIColor.jsq_messageBubbleLightGrayColor())
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Extensions
+    //--------------------------------------------------
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
         switch message.senderId {
@@ -74,7 +117,6 @@ class MessagesViewController: JSQMessagesViewController {
         }
     }
     
-    //get the display name
     override func collectionView(collectionView: JSQMessagesCollectionView?, attributedTextForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
         switch message.senderId {
@@ -90,28 +132,9 @@ class MessagesViewController: JSQMessagesViewController {
         }
     }
     
-    //MARK: -Get Avatars
-    private func getAvatars() {
-        attendeesRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/events/\(eventId!)/attendees")
-        attendeesRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            let attendeesIdList = snapshot.value as! [String]
-            
-            for attendee in attendeesIdList  {
-                let facebookId = attendee.substringFromIndex(attendee.startIndex.advancedBy(9))
-                
-                let userID = NSString(string: facebookId)
-                let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
-                if let data = NSData(contentsOfURL: facebookProfileUrl!) {
-                    self.avatars[attendee] = data
-                }
-            }
-        
-        }, withCancelBlock: { error in
-            
-        })
-    }
-    
-    //MARK: - JSQMessagesViewControllerDelegate Functions
+    //--------------------------------------------------
+    // MARK: - JSQMessagesViewControllerDelegate
+    //--------------------------------------------------
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageData! {
         return messages[indexPath.item]
     }
@@ -120,7 +143,9 @@ class MessagesViewController: JSQMessagesViewController {
         return messages.count
     }
     
-    //MARK: - Methods for JSQMessagesViewControllerDataSource
+    //--------------------------------------------------
+    // MARK: - JSQMessagesViewControllerDataSource
+    //--------------------------------------------------
     override func collectionView(collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
         if message.senderId == senderId {
@@ -130,7 +155,6 @@ class MessagesViewController: JSQMessagesViewController {
         }
     }
     
-    //removes avatar support, probably want to override this
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
        let message = self.messages[indexPath.item]
         
@@ -140,44 +164,4 @@ class MessagesViewController: JSQMessagesViewController {
         
         return nil
     }
-    
-    //MARK: -Factory
-    private func setupBubbles() {
-        let factory = JSQMessagesBubbleImageFactory()
-        outgoingBubbleImageView = factory.outgoingMessagesBubbleImageWithColor(
-            UIColor.jsq_messageBubbleGreenColor())
-        incomingBubbleImageView = factory.incomingMessagesBubbleImageWithColor(
-            UIColor.jsq_messageBubbleLightGrayColor())
-    }
-    
-    //MARK: -Actions
-    override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
-                                     senderDisplayName: String!, date: NSDate!) {
-        
-        let itemRef = messageRef.childByAutoId()
-        let messageItem = [ // 2
-            "text": text,
-            "senderId": senderId,
-            "senderDisplayName": senderDisplayName
-        ]
-        itemRef.setValue(messageItem)
-        
-        
-        JSQSystemSoundPlayer.jsq_playMessageSentSound()
-        
-        
-        finishSendingMessage()
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

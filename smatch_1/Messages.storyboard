@@ -1,62 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="CU2-Zm-IyN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="baz-gf-yfv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--My Messages-->
-        <scene sceneID="NT4-Is-Fzf">
+        <!--Messages-->
+        <scene sceneID="AwT-vv-EP8">
             <objects>
-                <tableViewController id="RDp-XI-iH5" customClass="MessagesTableViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rg8-IW-DT5">
+                <viewController title="Messages" id="I62-bl-qua" customClass="MessagesTableViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pjh-sO-5ep"/>
+                        <viewControllerLayoutGuide type="bottom" id="O18-gM-lPe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SBi-ME-DN2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PU8-9x-m4f">
+                                <rect key="frame" x="0.0" y="59" width="600" height="541"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventcell" id="7eg-pe-3lo" customClass="EventsListTableViewCell" customModule="smatch_1" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7eg-pe-3lo" id="xXa-zc-PqX">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mmx-Vu-8R4">
+                                                    <rect key="frame" x="8" y="8" width="551" height="37"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Mmx-Vu-8R4" firstAttribute="centerY" secondItem="xXa-zc-PqX" secondAttribute="centerY" id="2Dw-Z5-18p"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Mmx-Vu-8R4" secondAttribute="bottom" id="S4r-xR-KiP"/>
+                                                <constraint firstItem="Mmx-Vu-8R4" firstAttribute="top" secondItem="xXa-zc-PqX" secondAttribute="topMargin" id="X7g-V3-bux"/>
+                                                <constraint firstItem="Mmx-Vu-8R4" firstAttribute="trailing" secondItem="xXa-zc-PqX" secondAttribute="trailingMargin" id="qUl-TQ-NLW"/>
+                                                <constraint firstItem="Mmx-Vu-8R4" firstAttribute="leading" secondItem="xXa-zc-PqX" secondAttribute="leadingMargin" id="tPl-40-TJi"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="eventNameLabel" destination="Mmx-Vu-8R4" id="o4x-NG-EBz"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventcell" id="Ck9-Pq-h4b" customClass="EventsListTableViewCell" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="54"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ck9-Pq-h4b" id="6We-qK-gJF">
-                                    <rect key="frame" x="0.0" y="0.0" width="567" height="53.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofh-2g-6vS">
-                                            <rect key="frame" x="8" y="8" width="551" height="37"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="leading" secondItem="6We-qK-gJF" secondAttribute="leadingMargin" id="2KE-wg-KZt"/>
-                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="centerY" secondItem="6We-qK-gJF" secondAttribute="centerY" id="3ZA-Oa-ulP"/>
-                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="top" secondItem="6We-qK-gJF" secondAttribute="topMargin" id="LMO-wU-jda"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Ofh-2g-6vS" secondAttribute="bottom" id="SKi-Tw-c0C"/>
-                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="trailing" secondItem="6We-qK-gJF" secondAttribute="trailingMargin" id="eal-da-i9F"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="eventNameLabel" destination="Ofh-2g-6vS" id="KZ9-xX-mMp"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="RDp-XI-iH5" id="dSo-Cc-6gK"/>
-                            <outlet property="delegate" destination="RDp-XI-iH5" id="aeo-de-tay"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="My Messages" id="yLO-Sv-AHm">
-                        <barButtonItem key="backBarButtonItem" title=" " id="DWO-td-Zcg"/>
-                    </navigationItem>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PU8-9x-m4f" secondAttribute="trailing" id="5Cs-Iy-7iz"/>
+                            <constraint firstItem="PU8-9x-m4f" firstAttribute="top" secondItem="SBi-ME-DN2" secondAttribute="top" constant="8" id="bYU-YR-XA6"/>
+                            <constraint firstItem="PU8-9x-m4f" firstAttribute="leading" secondItem="SBi-ME-DN2" secondAttribute="leading" id="pwe-3y-H9G"/>
+                            <constraint firstItem="O18-gM-lPe" firstAttribute="top" secondItem="PU8-9x-m4f" secondAttribute="bottom" id="tD2-3v-4bx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Messages" id="bWW-dp-TQV"/>
                     <connections>
-                        <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="PDn-Y7-c8M"/>
+                        <outlet property="eventListTableView" destination="PU8-9x-m4f" id="bjC-eK-pFv"/>
+                        <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="YKQ-bM-fDh"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Egx-ZZ-Shf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdv-vs-eel" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5657" y="-136"/>
+            <point key="canvasLocation" x="5530" y="-94"/>
         </scene>
         <!--Name-->
         <scene sceneID="h4t-Yq-Y9C">
@@ -77,32 +88,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hda-SN-XBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6302" y="-136"/>
+            <point key="canvasLocation" x="6192" y="-94"/>
         </scene>
-        <!--Messages-->
-        <scene sceneID="KYS-hj-Ail">
+        <!--Messsges-->
+        <scene sceneID="23Y-hO-yvK">
             <objects>
-                <navigationController title="Messages" automaticallyAdjustsScrollViewInsets="NO" id="CU2-Zm-IyN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" image="messages" id="8jd-Ks-CkE"/>
+                <navigationController title="Messsges" automaticallyAdjustsScrollViewInsets="NO" id="baz-gf-yfv" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Ob-fF-NdG">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hSE-gN-7os">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="RDp-XI-iH5" kind="relationship" relationship="rootViewController" id="ev8-JM-T7F"/>
+                        <segue destination="I62-bl-qua" kind="relationship" relationship="rootViewController" id="JIp-Od-nq1"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FOT-vE-oZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oPj-0X-OW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5007" y="-136"/>
+            <point key="canvasLocation" x="4847" y="-94"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="messages" width="28" height="25"/>
-    </resources>
 </document>

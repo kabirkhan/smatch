@@ -44,4 +44,20 @@ class DataService {
         // return the key for use in creation file
         return newEventRef.key
     }
+    
+    func getReferenceForUser(uid: String) -> Firebase {
+        return REF_USERS.childByAppendingPath(uid)
+    }
+    
+    func getReferenceForEvent(eventId: String) -> Firebase {
+        return REF_EVENTS.childByAppendingPath(eventId)
+    }
+    
+    func getReferenceForEventMessages(eventId: String) -> Firebase {
+        return getReferenceForEvent(eventId).childByAppendingPath("/messages")
+    }
+    
+    func getReferenceForEventAttendees(eventId: String) -> Firebase {
+        return getReferenceForEvent(eventId).childByAppendingPath("/attendees")
+    }
 }
