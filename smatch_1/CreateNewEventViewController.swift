@@ -31,7 +31,6 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         
         tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
         
-        // load the user's joined events
         displayFireBaseEvents()
         
         tableView.delegate = self

@@ -59,6 +59,8 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
+        
         tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
         filterButton.setBackgroundImage(UIImage(named: "Filter Button"), forState: .Normal)
     }
