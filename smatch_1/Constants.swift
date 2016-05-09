@@ -62,6 +62,7 @@ let MAIN_DARK_FONT_COLOR = UIColor.materialDarkTextColor
 let MAIN_LIGHT_FONT_COLOR = UIColor.whiteColor()
 let NAVBAR_FONT               = "Avenir"
 let NAVBAR_FONT_SIZE: CGFloat = 18
+let BAR_BUTTON_FONT_SIZE: CGFloat = 16
 let NAVBAR_FONT_COLOR = UIColor.whiteColor()
 
 // MARK: =================== AVAILABLE SPORTS ===================

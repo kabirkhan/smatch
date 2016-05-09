@@ -27,6 +27,7 @@
 		D81C61C71CE0179D0086F5E1 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */; };
 		D81C61C91CE027710086F5E1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */; };
 		D81C61CB1CE0342C0086F5E1 /* EventsTableContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61CA1CE0342C0086F5E1 /* EventsTableContainerController.swift */; };
+		D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */; };
 		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -91,6 +92,7 @@
 		D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D81C61CA1CE0342C0086F5E1 /* EventsTableContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableContainerController.swift; sourceTree = "<group>"; };
+		D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,25 @@
 			name = Messages;
 			sourceTree = "<group>";
 		};
+		D81C61CE1CE051910086F5E1 /* Login and Signup */ = {
+			isa = PBXGroup;
+			children = (
+				D875B2701C9A5155007BBFF3 /* LoginViewController.swift */,
+				D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */,
+				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
+			);
+			name = "Login and Signup";
+			sourceTree = "<group>";
+		};
+		D81C61CF1CE0519F0086F5E1 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */,
+				D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 		D83A18141CA3B5A40048B629 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,14 +225,12 @@
 		D875B2751C9A5173007BBFF3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				46F6E2351CAAFFAB0064CC18 /* Messages */,
-				D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */,
-				D875B2701C9A5155007BBFF3 /* LoginViewController.swift */,
-				D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */,
-				D875B26F1C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift */,
-				46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */,
-				46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */,
+				D81C61CE1CE051910086F5E1 /* Login and Signup */,
 				D83A18141CA3B5A40048B629 /* Events */,
+				46F6E2351CAAFFAB0064CC18 /* Messages */,
+				D81C61CF1CE0519F0086F5E1 /* Profile */,
+				D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */,
+				46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -562,6 +581,7 @@
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */,
 				D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */,
+				D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */,
 				D8EF28861CAC3DBA00150411 /* MaterialButton.swift in Sources */,
 				D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */,
 				D890FC301CAA004100D9ADEA /* Regex.swift in Sources */,

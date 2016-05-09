@@ -30,6 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        if let font = UIFont(name: NAVBAR_FONT, size: BAR_BUTTON_FONT_SIZE) {
+            UIBarButtonItem.appearance()
+                .setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: NAVBAR_FONT_COLOR], forState: UIControlState.Normal)
+        }
+        
             return FBSDKApplicationDelegate.sharedInstance()
                 .application(application, didFinishLaunchingWithOptions: launchOptions)
     }

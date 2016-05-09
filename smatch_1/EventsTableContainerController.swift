@@ -12,7 +12,7 @@ class EventsTableContainerController: UIViewController {
 
     @IBOutlet weak var containerView: UIView!
     
-    let delegate = EventsTableViewController()
+    let delegate: EventsTableViewControllerDelegate = EventsTableViewController()
     
     @IBAction func filterButtonPressed(sender: AnyObject) {
         delegate.showWithOneSelectionFilters(sender)
