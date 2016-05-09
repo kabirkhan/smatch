@@ -25,42 +25,37 @@ import UIKit
         }
     }
     
-    // image to display inbetween segments
-//    @IBInspectable dynamic public var segmentDividerImage: UIImage? {
-//        didSet {
-//            setupBackground()
-//        }
-//    }
-    
     @IBInspectable dynamic public var font: UIFont? {
         didSet {
-            setupFonts()
+            setFonts()
         }
     }
     
     func initUI(){
         setupBackground()
-        setupFonts()
+        setFonts()
+        addShadow()
     }
     
     // update the selected_bg image for color
     func setupBackground(){
-        
         self.setBackgroundImage(unselectedBackgroundImage, forState: .Normal, barMetrics: .Default)
         self.setBackgroundImage(selectedBackgroundImage, forState: .Selected, barMetrics: .Default)
         self.backgroundColor = UIColor.materialMainGreen
-       
+    }
+}
+
+extension TopTabSegmentedControl {
+    func addShadow() {
+        layer.shadowColor = UIColor.shadowColor.CGColor
+        layer.shadowOpacity = 0.8
+        layer.shadowRadius = 2.0
+        layer.shadowOffset = CGSizeMake(0.0, 2.0)
     }
     
-    // update for app fonts
-    func setupFonts(){
-        
-        let normalTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.whiteColor()
-        ]
-        
-        self.setTitleTextAttributes(normalTextAttributes, forState: .Normal)
-        self.setTitleTextAttributes(normalTextAttributes, forState: .Highlighted)
-        self.setTitleTextAttributes(normalTextAttributes, forState: .Selected)
+    func setFonts() {
+        if let font = UIFont(name: GLOBAL_FONT, size: 12) {
+            self.setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: MAIN_LIGHT_FONT_COLOR], forState: .Normal)
+        }
     }
 }

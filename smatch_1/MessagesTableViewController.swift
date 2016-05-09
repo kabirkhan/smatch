@@ -9,30 +9,28 @@
 import UIKit
 import Firebase
 
-class MessagesTableViewController: UITableViewController {
-    
-    // MARK: ================= VARIABLES ====================
+class MessagesTableViewController: UIViewController {
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var eventList = [Dictionary<String, AnyObject>]()
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
+    //store this in userdefaults on login/creation
     var userName = ""
     var query: UInt?
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-     
-        if query != nil {
-            DataService.ds.REF_USERS.removeAllObservers()
-            DataService.ds.REF_EVENTS.removeAllObservers()
-        }
-        
-    }
-    
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
+        @IBOutlet weak var eventListTableView: UITableView!
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         eventList = [Dictionary<String, AnyObject>]()
         print("loading...")
-
+        
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
         self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
@@ -48,15 +46,14 @@ class MessagesTableViewController: UITableViewController {
         
         //we force the uid unwrapp because they have a UID from log in
         let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        let url = "\(DataService.ds.REF_USERS)/\(uid)"
-        let ref = Firebase(url: url)
         
+        let ref = DataService.ds.getReferenceForUser(uid as! String)
         query = ref.observeEventType(.Value, withBlock: { user in
             print("hello: start")
             self.userName = (user.value.objectForKey(KEY_DISPLAY_NAME) as? String)!
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
                 else {
-                 return
+                    return
             }
             
             for i in 0..<eventsIDList.count {
@@ -72,11 +69,11 @@ class MessagesTableViewController: UITableViewController {
                     self.eventList.append(eventDictionary)
                     
                     print("hello2")
-                    self.tableView.reloadData()
-
-                }, withCancelBlock: { err in
-                    print("help")
-                    print(err.description)
+                    self.eventListTableView.reloadData()
+                    
+                    }, withCancelBlock: { err in
+                        print("help")
+                        print(err.description)
                 })
             }
             
@@ -87,69 +84,24 @@ class MessagesTableViewController: UITableViewController {
                 print(error.description)
         })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventList.count
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("eventcell", forIndexPath: indexPath) as! EventsListTableViewCell
-        let event = eventList[indexPath.row]
-        cell.eventNameLabel?.text = event["event_title"] as? String
-        cell.eventId = event["event_id"] as? String
-        return cell
+    
+    override func viewDidLoad() {
+        eventListTableView.dataSource = self;
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("eventmessages", sender: eventList[indexPath.row]["event_id"])
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if query != nil {
+            DataService.ds.REF_USERS.removeAllObservers()
+            DataService.ds.REF_EVENTS.removeAllObservers()
+        }
+        
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
+    //--------------------------------------------------
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //--------------------------------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "eventmessages" {
             let controller = segue.destinationViewController as! MessagesViewController
@@ -159,9 +111,25 @@ class MessagesTableViewController: UITableViewController {
             controller.senderDisplayName = userName
         }
     }
+}
+
+//--------------------------------------------------
+// MARK: - TableViewDataSource
+//--------------------------------------------------
+extension MessagesTableViewController: UITableViewDataSource {
+    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventList.count
+    }
     
-    // MARK: =================================== DELEGATE FUNCTION ===================================
-//    func goToEventMessages(cell: EventsListTableViewCell) {
-//        performSegueWithIdentifier("goToEventMessages", sender: cell.eventId)
-//    }
+    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("eventcell", forIndexPath: indexPath) as! EventsListTableViewCell
+        let event = eventList[indexPath.row]
+        cell.eventNameLabel?.text = event["event_title"] as? String
+        cell.eventId = event["event_id"] as? String
+        return cell
+    }
+    
+    internal func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("eventmessages", sender: eventList[indexPath.row]["event_id"])
+    }
 }

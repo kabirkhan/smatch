@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-func showErrorAlert(title: String, msg: String) -> UIAlertController {
+func showAlert(title: String, msg: String) -> UIAlertController {
     let alert = UIAlertController(title: title, message: msg, preferredStyle: UIAlertControllerStyle.Alert)
     let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil)
     alert.addAction(action)

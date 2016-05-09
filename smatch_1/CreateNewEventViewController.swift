@@ -29,7 +29,8 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // load the user's joined events
+        tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
+        
         displayFireBaseEvents()
         
         tableView.delegate = self
@@ -118,7 +119,7 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
             } else {
                 
                 // if they don't have games show alert telling them to join/make games
-                let alert = showErrorAlert("You don't have any games!", msg: "You can create a game here or join one in the events section")
+                let alert = showAlert("You don't have any games!", msg: "You can create a game here or join one in the events section")
                 self.presentViewController(alert, animated: true, completion: nil)
             }
 
@@ -132,7 +133,7 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     // EVENT CREATION COMPLETED SUCCESSFULLY
     // unwind segue to here if you get to the end and save the event
     @IBAction func finishCreatingEvent(segue: UIStoryboardSegue) {
-        alert = showErrorAlert("Game Created Successfully!", msg: "View your game in the my events tab")
+        alert = showAlert("Game Created Successfully!", msg: "View your game in the my events tab")
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
         
@@ -141,7 +142,7 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     // EVENT CREATION CANCELLED
     // unwind segue if event creation is cancelled at any point
     @IBAction func eventCreationCancelled(segue: UIStoryboardSegue) {
-        alert = showErrorAlert("Game Creation Cancelled", msg: "Not right now? Make a game later!")
+        alert = showAlert("Game Creation Cancelled", msg: "Not right now? Make a game later!")
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(CreateNewEventViewController.presentAlert), userInfo: nil, repeats: false)
     }

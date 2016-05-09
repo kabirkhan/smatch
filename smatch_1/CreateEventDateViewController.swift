@@ -11,65 +11,87 @@ import TextFieldEffects
 
 class CreateEventDateViewController: UIViewController {
 
-    var newEvent: Event?
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
     let datePicker = UIDatePicker()
     
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
+    var newEvent: Event?
+    
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var dateAndTimeTextField: HoshiTextField!
     
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        Setup DatePicker
+        Set TextField to use DatePicker as InputView
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // setup datepicker
-        datePicker.datePickerMode = .DateAndTime
-        datePicker.minimumDate = NSDate(timeIntervalSinceNow: 21600) // need to give at least 6 hours notice for game
-        datePicker.backgroundColor = UIColor.whiteColor()
-        
-        datePicker.addTarget(self, action: #selector(CreateEventDateViewController.datePickerDidChange(_:)), forControlEvents: .ValueChanged)
-        
-        // set a toolbar for the pickerview with a done button
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.Default
-        toolBar.translucent = true
-        toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
-        toolBar.sizeToFit()
-        
-        // create a barbutton for done to dismiss the pickerview
-        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Bordered, target: self, action: #selector(CreateEventDateViewController.donePicker(_:)))
+        toolBar.setDefaultStyleWithTintColor()
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CreateEventDateViewController.donePicker(_:)))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         toolBar.setItems([spaceButton, doneButton], animated: false)
-        toolBar.userInteractionEnabled = true
         
-        // when textfield selected, activate datepicker
+        datePicker.datePickerMode = .DateAndTime
+        datePicker.minimumDate = NSDate(timeIntervalSinceNow: 21600)
+        datePicker.backgroundColor = UIColor.whiteColor()
+        datePicker.addTarget(self, action: #selector(CreateEventDateViewController.datePickerDidChange(_:)), forControlEvents: .ValueChanged)
+        
         dateAndTimeTextField.inputView = datePicker
         dateAndTimeTextField.inputAccessoryView = toolBar
     }
     
-    func donePicker(sender: UIDatePicker) {
-        dateAndTimeTextField.resignFirstResponder()
-    }
-    
-    func datePickerDidChange(sender: UIDatePicker) {
-        dateAndTimeTextField.text = NSDateFormatter.localizedStringFromDate(sender.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
-    }
-    
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
     @IBAction func nextButtonPressed(sender: UIBarButtonItem) {
-        
         if let date = dateAndTimeTextField.text where date != "" {
             newEvent?.date = date
-        
             performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE, sender: nil)
         } else {
-            let alert = showErrorAlert("You need a date!", msg: "Your new game needs a date and time for people to show up!")
+            let alert = showAlert("You need a date!", msg: "Your new game needs a date and time for people to show up!")
             presentViewController(alert, animated: true, completion: nil)
         }
     }
     
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if segue.identifier == SEGUE_NEW_EVENT_TO_NUM_PLAYERS_FROM_DATE {
             let destinationViewController = segue.destinationViewController as! EventNumPlayersViewController
             destinationViewController.newEvent = newEvent
         }
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
+    
+    /*
+        Hide DatePicker when done button pressed
+     */
+    func donePicker(sender: UIDatePicker) {
+        dateAndTimeTextField.resignFirstResponder()
+    }
+    
+    /*
+        Update TextField when DatePicker changes
+     */
+    func datePickerDidChange(sender: UIDatePicker) {
+        dateAndTimeTextField.text = NSDateFormatter.localizedStringFromDate(sender.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
     }
 }

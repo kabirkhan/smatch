@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="event_cell" rowHeight="231" id="tlC-kD-rlA" customClass="EventCell" customModule="smatch_1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="231"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tlC-kD-rlA" id="8RS-oM-BJG">
+                <rect key="frame" x="0.0" y="0.0" width="600" height="231"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="18k-Vt-Fcm" customClass="MaterialView" customModule="smatch_1" customModuleProvider="target">
+                        <rect key="frame" x="10" y="10" width="580" height="219"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Event Name Event Name Event Name Event Name Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UDA-KD-jjN">
+                                <rect key="frame" x="8" y="128" width="564" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="564" id="3wc-Um-0cw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="3wc-Um-0cw"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="LocationLocationLocationLocation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9gw-Bx-elm">
+                                <rect key="frame" x="8" y="161" width="564" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="564" id="Iue-mm-10n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Iue-mm-10n"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6AY-u9-Pht">
+                                <rect key="frame" x="0.0" y="0.0" width="580" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="55V-BJ-cmX"/>
+                                    <constraint firstAttribute="height" constant="139" id="I3y-XO-sQz"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="I3y-XO-sQz"/>
+                                    </mask>
+                                </variation>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Date Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l4n-M0-jo0">
+                                <rect key="frame" x="8" y="187" width="564" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="564" id="5QR-ja-o3c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5QR-ja-o3c"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="UDA-KD-jjN" secondAttribute="trailing" constant="8" id="18C-VO-Rrt"/>
+                            <constraint firstItem="9gw-Bx-elm" firstAttribute="top" secondItem="UDA-KD-jjN" secondAttribute="bottom" id="4gE-6X-nqS"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="900-JV-DRj"/>
+                            <constraint firstAttribute="trailing" secondItem="l4n-M0-jo0" secondAttribute="trailing" constant="8" id="98M-6Y-dzO"/>
+                            <constraint firstItem="6AY-u9-Pht" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" id="ABW-ye-Aet"/>
+                            <constraint firstItem="6AY-u9-Pht" firstAttribute="top" secondItem="18k-Vt-Fcm" secondAttribute="top" id="G19-GE-56J"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="top" secondItem="6AY-u9-Pht" secondAttribute="bottom" constant="8" id="Gmo-HP-lo5"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="HJK-pg-vhB"/>
+                            <constraint firstItem="l4n-M0-jo0" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="Iw8-Ap-dTK"/>
+                            <constraint firstItem="l4n-M0-jo0" firstAttribute="top" secondItem="9gw-Bx-elm" secondAttribute="bottom" constant="8" id="KHV-Qg-VYy"/>
+                            <constraint firstItem="l4n-M0-jo0" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="RsE-6N-KRf"/>
+                            <constraint firstItem="9gw-Bx-elm" firstAttribute="top" secondItem="UDA-KD-jjN" secondAttribute="bottom" constant="8" id="aXd-oX-ECJ"/>
+                            <constraint firstAttribute="trailing" secondItem="9gw-Bx-elm" secondAttribute="trailing" constant="8" id="avk-Xl-ZTP"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="cBJ-5i-hfc"/>
+                            <constraint firstItem="9gw-Bx-elm" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="cfH-uz-bS8"/>
+                            <constraint firstItem="9gw-Bx-elm" firstAttribute="leading" secondItem="UDA-KD-jjN" secondAttribute="leading" id="i1X-mg-Doq"/>
+                            <constraint firstAttribute="trailing" secondItem="6AY-u9-Pht" secondAttribute="trailing" id="ikZ-4M-ax6"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="height" secondItem="18k-Vt-Fcm" secondAttribute="height" multiplier="0.2" id="lAv-nm-hiN"/>
+                            <constraint firstItem="UDA-KD-jjN" firstAttribute="top" secondItem="6AY-u9-Pht" secondAttribute="bottom" id="pD8-mu-rdg"/>
+                            <constraint firstAttribute="trailing" secondItem="UDA-KD-jjN" secondAttribute="trailing" constant="8" id="uPY-7o-s3g"/>
+                            <constraint firstItem="9gw-Bx-elm" firstAttribute="leading" secondItem="18k-Vt-Fcm" secondAttribute="leading" constant="8" id="wYY-Rr-P4L"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="900-JV-DRj"/>
+                                <exclude reference="lAv-nm-hiN"/>
+                                <exclude reference="pD8-mu-rdg"/>
+                                <exclude reference="uPY-7o-s3g"/>
+                                <exclude reference="4gE-6X-nqS"/>
+                                <exclude reference="i1X-mg-Doq"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="18k-Vt-Fcm" firstAttribute="leading" secondItem="8RS-oM-BJG" secondAttribute="leading" constant="10" id="eH2-kC-k3h"/>
+                    <constraint firstItem="18k-Vt-Fcm" firstAttribute="top" secondItem="8RS-oM-BJG" secondAttribute="top" constant="10" id="ln3-gP-zgg"/>
+                    <constraint firstAttribute="bottom" secondItem="18k-Vt-Fcm" secondAttribute="bottom" constant="2" id="mCv-YK-fHJ"/>
+                    <constraint firstAttribute="trailing" secondItem="18k-Vt-Fcm" secondAttribute="trailing" constant="10" id="vWB-XW-qw2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="dateLabel" destination="l4n-M0-jo0" id="bpD-GB-4Ec"/>
+                <outlet property="eventLocationLabel" destination="9gw-Bx-elm" id="4EQ-Vw-F7P"/>
+                <outlet property="eventMapView" destination="6AY-u9-Pht" id="a2s-JG-2Le"/>
+                <outlet property="eventNameLabel" destination="UDA-KD-jjN" id="vRp-MF-laj"/>
+            </connections>
+            <point key="canvasLocation" x="657" y="506.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -5,6 +5,8 @@
 //  Created by Kabir Khan on 3/16/16.
 //  Copyright © 2016 blueberries. All rights reserved.
 //
+//  Main Login Screen, Handles initial logins for Facebook and
+//  Email/Password Login/Signup
 
 import UIKit
 import Firebase
@@ -14,39 +16,46 @@ import TextFieldEffects
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: =================================== OUTLETS ===================================
-    
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var emailTextField: HoshiTextField!
     @IBOutlet weak var passwordTextField: HoshiTextField!
     
-    // MARK: =================================== VIEW LIFECYCLE ===================================
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        ViewDidLoad - Check if user has a current session and segue them
+        to game table view
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //if there is already a logged in user, move forward
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
             performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
-        
-        // setup keyboard dismiss on view tap
         self.hideKeyboardWhenTappedAround()
-        
-        // setup text field delegates to use delegate functions
         emailTextField.delegate = self
         passwordTextField.delegate = self
     }
     
-    // MARK: ===================== TEXT FIELD DELEGATE =====================
-    //
-    // dismiss keyboard when return button pressed
+    /*
+        Dismiss keyboard when the return is button pressed.
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
 
-    // MARK: =================================== ACTIONS ===================================
-    //
-    // FACEBOOK LOGIN
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /*
+        Login user with facebook and request public profile.
+     */
     @IBAction func loginWithFacebookPressed(sender: UIButton) {
         
         let facebookLogin = FBSDKLoginManager()
@@ -58,6 +67,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 print(facebookError)
             } else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print(FBSDKAccessToken.currentAccessToken().userID)
                 
                 // log the user in to firebase
                 DataService.ds.REF_BASE.authWithOAuthProvider(VALUE_FACEBOOK_PROVIDER, token: accessToken, withCompletionBlock: { (error, authData) -> Void in
@@ -78,10 +88,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 })
             }
         }
-
     }
 
-    // EMAIL LOGIN
+    /*
+        Login user with email and password. Sign up if they are a new user.
+     */
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
         
         if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
@@ -106,15 +117,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 }
             })
         } else {
-            presentViewController(showErrorAlert("Email and Password are Required", msg: "You must enter both an email and a password!"), animated: true, completion: nil)
+            presentViewController(showAlert("Email and Password are Required", msg: "You must enter both an email and a password!"), animated: true, completion: nil)
         }
     }
     
-    // MARK: =================================== NAVIGATION ===================================
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     
+    /*
+        If the user is new, segue them to account setup.
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // for testing purposes
         if segue.identifier == SEGUE_ACCOUNT_SETUP {
             let destVC = segue.destinationViewController as! ConfirmSignUpViewController
             destVC.userData = sender as? Dictionary<String, String>

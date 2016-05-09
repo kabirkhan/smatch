@@ -58,7 +58,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
 // MARK: - Actions
 //--------------------------------------------------
     
-    @IBAction func filterButtonClicked(sender: AnyObject) {
+    @IBAction func filterButtonPressed(sender: AnyObject) {
         showWithMultipleSelections(sender)
     }
     
@@ -172,7 +172,6 @@ extension EventsMapViewController: MKMapViewDelegate {
                 view.pinTintColor = UIColor.blueColor()
             default:
                 view.pinTintColor = UIColor.grayColor()
-                
             }
             return view
         }

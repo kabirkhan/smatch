@@ -6,71 +6,87 @@
 //  Created by Kabir Khan on 3/21/16.
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
+//  If user is signing up, Confirm Sign Up information
 
 import UIKit
 import Firebase
 
 class ConfirmSignUpViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: ===================== VARIABLES =====================
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var userData: Dictionary<String, AnyObject>?
     
-    // MARK: ===================== OUTLETS =====================
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var genderTextField: UITextField!
     @IBOutlet weak var ageTextField: UITextField!
     
-    // MARK: ===================== VIEW LIFECYCLE =====================
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        Populate the text fields for name and gender if they exist
+        because the user logged in with an OAuth client
+     */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        // populate data from the passed userData
         if let name = userData![KEY_DISPLAY_NAME], gender = userData![KEY_GENDER] {
             nameTextField.text = name as? String
             genderTextField.text = gender as? String
         }
         
-        // setup keyboard dismiss on view tap
         self.hideKeyboardWhenTappedAround()
-        
-        // setup text field delegates to use delegate functions
         nameTextField.delegate = self
         ageTextField.delegate = self
         genderTextField.delegate = self
     }
     
-    // MARK: ===================== TEXT FIELD DELEGATE =====================
-    
-    // dismiss keyboard when return button pressed
+    /*
+        Dismiss keyboard when return button pressed
+     */
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    // MARK: ===================== ACTIONS =====================
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
     
-    // submit user details from the text fields and add in facebook info if user logs in with facebook
+    /*
+        Submit user details from the text fields.
+        Add in profile info if user logs in with OAuth client
+     */
     @IBAction func submitButtonPressed(sender: UIButton) {
         
-        // unwrap the text values of each text field
-        if let name = nameTextField.text, gender = genderTextField.text, age = ageTextField.text where age != "" && name != "" && gender != "" {
+        if let name = nameTextField.text,
+                gender = genderTextField.text,
+                age = ageTextField.text
+                where age != "" && name != "" && gender != "" {
             
             userData![KEY_DISPLAY_NAME] = name
             userData![KEY_AGE] = age
             userData![KEY_GENDER] = gender
-            
-            // This should be moved to Choose Sports when we eventually finish Account Creation
-            // add the information from facebook if user logged in with facebook
-                        
-            // segue to the choose sports page
             performSegueWithIdentifier(SEGUE_CHOOSE_SPORTS, sender: userData)
         }
     }
     
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
+    
+    /*
+        Send user data to Choose Sports Controller to complete 
+        profile creation
+     */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let destinationViewController = segue.destinationViewController as! ChooseSportsCollectionViewController
         destinationViewController.userData = sender as! Dictionary<String, AnyObject>?
     }
-    
-    
 }

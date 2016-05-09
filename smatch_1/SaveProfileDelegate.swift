@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SaveProfileDelegate {
-    func saveProfile(controller: EditUserProfileViewController)
+    func saveProfile(controller: EditProfileViewController)
 }

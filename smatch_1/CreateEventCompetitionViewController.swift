@@ -10,18 +10,25 @@ import UIKit
 
 class CreateEventCompetitionViewController: UIViewController {
 
-    // MARK: ============= VARIABLES =================
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var newEvent: Event?
     var competitionLevel: CompetitionLevel?
     
-    // MARK: ============= OUTLETS =================
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    // MARK: ============= ACTIONS AND SEGUES =================
-    //
-    // Set competition level based on segmentedControl value
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /*
+       Set competition level based on SegmentedControl value
+    */
     @IBAction func createButtonPressed(sender: UIBarButtonItem) {
-       
         switch segmentedControl.selectedSegmentIndex {
         case 1:
             competitionLevel = CompetitionLevel.NotCompetitive
@@ -34,12 +41,13 @@ class CreateEventCompetitionViewController: UIViewController {
         performSegueWithIdentifier(SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION, sender: nil)
     }
     
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == SEGUE_NEW_EVENT_TO_GENDER_FROM_COMPETITION {
             let destinationViewController = segue.destinationViewController as! CreateEventGenderViewController
             destinationViewController.newEvent = newEvent
         }
     }
-    
 }

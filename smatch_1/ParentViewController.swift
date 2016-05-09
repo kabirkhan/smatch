@@ -11,61 +11,64 @@
 import UIKit
 
 class ParentViewController: UIViewController {
-
-    let font = UIFont(name: "Avenir", size: 18)
-    let fontColor = UIColor.whiteColor()
     
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     enum TabIndex : Int {
         case FirstChildTab = 0
         case SecondChildTab = 1
         case ThirdChildTab = 2
     }
-
-    @IBOutlet weak var segmentedControl: TopTabSegmentedControl!
-    @IBOutlet weak var contentView: UIView!
     
     var currentViewController: UIViewController?
     
     lazy var firstChildTabVC: UIViewController? = {
-        let firstChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("FirstViewControllerId")
+        let firstChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("FirstViewControllerID")
         return firstChildTabVC
     }()
     
     lazy var secondChildTabVC : UIViewController? = {
-        let secondChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewControllerId")
+        let secondChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewControllerID")
         return secondChildTabVC
     }()
     
     lazy var thirdChildTabVC : UIViewController? = {
-        let thirdChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdViewControllerId")
+        let thirdChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdViewControllerID")
         return thirdChildTabVC
     }()
 
     
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
+    @IBOutlet weak var segmentedControl: TopTabSegmentedControl!
+    @IBOutlet weak var contentView: UIView!
 
-    // MARK: - View Controller Lifecycle
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
     
+    /*
+        Setup navbar shadow and fonts.
+        Initialize UI of segmented control.
+        Initialize Tab index
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
-        
-        // Remove the shadow between navbar and segmented controller
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
-        self.navigationController?.navigationBar.backgroundColor = UIColor.materialMainGreen
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        segmentedControl.layer.shadowColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1.0).CGColor
-        segmentedControl.layer.shadowOpacity = 0.8
-        segmentedControl.layer.shadowRadius = 5.0
-        segmentedControl.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        self.navigationController?.navigationBar.removeShadowOnBottomOfBarAndSetColorWith(UIColor.materialMainGreen)
+        self.navigationController?.navigationBar.setNavbarFonts()
         
         segmentedControl.initUI()
         segmentedControl.selectedSegmentIndex = TabIndex.FirstChildTab.rawValue
         displayCurrentTab(TabIndex.FirstChildTab.rawValue)
     }
     
+    /*
+        If parent ViewController dissapears, tell the child 
+        ViewController to dissapear as well
+     */
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         if let currentViewController = currentViewController {
@@ -73,7 +76,14 @@ class ParentViewController: UIViewController {
         }
     }
     
-    // MARK: - Switching Tabs Functions
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /*
+        Remove current ViewController in container.
+        Display the next ViewController from the tab index selected.
+     */
     @IBAction func switchTabs(sender: UISegmentedControl) {
         
         self.currentViewController!.view.removeFromSuperview()
@@ -82,6 +92,14 @@ class ParentViewController: UIViewController {
         displayCurrentTab(sender.selectedSegmentIndex)
     }
     
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
+    
+    /*
+        Given the index of the segmented control
+        display the correct ViewController
+     */
     func displayCurrentTab(tabIndex: Int) {
         if let vc = viewControllerForSelectedSegmentIndex(tabIndex) {
             
@@ -94,6 +112,9 @@ class ParentViewController: UIViewController {
         }
     }
     
+    /*
+        Given an index, return the correct ViewController for that index.
+     */
     func viewControllerForSelectedSegmentIndex(index: Int) -> UIViewController? {
 
         switch index {

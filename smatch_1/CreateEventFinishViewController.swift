@@ -14,14 +14,18 @@ import TextFieldEffects
 
 class CreateEventFinishViewController: UIViewController {
 
-    // MARK: VARIABLES
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var newEvent: Event?
     var newEventDict: Dictionary<String, AnyObject>?
     var userId = ""
     var users = [String]()
     var events = [String]()
     
-    // MARK: OUTLETS
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var nameTextField: HoshiTextField!
     @IBOutlet weak var sportTextField: HoshiTextField!
     @IBOutlet weak var locationTextField: HoshiTextField!
@@ -30,9 +34,13 @@ class CreateEventFinishViewController: UIViewController {
     @IBOutlet weak var competitivenessTextField: HoshiTextField!
     @IBOutlet weak var coedTextField: HoshiTextField!
     
-    // MARK: VIEW LIFECYCLE
-    // 
-    // setup the textfields
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    
+    /*
+        Setup TextFields with information from newEvent object.
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,20 +55,25 @@ class CreateEventFinishViewController: UIViewController {
         }
     }
     
-    // When finished button pressed, construct the event dictionary and add it to firebase
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
+    
+    /*
+        When finished button pressed, 
+        construct the event dictionary and add it to firebase.
+        Add the creator as the creator and an attendee of 
+        the new game.
+        Add the game to the creator's joined_events.
+     */
     @IBAction func finishButtonPressed(sender: UIButton) {
         
-        // get the current user's id and set it to userId as the creator of the event
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
-            
             userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
             users.append(userId)
         }
         
-        // unwrap the newEvent Object
         if let event = newEvent {
-        
-            // construct the event dictionary for entry to firebase
             newEventDict = [
                 "sport": event.sport,
                 "name": event.title!,
@@ -70,18 +83,12 @@ class CreateEventFinishViewController: UIViewController {
                 "gender": String(event.gender),
                 "competition_level": String(event.competition),
                 "creator_id": userId,
-                "attendees": users // creator attends their own event
+                "attendees": users
             ]
             
-            // save event to firebase
             if let newEventDict = newEventDict {
-                
-                // the auto-generated ID for the event
                 let eventId = DataService.ds.createEvent(newEventDict)
-                
-                // observe the most recent addition of events
-                //
-                // change joined_events to be created_events at some point to handle admin services
+            
                 DataService.ds.REF_USERS.childByAppendingPath(userId).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                     
                     if let joined_events = snapshot.value.objectForKey("joined_events") {
@@ -95,7 +102,6 @@ class CreateEventFinishViewController: UIViewController {
                     
                     let user = DataService.ds.REF_USERS.childByAppendingPath(self.userId)
                     
-                    // update the joined_events key for the current user to reflect they have joind the event
                     user.updateChildValues(joinedEvents)
                     
                     }, withCancelBlock: { (error) in

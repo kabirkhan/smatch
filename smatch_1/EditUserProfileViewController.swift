@@ -124,7 +124,7 @@ class EditUserProfileViewController : UIViewController, UICollectionViewDelegate
             let ref = Firebase(url: url)
             ref.updateChildValues(userInfo)
             
-            saveProfileDelegate?.saveProfile(self)
+//            saveProfileDelegate?.saveProfile(self)
         }
     }
 }
