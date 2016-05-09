@@ -29,6 +29,8 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
+        
         // load the user's joined events
         displayFireBaseEvents()
         

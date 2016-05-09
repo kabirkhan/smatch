@@ -51,7 +51,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.removeShadowOnBottomOfBarAndSetColorWith(UIColor.materialMainGreen)
+        self.navigationController?.navigationBar.applyDefaultShadow(UIColor.materialMainGreen)
         self.navigationController?.navigationBar.setNavbarFonts()
         
         individualMapView.delegate = self

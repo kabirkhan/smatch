@@ -24,6 +24,8 @@
 		D81C61C31CDFEDCE0086F5E1 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */; };
 		D81C61C41CDFEDCE0086F5E1 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */; };
 		D81C61C51CDFEDCE0086F5E1 /* ToolBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C21CDFEDCE0086F5E1 /* ToolBarExtension.swift */; };
+		D81C61C71CE0179D0086F5E1 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */; };
+		D81C61C91CE027710086F5E1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */; };
 		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -58,7 +60,6 @@
 		D8E0003C1CA07951006C50EC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E0003B1CA07951006C50EC /* Constants.swift */; };
 		D8E0003E1CA07C95006C50EC /* ConfirmSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */; };
 		D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */; };
-		D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */; };
 		D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */; };
 		D8EE2F381CA47F44007DB652 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F371CA47F44007DB652 /* MaterialView.swift */; };
 		D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */; };
@@ -86,6 +87,8 @@
 		D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
 		D81C61C21CDFEDCE0086F5E1 /* ToolBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolBarExtension.swift; sourceTree = "<group>"; };
+		D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
+		D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +125,6 @@
 		D8E0003B1CA07951006C50EC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D8E0003D1CA07C95006C50EC /* ConfirmSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmSignUpViewController.swift; sourceTree = "<group>"; };
 		D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTabSegmentedController.swift; sourceTree = "<group>"; };
-		D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsMapViewController.swift; sourceTree = "<group>"; };
 		D8EE2F371CA47F44007DB652 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		D8EE2F3B1CA494EF007DB652 /* CreateNewEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateNewEventViewController.swift; sourceTree = "<group>"; };
@@ -173,7 +175,7 @@
 			children = (
 				D86407C41CA9B356006490B4 /* CreateEvent */,
 				D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */,
-				D8EAA1EF1CA36C4E00A11894 /* EventsTableViewController.swift */,
+				D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */,
 				D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */,
 				D8EE2F3D1CA4B665007DB652 /* EventDetailViewController.swift */,
 			);
@@ -230,15 +232,15 @@
 			isa = PBXGroup;
 			children = (
 				4690A3E11CA5C16A00814106 /* AlertModel.swift */,
-				D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */,
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
+				46F6E2381CAB4F1F0064CC18 /* EventsListTableViewCell.swift */,
+				D8EF28851CAC3DBA00150411 /* MaterialButton.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
 				D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */,
 				46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */,
 				46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */,
 				D86407D11CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift */,
-				46F6E2381CAB4F1F0064CC18 /* EventsListTableViewCell.swift */,
-				D8EF28851CAC3DBA00150411 /* MaterialButton.swift */,
+				D8EAA1ED1CA36B9900A11894 /* TopTabSegmentedController.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -246,6 +248,7 @@
 		D875B2791C9A51A4007BBFF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D81C61C71CE0179D0086F5E1 /* EventTableViewCell.xib in Resources */,
 				D83A181A1CA3B7C70048B629 /* Messages.storyboard in Resources */,
 				D86407D01CA9B533006490B4 /* CreateEvent.storyboard in Resources */,
 				D8C18D5E1C9A39BC00E2E0D7 /* LaunchScreen.storyboard in Resources */,
@@ -540,6 +544,7 @@
 				D86407CC1CA9B406006490B4 /* EventNumPlayersViewController.swift in Sources */,
 				D890FC381CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift in Sources */,
 				D8EAA1EE1CA36B9900A11894 /* TopTabSegmentedController.swift in Sources */,
+				D81C61C91CE027710086F5E1 /* EventsTableViewController.swift in Sources */,
 				D890FC3C1CAA30B400D9ADEA /* GenderForGame.swift in Sources */,
 				D875B2711C9A5155007BBFF3 /* ChooseSportsCollectionViewController.swift in Sources */,
 				46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */,
@@ -551,7 +556,6 @@
 				D81C61C41CDFEDCE0086F5E1 /* NavigationBarExtension.swift in Sources */,
 				D890FC3A1CAA307A00D9ADEA /* CompetitionLevel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
-				D8EAA1F01CA36C4E00A11894 /* EventsTableViewController.swift in Sources */,
 				D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */,
 				D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */,
 				D8EF28861CAC3DBA00150411 /* MaterialButton.swift in Sources */,

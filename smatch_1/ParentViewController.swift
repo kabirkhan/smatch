@@ -24,17 +24,17 @@ class ParentViewController: UIViewController {
     var currentViewController: UIViewController?
     
     lazy var firstChildTabVC: UIViewController? = {
-        let firstChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("FirstViewControllerId")
+        let firstChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("FirstViewControllerID")
         return firstChildTabVC
     }()
     
     lazy var secondChildTabVC : UIViewController? = {
-        let secondChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewControllerId")
+        let secondChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("SecondViewControllerID")
         return secondChildTabVC
     }()
     
     lazy var thirdChildTabVC : UIViewController? = {
-        let thirdChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdViewControllerId")
+        let thirdChildTabVC = self.storyboard?.instantiateViewControllerWithIdentifier("ThirdViewControllerID")
         return thirdChildTabVC
     }()
 

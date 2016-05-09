@@ -82,14 +82,14 @@ class CreateEventDateViewController: UIViewController {
     //--------------------------------------------------
     
     /*
-     Hide DatePicker when done button pressed
+        Hide DatePicker when done button pressed
      */
     func donePicker(sender: UIDatePicker) {
         dateAndTimeTextField.resignFirstResponder()
     }
     
     /*
-     Update TextField when DatePicker changes
+        Update TextField when DatePicker changes
      */
     func datePickerDidChange(sender: UIDatePicker) {
         dateAndTimeTextField.text = NSDateFormatter.localizedStringFromDate(sender.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)

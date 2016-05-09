@@ -58,7 +58,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
 // MARK: - Actions
 //--------------------------------------------------
     
-    @IBAction func filterButtonClicked(sender: AnyObject) {
+    @IBAction func filterButtonPressed(sender: AnyObject) {
         showWithMultipleSelections(sender)
     }
     
