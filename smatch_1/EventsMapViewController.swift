@@ -50,7 +50,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
         //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         let locationManager = UserLocation.userLocation
         initialLocation = locationManager.returnLocation()
-        centerMapOnLocation(initialLocation, mapView: mapView, regionRadius: regionRadius)
+        centerMapOnLocation(seattle, mapView: mapView, regionRadius: regionRadius)
         displayFireBaseEvents()
     }
     
@@ -236,7 +236,6 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         for event in self.events {
             for sport in self.filteredSports {
                 if sport == event.sport {
-                    print(event.title)
                     event.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
                 }
             }

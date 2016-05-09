@@ -12,17 +12,17 @@ import CoreLocation
 import Firebase
 import CZPicker
 
-class EventsTableViewController: UITableViewController, GoBackDelegate {
+class EventsTableViewController: UITableViewController {
     
-    //--------------------------------------------------
-    // MARK: - Constants
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Constants
+//--------------------------------------------------
     
     let regionRadius: CLLocationDistance = 10000
     
-    //--------------------------------------------------
-    // MARK: - Variables
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Variables
+//--------------------------------------------------
     
     var factory = [Event]()
     var sports = [String]()
@@ -39,15 +39,15 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
     var query: UInt?
     var events = [Event]()
     
-    //--------------------------------------------------
-    // MARK: - Outlets
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Outlets
+//--------------------------------------------------
     
     
     
-    //--------------------------------------------------
-    // MARK: - View Lifecycle
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - View Lifecycle
+//--------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,17 +76,17 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         }
     }
     
-    //--------------------------------------------------
-    // MARK: - Actions
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Actions
+//--------------------------------------------------
     
     @IBAction func filterButtonClicked(sender: AnyObject) {
         showWithOneSelectionFilters(sender)
     }
     
-    //--------------------------------------------------
-    // MARK: - Segues
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Segues
+//--------------------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "show_event_detail" {
@@ -97,14 +97,10 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
         }
     }
     
-    func goBack(controller: UIViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
     
-    
-    //--------------------------------------------------
-    // MARK: - Helper Functions
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Helper Functions
+//--------------------------------------------------
     
     func displayFireBaseEvents() {
         
@@ -187,6 +183,12 @@ class EventsTableViewController: UITableViewController, GoBackDelegate {
 //--------------------------------------------------
 // MARK: - Extensions
 //--------------------------------------------------
+
+extension EventsTableViewController: GoBackDelegate {
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
 
 extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSource {
     
@@ -286,7 +288,6 @@ extension EventsTableViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             filter = "Competitveness"
             showWithMultipleCompetitivenessSelections(choices[row])
         }
-        
     }
     
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
