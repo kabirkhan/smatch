@@ -8,7 +8,7 @@
         <!--Notifications-->
         <scene sceneID="Udx-8l-oSS">
             <objects>
-                <viewController id="n1U-mb-eup" customClass="ViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n1U-mb-eup" customClass="NotificationsViewController" customModule="smatch_1" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="caa-sl-j0y"/>
                         <viewControllerLayoutGuide type="bottom" id="i4b-Y6-XHP"/>

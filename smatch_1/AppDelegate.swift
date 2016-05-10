@@ -32,13 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         if let font = UIFont(name: NAVBAR_FONT, size: BAR_BUTTON_FONT_SIZE) {
-            UIBarButtonItem.appearance()
-                .setTitleTextAttributes([NSFontAttributeName: font, NSForegroundColorAttributeName: NAVBAR_FONT_COLOR], forState: UIControlState.Normal)
+            UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: font], forState: UIControlState.Normal)
         }
         
             return FBSDKApplicationDelegate.sharedInstance()
                 .application(application, didFinishLaunchingWithOptions: launchOptions)
     }
+    
     func applicationDidBecomeActive(application: UIApplication) {
         FBSDKAppEvents.activateApp()
         //This starts updates in order to grab user Location

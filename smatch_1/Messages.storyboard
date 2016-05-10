@@ -60,6 +60,42 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Messages" id="bWW-dp-TQV"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="eventcell" id="Ck9-Pq-h4b" customClass="EventsListTableViewCell" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="54"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ck9-Pq-h4b" id="6We-qK-gJF">
+                                    <rect key="frame" x="0.0" y="0.0" width="567" height="54"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofh-2g-6vS">
+                                            <rect key="frame" x="8" y="8" width="551" height="37"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="leading" secondItem="6We-qK-gJF" secondAttribute="leadingMargin" id="2KE-wg-KZt"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="centerY" secondItem="6We-qK-gJF" secondAttribute="centerY" id="3ZA-Oa-ulP"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="top" secondItem="6We-qK-gJF" secondAttribute="topMargin" id="LMO-wU-jda"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Ofh-2g-6vS" secondAttribute="bottom" id="SKi-Tw-c0C"/>
+                                        <constraint firstItem="Ofh-2g-6vS" firstAttribute="trailing" secondItem="6We-qK-gJF" secondAttribute="trailingMargin" id="eal-da-i9F"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="eventNameLabel" destination="Ofh-2g-6vS" id="KZ9-xX-mMp"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="RDp-XI-iH5" id="dSo-Cc-6gK"/>
+                            <outlet property="delegate" destination="RDp-XI-iH5" id="aeo-de-tay"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Messages" id="yLO-Sv-AHm">
+                        <barButtonItem key="backBarButtonItem" title=" " id="DWO-td-Zcg"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventListTableView" destination="PU8-9x-m4f" id="bjC-eK-pFv"/>
                         <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="YKQ-bM-fDh"/>

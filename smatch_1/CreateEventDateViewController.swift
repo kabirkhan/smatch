@@ -92,6 +92,6 @@ class CreateEventDateViewController: UIViewController {
         Update TextField when DatePicker changes
      */
     func datePickerDidChange(sender: UIDatePicker) {
-        dateAndTimeTextField.text = NSDateFormatter.localizedStringFromDate(sender.date, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        dateAndTimeTextField.text = sender.date.formatDate()
     }
 }

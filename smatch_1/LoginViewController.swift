@@ -57,35 +57,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Login user with facebook and request public profile.
      */
     @IBAction func loginWithFacebookPressed(sender: UIButton) {
-        
         let facebookLogin = FBSDKLoginManager()
-        let permissions = ["public_profile", "email"] // might not need user email
-        
-        // login with facebook process - NEED TO HANDLE ERRORS (alerts)
-        facebookLogin.logInWithReadPermissions(permissions, fromViewController: self) { (facebookResult, facebookError) -> Void in
-            if facebookError != nil {
-                print(facebookError)
+        let permissions = ["public_profile", "email"]
+        DataService.ds.loginUsingFacebook(facebookLogin, withPermissions: permissions, fromViewController: self) { (userData, error) in
+            if error != nil {
+                let alert = showAlert("Error Logging In", msg: "There was an error logging you in. Please try again later")
+                self.presentViewController(alert, animated: true, completion: nil)
             } else {
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                print(FBSDKAccessToken.currentAccessToken().userID)
-                
-                // log the user in to firebase
-                DataService.ds.REF_BASE.authWithOAuthProvider(VALUE_FACEBOOK_PROVIDER, token: accessToken, withCompletionBlock: { (error, authData) -> Void in
-                    
-                    if error != nil {
-                        print(error)
-                    } else {
-                        var userData = Dictionary<String, String>()
-                        userData[KEY_PROVIDER] = VALUE_FACEBOOK_PROVIDER
-                        userData[KEY_IMAGE_URL] = authData.providerData[VALUE_PROFILE_IMAGE_URL] as? String
-                        userData[KEY_DISPLAY_NAME] = authData.providerData[VALUE_DISPLAY_NAME] as? String
-                        userData[KEY_GENDER] = authData.providerData[VALUE_CACHED_USER_PROFILE]![VALUE_GENDER] as? String
-                        //userData[KEY_AGE] = authData.providerData[VALUE_CACHED_USER_PROFILE]![VALUE_AGE] as? String
-                        userData[KEY_ID] = authData.uid
-                        self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: userData)
-                    }
-                    
-                })
+                if let data = userData {
+                    self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: data)
+                }
             }
         }
     }
@@ -93,32 +74,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     /*
         Login user with email and password. Sign up if they are a new user.
      */
+    @IBAction func loginWithTwitterButtonPressed(sender: AnyObject) {
+        let alert = showAlert("Coming Soon!", msg: "Twitter Login is Coming Soon")
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    /*
+        Login user with email and password. Sign up if they are a new user.
+     */
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
-        
-        if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
-            //try an authenticate a user with the provided email and password
-            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { (error, authData) -> Void in
-                if error != nil {
-                    //If the User doesn't exist we create an account for them
-                    if error.code == STATUS_ACCOUNT_NONEXIST {
-                        //store the information and segue to the info view
-                        var userData = Dictionary<String, String>()
-                        userData[KEY_PROVIDER] = VALUE_EMAIL_PASSWORD_PROVIDER
-                        userData[KEY_EMAIL] = email
-                        userData[KEY_PASSWORD] = pwd
-                        self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: userData)
-                        
-                    } else {
-                        //Handle Other Errors
-                    }
-                } else {
-                    //log in suceeded segue to main app
-                    self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-                }
-            })
-        } else {
-            presentViewController(showAlert("Email and Password are Required", msg: "You must enter both an email and a password!"), animated: true, completion: nil)
-        }
+        let alert = showAlert("Coming Soon!", msg: "Email and Password Login is Coming Soon")
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     //--------------------------------------------------

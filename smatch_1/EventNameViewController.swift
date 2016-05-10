@@ -10,7 +10,7 @@
 import UIKit
 import TextFieldEffects
 
-class EventNameViewController: UIViewController {
+class EventNameViewController: UIViewController, UITextFieldDelegate {
     
     //--------------------------------------------------
     // MARK: - Variables
@@ -21,6 +21,15 @@ class EventNameViewController: UIViewController {
     // MARK: - Outlets
     //--------------------------------------------------
     @IBOutlet weak var eventNameTextField: HoshiTextField!
+    
+    //--------------------------------------------------
+    // MARK: - View LifeCycle
+    //--------------------------------------------------
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        eventNameTextField.delegate = self
+    }
     
     //--------------------------------------------------
     // MARK: - Actions
@@ -48,5 +57,17 @@ class EventNameViewController: UIViewController {
             let destinationViewController = segue.destinationViewController as! EventLocationViewController
             destinationViewController.newEvent = newEvent
         }
+    }
+    
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
+    
+    /*
+        Dismiss keyboard when the return is button pressed.
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

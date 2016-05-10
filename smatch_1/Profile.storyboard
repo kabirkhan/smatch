@@ -21,6 +21,7 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -40,7 +41,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="1Pz-oZ-Dqy">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="321"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="408"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8RN-67-nXm">
@@ -73,7 +74,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixZ-zN-Sfg">
-                                            <rect key="frame" x="20" y="300" width="330" height="17"/>
+                                            <rect key="frame" x="20" y="300" width="572" height="17"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -100,7 +101,13 @@
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSI-eK-Gq9">
-                                            <rect key="frame" x="20" y="275" width="330" height="17"/>
+                                            <rect key="frame" x="20" y="275" width="572" height="17"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO BIO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Dr-B6-cRl">
+                                            <rect key="frame" x="20" y="325" width="572" height="17"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                             <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -108,9 +115,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="6Dr-B6-cRl" firstAttribute="leading" secondItem="ixZ-zN-Sfg" secondAttribute="leading" id="7VG-cL-lF5"/>
                                         <constraint firstItem="tSI-eK-Gq9" firstAttribute="top" secondItem="hEF-ca-f7x" secondAttribute="bottom" constant="16" id="AZP-br-cbh"/>
+                                        <constraint firstItem="6Dr-B6-cRl" firstAttribute="top" secondItem="ixZ-zN-Sfg" secondAttribute="bottom" constant="8" id="AcC-eb-nhZ"/>
                                         <constraint firstItem="tSI-eK-Gq9" firstAttribute="leading" secondItem="hEF-ca-f7x" secondAttribute="leading" id="B0o-mm-sGz"/>
                                         <constraint firstItem="8RN-67-nXm" firstAttribute="top" secondItem="1Pz-oZ-Dqy" secondAttribute="top" id="BTF-b6-kTR"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="6Dr-B6-cRl" secondAttribute="trailing" id="E5D-98-IX7"/>
                                         <constraint firstAttribute="trailing" secondItem="8RN-67-nXm" secondAttribute="trailing" id="GJU-Fu-dDw"/>
                                         <constraint firstAttribute="trailing" secondItem="VCR-Ji-nH5" secondAttribute="trailing" constant="20" id="GqS-Pe-rna"/>
                                         <constraint firstItem="Olo-Pr-amc" firstAttribute="leading" secondItem="1Pz-oZ-Dqy" secondAttribute="leading" constant="20" id="K5w-dv-ufQ"/>
@@ -118,17 +128,19 @@
                                         <constraint firstItem="ixZ-zN-Sfg" firstAttribute="top" secondItem="tSI-eK-Gq9" secondAttribute="bottom" constant="8" id="QFz-IQ-EuP"/>
                                         <constraint firstItem="hEF-ca-f7x" firstAttribute="leading" secondItem="mnP-X3-g7V" secondAttribute="leading" id="R2F-Ux-gw6"/>
                                         <constraint firstItem="8RN-67-nXm" firstAttribute="leading" secondItem="1Pz-oZ-Dqy" secondAttribute="leading" id="Sxz-Xu-pya"/>
-                                        <constraint firstItem="8RN-67-nXm" firstAttribute="height" secondItem="1Pz-oZ-Dqy" secondAttribute="height" multiplier="0.4" id="XIZ-1o-1g7"/>
+                                        <constraint firstItem="8RN-67-nXm" firstAttribute="height" secondItem="1Pz-oZ-Dqy" secondAttribute="height" multiplier="0.312" id="XIZ-1o-1g7"/>
                                         <constraint firstItem="mnP-X3-g7V" firstAttribute="leading" secondItem="Olo-Pr-amc" secondAttribute="leading" id="Xah-yT-um1"/>
                                         <constraint firstItem="Olo-Pr-amc" firstAttribute="top" secondItem="8RN-67-nXm" secondAttribute="bottom" constant="-25" id="ehu-kc-MOl"/>
                                         <constraint firstItem="mnP-X3-g7V" firstAttribute="top" secondItem="Olo-Pr-amc" secondAttribute="bottom" constant="30" id="jOP-YL-VVv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="ixZ-zN-Sfg" secondAttribute="trailing" id="lAl-kU-MPl"/>
                                         <constraint firstItem="VCR-Ji-nH5" firstAttribute="top" secondItem="8RN-67-nXm" secondAttribute="bottom" constant="8" id="mvU-aA-YTF"/>
                                         <constraint firstItem="ixZ-zN-Sfg" firstAttribute="leading" secondItem="tSI-eK-Gq9" secondAttribute="leading" id="qFt-Zz-8HV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="tSI-eK-Gq9" secondAttribute="trailing" id="tRB-ks-OOX"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="88" id="ldb-wU-9KZ">
-                                        <rect key="frame" x="0.0" y="349" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="436" width="600" height="88"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ldb-wU-9KZ" id="f9I-0K-lvV">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
@@ -158,6 +170,7 @@
                         <outlet property="genderLabel" destination="tSI-eK-Gq9" id="4yf-Mv-Qgs"/>
                         <outlet property="nameLabel" destination="mnP-X3-g7V" id="00q-3f-p9t"/>
                         <outlet property="profilePhoto" destination="z4s-bo-842" id="elA-Tt-zxY"/>
+                        <outlet property="sportsLabel" destination="6Dr-B6-cRl" id="Zo0-vB-jJk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y2O-VS-ljj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -355,7 +368,7 @@
                                         <rect key="frame" x="0.0" y="433" width="600" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8M8-jN-l2k" id="kFJ-I8-c47">
-                                            <rect key="frame" x="0.0" y="0.0" width="553" height="80.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="81"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sports" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8t9-Xu-m0Z">
@@ -396,11 +409,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Edit" id="wcs-ts-H72">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Z9z-xx-LtJ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="2GP-M9-Yzc" id="2Zj-c5-ZR4"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="2Bv-AF-1Go">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveButtonPressed:" destination="2GP-M9-Yzc" id="gU9-Qg-i2U"/>
                             </connections>

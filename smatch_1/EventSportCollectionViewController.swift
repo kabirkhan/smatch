@@ -13,6 +13,9 @@ import Firebase
 
 class EventSportCollectionViewController: UICollectionViewController {
     
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
 
@@ -36,22 +39,9 @@ class EventSportCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // =========== NAVBAR SETUP ==============
-        // set navbar fonts
-//        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
-//        
-//        // set navbar shadow
-//        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
-//        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
-//        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
-//        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
-//
-//        // set navbar color
-//        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
-        navigationController?.navigationBar.removeShadowOnBottomOfBarAndSetColorWith(UIColor.materialMainGreen)
+        navigationController?.navigationBar.applyDefaultShadow(UIColor.materialMainGreen)
         navigationController?.navigationBar.setNavbarFonts()
         
-        // get user's id if stored in defaults which it has to be to get here
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
             userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String?
         }
@@ -92,14 +82,15 @@ class EventSportCollectionViewController: UICollectionViewController {
         }
     }
     
-    // send newEvent object to be build up
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == SEGUE_NEW_EVENT_TO_NAME_FROM_CHOOSE_SPORT {
             let destinationViewController = segue.destinationViewController as! EventNameViewController
             destinationViewController.newEvent = newEvent
         }
-        
     }
 }
 
