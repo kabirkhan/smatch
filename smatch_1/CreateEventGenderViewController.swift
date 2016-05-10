@@ -31,9 +31,9 @@ class CreateEventGenderViewController: UIViewController {
     @IBAction func finishedButtonPressed(sender: UIBarButtonItem) {
         
         switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            gender = Gender.OnlyGuys
         case 1:
+            gender = Gender.OnlyGuys
+        case 2:
             gender = Gender.OnlyGirls
         default:
             gender = Gender.Coed

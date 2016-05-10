@@ -51,6 +51,11 @@ class EditProfileViewController: UITableViewController {
     //--------------------------------------
     // MARK: - VIEW LIFECYCLE
     //--------------------------------------
+    
+    /*
+        Setup Navbar, set textfields for user info.
+        Setup ActionController for image changes
+     */
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
@@ -60,7 +65,8 @@ class EditProfileViewController: UITableViewController {
         
         if let user = userInfo {
             nameTextField.text = user["name"] as? String
-            genderLabel.text = user["gender"] as? String
+            let gender = user["gender"] as? String
+            genderLabel.text = gender?.capitalizedString
             let sports = user["sports"] as! [String]
             sportsLabel.text = sports.joinWithSeparator(", ")
         }
@@ -92,6 +98,9 @@ class EditProfileViewController: UITableViewController {
         self.presentViewController(imagePickerAlertActionSheetController, animated: true, completion: nil)
     }
     
+    /*
+        Save user's new info to firebase and go back to user profile screen
+     */
     @IBAction func saveButtonPressed(sender: AnyObject) {
         if let name = nameTextField.text where name != "" {
             userInfo![KEY_DISPLAY_NAME] = name

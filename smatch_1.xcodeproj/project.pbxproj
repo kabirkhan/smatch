@@ -28,6 +28,7 @@
 		D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */; };
 		D81C61D41CE0F5700086F5E1 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61D31CE0F5700086F5E1 /* NotificationsViewController.swift */; };
 		D81C61D71CE10A110086F5E1 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61D61CE10A110086F5E1 /* NSDateExtension.swift */; };
+		D81C61D91CE159580086F5E1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61D81CE159580086F5E1 /* User.swift */; };
 		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -93,6 +94,7 @@
 		D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		D81C61D31CE0F5700086F5E1 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		D81C61D61CE10A110086F5E1 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
+		D81C61D81CE159580086F5E1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */,
 				D86312BA1CAD8F0200AEC07B /* EventDetail.swift */,
 				D886943B1CA24524007DB508 /* sports.plist */,
+				D81C61D81CE159580086F5E1 /* User.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				D890FC3A1CAA307A00D9ADEA /* CompetitionLevel.swift in Sources */,
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */,
+				D81C61D91CE159580086F5E1 /* User.swift in Sources */,
 				D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */,
 				D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */,
 				D8EF28861CAC3DBA00150411 /* MaterialButton.swift in Sources */,

@@ -128,7 +128,9 @@ extension ChooseSportsCollectionViewController: UICollectionViewDelegate {
         toggleSelectedSport(cell, indexPath: indexPath)
     }
     
-    // toggle the color of the cell when tapped, toggle in selected sports
+    /*
+        Toggle the color of the cell when tapped, toggle sport in selected sports
+     */
     private func toggleSelectedSport(cell: SportCollectionViewCell, indexPath: NSIndexPath) {
         
         if cell.nameLabel.textColor == UIColor.materialDarkTextColor {

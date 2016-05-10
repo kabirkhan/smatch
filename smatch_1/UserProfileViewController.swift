@@ -42,7 +42,7 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
     // MARK: - View LifeCycle
     //--------------------------------------
     override func viewDidLoad() {
-        returnUserData()
+        returnUsersProfileAndCoverPhotos()
     }
     
     /*
@@ -50,37 +50,8 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
      */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        let url = "\(DataService.ds.REF_USERS)/\(userID)"
-        let ref = Firebase(url: url)
-        
-        ref.observeEventType(.Value, withBlock: { snapshot in
-
-            self.userInfo[KEY_DISPLAY_NAME] = snapshot.value.objectForKey("name")
-            self.userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
-            self.userInfo[KEY_AGE] = snapshot.value.objectForKey("age")
-            self.userInfo[KEY_SPORTS] = snapshot.value.objectForKey("sports")
-            
-            self.nameLabel.text = self.userInfo[KEY_DISPLAY_NAME] as? String
-            self.bioLabel.text = self.userInfo["bio"] as? String
-            let gender = self.userInfo[KEY_GENDER] as? String
-            self.genderLabel.text = gender?.capitalizedString
-            let age = self.userInfo[KEY_AGE] as? String
-            if let ageString = age {
-                self.ageLabel.text = "\(ageString) years old"
-            }
-            let sports = self.userInfo[KEY_SPORTS] as? [String]
-            self.sportsLabel.text = sports?.joinWithSeparator(", ")
-            
-             dispatch_async(dispatch_get_main_queue(), {
-                 self.view.setNeedsDisplay()
-             })
-            
-        }, withCancelBlock: { error in
-            print("error")
-            print(error.description)
-        })
+        guard let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)! as? String else { return }
+        returnUserInfo(userID)
     }
     
     //--------------------------------------
@@ -124,55 +95,32 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
     //--------------------------------------
     
     /*
-        Get the user's information from facebook
+        Get the user's photos from facebook
      */
-    func returnUserData() {
-        
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"cover"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
-            
-            if (error != nil) {
-                print("Error: \(error)")
-            } else {
-                
-                if let userID: NSString = result.valueForKey("id") as? NSString {
-                    self.returnUserProfileImages(userID)
-                 
-                    var sourceString: String!
-                    let coverPhotoImageURL = "https://graph.facebook.com/\(userID)/?fields=cover&access_token=\(FBSDKAccessToken.currentAccessToken().tokenString)"
-                    Alamofire.request(.GET, coverPhotoImageURL).validate().responseJSON(completionHandler: { (response) -> Void in
-                        guard response.result.isSuccess else {
-                            print(response.result.error)
-                            return
-                        }
-                        if let JSON = response.result.value {
-                            if let info = JSON as? [String: AnyObject]{
-                                if let cover = info["cover"] as? [String: AnyObject] {
-                                    sourceString = cover["source"] as! String
-                                    let facebookCoverURL = NSURL(string: sourceString)
-                                    if let data = NSData(contentsOfURL: facebookCoverURL!) {
-                                        
-                                        dispatch_async(dispatch_get_main_queue(), {
-                                            self.coverPhoto.image = UIImage(data: data)
-                                        })
-                                    }
-                                }
-                            }
-                        }
-                    })
-                }
-            }
-        })
+    func returnUsersProfileAndCoverPhotos() {
+        User.user.getFacebookCoverPhoto { (profileImageData, coverImageData) in
+            self.profilePhoto.image = UIImage(data: profileImageData)
+            self.coverPhoto.image = UIImage(data: coverImageData)
+        }
     }
     
-    /*
-        Return the user's profile image
-     */
-    func returnUserProfileImages(accessToken: NSString){
-        let userID = accessToken as NSString
-        let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
-        if let data = NSData(contentsOfURL: facebookProfileUrl!) {
-            profilePhoto.image = UIImage(data: data)
+    func returnUserInfo(userID: String) {
+        User.user.getBaseUserInfo(userID) { (userInfo) in
+            self.userInfo = userInfo
+            self.nameLabel.text = self.userInfo[KEY_DISPLAY_NAME] as? String
+            self.bioLabel.text = self.userInfo["bio"] as? String
+            let gender = self.userInfo[KEY_GENDER] as? String
+            self.genderLabel.text = gender?.capitalizedString
+            let age = self.userInfo[KEY_AGE] as? String
+            if let ageString = age {
+                self.ageLabel.text = "\(ageString) years old"
+            }
+            let sports = self.userInfo[KEY_SPORTS] as? [String]
+            self.sportsLabel.text = sports?.joinWithSeparator(", ")
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.view.setNeedsDisplay()
+            })
         }
     }
 }

@@ -81,6 +81,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="Wsa-dh-kAG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="nextButtonPressed:" destination="tvK-8G-eYE" id="sce-L9-z2q"/>
                             </connections>
@@ -489,8 +490,8 @@
                                 <rect key="frame" x="20" y="214" width="560" height="29"/>
                                 <segments>
                                     <segment title="Don't Care"/>
-                                    <segment title="Easy-going"/>
-                                    <segment title="Hardcore"/>
+                                    <segment title="Not Competitive"/>
+                                    <segment title="Competitive"/>
                                 </segments>
                                 <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
@@ -562,9 +563,9 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aDf-gz-da2">
                                 <rect key="frame" x="20" y="214" width="560" height="29"/>
                                 <segments>
-                                    <segment title="Only Guys"/>
-                                    <segment title="Only Girls"/>
                                     <segment title="Coed"/>
+                                    <segment title="Men"/>
+                                    <segment title="Women"/>
                                 </segments>
                                 <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
@@ -633,7 +634,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="Naj-0J-0EW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Naj-0J-0EW">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xs-hJ-3SS">
@@ -928,6 +929,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg2" width="375" height="667"/>
+        <image name="bg" width="375" height="667"/>
     </resources>
 </document>

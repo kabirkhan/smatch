@@ -61,7 +61,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let facebookLogin = FBSDKLoginManager()
         let permissions = ["public_profile", "email"] // might not need user email
         
-        // login with facebook process - NEED TO HANDLE ERRORS (alerts)
         facebookLogin.logInWithReadPermissions(permissions, fromViewController: self) { (facebookResult, facebookError) -> Void in
             if facebookError != nil {
                 print(facebookError)
@@ -80,18 +79,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                         userData[KEY_IMAGE_URL] = authData.providerData[VALUE_PROFILE_IMAGE_URL] as? String
                         userData[KEY_DISPLAY_NAME] = authData.providerData[VALUE_DISPLAY_NAME] as? String
                         userData[KEY_GENDER] = authData.providerData[VALUE_CACHED_USER_PROFILE]![VALUE_GENDER] as? String
-                        //userData[KEY_AGE] = authData.providerData[VALUE_CACHED_USER_PROFILE]![VALUE_AGE] as? String
                         userData[KEY_ID] = authData.uid
                         self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: userData)
                     }
-                    
                 })
             }
         }
     }
 
     /*
-     Login user with email and password. Sign up if they are a new user.
+        Login user with email and password. Sign up if they are a new user.
      */
     @IBAction func loginWithTwitterButtonPressed(sender: AnyObject) {
         
