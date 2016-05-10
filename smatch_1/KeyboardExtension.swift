@@ -8,7 +8,9 @@
 
 import UIKit
 
-// hide keyboard when the view is tapped anywhere outside the keyboard
+/*
+    Hide keyboard when the view is tapped anywhere outside the keyboard
+ */
 extension UIViewController {
     
     func hideKeyboardWhenTappedAround() {

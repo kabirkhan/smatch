@@ -91,34 +91,21 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     /*
+     Login user with email and password. Sign up if they are a new user.
+     */
+    @IBAction func loginWithTwitterButtonPressed(sender: AnyObject) {
+        
+        let alert = showAlert("Coming Soon!", msg: "Twitter Login is Coming Soon")
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    /*
         Login user with email and password. Sign up if they are a new user.
      */
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
         
-        if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
-            //try an authenticate a user with the provided email and password
-            DataService.ds.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { (error, authData) -> Void in
-                if error != nil {
-                    //If the User doesn't exist we create an account for them
-                    if error.code == STATUS_ACCOUNT_NONEXIST {
-                        //store the information and segue to the info view
-                        var userData = Dictionary<String, String>()
-                        userData[KEY_PROVIDER] = VALUE_EMAIL_PASSWORD_PROVIDER
-                        userData[KEY_EMAIL] = email
-                        userData[KEY_PASSWORD] = pwd
-                        self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: userData)
-                        
-                    } else {
-                        //Handle Other Errors
-                    }
-                } else {
-                    //log in suceeded segue to main app
-                    self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-                }
-            })
-        } else {
-            presentViewController(showAlert("Email and Password are Required", msg: "You must enter both an email and a password!"), animated: true, completion: nil)
-        }
+        let alert = showAlert("Coming Soon!", msg: "Email and Password Login is Coming Soon")
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     //--------------------------------------------------

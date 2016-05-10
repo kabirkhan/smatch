@@ -47,19 +47,20 @@ class EventsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
         tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
+        
+       
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         sports = [String]()
         filteredSports = [String]()
         filteredGenders = ["Coed", "Only Guys", "Only Girls"]
         filteredCompetitiveness = ["NotCompetitive", "Competitive"]
         factory = [Event]()
-        events = [Event]()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        events = [Event]() 
+        
         displayFireBaseEvents()
     }
     
@@ -107,6 +108,8 @@ class EventsTableViewController: UITableViewController {
             self.mySports = userSports as! [String]
             self.sports = userSports as! [String]
             self.filteredSports = userSports as! [String]
+
+            // Set events - Array of events that only include events of sports that are inside mySports
             let eventsRef = DataService.ds.REF_EVENTS
             eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
                 if let sport = snapshot.value.objectForKey("sport") {
@@ -275,11 +278,52 @@ extension EventsTableViewController: CZPickerViewDelegate {
     }
     
     /*
-     Sets bool as true which allows the CZ Picker to have multiple selections. Then sets the filter depending on which row was clicked and loads the corresponding CZ Picker for those filters
+        Sets bool as true which allows the CZ Picker to have multiple selections. 
+        Then sets the filter depending on which row was clicked and loads the 
+        corresponding CZ Picker for those filters
      */
+    func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
+        print(bool)
+        print(filter)
+        if bool == false {
+            return choices.count
+        } else {
+            if filter == "Sports" {
+                print(sports.count)
+                return sports.count
+            } else if filter == "Gender"{
+                return genders.count
+            } else {
+                return competitiveness.count
+            }
+        }
+    }
+    
+    func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
+        print(bool)
+        print(filter)
+        if bool == false {
+            return choices[row]
+        } else {
+            print("Here")
+            if filter == "Sports" {
+                print(self.sports)
+                print("Sports")
+                return sports[row]
+            } else if filter == "Gender"{
+                print("Gender")
+                return genders[row]
+            } else {
+                print("Compete")
+                return competitiveness[row]
+            }
+        }
+    }
+    
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         bool = true
         if choices[row] == "Sports"{
+            print("hello")
             filter = "Sports"
             showWithMultipleSportsSelections(choices[row])
         } else if choices[row] == "Gender" {
@@ -318,9 +362,11 @@ extension EventsTableViewController: CZPickerViewDelegate {
             }
         }
         events = [Event]()
+        print(events)
         filter = String()
         bool = false
         for event in factory {
+            print("Changing Events")
             for filteredSport in filteredSports {
                 for filteredCompetition in filteredCompetitiveness {
                     for filteredGender in filteredGenders {

@@ -17,7 +17,7 @@ import UIKit
 import TextFieldEffects
 import MapKit
 
-class EventLocationViewController: UIViewController {
+class EventLocationViewController: UIViewController, UITextFieldDelegate {
 
     //--------------------------------------------------
     // MARK: - Variables
@@ -42,6 +42,8 @@ class EventLocationViewController: UIViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        locationTextField.delegate = self
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -117,6 +119,14 @@ class EventLocationViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    /*
+        Dismiss keyboard when the return is button pressed.
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
  

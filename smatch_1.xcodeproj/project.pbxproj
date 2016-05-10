@@ -10,7 +10,6 @@
 		460AB9B51CAB5877006ECF99 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460AB9B41CAB5877006ECF99 /* MessagesViewController.swift */; };
 		4690A3E21CA5C16A00814106 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4690A3E11CA5C16A00814106 /* AlertModel.swift */; };
 		46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */; };
-		46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */; };
 		46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */; };
 		46F6E2321CA9FC320064CC18 /* GoBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */; };
 		46F6E2341CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */; };
@@ -27,6 +26,8 @@
 		D81C61C71CE0179D0086F5E1 /* EventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */; };
 		D81C61C91CE027710086F5E1 /* EventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */; };
 		D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */; };
+		D81C61D41CE0F5700086F5E1 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61D31CE0F5700086F5E1 /* NotificationsViewController.swift */; };
+		D81C61D71CE10A110086F5E1 /* NSDateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61D61CE10A110086F5E1 /* NSDateExtension.swift */; };
 		D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */; };
 		D836A78A1CA22BF200CF9627 /* Sport.swift in Sources */ = {isa = PBXBuildFile; fileRef = D836A7891CA22BF200CF9627 /* Sport.swift */; };
 		D83A18111CA3A4DA0048B629 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */; };
@@ -73,7 +74,6 @@
 		460AB9B41CAB5877006ECF99 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		4690A3E11CA5C16A00814106 /* AlertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		46F6E22B1CA9B1820064CC18 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
-		46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileViewController.swift; sourceTree = "<group>"; };
 		46F6E22F1CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
 		46F6E2311CA9FC320064CC18 /* GoBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoBackDelegate.swift; sourceTree = "<group>"; };
 		46F6E2331CAA029C0064CC18 /* EditUserProfileSportsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditUserProfileSportsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventTableViewCell.xib; sourceTree = "<group>"; };
 		D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewController.swift; sourceTree = "<group>"; };
 		D81C61CC1CE043DE0086F5E1 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		D81C61D31CE0F5700086F5E1 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		D81C61D61CE10A110086F5E1 /* NSDateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateExtension.swift; sourceTree = "<group>"; };
 		D83346041CADFC1600A6C644 /* SaveProfileDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveProfileDelegate.swift; sourceTree = "<group>"; };
 		D836A7891CA22BF200CF9627 /* Sport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sport.swift; sourceTree = "<group>"; };
 		D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
@@ -191,14 +193,38 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
-		D83A18141CA3B5A40048B629 /* Events */ = {
+		D81C61D11CE0F4FB0086F5E1 /* MainEventsScreens */ = {
 			isa = PBXGroup;
 			children = (
-				D86407C41CA9B356006490B4 /* CreateEvent */,
 				D83A180D1CA3A4DA0048B629 /* ParentViewController.swift */,
 				D81C61C81CE027710086F5E1 /* EventsTableViewController.swift */,
 				D8EAA1F31CA39BA200A11894 /* EventsMapViewController.swift */,
 				D8EE2F3D1CA4B665007DB652 /* EventDetailViewController.swift */,
+			);
+			name = MainEventsScreens;
+			sourceTree = "<group>";
+		};
+		D81C61D21CE0F5300086F5E1 /* Nibs */ = {
+			isa = PBXGroup;
+			children = (
+				D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */,
+			);
+			name = Nibs;
+			sourceTree = "<group>";
+		};
+		D81C61D51CE0F5730086F5E1 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D81C61D31CE0F5700086F5E1 /* NotificationsViewController.swift */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		D83A18141CA3B5A40048B629 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				D81C61D11CE0F4FB0086F5E1 /* MainEventsScreens */,
+				D86407C41CA9B356006490B4 /* CreateEvent */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -224,10 +250,9 @@
 			children = (
 				D81C61CE1CE051910086F5E1 /* Login and Signup */,
 				D83A18141CA3B5A40048B629 /* Events */,
+				D81C61D51CE0F5730086F5E1 /* Notifications */,
 				46F6E2351CAAFFAB0064CC18 /* Messages */,
 				D81C61CF1CE0519F0086F5E1 /* Profile */,
-				D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */,
-				46F6E22D1CA9D51B0064CC18 /* EditUserProfileViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -239,10 +264,10 @@
 				98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */,
 				981564151CA72E67007E0F11 /* Event.swift */,
 				D890FC2F1CAA004100D9ADEA /* Regex.swift */,
-				D886943B1CA24524007DB508 /* sports.plist */,
 				D890FC391CAA307A00D9ADEA /* CompetitionLevel.swift */,
 				D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */,
 				D86312BA1CAD8F0200AEC07B /* EventDetail.swift */,
+				D886943B1CA24524007DB508 /* sports.plist */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -267,7 +292,8 @@
 		D875B2791C9A51A4007BBFF3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D81C61C61CE0179D0086F5E1 /* EventTableViewCell.xib */,
+				D875B27D1C9A5205007BBFF3 /* Storyboards */,
+				D81C61D21CE0F5300086F5E1 /* Nibs */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -276,8 +302,8 @@
 			isa = PBXGroup;
 			children = (
 				D875B2731C9A5162007BBFF3 /* Images.xcassets */,
-				D875B27D1C9A5205007BBFF3 /* Storyboards */,
-				D875B27E1C9A520D007BBFF3 /* Nibs */,
+				D8C18D531C9A39BC00E2E0D7 /* AppDelegate.swift */,
+				D875B27E1C9A520D007BBFF3 /* LaunchFiles */,
 				D875B27F1C9A5248007BBFF3 /* Other-Sources */,
 			);
 			name = Resources;
@@ -296,6 +322,7 @@
 		D875B27C1C9A51C2007BBFF3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D81C61D61CE10A110086F5E1 /* NSDateExtension.swift */,
 				D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */,
 				D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */,
 				D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */,
@@ -317,12 +344,12 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		D875B27E1C9A520D007BBFF3 /* Nibs */ = {
+		D875B27E1C9A520D007BBFF3 /* LaunchFiles */ = {
 			isa = PBXGroup;
 			children = (
 				D8C18D5C1C9A39BC00E2E0D7 /* LaunchScreen.storyboard */,
 			);
-			name = Nibs;
+			name = LaunchFiles;
 			sourceTree = "<group>";
 		};
 		D875B27F1C9A5248007BBFF3 /* Other-Sources */ = {
@@ -541,7 +568,9 @@
 				D81C61C31CDFEDCE0086F5E1 /* KeyboardExtension.swift in Sources */,
 				46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */,
 				46F6E22E1CA9D51B0064CC18 /* EditUserProfileViewController.swift in Sources */,
+				D81C61CB1CE0342C0086F5E1 /* EventsTableContainerController.swift in Sources */,
 				46F6E2391CAB4F1F0064CC18 /* EventsListTableViewCell.swift in Sources */,
+				D81C61D41CE0F5700086F5E1 /* NotificationsViewController.swift in Sources */,
 				D8E0003C1CA07951006C50EC /* Constants.swift in Sources */,
 				D86312BB1CAD8F0200AEC07B /* EventDetail.swift in Sources */,
 				D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */,
@@ -550,6 +579,7 @@
 				D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */,
 				D81C61C51CDFEDCE0086F5E1 /* ToolBarExtension.swift in Sources */,
 				46F6E23B1CAB51480064CC18 /* GoToEventMessagesDelegate.swift in Sources */,
+				D81C61D71CE10A110086F5E1 /* NSDateExtension.swift in Sources */,
 				46F6E2301CA9DF980064CC18 /* UserProfileSportsCollectionViewCell.swift in Sources */,
 				D890FC3E1CAA389500D9ADEA /* CreateEventFinishViewController.swift in Sources */,
 				D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */,

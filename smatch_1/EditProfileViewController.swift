@@ -5,6 +5,7 @@
 //  Created by Kabir Khan on 4/25/16.
 //  Copyright © 2016 Parse. All rights reserved.
 //
+//  User can edit their profile information
 
 import UIKit
 import CZPicker
@@ -108,8 +109,30 @@ class EditProfileViewController: UITableViewController {
     }
     
     //--------------------------------------
-    // MARK: - TABLEVIEW DELEGATE
+    // MARK: - HELPER FUNCTIONS
     //--------------------------------------
+    private func setupPickerView(title: String) {
+        let picker = CZPickerView(headerTitle: title, cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
+        if selectedCellToEdit == StaticCellToEdit.Sports {
+            picker.allowMultipleSelection = true
+        }
+        picker.delegate = self
+        picker.dataSource = self
+        picker.headerBackgroundColor = UIColor.materialAmberAccent
+        picker.confirmButtonBackgroundColor = UIColor.materialAmberAccent
+        picker.show()
+    }
+    
+    private func setupComingSoonAlert() {
+        self.comingSoonAlert = showAlert("Coming Soon!", msg: "Photo upload and storage coming soon!!!")
+        self.presentViewController(self.comingSoonAlert, animated: true, completion: nil)
+    }
+}
+
+//--------------------------------------
+// MARK: - TABLEVIEW DELEGATE
+//--------------------------------------
+extension EditProfileViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath {
         case tableView.indexPathForCell(self.editGenderCell)!:
@@ -126,41 +149,17 @@ class EditProfileViewController: UITableViewController {
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-    //--------------------------------------
-    // MARK: - HELPER FUNCTIONS
-    //--------------------------------------
-    private func setupPickerView(title: String) {
-        let picker = CZPickerView(headerTitle: title, cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        if selectedCellToEdit == StaticCellToEdit.Sports {
-            picker.allowMultipleSelection = true
-        }
-        picker.delegate = self
-        picker.dataSource = self
-        picker.headerBackgroundColor = UIColor.materialMainGreen
-        picker.confirmButtonBackgroundColor = UIColor.materialMainGreen
-        picker.show()
-    }
-    
-    private func setupComingSoonAlert() {
-        self.comingSoonAlert = showAlert("Coming Soon!", msg: "Photo upload and storage coming soon!!!")
-        self.presentViewController(self.comingSoonAlert, animated: true, completion: nil)
-    }
 }
 
-//--------------------------------------
-// MARK: - CZPICKERVIEW
-//--------------------------------------
-
 /*
-    Custom Picker view to help with editing user's gender or sport 
+    Custom Picker view to help with editing user's gender or sport
     depending on cell tapped
  */
-extension EditProfileViewController: CZPickerViewDelegate, CZPickerViewDataSource {
-    
-    //--------------------------------------
-    // MARK: - CZPICKERVIEW DATASOURCE
-    //--------------------------------------
+
+//--------------------------------------
+// MARK: - CZPICKERVIEW DATASOURCE
+//--------------------------------------
+extension EditProfileViewController: CZPickerViewDataSource {
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         switch selectedCellToEdit! {
         case StaticCellToEdit.Gender:
@@ -182,10 +181,13 @@ extension EditProfileViewController: CZPickerViewDelegate, CZPickerViewDataSourc
             return ""
         }
     }
+}
+
+//--------------------------------------
+// MARK: - CZPickerView DataSource
+//--------------------------------------
+extension EditProfileViewController: CZPickerViewDelegate {
     
-    //--------------------------------------
-    // MARK: - CZPICKERVIEW DELEGATE
-    //--------------------------------------
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int) {
         let newGender = availableGenders[row]
         genderLabel.text = newGender

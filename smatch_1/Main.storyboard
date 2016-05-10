@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-Fg-ZM0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="RGo-Fg-ZM0">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO8-m7-0SJ">
@@ -73,6 +73,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pg2-Az-8mU" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
                                         <rect key="frame" x="156" y="500" width="289" height="50"/>
                                         <state key="normal" image="twitter login button-1"/>
+                                        <connections>
+                                            <action selector="loginWithTwitterButtonPressed:" destination="GYd-ro-n3c" eventType="touchUpInside" id="LDh-Qn-ITN"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j69-IM-L87" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
                                         <rect key="frame" x="156" y="442" width="289" height="50"/>
@@ -112,6 +115,9 @@
                                                 <exclude reference="hfS-tB-Y2I"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="loginSignUpButtonPressed:" destination="GYd-ro-n3c" eventType="touchUpInside" id="M5o-D6-IzD"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--- OR ---" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJ6-zs-8Jb">
                                         <rect key="frame" x="264" y="340" width="72" height="25"/>
@@ -180,11 +186,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg2" translatesAutoresizingMaskIntoConstraints="NO" id="lBl-Xn-6Zg">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="lBl-Xn-6Zg">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fga-IF-Izh">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWJ-sf-xWG" customClass="HoshiTextField" customModule="TextFieldEffects">
                                         <rect key="frame" x="20" y="80" width="560" height="50"/>
@@ -255,8 +261,14 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-ee-XWt">
-                                        <rect key="frame" x="20" y="500" width="560" height="50"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm your information " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xq-wo-bc6">
+                                        <rect key="frame" x="20" y="28" width="560" height="33"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFT-ee-XWt" customClass="MaterialButton" customModule="smatch_1" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="520" width="560" height="50"/>
                                         <color key="backgroundColor" red="1" green="0.75686274509999996" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cUn-kR-03u"/>
@@ -269,12 +281,6 @@
                                             <action selector="submitButtonPressed:" destination="l6z-5m-tck" eventType="touchUpInside" id="dBW-Js-ff8"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm your information " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xq-wo-bc6">
-                                        <rect key="frame" x="20" y="28" width="560" height="33"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -298,13 +304,13 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="YMM-LK-Jgs" firstAttribute="top" secondItem="lBl-Xn-6Zg" secondAttribute="bottom" id="0ZV-E7-awk"/>
-                            <constraint firstItem="lBl-Xn-6Zg" firstAttribute="top" secondItem="iql-LV-90b" secondAttribute="bottom" id="4J3-O2-Uwj"/>
+                            <constraint firstItem="lBl-Xn-6Zg" firstAttribute="top" secondItem="iql-LV-90b" secondAttribute="bottom" constant="20" id="4J3-O2-Uwj"/>
                             <constraint firstAttribute="trailing" secondItem="fga-IF-Izh" secondAttribute="trailing" id="BIy-4t-M3N"/>
                             <constraint firstItem="lBl-Xn-6Zg" firstAttribute="leading" secondItem="Oon-3O-Ncy" secondAttribute="leading" id="CLx-HJ-L9U"/>
                             <constraint firstAttribute="trailing" secondItem="lBl-Xn-6Zg" secondAttribute="trailing" id="IQ8-ey-mdd"/>
                             <constraint firstItem="fga-IF-Izh" firstAttribute="leading" secondItem="Oon-3O-Ncy" secondAttribute="leading" id="MTd-cT-J6g"/>
+                            <constraint firstItem="fga-IF-Izh" firstAttribute="top" secondItem="Oon-3O-Ncy" secondAttribute="top" id="YYp-Ia-9yp"/>
                             <constraint firstItem="YMM-LK-Jgs" firstAttribute="top" secondItem="fga-IF-Izh" secondAttribute="bottom" id="apK-21-8v4"/>
-                            <constraint firstItem="fga-IF-Izh" firstAttribute="top" secondItem="iql-LV-90b" secondAttribute="bottom" id="hcb-Li-NuV"/>
                         </constraints>
                     </view>
                     <connections>
@@ -520,13 +526,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg2" width="375" height="667"/>
+        <image name="bg" width="375" height="667"/>
         <image name="facebook login button-1" width="289" height="50"/>
         <image name="logo" width="67" height="62"/>
         <image name="twitter login button-1" width="289" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9Mi-2d-jBD"/>
+        <segue reference="dGc-Ld-2LH"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.29803921570000003" green="0.68627450980000004" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>
