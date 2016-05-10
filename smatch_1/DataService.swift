@@ -64,6 +64,10 @@ class DataService {
         return getReferenceForEvent(eventId).childByAppendingPath("/attendees")
     }
     
+    //--------------------------------------
+    // MARK: - Login
+    //--------------------------------------
+    
     /*
         Handle the user's facebook login
      */
@@ -98,6 +102,10 @@ class DataService {
         }
     }
     
+    //--------------------------------------
+    // MARK: - User Queries
+    //--------------------------------------
+    
     /*
         Get all the user's information from Firebase to display in profile screen.
      */
@@ -108,12 +116,11 @@ class DataService {
         var userInfo = Dictionary<String, AnyObject>()
         
         ref.observeEventType(.Value, withBlock: { snapshot in
-            
             userInfo[KEY_DISPLAY_NAME] = snapshot.value.objectForKey("name")
+            userInfo["bio"] = snapshot.value.objectForKey("bio")
             userInfo[KEY_GENDER] = snapshot.value.objectForKey("gender")
             userInfo[KEY_AGE] = snapshot.value.objectForKey("age")
             userInfo[KEY_SPORTS] = snapshot.value.objectForKey("sports")
-            
             completion(userInfo: userInfo)
         })
     }
@@ -155,6 +162,10 @@ class DataService {
             }
         })
     }
+    
+    //--------------------------------------
+    // MARK: - Event Queries
+    //--------------------------------------
     
     /*
         Get all firebase events from query for the user's sports
@@ -218,6 +229,10 @@ class DataService {
             })
         }
     }
+    
+    //--------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------
     
     /*
         Given a facebook access token, return the image data

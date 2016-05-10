@@ -69,6 +69,10 @@ class EditProfileViewController: UITableViewController {
             genderLabel.text = gender?.capitalizedString
             let sports = user["sports"] as! [String]
             sportsLabel.text = sports.joinWithSeparator(", ")
+            let bio = user["bio"] as? String
+            if let bio = bio {
+                bioTextView.text = bio
+            }
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in }
@@ -102,13 +106,13 @@ class EditProfileViewController: UITableViewController {
         Save user's new info to firebase and go back to user profile screen
      */
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        if let name = nameTextField.text where name != "" {
+        print(bioTextView.text)
+        if let name = nameTextField.text, let bio = bioTextView.text where name != "" {
+            print(bioTextView.text)
             userInfo![KEY_DISPLAY_NAME] = name
-            
-            let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-            let url = "\(DataService.ds.REF_USERS)/\(userID)"
-            let ref = Firebase(url: url)
-            ref.updateChildValues(userInfo)
+            userInfo!["bio"] = bio
+            let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+            DataService.ds.getReferenceForUser(userID).updateChildValues(userInfo)
         }
         saveProfileDelegate?.saveProfile(self)
     }
