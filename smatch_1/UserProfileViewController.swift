@@ -14,7 +14,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
 
-class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDelegate {
+class UserProfileViewController: UIViewController, GoBackDelegate, SaveProfileDelegate {
     
     //--------------------------------------
     // MARK: - Constants
@@ -98,14 +98,14 @@ class UserProfileViewController :UIViewController, GoBackDelegate, SaveProfileDe
         Get the user's photos from facebook
      */
     func returnUsersProfileAndCoverPhotos() {
-        User.user.getFacebookCoverPhoto { (profileImageData, coverImageData) in
+        DataService.ds.getFacebookCoverPhoto { (profileImageData, coverImageData) in
             self.profilePhoto.image = UIImage(data: profileImageData)
             self.coverPhoto.image = UIImage(data: coverImageData)
         }
     }
     
     func returnUserInfo(userID: String) {
-        User.user.getBaseUserInfo(userID) { (userInfo) in
+        DataService.ds.getBaseUserInfo(userID) { (userInfo) in
             self.userInfo = userInfo
             self.nameLabel.text = self.userInfo[KEY_DISPLAY_NAME] as? String
             self.bioLabel.text = self.userInfo["bio"] as? String

@@ -62,7 +62,6 @@ class ChooseSportsCollectionViewController: UIViewController {
         
         if userData!["provider"] as! String == "facebook" {
             
-            // create user in firebase database
             DataService.ds.createFirebaseUser(userId! as! String, user: userData!)
             
             // set userid in userdefaults to check against
@@ -81,8 +80,6 @@ class ChooseSportsCollectionViewController: UIViewController {
                         self.userData?.removeValueForKey(KEY_EMAIL)
                         self.userData?.removeValueForKey(KEY_PASSWORD)
                         
-                        //create a user in firebase
-                        //(Might need error checking if provider didnt show up.  if it doesnt show up handle errors)
                         DataService.ds.createFirebaseUser(authData.uid, user: self.userData!)
                     })
                 }

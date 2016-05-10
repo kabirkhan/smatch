@@ -57,32 +57,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Login user with facebook and request public profile.
      */
     @IBAction func loginWithFacebookPressed(sender: UIButton) {
-        
         let facebookLogin = FBSDKLoginManager()
-        let permissions = ["public_profile", "email"] // might not need user email
-        
-        facebookLogin.logInWithReadPermissions(permissions, fromViewController: self) { (facebookResult, facebookError) -> Void in
-            if facebookError != nil {
-                print(facebookError)
+        let permissions = ["public_profile", "email"]
+        DataService.ds.loginUsingFacebook(facebookLogin, withPermissions: permissions, fromViewController: self) { (userData, error) in
+            if error != nil {
+                let alert = showAlert("Error Logging In", msg: "There was an error logging you in. Please try again later")
+                self.presentViewController(alert, animated: true, completion: nil)
             } else {
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                print(FBSDKAccessToken.currentAccessToken().userID)
-                
-                // log the user in to firebase
-                DataService.ds.REF_BASE.authWithOAuthProvider(VALUE_FACEBOOK_PROVIDER, token: accessToken, withCompletionBlock: { (error, authData) -> Void in
-                    
-                    if error != nil {
-                        print(error)
-                    } else {
-                        var userData = Dictionary<String, String>()
-                        userData[KEY_PROVIDER] = VALUE_FACEBOOK_PROVIDER
-                        userData[KEY_IMAGE_URL] = authData.providerData[VALUE_PROFILE_IMAGE_URL] as? String
-                        userData[KEY_DISPLAY_NAME] = authData.providerData[VALUE_DISPLAY_NAME] as? String
-                        userData[KEY_GENDER] = authData.providerData[VALUE_CACHED_USER_PROFILE]![VALUE_GENDER] as? String
-                        userData[KEY_ID] = authData.uid
-                        self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: userData)
-                    }
-                })
+                if let data = userData {
+                    self.performSegueWithIdentifier(SEGUE_ACCOUNT_SETUP, sender: data)
+                }
             }
         }
     }
@@ -91,7 +75,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Login user with email and password. Sign up if they are a new user.
      */
     @IBAction func loginWithTwitterButtonPressed(sender: AnyObject) {
-        
         let alert = showAlert("Coming Soon!", msg: "Twitter Login is Coming Soon")
         presentViewController(alert, animated: true, completion: nil)
     }
@@ -100,7 +83,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Login user with email and password. Sign up if they are a new user.
      */
     @IBAction func loginSignUpButtonPressed(sender: UIButton) {
-        
         let alert = showAlert("Coming Soon!", msg: "Email and Password Login is Coming Soon")
         presentViewController(alert, animated: true, completion: nil)
     }
