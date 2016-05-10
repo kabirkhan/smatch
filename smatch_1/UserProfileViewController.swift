@@ -65,7 +65,6 @@ class UserProfileViewController: UIViewController, GoBackDelegate, SaveProfileDe
             controller.goBackDelegate = self
             controller.saveProfileDelegate = self
             if coverPhoto.image != nil {
-                print("Cover Photo")
             }
             controller.coverImage = self.coverPhoto.image
             controller.profileImage = self.profilePhoto.image

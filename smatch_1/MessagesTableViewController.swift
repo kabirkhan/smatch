@@ -29,7 +29,6 @@ class MessagesTableViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         eventList = [Dictionary<String, AnyObject>]()
-        print("loading...")
         
         // =========== NAVBAR SETUP ==============
         // set navbar fonts
@@ -49,7 +48,6 @@ class MessagesTableViewController: UIViewController {
         
         let ref = DataService.ds.getReferenceForUser(uid as! String)
         query = ref.observeEventType(.Value, withBlock: { user in
-            print("hello: start")
             self.userName = (user.value.objectForKey(KEY_DISPLAY_NAME) as? String)!
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
                 else {
@@ -67,20 +65,15 @@ class MessagesTableViewController: UIViewController {
                     eventDictionary["event_id"] = eventID
                     
                     self.eventList.append(eventDictionary)
-                    
-                    print("hello2")
+                
                     self.eventListTableView.reloadData()
                     
                     }, withCancelBlock: { err in
-                        print("help")
                         print(err.description)
                 })
             }
             
-            print("hello end")
-            
             }, withCancelBlock: { error in
-                print("error")
                 print(error.description)
         })
     }

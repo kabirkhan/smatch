@@ -32,7 +32,6 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         manager.delegate = self
         manager.requestWhenInUseAuthorization()
         manager.startUpdatingLocation()
-        print("initializing")
     }
     
     //--------------------------------------------------

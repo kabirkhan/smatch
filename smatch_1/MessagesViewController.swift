@@ -72,7 +72,6 @@ class MessagesViewController: JSQMessagesViewController {
     // MARK: - Helper Functions
     //--------------------------------------------------
     private func addMessage(id: String, text: String, displayName: String) {
-        print(senderDisplayName)
         let message = JSQMessage(senderId: id, displayName: displayName, text: text)
         messages.append(message)
     }

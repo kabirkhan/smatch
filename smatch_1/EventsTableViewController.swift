@@ -278,7 +278,6 @@ extension EventsTableViewController: CZPickerViewDelegate {
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         bool = true
         if choices[row] == "Sports"{
-            print("hello")
             filter = "Sports"
             showWithMultipleSportsSelections(choices[row])
         } else if choices[row] == "Gender" {
@@ -319,14 +318,12 @@ extension EventsTableViewController: CZPickerViewDelegate {
             }
         }
         events = [Event]()
-        print(events)
         filter = String()
         bool = false
         for event in factory {
             for filteredSport in filteredSports {
                 for filteredCompetition in filteredCompetitiveness {
                     for filteredGender in filteredGenders {
-                        print(event)
                         if filteredSport == event.sport && filteredCompetition == event.competition && filteredGender == event.gender {
                             events.append(event)
                         }
