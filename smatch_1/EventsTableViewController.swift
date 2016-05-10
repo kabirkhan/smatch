@@ -35,7 +35,6 @@ class EventsTableViewController: UITableViewController {
     var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
     var filteredCompetitiveness = ["Does Not Matter", "Not Competitive", "Competitive"]
     var pickerWithImage: CZPickerView?
-    var mySports = [String]()
     var query: UInt?
     var events = [Event]()
     
@@ -102,47 +101,25 @@ class EventsTableViewController: UITableViewController {
         it will add the event to the array of events that are made into table cells.
      */
     func displayFireBaseEvents() {
-        let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(authData)")
-        query = user.observeEventType(.Value, withBlock: { snapshot in
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+        query = DataService.ds.getReferenceForUser(userID).observeEventType(.Value, withBlock: { snapshot in
             self.events = [Event]()
-            let userSports = snapshot.value.objectForKey("sports")
-            self.mySports = userSports as! [String]
-            self.sports = userSports as! [String]
-            self.filteredSports = userSports as! [String]
-            let eventsRef = DataService.ds.REF_EVENTS
-            eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
-                if let sport = snapshot.value.objectForKey("sport") {
-                    for i in 0...self.mySports.count-1 {
-                        if sport as! String == self.mySports[i] {
-                            let eventName = snapshot.value.objectForKey("name") as! String
-                            let eventKey = snapshot.key
-                            let eventAddress = snapshot.value.objectForKey("address") as! String
-                            let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                            let eventDate = snapshot.value.objectForKey("date") as! String
-                            let eventGender = snapshot.value.objectForKey("gender") as! String
-                            let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                            let eventSport = snapshot.value.objectForKey("sport") as! String
-                            let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
-                            let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                            let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
-                            self.events.append(newEvent)
-                            self.factory.append(newEvent)
-                        }
-                    }
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.tableView.reloadData()
-                    })
-                }
-                }, withCancelBlock: { error in
-                    print(error.description)
-            })
+            let userSports = snapshot.value.objectForKey("sports") as! [String]
+            self.sports = userSports
+            self.filteredSports = userSports
             
+            DataService.ds.getFirebaseEventsWithUserSports(self.sports, completion: { (events, error) in
+                guard let events = events else { return }
+                self.events = events
+                self.factory = events
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.tableView.reloadData()
+                })
+            })
             }, withCancelBlock: { error in
                 print(error.description)
         })
     }
-    
 }
 
 //--------------------------------------------------
