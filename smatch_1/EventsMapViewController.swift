@@ -84,40 +84,24 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
         it will geocode the event on the map.
      */
     func displayFireBaseEvents() {
-        let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
-        user.observeEventType(.Value, withBlock: { snapshot in
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+        DataService.ds.getReferenceForUser(userID).observeEventType(.Value, withBlock: { snapshot in
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
             self.sports = userSports as! [String]
-            let eventsRef = DataService.ds.REF_EVENTS
-            eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
-                if let sport = snapshot.value.objectForKey("sport") {
-                    for index in self.mySports {
-                        if sport as! String == index {
-                            let eventName = snapshot.value.objectForKey("name") as! String
-                            let eventKey = snapshot.key
-                            let eventAddress = snapshot.value.objectForKey("address") as! String
-                            let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                            let eventDate = snapshot.value.objectForKey("date") as! String
-                            let eventGender = snapshot.value.objectForKey("gender") as! String
-                            let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                            let eventSport = snapshot.value.objectForKey("sport") as! String
-                            let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
-                            let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                            let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
-                            self.events.append(newEvent)
-                        }
+            
+            DataService.ds.getFirebaseEventsWithUserSports(self.sports, completion: { (events, error) in
+                if error != nil {
+                    let alert = showAlert("Error Getting Data", msg: "Sorry we couldn't query our events. Please Try again later")
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    guard let events = events else { return }
+                    self.events = events
+                    for index in self.events {
+                        index.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
                     }
                 }
-                for index in self.events {
-                    index.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-                }
-                }, withCancelBlock: { error in
-                    print(error.description)
             })
-            }, withCancelBlock: { error in
-                print(error.description)
         })
     }
     

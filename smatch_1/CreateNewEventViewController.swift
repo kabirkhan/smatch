@@ -77,46 +77,33 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     func displayFireBaseEvents() {
         
         // Get current user_id from User Defaults
-        let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
         
-        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
-        userRef.observeEventType(.Value, withBlock: { snapshot in
+        DataService.ds.getReferenceForUser(userID).observeEventType(.Value, withBlock: { snapshot in
             
             let userEvents = snapshot.value.objectForKey("joined_events")
             
-            // unwrap the snapshot to check for nil events
             if let events = userEvents {
                 self.myEvents = events as! [String]
             }
             
             self.events = [Event]()
             
-            // if user has games display them in a table
-            if self.myEvents.count != 0 {
-                for event in self.myEvents {
-                    let singleEventRef = DataService.ds.REF_EVENTS.childByAppendingPath(event)
-                    print(singleEventRef)
-                    singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                        
-                        let eventName = snapshot.value.objectForKey("name") as! String
-                        let eventKey = snapshot.key
-                        let eventAddress = snapshot.value.objectForKey("address") as! String
-                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                        let eventDate = snapshot.value.objectForKey("date") as! String
-                        let eventGender = snapshot.value.objectForKey("gender") as! String
-                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                        let eventSport = snapshot.value.objectForKey("sport") as! String
-                        let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
-                        let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                        
-                        let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
-                        self.events.append(newEvent)
-                        self.tableView.reloadData()
-                        
-                        }, withCancelBlock: { (error) in
-                            print(error)
-                    })
-                }
+            if self.myEvents.count > 0 {
+                
+                DataService.ds.getEventsFromUserJoinedEvents(self.myEvents, completion: { (events, error) in
+                    if error != nil {
+                        let alert = showAlert("Error Getting Data", msg: "Sorry we couldn't query your events. Please Try again later")
+                        self.presentViewController(alert, animated: true, completion: nil)
+                    } else {
+                        guard let events = events else { return }
+                        self.events = events
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.tableView.reloadData()
+                        })
+                    }
+                })
+                
             } else {
                 
                 // if they don't have games show alert telling them to join/make games

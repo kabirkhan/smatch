@@ -109,12 +109,17 @@ class EventsTableViewController: UITableViewController {
             self.filteredSports = userSports
             
             DataService.ds.getFirebaseEventsWithUserSports(self.sports, completion: { (events, error) in
-                guard let events = events else { return }
-                self.events = events
-                self.factory = events
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.tableView.reloadData()
-                })
+                if error != nil {
+                    let alert = showAlert("Error Getting Data", msg: "Sorry we couldn't query your events. Please Try again later")
+                    self.presentViewController(alert, animated: true, completion: nil)
+                } else {
+                    guard let events = events else { return }
+                    self.events = events
+                    self.factory = events
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.tableView.reloadData()
+                    })
+                }
             })
             }, withCancelBlock: { error in
                 print(error.description)

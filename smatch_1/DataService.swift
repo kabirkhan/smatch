@@ -189,6 +189,37 @@ class DataService {
     }
     
     /*
+        Get the user's events from their joined_events
+     */
+    func getEventsFromUserJoinedEvents(events: [String], completion: (events: [Event]?, error: NSError?) -> Void) {
+        var userEvents = [Event]()
+        var queryError: NSError?
+        for eventID in events {
+            let singleEventRef = DataService.ds.REF_EVENTS.childByAppendingPath(eventID)
+            singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                
+                let eventName = snapshot.value.objectForKey("name") as! String
+                let eventKey = snapshot.key
+                let eventAddress = snapshot.value.objectForKey("address") as! String
+                let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+                let eventDate = snapshot.value.objectForKey("date") as! String
+                let eventGender = snapshot.value.objectForKey("gender") as! String
+                let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+                let eventSport = snapshot.value.objectForKey("sport") as! String
+                let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
+                let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
+                
+                let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
+                userEvents.append(newEvent)
+                completion(events: userEvents, error: queryError)
+                }, withCancelBlock: { (error) in
+                    queryError = error
+                    completion(events: userEvents, error: queryError)
+            })
+        }
+    }
+    
+    /*
         Given a facebook access token, return the image data
         for the user's profile pic.
      */
