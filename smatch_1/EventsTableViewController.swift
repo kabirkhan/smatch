@@ -30,7 +30,7 @@ class EventsTableViewController: UITableViewController {
     var bool = false
     var choices = ["Sports", "Gender", "Competitiveness Level"]
     var genders = ["Coed", "Only Guys", "Only Girls"]
-    var competitiveness = ["NotCompetitive", "Competitive"]
+    var competitiveness = ["Does Not Matter", "Not Competitive", "Competitive"]
     var filteredSports = [String]()
     var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
     var filteredCompetitiveness = ["Does Not Matter", "Not Competitive", "Competitive"]
@@ -46,7 +46,7 @@ class EventsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
-        tableView.contentInset = UIEdgeInsetsMake(-64, 0, -50, 0)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, -50, 0)
         
        
     }
