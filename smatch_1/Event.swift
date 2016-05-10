@@ -50,6 +50,10 @@ class Event: NSObject, MKAnnotation {
     //--------------------------------------------------
     // MARK: - Helper Functions
     //--------------------------------------------------
+    
+    /*
+     Creates link to Apple Maps that loads when the callout button is clicked
+     */
     func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
         let addressDictionary = [String(CNPostalAddressStreetKey): subtitle!]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
@@ -59,34 +63,36 @@ class Event: NSObject, MKAnnotation {
         return mapItem
     }
     
+    /*
+     Takes the event address and geocodes it into usable coordinates, then adds an annotation for each pin
+     */
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
-        
-        // Create a CoreLocation Geocoder
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            //address has been geocoded into a placemark for use. This is the first entry in the placemark array.
             if let placemark = placemarks?[0] {
                 
                 self.coordinate = placemark.location!.coordinate
                 self.mapItem = self.mapItem(self.coordinate)
                 if centeredOnPin == true {
-                    //run when we want to center the map on the pin itself
                     self.centerMapOnLocation(placemark.location!, mapView: mapView, regionRadius: regionRadius)
-                } else {
-                    // This only applies to the Map View with all of the pins on the same map. At some point we would probably want to change this over to being centered on the users location rather than self.Seattle
-                    //                self.centerMapOnLocation(self.Seattle, mapView: mapView, regionRadius: regionRadius)
                 }
                 mapView.addAnnotation(self)
             }
         }
     }
     
+    /*
+     Centers the map on inout coordinates
+     */
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
+    /*
+     Removes the annotation from the map
+     */
     func remove(mapView: MKMapView) {
         mapView.removeAnnotation(self)
     }

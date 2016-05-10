@@ -14,16 +14,16 @@ import CZPicker
 
 class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBackDelegate {
     
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
     
     let seattle = CLLocation(latitude: 47.61, longitude: -122.33)
     let regionRadius: CLLocationDistance = 30000
     
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     
     var mySports = [String]()
     var events = [Event]()
@@ -31,15 +31,15 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
     var sports = [String]()
     var filteredSports = [String]()
     
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     
     @IBOutlet weak var mapView: MKMapView!
     
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,17 +54,17 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
         displayFireBaseEvents()
     }
     
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------
     
     @IBAction func filterButtonPressed(sender: AnyObject) {
         showWithMultipleSelections(sender)
     }
     
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Segues
+    //--------------------------------------------------
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEventDetails" {
@@ -79,31 +79,25 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
     
+    /*
+     Takes the users sports from the database, then takes all the events from the database. If the event concerns a sport that the user is subscribed to, it will geocode the event on the map.
+     */
     func displayFireBaseEvents() {
         let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        
-        //Set mySports - Array of sports the user has on their profile
-        
         let user = Firebase(url: "https://smatchfirstdraft.firebaseio.com/users/\(userId)")
         user.observeEventType(.Value, withBlock: { snapshot in
             let userSports = snapshot.value.objectForKey("sports")
             self.mySports = userSports as! [String]
             self.sports = userSports as! [String]
-            
-            //Set events - Array of events that only include events of sports that are inside mySports
             let eventsRef = DataService.ds.REF_EVENTS
             eventsRef.queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
                 if let sport = snapshot.value.objectForKey("sport") {
                     for index in self.mySports {
-                        
-                        //if the sport is one of "mySports" create an event and append it to our events array.
-                        
                         if sport as! String == index {
-                            
                             let eventName = snapshot.value.objectForKey("name") as! String
                             let eventKey = snapshot.key
                             let eventAddress = snapshot.value.objectForKey("address") as! String
@@ -114,14 +108,11 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
                             let eventSport = snapshot.value.objectForKey("sport") as! String
                             let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
                             let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                            
                             let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
                             self.events.append(newEvent)
                         }
                     }
                 }
-                
-                //geocode all the events inside our events array on the mapView
                 for index in self.events {
                     index.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
                 }
@@ -132,13 +123,39 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
                 print(error.description)
         })
     }
+    
+    /*
+     Removes all the pins from the map
+     */
+    func removeAllGames(){
+        for event in self.events {
+            event.remove(self.mapView)
+        }
+    }
+    
+    /*
+     Re geocodes all the events, after filters have been applied.
+     */
+    func geocodeAllGames(){
+        for event in self.events {
+            for sport in self.filteredSports {
+                if sport == event.sport {
+                    event.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
+                }
+            }
+        }
+    }
 }
 
-//--------------------------------------------------
-// MARK: - Extensions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Extensions
+    //--------------------------------------------------
 
 extension EventsMapViewController: MKMapViewDelegate {
+    
+    /*
+     Creates the annotation for each event. Different pin colors correspond ton different sports.
+     */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as?  Event {
             let identifier = "pin"
@@ -178,20 +195,46 @@ extension EventsMapViewController: MKMapViewDelegate {
         return nil
     }
     
+    /*
+     Segues to the event detail controller when the callout accesssory is clicked.
+     */
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
         let specificEvent = view.annotation as! Event
         performSegueWithIdentifier("showEventDetails", sender: specificEvent)
     }
     
+    /*
+     Centers the map on the users location
+     */
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
                                                                   regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: true)
     }
 }
+extension EventsMapViewController: CZPickerViewDataSource {
 
-extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource {
+    /*
+     Sets number of rows in the CZ Picker
+     */
+    func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
+        return sports.count
+    }
+    
+    /*
+     Sets title of rows in the CZ Picker depending on which sports the user is subscribed to
+     */
+    func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
+        return sports[row]
+    }
+}
+
+extension EventsMapViewController: CZPickerViewDelegate {
+    
+    /*
+     Sets CZ Picker properties
+     */
     func showWithMultipleSelections(sender: AnyObject) {
         let picker = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         picker.delegate = self
@@ -206,14 +249,9 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         picker.show()
     }
     
-    func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
-        return sports.count
-    }
-    
-    func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        return sports[row]
-    }
-    
+    /*
+     Saves the filtered sports the user selected. Then goes through the events and if an event corresponds to one of those sports, after the pins are removed from the map, the event will be re geocoded
+     */
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         filteredSports = [String]()
         for row in rows {
@@ -223,22 +261,6 @@ extension EventsMapViewController: CZPickerViewDelegate, CZPickerViewDataSource 
         }
         removeAllGames()
         geocodeAllGames()
-    }
-    
-    func removeAllGames(){
-        for event in self.events {
-            event.remove(self.mapView)
-        }
-    }
-    
-    func geocodeAllGames(){
-        for event in self.events {
-            for sport in self.filteredSports {
-                if sport == event.sport {
-                    event.geocode(self.mapView, regionRadius: self.regionRadius, centeredOnPin: false)
-                }
-            }
-        }
     }
 }
 

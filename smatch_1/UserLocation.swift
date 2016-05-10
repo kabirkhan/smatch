@@ -10,28 +10,22 @@ import CoreLocation
 
 class UserLocation: NSObject, CLLocationManagerDelegate {
     
-//--------------------------------------------------
-// MARK: - Constants
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
     
     let manager = CLLocationManager()
     
-//--------------------------------------------------
-// MARK: - Variables
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     
     static var userLocation = UserLocation()
     var initialLocation = CLLocation()
     
-//--------------------------------------------------
-// MARK: - Outlets
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - View Lifecycle
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------
     
     private override init(){
         super.init()
@@ -41,22 +35,13 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         print("initializing")
     }
     
-//--------------------------------------------------
-// MARK: - Actions
-//--------------------------------------------------
+    //--------------------------------------------------
+    // MARK: - Helper Functions
+    //--------------------------------------------------
     
-    
-    
-//--------------------------------------------------
-// MARK: - Segues
-//--------------------------------------------------
-    
-    
-    
-//--------------------------------------------------
-// MARK: - Helper Functions
-//--------------------------------------------------
-    
+    /*
+     Saves the coordinates of the user location
+     */
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if initialLocation != locations[0] {
             initialLocation = locations[0]
@@ -67,20 +52,24 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
         print(error)
     }
     
+    /*
+     Runs once the authorization status changes (after the user enables location services)
+     */
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
             manager.startUpdatingLocation()
         }
     }
+    
+    /*
+     Returns initial location, which stores the user location
+     */
     func returnLocation() -> CLLocation {
         return initialLocation
     }
     
 }
 
-//--------------------------------------------------
-// MARK: - Extensions
-//--------------------------------------------------
 
 
 
