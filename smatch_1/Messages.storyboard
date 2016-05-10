@@ -59,7 +59,9 @@
                             <constraint firstItem="O18-gM-lPe" firstAttribute="top" secondItem="PU8-9x-m4f" secondAttribute="bottom" id="tD2-3v-4bx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Messages" id="bWW-dp-TQV"/>
+                    <navigationItem key="navigationItem" title="Messages" id="bWW-dp-TQV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="hQA-1Q-zzw"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="eventListTableView" destination="PU8-9x-m4f" id="4Yg-9u-55S"/>
                         <segue destination="BV4-Zb-BMm" kind="show" identifier="eventmessages" id="FoO-bJ-386"/>
@@ -94,10 +96,13 @@
         <scene sceneID="23Y-hO-yvK">
             <objects>
                 <navigationController title="Messages" automaticallyAdjustsScrollViewInsets="NO" id="baz-gf-yfv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messages" image="messages" id="BYG-rV-w1x"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hSE-gN-7os">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -109,4 +114,7 @@
             <point key="canvasLocation" x="4847" y="-94"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="messages" width="28" height="25"/>
+    </resources>
 </document>
