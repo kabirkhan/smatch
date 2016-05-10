@@ -13,19 +13,27 @@ import Firebase
 
 class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GoBackDelegate {
 
-    // MARK: =================== VARIBALES =====================
+    //--------------------------------------------------
+    // MARK: - Constants
+    //--------------------------------------------------
+    let regionRadius: CLLocationDistance = 3000
+
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     var alert = UIViewController()
     var timer = NSTimer()
-    
     var events = [Event]()
     var myEvents = [String]()
-    let regionRadius: CLLocationDistance = 3000
     
-    // MARK: =================== OUTLETS ======================
+    //--------------------------------------------------
+    // MARK: - Outlets
+    //--------------------------------------------------
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK: ================== View Lifecycle ====================
-    
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,14 +45,9 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
         tableView.dataSource = self
     }
     
-    // ALERT CREATION
-    func presentAlert() {
-        presentViewController(alert, animated: true, completion: nil)
-        timer.invalidate()
-    }
-    
-    // MARK: =================== TABLEVIEW DATASOURCE =====================
-    
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -63,14 +66,13 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     
     // MARK: =================== TABLEVIEW DELEGATE =====================
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier(SEGUE_FROM_MY_EVENTS_TO_DETAIL, sender: events[indexPath.row])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-
     }
     
-    // MARK: ==================== Firebase ====================
-    // 
+    //--------------------------------------------------
+    // MARK: - Variables
+    //--------------------------------------------------
     // Display the user's joined events
     func displayFireBaseEvents() {
         
@@ -110,7 +112,6 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
                         let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
                         self.events.append(newEvent)
                         self.tableView.reloadData()
-
                         
                         }, withCancelBlock: { (error) in
                             print(error)
@@ -159,5 +160,10 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
             controller.eventToDetail = sender as? Event
             controller.delegate = self
         }
+    }
+    
+    func presentAlert() {
+        presentViewController(alert, animated: true, completion: nil)
+        timer.invalidate()
     }
 }

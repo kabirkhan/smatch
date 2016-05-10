@@ -157,6 +157,13 @@ class DataService {
     }
     
     /*
+        Get all firebase events from query
+     */
+    func getFirebaseEvents() {
+        
+    }
+    
+    /*
         Given a facebook access token, return the image data 
         for the user's profile pic.
      */
