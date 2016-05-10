@@ -19,6 +19,7 @@ class MessagesViewController: JSQMessagesViewController {
     var avatars = Dictionary<String, NSData>()
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
+    var eventRef: Firebase!
     var messageRef: Firebase!
     var attendeesRef: Firebase!
 
@@ -28,7 +29,15 @@ class MessagesViewController: JSQMessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.hidden = true
+        let eventRef = DataService.ds.getReferenceForEvent(eventId!)
+        eventRef.observeEventType(.Value) { (snapshot: FDataSnapshot!) in
+            self.navigationItem.title = snapshot.value["name"] as? String
+            self.navigationController?.navigationItem.title =  snapshot.value["name"] as? String
+        }
+        
+        
         setupBubbles()
+        
         messageRef = DataService.ds.getReferenceForEventMessages(eventId!)
         attendeesRef = DataService.ds.getReferenceForEventAttendees(eventId!)
     }
@@ -81,11 +90,10 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     private func getAvatars() {
-        attendeesRef.observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
+        attendeesRef.observeEventType(.Value, withBlock: { snapshot in
             let attendeesIdList = snapshot.value as! [String]
             for attendee in attendeesIdList  {
                 let facebookId = attendee.substringFromIndex(attendee.startIndex.advancedBy(9))
-                
                 let userID = NSString(string: facebookId)
                 let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
                 if let data = NSData(contentsOfURL: facebookProfileUrl!) {
@@ -105,7 +113,7 @@ class MessagesViewController: JSQMessagesViewController {
     }
     
     //--------------------------------------------------
-    // MARK: - Extensions
+    // MARK: - JSQMEssagesViewController
     //--------------------------------------------------
     override func collectionView(collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForMessageBubbleTopLabelAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
         let message = messages[indexPath.item]
@@ -157,11 +165,9 @@ class MessagesViewController: JSQMessagesViewController {
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {
        let message = self.messages[indexPath.item]
-        
         if let data = avatars[message.senderId] {
             return JSQMessagesAvatarImageFactory.avatarImageWithImage(UIImage(data: data)!, diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault));
         }
-        
         return nil
     }
 }

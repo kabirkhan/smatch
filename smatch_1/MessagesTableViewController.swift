@@ -86,7 +86,8 @@ class MessagesTableViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        eventListTableView.dataSource = self;
+        eventListTableView.dataSource = self
+        eventListTableView.delegate = self
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -117,19 +118,24 @@ class MessagesTableViewController: UIViewController {
 // MARK: - TableViewDataSource
 //--------------------------------------------------
 extension MessagesTableViewController: UITableViewDataSource {
-    internal func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return eventList.count
     }
     
-    internal func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("eventcell", forIndexPath: indexPath) as! EventsListTableViewCell
         let event = eventList[indexPath.row]
         cell.eventNameLabel?.text = event["event_title"] as? String
         cell.eventId = event["event_id"] as? String
         return cell
     }
-    
-    internal func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+}
+
+//--------------------------------------------------
+// MARK: - TableViewDataSource
+//--------------------------------------------------
+extension MessagesTableViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("eventmessages", sender: eventList[indexPath.row]["event_id"])
     }
 }
