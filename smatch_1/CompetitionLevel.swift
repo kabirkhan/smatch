@@ -9,7 +9,7 @@
 import Foundation
 
 enum CompetitionLevel: String {
-    case DoesNotMatter = "DoesNotMatter"
-    case NotCompetitive = "NotCompetitive"
+    case DoesNotMatter = "Does Not Matter"
+    case NotCompetitive = "Not Competitive"
     case Competitive = "Competitive"
 }

@@ -33,7 +33,7 @@ class EventsTableViewController: UITableViewController {
     var competitiveness = ["NotCompetitive", "Competitive"]
     var filteredSports = [String]()
     var filteredGenders = ["Coed", "Only Guys", "Only Girls"]
-    var filteredCompetitiveness = ["NotCompetitive", "Competitive"]
+    var filteredCompetitiveness = ["Does Not Matter", "Not Competitive", "Competitive"]
     var pickerWithImage: CZPickerView?
     var mySports = [String]()
     var query: UInt?
@@ -57,7 +57,7 @@ class EventsTableViewController: UITableViewController {
         sports = [String]()
         filteredSports = [String]()
         filteredGenders = ["Coed", "Only Guys", "Only Girls"]
-        filteredCompetitiveness = ["NotCompetitive", "Competitive"]
+        filteredCompetitiveness = ["Does Not Matter", "Not Competitive", "Competitive"]
         factory = [Event]()
         events = [Event]() 
         
@@ -341,7 +341,6 @@ extension EventsTableViewController: CZPickerViewDelegate {
         filter = String()
         bool = false
         for event in factory {
-            print("Changing Events")
             for filteredSport in filteredSports {
                 for filteredCompetition in filteredCompetitiveness {
                     for filteredGender in filteredGenders {
