@@ -52,7 +52,7 @@ class Event: NSObject, MKAnnotation {
     //--------------------------------------------------
     
     /*
-     Creates link to Apple Maps that loads when the callout button is clicked
+        Creates link to Apple Maps that loads when the callout button is clicked
      */
     func mapItem(coordinate: CLLocationCoordinate2D) -> MKMapItem {
         let addressDictionary = [String(CNPostalAddressStreetKey): subtitle!]
@@ -64,7 +64,7 @@ class Event: NSObject, MKAnnotation {
     }
     
     /*
-     Takes the event address and geocodes it into usable coordinates, then adds an annotation for each pin
+        Takes the event address and geocodes it into usable coordinates, then adds an annotation for each pin
      */
     func geocode(mapView: MKMapView, regionRadius: CLLocationDistance, centeredOnPin: Bool) {
         let geocoder = CLGeocoder()
@@ -82,7 +82,7 @@ class Event: NSObject, MKAnnotation {
     }
     
     /*
-     Centers the map on inout coordinates
+        Centers the map on inout coordinates
      */
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
@@ -91,7 +91,7 @@ class Event: NSObject, MKAnnotation {
     }
     
     /*
-     Removes the annotation from the map
+        Removes the annotation from the map
      */
     func remove(mapView: MKMapView) {
         mapView.removeAnnotation(self)

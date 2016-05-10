@@ -40,7 +40,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     //--------------------------------------------------
     
     /*
-     Saves the coordinates of the user location
+        Saves the coordinates of the user location
      */
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if initialLocation != locations[0] {
@@ -53,7 +53,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     /*
-     Runs once the authorization status changes (after the user enables location services)
+        Runs once the authorization status changes (after the user enables location services)
      */
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse {
@@ -62,7 +62,7 @@ class UserLocation: NSObject, CLLocationManagerDelegate {
     }
     
     /*
-     Returns initial location, which stores the user location
+        Returns initial location, which stores the user location
      */
     func returnLocation() -> CLLocation {
         return initialLocation

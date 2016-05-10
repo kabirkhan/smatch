@@ -79,9 +79,9 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     //--------------------------------------------------
     
     /*
-     Takes the users sports from the database, then takes all the events from the database. 
-     If the event is of a sport that the user is subscribed to, 
-     it will geocode the event on the map.
+        Takes the users sports from the database, then takes all the events from the database.
+        If the event is of a sport that the user is subscribed to,
+        it will geocode the event on the map.
      */
     func displayFireBaseEvents() {
         let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
@@ -122,7 +122,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     /*
-     Removes all the pins from the map
+        Removes all the pins from the map
      */
     func removeAllGames(){
         for event in self.events {
@@ -131,7 +131,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     /*
-     Re geocodes all the events (after filters have been applied).
+        Re geocodes all the events (after filters have been applied).
      */
     func geocodeAllGames(){
         for event in self.events {
@@ -151,8 +151,8 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
 extension EventsMapViewController: MKMapViewDelegate {
     
     /*
-     Creates the annotation for each event with a callout accessory button. 
-     Different pin colors correspond to different sports.
+        Creates the annotation for each event with a callout accessory button.
+        Different pin colors correspond to different sports.
      */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as?  Event {
@@ -193,7 +193,7 @@ extension EventsMapViewController: MKMapViewDelegate {
     }
     
     /*
-     Segues to the event detail controller when the callout accessory is clicked.
+        Segues to the event detail controller when the callout accessory is clicked.
      */
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
@@ -202,7 +202,7 @@ extension EventsMapViewController: MKMapViewDelegate {
     }
     
     /*
-     Centers the map on the users location
+        Centers the map on the users location
      */
     func centerMapOnLocation(location: CLLocation, mapView: MKMapView, regionRadius: CLLocationDistance) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
@@ -228,14 +228,14 @@ extension EventsMapViewController: GoBackDelegate {
 extension EventsMapViewController: CZPickerViewDataSource {
 
     /*
-     Sets number of rows in the CZ Picker
+        Sets number of rows in the CZ Picker
      */
     func numberOfRowsInPickerView(pickerView: CZPickerView!) -> Int {
         return sports.count
     }
     
     /*
-     Sets title of rows in the CZ Picker depending on which sports the user is subscribed to
+        Sets title of rows in the CZ Picker depending on which sports the user is subscribed to
      */
     func czpickerView(pickerView: CZPickerView!, titleForRow row: Int) -> String! {
         return sports[row]
@@ -249,7 +249,7 @@ extension EventsMapViewController: CZPickerViewDataSource {
 extension EventsMapViewController: CZPickerViewDelegate {
     
     /*
-     Sets CZ Picker properties
+        Sets CZ Picker properties
      */
     func showWithMultipleSelections(sender: AnyObject) {
         let picker = CZPickerView(headerTitle: "Sports", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
@@ -266,9 +266,9 @@ extension EventsMapViewController: CZPickerViewDelegate {
     }
     
     /*
-     Saves the filtered sports the user selected. 
-     Then goes through the events and if an event corresponds to one of those sports, 
-     after the pins are removed from the map, the event will be re geocoded.
+        Saves the filtered sports the user selected.
+        Then goes through the events and if an event corresponds to one of those sports,
+        after the pins are removed from the map, the event will be re geocoded.
      */
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         filteredSports = [String]()
