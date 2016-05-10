@@ -12,7 +12,7 @@ import MapKit
 import Firebase
 import CZPicker
 
-class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBackDelegate {
+class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     
     //--------------------------------------------------
     // MARK: - Constants
@@ -47,7 +47,6 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
     }
     
     override func viewDidAppear(animated: Bool) {
-        //Set initial Location so it's equal to the user's location (upon opening the app). Then center the map on that location. Then display the events returned from Firebase on the map.
         let locationManager = UserLocation.userLocation
         initialLocation = locationManager.returnLocation()
         centerMapOnLocation(seattle, mapView: mapView, regionRadius: regionRadius)
@@ -75,16 +74,14 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
         }
     }
     
-    func goBack(controller: UIViewController) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
     //--------------------------------------------------
     // MARK: - Helper Functions
     //--------------------------------------------------
     
     /*
-     Takes the users sports from the database, then takes all the events from the database. If the event concerns a sport that the user is subscribed to, it will geocode the event on the map.
+     Takes the users sports from the database, then takes all the events from the database. 
+     If the event is of a sport that the user is subscribed to, 
+     it will geocode the event on the map.
      */
     func displayFireBaseEvents() {
         let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
@@ -134,7 +131,7 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
     }
     
     /*
-     Re geocodes all the events, after filters have been applied.
+     Re geocodes all the events (after filters have been applied).
      */
     func geocodeAllGames(){
         for event in self.events {
@@ -147,14 +144,15 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate, GoBa
     }
 }
 
-    //--------------------------------------------------
-    // MARK: - Extensions
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - MKMapView Delegate
+//--------------------------------------------------
 
 extension EventsMapViewController: MKMapViewDelegate {
     
     /*
-     Creates the annotation for each event. Different pin colors correspond ton different sports.
+     Creates the annotation for each event with a callout accessory button. 
+     Different pin colors correspond to different sports.
      */
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as?  Event {
@@ -171,7 +169,6 @@ extension EventsMapViewController: MKMapViewDelegate {
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
                 view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
             }
-            //make the pin color change depending on the sport
             switch annotation.sport {
             case "Basketball":
                 view.pinTintColor = UIColor.redColor()
@@ -196,7 +193,7 @@ extension EventsMapViewController: MKMapViewDelegate {
     }
     
     /*
-     Segues to the event detail controller when the callout accesssory is clicked.
+     Segues to the event detail controller when the callout accessory is clicked.
      */
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
                  calloutAccessoryControlTapped control: UIControl) {
@@ -213,6 +210,21 @@ extension EventsMapViewController: MKMapViewDelegate {
         mapView.setRegion(coordinateRegion, animated: true)
     }
 }
+
+//--------------------------------------------------
+// MARK: - Go Back Delegate
+//--------------------------------------------------
+
+extension EventsMapViewController: GoBackDelegate {
+    func goBack(controller: UIViewController) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+//--------------------------------------------------
+// MARK: - CZPickerView Data Source
+//--------------------------------------------------
+
 extension EventsMapViewController: CZPickerViewDataSource {
 
     /*
@@ -229,6 +241,10 @@ extension EventsMapViewController: CZPickerViewDataSource {
         return sports[row]
     }
 }
+
+//--------------------------------------------------
+// MARK: - CZPickerView Delegate
+//--------------------------------------------------
 
 extension EventsMapViewController: CZPickerViewDelegate {
     
@@ -250,7 +266,9 @@ extension EventsMapViewController: CZPickerViewDelegate {
     }
     
     /*
-     Saves the filtered sports the user selected. Then goes through the events and if an event corresponds to one of those sports, after the pins are removed from the map, the event will be re geocoded
+     Saves the filtered sports the user selected. 
+     Then goes through the events and if an event corresponds to one of those sports, 
+     after the pins are removed from the map, the event will be re geocoded.
      */
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         filteredSports = [String]()

@@ -96,7 +96,9 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     
     /*
-     Takes the users sports from the database, then takes all the events from the database. If the event concerns a sport that the user is subscribed to, it will add the event to the array of events that are made into table cells.
+     Takes the users sports from the database, then takes all the events from the database. 
+     If the event concerns a sport that the user is subscribed to, 
+     it will add the event to the array of events that are made into table cells.
      */
     func displayFireBaseEvents() {
         let authData = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
@@ -142,9 +144,9 @@ class EventsTableViewController: UITableViewController {
     
 }
 
-    //--------------------------------------------------
-    // MARK: - Extensions
-    //--------------------------------------------------
+//--------------------------------------------------
+// MARK: - Go Back Delegate
+//--------------------------------------------------
 
 extension EventsTableViewController: GoBackDelegate {
     
@@ -155,11 +157,13 @@ extension EventsTableViewController: GoBackDelegate {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }
+
+//--------------------------------------------------
+// MARK: - Table View Data Source
+//--------------------------------------------------
+
 extension EventsTableViewController {
     
-    /*
-     TableView Data Source Functions
-     */
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -176,17 +180,23 @@ extension EventsTableViewController {
         return cell
     }
 }
+
+//--------------------------------------------------
+// MARK: - Table View Delegate
+//--------------------------------------------------
+
 extension EventsTableViewController {
     
-    /*
-     Table View Delegate
-     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //Send the event detail controller the event to display data for as "sender"
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }
+
+//--------------------------------------------------
+// MARK: - CZPickerView Data Source
+//--------------------------------------------------
+
 extension EventsTableViewController:CZPickerViewDataSource {
     
     /*
@@ -223,6 +233,10 @@ extension EventsTableViewController:CZPickerViewDataSource {
         }
     }
 }
+
+//--------------------------------------------------
+// MARK: - CZPickerView Delegate
+//--------------------------------------------------
 
 extension EventsTableViewController: CZPickerViewDelegate {
     
@@ -275,7 +289,9 @@ extension EventsTableViewController: CZPickerViewDelegate {
     }
     
     /*
-     Sets bool as true which allows the CZ Picker to have multiple selections. Then sets the filter depending on which row was clicked and loads the corresponding CZ Picker for those filters
+     Sets bool as true which allows the CZ Picker to have multiple selections. 
+     Then sets the filter depending on which row was clicked,
+     and loads the corresponding CZ Picker for those filters
      */
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         bool = true
@@ -292,7 +308,9 @@ extension EventsTableViewController: CZPickerViewDelegate {
     }
     
     /*
-     Saves the filters the user selected. Then goes through the events and if an event has all of those filter properties, the event will be re loaded in the table.
+     Saves the filters the user selected. 
+     Then goes through the events and if an event has all of those filter properties, 
+     the event will be re loaded in the table.
      */
     func czpickerView(pickerView: CZPickerView!, didConfirmWithItemsAtRows rows: [AnyObject]!) {
         if filter == "Sports" {
@@ -338,7 +356,9 @@ extension EventsTableViewController: CZPickerViewDelegate {
     }
     
     /*
-     When the cancel button is clicked it re initializes which filter had been clicked and bool. When bool is false it loads the choices of possible filters (Sports, Genders, Competitiveness Levels).
+     When the cancel button is clicked it re initializes which filter had been clicked and bool. 
+     When bool is false it loads the choices of possible filters
+     (Sports, Genders, Competitiveness Levels).
      */
     func czpickerViewDidClickCancelButton(pickerView: CZPickerView!) {
         filter = String()
