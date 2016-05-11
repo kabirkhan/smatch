@@ -80,10 +80,12 @@ class DataService {
         facebookLogin.logInWithReadPermissions(permissions, fromViewController: viewController) { (facebookResult, facebookError) in
             if facebookError != nil {
                 error = facebookError
+            } else if facebookResult.isCancelled {
+                // Just dismiss view Facebook popup
             } else {
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
-                // log the user in to firebase
+                // Log the user in to firebase
                 DataService.ds.REF_BASE.authWithOAuthProvider(VALUE_FACEBOOK_PROVIDER, token: accessToken, withCompletionBlock: { (loginError, authData) -> Void in
                     
                     if loginError != nil {

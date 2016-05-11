@@ -35,7 +35,6 @@ class MessagesViewController: JSQMessagesViewController {
             self.navigationController?.navigationItem.title =  snapshot.value["name"] as? String
         }
         
-        
         setupBubbles()
         
         messageRef = DataService.ds.getReferenceForEventMessages(eventId!)
@@ -58,7 +57,7 @@ class MessagesViewController: JSQMessagesViewController {
     override func didPressSendButton(button: UIButton!, withMessageText text: String!, senderId: String!,
                                      senderDisplayName: String!, date: NSDate!) {
         let itemRef = messageRef.childByAutoId()
-        let messageItem = [ // 2
+        let messageItem = [
             "text": text,
             "senderId": senderId,
             "senderDisplayName": senderDisplayName
@@ -160,6 +159,20 @@ class MessagesViewController: JSQMessagesViewController {
         } else {
             return incomingBubbleImageView
         }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
+            as! JSQMessagesCollectionViewCell
+        
+        let message = messages[indexPath.item]
+        if message.senderId == senderId {
+            cell.textView!.textColor = UIColor.whiteColor()
+        } else {
+            cell.textView!.textColor = UIColor.blackColor()
+        }
+        
+        return cell
     }
     
     override func collectionView(collectionView: JSQMessagesCollectionView!, avatarImageDataForItemAtIndexPath indexPath: NSIndexPath!) -> JSQMessageAvatarImageDataSource! {

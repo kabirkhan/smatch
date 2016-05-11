@@ -106,9 +106,7 @@ class EditProfileViewController: UITableViewController {
         Save user's new info to firebase and go back to user profile screen
      */
     @IBAction func saveButtonPressed(sender: AnyObject) {
-        print(bioTextView.text)
         if let name = nameTextField.text, let bio = bioTextView.text where name != "" {
-            print(bioTextView.text)
             userInfo![KEY_DISPLAY_NAME] = name
             userInfo!["bio"] = bio
             let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
