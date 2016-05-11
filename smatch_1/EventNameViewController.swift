@@ -20,7 +20,7 @@ class EventNameViewController: UIViewController, UITextFieldDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var eventNameTextField: HoshiTextField!
+    @IBOutlet private weak var eventNameTextField: HoshiTextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle

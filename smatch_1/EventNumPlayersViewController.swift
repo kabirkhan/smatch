@@ -22,7 +22,7 @@ class EventNumPlayersViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var numPlayersTextField: HoshiTextField!
+    @IBOutlet private weak var numPlayersTextField: HoshiTextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle

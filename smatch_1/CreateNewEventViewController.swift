@@ -29,7 +29,7 @@ class CreateNewEventViewController: UIViewController, UITableViewDelegate, UITab
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     
     //--------------------------------------------------
     // MARK: - Variables

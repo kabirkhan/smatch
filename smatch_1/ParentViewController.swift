@@ -42,8 +42,8 @@ class ParentViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var segmentedControl: TopTabSegmentedControl!
-    @IBOutlet weak var contentView: UIView!
+    @IBOutlet private weak var segmentedControl: TopTabSegmentedControl!
+    @IBOutlet private weak var contentView: UIView!
 
     //--------------------------------------------------
     // MARK: - View LifeCycle
@@ -105,7 +105,6 @@ class ParentViewController: UIViewController {
             
             self.addChildViewController(vc)
             vc.didMoveToParentViewController(self)
-            
             vc.view.frame = self.contentView.bounds
             self.contentView.addSubview(vc.view)
             self.currentViewController = vc

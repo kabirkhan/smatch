@@ -22,7 +22,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     let regionRadius: CLLocationDistance = 5000
     let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
     let fontColor = UIColor.whiteColor()
-    let userId = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+    let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
     
     //--------------------------------------------------
     // MARK: - Variables
@@ -35,15 +35,15 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var individualMapView: MKMapView!
-    @IBOutlet weak var joinButton: MaterialButton!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateAndTimeLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var numPlayersLabel: UILabel!
-    @IBOutlet weak var competitionLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var sportLabel: UILabel!
+    @IBOutlet private weak var individualMapView: MKMapView!
+    @IBOutlet private weak var joinButton: MaterialButton!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var dateAndTimeLabel: UILabel!
+    @IBOutlet private weak var locationLabel: UILabel!
+    @IBOutlet private weak var numPlayersLabel: UILabel!
+    @IBOutlet private weak var competitionLabel: UILabel!
+    @IBOutlet private weak var genderLabel: UILabel!
+    @IBOutlet private weak var sportLabel: UILabel!
     
     //--------------------------------------------------
     // MARK: - View Lifecycle
@@ -81,11 +81,12 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         
         // References in database
         let eventRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/events/\(eventToDetail!.eventKey)")
-        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userId)")
+        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userID)")
         
         switch viewState! {
         case EventDetailViewState.Creator:
             // CREATOR DELETES EVENT
+            // Coming Soon!!!
             
             break
         case EventDetailViewState.Attendee:
@@ -94,7 +95,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
             var attendees = eventToDetail!.attendees
             var attendeesDict = Dictionary<String, AnyObject>()
             
-            attendees = attendees.filter() { $0 != userId }
+            attendees = attendees.filter() { $0 != userID }
             attendeesDict["attendees"] = attendees
             eventRef.updateChildValues(attendeesDict)
             eventToDetail!.attendees = attendees
@@ -125,18 +126,15 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
             // attendee
             break
         default:
-            // VIEWER OF EVENT JOINS GAME
             
-            // update attendees list to hold current user
             var attendees = eventToDetail!.attendees
             var attendeesDict = Dictionary<String, AnyObject>()
-            attendees.append(userId)
+            attendees.append(userID)
             
             attendeesDict["attendees"] = attendees
             eventRef.updateChildValues(attendeesDict)
             eventToDetail!.attendees = attendees
             
-            // update user's joined events with current event
             userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
                 var joinedEventsDict = Dictionary<String, AnyObject>()
@@ -160,6 +158,10 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
             break
         }
     }
+
+    //--------------------------------------------------
+    // MARK: - Navigation
+    //--------------------------------------------------
     
     /*
         Go back to the previous view
@@ -172,7 +174,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Helper Functions
     //--------------------------------------------------
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as?  Event {
+        if let annotation = annotation as? Event {
             let identifier = "pin"
             var view: MKPinAnnotationView
             if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
@@ -186,7 +188,6 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
                 view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
                 view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
             }
-            //make the pin color change depending on the sport
             switch annotation.sport {
             case "Basketball":
                 view.pinTintColor = UIColor.redColor()
@@ -219,12 +220,12 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         let attendees = eventToDetail!.attendees
         let creator = eventToDetail!.creator_id
         
-        if creator == userId {
+        if creator == userID {
             
             viewState = EventDetailViewState.Creator
             joinButton.backgroundColor = UIColor.materialCancelRedColor
             joinButton.setTitle("Delete", forState: .Normal)
-        } else if attendees.contains(userId) {
+        } else if attendees.contains(userID) {
             
             viewState = EventDetailViewState.Attendee
             joinButton.backgroundColor = UIColor.materialCancelRedColor

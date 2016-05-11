@@ -30,8 +30,8 @@ class EventLocationViewController: UIViewController, UITextFieldDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var locationTextField: HoshiTextField!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var locationTextField: HoshiTextField!
+    @IBOutlet private weak var tableView: UITableView!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle

@@ -24,7 +24,7 @@ class CreateEventDateViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var dateAndTimeTextField: HoshiTextField!
+    @IBOutlet private weak var dateAndTimeTextField: HoshiTextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle

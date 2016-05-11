@@ -11,11 +11,8 @@ import MapKit
 import CoreLocation
 
 class EventCell: UITableViewCell {
-    
     @IBOutlet weak var eventMapView: MKMapView!
     @IBOutlet weak var eventNameLabel: UILabel!
-    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var eventLocationLabel: UILabel!
-    
 }

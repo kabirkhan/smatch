@@ -19,7 +19,7 @@ class CreateEventGenderViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
     
     //--------------------------------------------------
     // MARK: - Actions

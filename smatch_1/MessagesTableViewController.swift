@@ -22,7 +22,7 @@ class MessagesTableViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-        @IBOutlet weak var eventListTableView: UITableView!
+        @IBOutlet private weak var eventListTableView: UITableView!
     //--------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------

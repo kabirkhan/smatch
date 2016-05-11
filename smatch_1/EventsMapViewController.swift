@@ -5,6 +5,8 @@
 //  Created by Kabir Khan on 3/23/16.
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
+//  All events displayed in a map view based off
+//  of users sports
 
 import UIKit
 import CoreLocation
@@ -17,14 +19,12 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     //--------------------------------------------------
     // MARK: - Constants
     //--------------------------------------------------
-    
     let seattle = CLLocation(latitude: 47.61, longitude: -122.33)
     let regionRadius: CLLocationDistance = 30000
     
     //--------------------------------------------------
     // MARK: - Variables
     //--------------------------------------------------
-    
     var mySports = [String]()
     var events = [Event]()
     var initialLocation = CLLocation()
@@ -34,13 +34,11 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
     //--------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -56,7 +54,6 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     //--------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------
-    
     @IBAction func filterButtonPressed(sender: AnyObject) {
         showWithMultipleSelections(sender)
     }
@@ -64,7 +61,6 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
     //--------------------------------------------------
     // MARK: - Segues
     //--------------------------------------------------
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showEventDetails" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -131,7 +127,6 @@ class EventsMapViewController: UIViewController, CLLocationManagerDelegate {
 //--------------------------------------------------
 // MARK: - MKMapView Delegate
 //--------------------------------------------------
-
 extension EventsMapViewController: MKMapViewDelegate {
     
     /*
@@ -198,7 +193,6 @@ extension EventsMapViewController: MKMapViewDelegate {
 //--------------------------------------------------
 // MARK: - Go Back Delegate
 //--------------------------------------------------
-
 extension EventsMapViewController: GoBackDelegate {
     func goBack(controller: UIViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
@@ -208,7 +202,6 @@ extension EventsMapViewController: GoBackDelegate {
 //--------------------------------------------------
 // MARK: - CZPickerView Data Source
 //--------------------------------------------------
-
 extension EventsMapViewController: CZPickerViewDataSource {
 
     /*
@@ -229,7 +222,6 @@ extension EventsMapViewController: CZPickerViewDataSource {
 //--------------------------------------------------
 // MARK: - CZPickerView Delegate
 //--------------------------------------------------
-
 extension EventsMapViewController: CZPickerViewDelegate {
     
     /*

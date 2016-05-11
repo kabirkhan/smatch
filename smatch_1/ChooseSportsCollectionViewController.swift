@@ -23,7 +23,7 @@ class ChooseSportsCollectionViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle
@@ -61,10 +61,7 @@ class ChooseSportsCollectionViewController: UIViewController {
         userData!["joined_events"] = [String]()
         
         if userData!["provider"] as! String == "facebook" {
-            
             DataService.ds.createFirebaseUser(userId! as! String, user: userData!)
-            
-            // set userid in userdefaults to check against
             NSUserDefaults.standardUserDefaults().setValue(userId, forKey: KEY_ID)
         } else if userData![KEY_PROVIDER] as! String == VALUE_EMAIL_PASSWORD_PROVIDER {
             
@@ -72,11 +69,9 @@ class ChooseSportsCollectionViewController: UIViewController {
                 if error != nil {
                     self.presentViewController(showAlert("Woah", msg: "Something went really wrong"), animated: true, completion: nil)
                 } else {
-                    //set the default key for the user and log them in
                     NSUserDefaults.standardUserDefaults().setValue(result[KEY_ID], forKey: KEY_ID)
                     DataService.ds.REF_BASE.authUser(self.userData![KEY_EMAIL] as! String, password: self.userData![KEY_PASSWORD] as! String, withCompletionBlock: { (error, authData) in
                         
-                        //now that we've created the user we clean up the userdata
                         self.userData?.removeValueForKey(KEY_EMAIL)
                         self.userData?.removeValueForKey(KEY_PASSWORD)
                         

@@ -5,6 +5,8 @@
 //  Created by Kabir Khan on 3/23/16.
 //  Copyright © 2016 Kabir Khan. All rights reserved.
 //
+//  Main page for events displayed in a tableview based 
+//  off of the user's sports
 
 import UIKit
 import MapKit
@@ -17,13 +19,11 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     // MARK: - Constants
     //--------------------------------------------------
-    
     let regionRadius: CLLocationDistance = 10000
     
     //--------------------------------------------------
     // MARK: - Variables
     //--------------------------------------------------
-    
     var factory = [Event]()
     var sports = [String]()
     var filter = String()
@@ -41,13 +41,10 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
         tableView.contentInset = UIEdgeInsetsMake(0, 0, -50, 0)
-        
-       
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -73,7 +70,6 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------
-    
     @IBAction func filterButtonClicked(sender: AnyObject) {
         showWithOneSelectionFilters(sender)
     }
@@ -81,7 +77,6 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     // MARK: - Navigation
     //--------------------------------------------------
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "show_event_detail" {
             let navigationController = segue.destinationViewController as! UINavigationController
@@ -130,7 +125,6 @@ class EventsTableViewController: UITableViewController {
 //--------------------------------------------------
 // MARK: - Go Back Delegate
 //--------------------------------------------------
-
 extension EventsTableViewController: GoBackDelegate {
     
     /*
@@ -144,7 +138,6 @@ extension EventsTableViewController: GoBackDelegate {
 //--------------------------------------------------
 // MARK: - Table View Data Source
 //--------------------------------------------------
-
 extension EventsTableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -165,9 +158,7 @@ extension EventsTableViewController {
 //--------------------------------------------------
 // MARK: - Table View Delegate
 //--------------------------------------------------
-
 extension EventsTableViewController {
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("show_event_detail", sender: events[indexPath.row])
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -177,7 +168,6 @@ extension EventsTableViewController {
 //--------------------------------------------------
 // MARK: - CZPickerView Data Source
 //--------------------------------------------------
-
 extension EventsTableViewController:CZPickerViewDataSource {
     
     /*
@@ -218,7 +208,6 @@ extension EventsTableViewController:CZPickerViewDataSource {
 //--------------------------------------------------
 // MARK: - CZPickerView Delegate
 //--------------------------------------------------
-
 extension EventsTableViewController: CZPickerViewDelegate {
     
     /*
@@ -346,5 +335,3 @@ extension EventsTableViewController: CZPickerViewDelegate {
         bool = false
     }
 }
-
-

@@ -21,9 +21,9 @@ class ConfirmSignUpViewController: UIViewController, UITextFieldDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var genderTextField: UITextField!
-    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var genderTextField: UITextField!
+    @IBOutlet private weak var ageTextField: UITextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle
@@ -35,7 +35,7 @@ class ConfirmSignUpViewController: UIViewController, UITextFieldDelegate {
      */
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
+
         if let name = userData![KEY_DISPLAY_NAME], gender = userData![KEY_GENDER] {
             nameTextField.text = name as? String
             genderTextField.text = gender as? String
@@ -64,7 +64,6 @@ class ConfirmSignUpViewController: UIViewController, UITextFieldDelegate {
         Add in profile info if user logs in with OAuth client
      */
     @IBAction func submitButtonPressed(sender: UIButton) {
-        
         if let name = nameTextField.text,
                 gender = genderTextField.text,
                 age = ageTextField.text

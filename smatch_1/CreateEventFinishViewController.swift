@@ -26,13 +26,13 @@ class CreateEventFinishViewController: UIViewController {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var nameTextField: HoshiTextField!
-    @IBOutlet weak var sportTextField: HoshiTextField!
-    @IBOutlet weak var locationTextField: HoshiTextField!
-    @IBOutlet weak var dateAndTimeTextField: HoshiTextField!
-    @IBOutlet weak var numPlayersTextField: HoshiTextField!
-    @IBOutlet weak var competitivenessTextField: HoshiTextField!
-    @IBOutlet weak var coedTextField: HoshiTextField!
+    @IBOutlet private weak var nameTextField: HoshiTextField!
+    @IBOutlet private weak var sportTextField: HoshiTextField!
+    @IBOutlet private weak var locationTextField: HoshiTextField!
+    @IBOutlet private weak var dateAndTimeTextField: HoshiTextField!
+    @IBOutlet private weak var numPlayersTextField: HoshiTextField!
+    @IBOutlet private weak var competitivenessTextField: HoshiTextField!
+    @IBOutlet private weak var coedTextField: HoshiTextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle

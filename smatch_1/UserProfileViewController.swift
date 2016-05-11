@@ -30,13 +30,13 @@ class UserProfileViewController: UIViewController, GoBackDelegate, SaveProfileDe
     //--------------------------------------
     // MARK: - Outlets
     //--------------------------------------
-    @IBOutlet weak var coverPhoto: UIImageView!
-    @IBOutlet weak var profilePhoto: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var sportsLabel: UILabel!
+    @IBOutlet private weak var coverPhoto: UIImageView!
+    @IBOutlet private weak var profilePhoto: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var bioLabel: UILabel!
+    @IBOutlet private weak var ageLabel: UILabel!
+    @IBOutlet private weak var genderLabel: UILabel!
+    @IBOutlet private weak var sportsLabel: UILabel!
     
     //--------------------------------------
     // MARK: - View LifeCycle

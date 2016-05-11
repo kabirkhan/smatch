@@ -36,17 +36,17 @@ class EditProfileViewController: UITableViewController {
     //--------------------------------------
     // MARK: - OUTLETS
     //--------------------------------------
-    @IBOutlet weak var coverPhoto: UIImageView!
-    @IBOutlet weak var profilePhoto: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var bioTextView: UITextView!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var sportsLabel: UILabel!
+    @IBOutlet private weak var coverPhoto: UIImageView!
+    @IBOutlet private weak var profilePhoto: UIImageView!
+    @IBOutlet private weak var nameTextField: UITextField!
+    @IBOutlet private weak var bioTextView: UITextView!
+    @IBOutlet private weak var genderLabel: UILabel!
+    @IBOutlet private weak var sportsLabel: UILabel!
     
     // Static Cells
-    @IBOutlet weak var editBirthdayCell: UITableViewCell!
-    @IBOutlet weak var editGenderCell: UITableViewCell!
-    @IBOutlet weak var editSportsCell: UITableViewCell!
+    @IBOutlet private weak var editBirthdayCell: UITableViewCell!
+    @IBOutlet private weak var editGenderCell: UITableViewCell!
+    @IBOutlet private weak var editSportsCell: UITableViewCell!
  
     //--------------------------------------
     // MARK: - VIEW LIFECYCLE

@@ -19,8 +19,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-    @IBOutlet weak var emailTextField: HoshiTextField!
-    @IBOutlet weak var passwordTextField: HoshiTextField!
+    @IBOutlet private weak var emailTextField: HoshiTextField!
+    @IBOutlet private weak var passwordTextField: HoshiTextField!
     
     //--------------------------------------------------
     // MARK: - View LifeCycle
@@ -32,7 +32,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) != nil {
             performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
         }
