@@ -26,7 +26,7 @@ extension UIColor {
     // bright green main color for project
     static var materialMainGreen: UIColor {
         get {
-            return UIColor(netHex: 0x4CAF50)
+            return UIColor(netHex: 0x0eaf13)
         }
     }
     

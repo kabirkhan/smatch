@@ -19,18 +19,16 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     //--------------------------------------------------
     // MARK: - Constants
     //--------------------------------------------------
-    let regionRadius: CLLocationDistance = 5000
-    let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
-    let fontColor = UIColor.whiteColor()
-    let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
+    private let regionRadius: CLLocationDistance = 5000
+    private let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
     
     //--------------------------------------------------
     // MARK: - Variables
     //--------------------------------------------------
     var eventToDetail: Event?
     var delegate: GoBackDelegate?
-    var viewState: EventDetailViewState?
-    var alert = UIAlertController()
+    private var viewState: EventDetailViewState?
+    private var alert = UIAlertController()
 
     //--------------------------------------------------
     // MARK: - Outlets
@@ -79,83 +77,40 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
      */
     @IBAction func joinButtonPressed(sender: UIButton) {
         
-        // References in database
-        let eventRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/events/\(eventToDetail!.eventKey)")
-        let userRef = Firebase(url: "https://smatchfirstdraft.firebaseIO.com/users/\(userID)")
-        
         switch viewState! {
-        case EventDetailViewState.Creator:
-            // CREATOR DELETES EVENT
-            // Coming Soon!!!
-            
-            break
-        case EventDetailViewState.Attendee:
-            // ATTENDEE LEAVES EVENT
-            
-            var attendees = eventToDetail!.attendees
-            var attendeesDict = Dictionary<String, AnyObject>()
-            
-            attendees = attendees.filter() { $0 != userID }
-            attendeesDict["attendees"] = attendees
-            eventRef.updateChildValues(attendeesDict)
-            eventToDetail!.attendees = attendees
-            
-            // update user's joined events with current event
-            userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                
-                var joinedEventsDict = Dictionary<String, AnyObject>()
-                var joined_events = [String]()
-                let eventId = self.eventToDetail?.eventKey
-                
-                if let events = snapshot.value.objectForKey("joined_events") {
-                    joined_events = events as! [String]
-                }
-                
-                joined_events = joined_events.filter() {$0 != eventId}
-                joinedEventsDict["joined_events"] = joined_events
-                
-                userRef.updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
-                    self.viewState = EventDetailViewState.Viewer
-                    self.reloadView()
-                })
-                
-            }) { (error) in
-                print(error)
-            }
-            
-            // attendee
-            break
+        /*
+            User is the Event Creator
+         */
+        case .Creator:
+            DataService.ds.getReferenceForEvent(eventToDetail!.eventKey).removeValue()
+            DataService.ds.updateUserJoinedEvents(self.eventToDetail!, viewState: self.viewState!, userID: self.userID, completion: { (error) in })
+            delegate?.goBack(self)
+        /*
+            User Attendee or Viewer.
+            Handle Joining and leaving the event.
+         */
         default:
-            
-            var attendees = eventToDetail!.attendees
-            var attendeesDict = Dictionary<String, AnyObject>()
-            attendees.append(userID)
-            
-            attendeesDict["attendees"] = attendees
-            eventRef.updateChildValues(attendeesDict)
-            eventToDetail!.attendees = attendees
-            
-            userRef.observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            DataService.ds.updateEventAttendees(self.eventToDetail!, viewState: self.viewState!, userID: self.userID, completion: { (event) in
+                self.eventToDetail = event
+            })
+            DataService.ds.updateUserJoinedEvents(self.eventToDetail!, viewState: self.viewState!, userID: self.userID, completion: { (error) in
                 
-                var joinedEventsDict = Dictionary<String, AnyObject>()
-                var joined_events = [String]()
-                
-                if let events = snapshot.value.objectForKey("joined_events") {
-                    joined_events = events as! [String]
-                }
-                
-                joined_events.append(self.eventToDetail!.eventKey)
-                
-                joinedEventsDict["joined_events"] = joined_events
-                userRef.updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
-                    
-                    self.viewState = EventDetailViewState.Attendee
+                if error != nil {
+                    var alertMessage = ""
+                    switch self.viewState! {
+                    case .Attendee:
+                        alertMessage = "join"
+                    case .Viewer:
+                        alertMessage = "leave"
+                    default: break
+                    }
+                    self.alert = showAlert("Couldn't \(alertMessage) this game", msg: "Please try again later")
+                    self.presentViewController(self.alert, animated: true, completion: nil)
+                } else {
+                    self.viewState = .Viewer
                     self.reloadView()
-                })
-            }) { (error) in
-                print(error)
-            }
-            break
+                }
+            })
         }
     }
 
@@ -174,42 +129,7 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
     // MARK: - Helper Functions
     //--------------------------------------------------
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        if let annotation = annotation as? Event {
-            let identifier = "pin"
-            var view: MKPinAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier)
-                as? MKPinAnnotationView {
-                dequeuedView.annotation = annotation as MKAnnotation
-                view = dequeuedView
-            } else {
-                view = MKPinAnnotationView(annotation: annotation as MKAnnotation, reuseIdentifier: identifier)
-                view.canShowCallout = true
-                view.calloutOffset = CGPoint(x: -5, y: 5)
-                view.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure) as UIView
-                view.rightCalloutAccessoryView?.tintColor = UIColor.materialMainGreen
-            }
-            switch annotation.sport {
-            case "Basketball":
-                view.pinTintColor = UIColor.redColor()
-            case "Tennis":
-                view.pinTintColor = UIColor.materialMainGreen
-            case "Softball":
-                view.pinTintColor = UIColor.yellowColor()
-            case "Soccer":
-                view.pinTintColor = UIColor.cyanColor()
-            case "Football":
-                view.pinTintColor = UIColor.orangeColor()
-            case "Ultimate Frisbee":
-                view.pinTintColor = UIColor.purpleColor()
-            case "Volleyball":
-                view.pinTintColor = UIColor.blueColor()
-            default:
-                view.pinTintColor = UIColor.grayColor()
-                
-            }
-            return view
-        }
-        return nil
+        return setupMapViewPins(mapView, annotation: annotation)
     }
     
     /*
@@ -221,12 +141,10 @@ class EventDetailViewController: UIViewController, MKMapViewDelegate {
         let creator = eventToDetail!.creator_id
         
         if creator == userID {
-            
             viewState = EventDetailViewState.Creator
             joinButton.backgroundColor = UIColor.materialCancelRedColor
             joinButton.setTitle("Delete", forState: .Normal)
         } else if attendees.contains(userID) {
-            
             viewState = EventDetailViewState.Attendee
             joinButton.backgroundColor = UIColor.materialCancelRedColor
             joinButton.setTitle("Leave", forState: .Normal)

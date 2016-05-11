@@ -16,7 +16,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU6-S6-eOr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.054901960784313725" green="0.68627450980392157" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="textShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -44,8 +44,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="67" width="600" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YIw-lf-xgm" customClass="TopTabSegmentedControl" customModule="smatch_1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="35"/>
                                 <color key="backgroundColor" red="0.28627450980392155" green="0.66274509803921566" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="KEa-eu-eZC"/>
@@ -65,11 +65,11 @@
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yl2-5v-Vfd" userLabel="Content View">
                                 <rect key="frame" x="0.0" y="99" width="600" height="452"/>
-                                <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.054901960784313725" green="0.68627450980392157" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.29803921568627451" green="0.68627450980392157" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.054901960784313725" green="0.68627450980392157" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="YIw-lf-xgm" firstAttribute="top" secondItem="1vf-9e-cFz" secondAttribute="bottom" id="3st-ia-S1n"/>
                             <constraint firstItem="YIw-lf-xgm" firstAttribute="leading" secondItem="AhJ-aK-kcp" secondAttribute="leading" id="AJi-sO-Vua"/>

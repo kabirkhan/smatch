@@ -16,6 +16,8 @@
 		95EA7B4471CDCF15F3C2902D /* Pods_smatch_1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 331833AEF7D7465E1E7AEA49 /* Pods_smatch_1.framework */; };
 		98027B9D1CA9DF6B00ECFEA0 /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */; };
 		981564161CA72E67007E0F11 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 981564151CA72E67007E0F11 /* Event.swift */; };
+		D8040C671CE2BA600006D7AB /* EventsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8040C661CE2BA600006D7AB /* EventsListTableViewCell.swift */; };
+		D8040C691CE2E30D0006D7AB /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8040C681CE2E30D0006D7AB /* MapView.swift */; };
 		D81C61BF1CDFEDB00086F5E1 /* ColorsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */; };
 		D81C61C31CDFEDCE0086F5E1 /* KeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */; };
 		D81C61C41CDFEDCE0086F5E1 /* NavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */; };
@@ -34,7 +36,7 @@
 		D83A181E1CA3B80A0048B629 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D83A181D1CA3B80A0048B629 /* Profile.storyboard */; };
 		D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */; };
 		D84A6BF21CA464F200045150 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84A6BF11CA464F200045150 /* EventCell.swift */; };
-		D86312BB1CAD8F0200AEC07B /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86312BA1CAD8F0200AEC07B /* EventDetail.swift */; };
+		D86312BB1CAD8F0200AEC07B /* EventDetailViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86312BA1CAD8F0200AEC07B /* EventDetailViewState.swift */; };
 		D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C51CA9B370006490B4 /* EventNameViewController.swift */; };
 		D86407C81CA9B3C1006490B4 /* EventSportCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */; };
 		D86407CA1CA9B3ED006490B4 /* EventLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */; };
@@ -45,7 +47,6 @@
 		D875B2721C9A5155007BBFF3 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D875B2701C9A5155007BBFF3 /* LoginViewController.swift */; };
 		D875B2741C9A5162007BBFF3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D875B2731C9A5162007BBFF3 /* Images.xcassets */; };
 		D886943C1CA24524007DB508 /* sports.plist in Resources */ = {isa = PBXBuildFile; fileRef = D886943B1CA24524007DB508 /* sports.plist */; };
-		D890FC301CAA004100D9ADEA /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC2F1CAA004100D9ADEA /* Regex.swift */; };
 		D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC331CAA2AE800D9ADEA /* CreateEventDateViewController.swift */; };
 		D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC351CAA2B4400D9ADEA /* CreateEventGenderViewController.swift */; };
 		D890FC381CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890FC371CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift */; };
@@ -78,6 +79,8 @@
 		98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		981564151CA72E67007E0F11 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		D7EDDA08FB634FEB8FBAD634 /* Pods-smatch_1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-smatch_1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-smatch_1/Pods-smatch_1.debug.xcconfig"; sourceTree = "<group>"; };
+		D8040C661CE2BA600006D7AB /* EventsListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsListTableViewCell.swift; sourceTree = "<group>"; };
+		D8040C681CE2E30D0006D7AB /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D81C61BE1CDFEDB00086F5E1 /* ColorsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsExtension.swift; sourceTree = "<group>"; };
 		D81C61C01CDFEDCE0086F5E1 /* KeyboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardExtension.swift; sourceTree = "<group>"; };
 		D81C61C11CDFEDCE0086F5E1 /* NavigationBarExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarExtension.swift; sourceTree = "<group>"; };
@@ -96,7 +99,7 @@
 		D83A181D1CA3B80A0048B629 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SportCollectionViewCell.swift; sourceTree = "<group>"; };
 		D84A6BF11CA464F200045150 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
-		D86312BA1CAD8F0200AEC07B /* EventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
+		D86312BA1CAD8F0200AEC07B /* EventDetailViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewState.swift; sourceTree = "<group>"; };
 		D86407C51CA9B370006490B4 /* EventNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventNameViewController.swift; sourceTree = "<group>"; };
 		D86407C71CA9B3C1006490B4 /* EventSportCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventSportCollectionViewController.swift; sourceTree = "<group>"; };
 		D86407C91CA9B3ED006490B4 /* EventLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLocationViewController.swift; sourceTree = "<group>"; };
@@ -107,7 +110,6 @@
 		D875B2701C9A5155007BBFF3 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D875B2731C9A5162007BBFF3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D886943B1CA24524007DB508 /* sports.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sports.plist; sourceTree = "<group>"; };
-		D890FC2F1CAA004100D9ADEA /* Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Regex.swift; sourceTree = "<group>"; };
 		D890FC331CAA2AE800D9ADEA /* CreateEventDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventDateViewController.swift; sourceTree = "<group>"; };
 		D890FC351CAA2B4400D9ADEA /* CreateEventGenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventGenderViewController.swift; sourceTree = "<group>"; };
 		D890FC371CAA2B5D00D9ADEA /* CreateEventCompetitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEventCompetitionViewController.swift; sourceTree = "<group>"; };
@@ -257,10 +259,9 @@
 				D836A7891CA22BF200CF9627 /* Sport.swift */,
 				98027B9C1CA9DF6B00ECFEA0 /* UserLocation.swift */,
 				981564151CA72E67007E0F11 /* Event.swift */,
-				D890FC2F1CAA004100D9ADEA /* Regex.swift */,
 				D890FC391CAA307A00D9ADEA /* CompetitionLevel.swift */,
 				D890FC3B1CAA30B400D9ADEA /* GenderForGame.swift */,
-				D86312BA1CAD8F0200AEC07B /* EventDetail.swift */,
+				D86312BA1CAD8F0200AEC07B /* EventDetailViewState.swift */,
 				D886943B1CA24524007DB508 /* sports.plist */,
 			);
 			name = Models;
@@ -271,6 +272,8 @@
 			children = (
 				4690A3E11CA5C16A00814106 /* AlertModel.swift */,
 				D84A6BF11CA464F200045150 /* EventCell.swift */,
+				D8040C661CE2BA600006D7AB /* EventsListTableViewCell.swift */,
+				D8040C681CE2E30D0006D7AB /* MapView.swift */,
 				D8EF28851CAC3DBA00150411 /* MaterialButton.swift */,
 				D8EE2F371CA47F44007DB652 /* MaterialView.swift */,
 				D8442F4B1CA5CC690025005E /* SportCollectionViewCell.swift */,
@@ -430,7 +433,7 @@
 				TargetAttributes = {
 					D8C18D4F1C9A39BC00E2E0D7 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = VPVYL4N4QR;
+						DevelopmentTeam = 5FT392BGQ5;
 					};
 				};
 			};
@@ -560,9 +563,10 @@
 				46F6E22C1CA9B1820064CC18 /* UserProfileViewController.swift in Sources */,
 				D81C61D41CE0F5700086F5E1 /* NotificationsViewController.swift in Sources */,
 				D8E0003C1CA07951006C50EC /* Constants.swift in Sources */,
-				D86312BB1CAD8F0200AEC07B /* EventDetail.swift in Sources */,
+				D86312BB1CAD8F0200AEC07B /* EventDetailViewState.swift in Sources */,
 				D8EAA1F41CA39BA200A11894 /* EventsMapViewController.swift in Sources */,
 				D86407D21CA9BBD1006490B4 /* NewEventSportCollectionViewCell.swift in Sources */,
+				D8040C671CE2BA600006D7AB /* EventsListTableViewCell.swift in Sources */,
 				D8EE2F3C1CA494EF007DB652 /* CreateNewEventViewController.swift in Sources */,
 				D83346051CADFC1600A6C644 /* SaveProfileDelegate.swift in Sources */,
 				D81C61C51CDFEDCE0086F5E1 /* ToolBarExtension.swift in Sources */,
@@ -593,10 +597,10 @@
 				D8C18D541C9A39BC00E2E0D7 /* AppDelegate.swift in Sources */,
 				D890FC341CAA2AE800D9ADEA /* CreateEventDateViewController.swift in Sources */,
 				D890FC361CAA2B4400D9ADEA /* CreateEventGenderViewController.swift in Sources */,
+				D8040C691CE2E30D0006D7AB /* MapView.swift in Sources */,
 				D81C61CD1CE043DE0086F5E1 /* EditProfileViewController.swift in Sources */,
 				D8EF28861CAC3DBA00150411 /* MaterialButton.swift in Sources */,
 				D8442F4C1CA5CC690025005E /* SportCollectionViewCell.swift in Sources */,
-				D890FC301CAA004100D9ADEA /* Regex.swift in Sources */,
 				D8EE2F3E1CA4B665007DB652 /* EventDetailViewController.swift in Sources */,
 				D86407C61CA9B370006490B4 /* EventNameViewController.swift in Sources */,
 				D8E0003A1CA07292006C50EC /* DataService.swift in Sources */,
@@ -704,6 +708,7 @@
 			baseConfigurationReference = D7EDDA08FB634FEB8FBAD634 /* Pods-smatch_1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = smatch_1/Info.plist;
@@ -719,6 +724,7 @@
 			baseConfigurationReference = 79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = smatch_1/Info.plist;

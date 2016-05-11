@@ -10,69 +10,55 @@ import UIKit
 import Firebase
 
 class MessagesTableViewController: UIViewController {
+    
     //--------------------------------------------------
     // MARK: - Variables
     //--------------------------------------------------
     var eventList = [Dictionary<String, AnyObject>]()
-    let font = UIFont(name: NAVBAR_FONT, size: NAVBAR_FONT_SIZE)
-    let fontColor = UIColor.whiteColor()
-    //store this in userdefaults on login/creation
     var userName = ""
     var query: UInt?
+    
     //--------------------------------------------------
     // MARK: - Outlets
     //--------------------------------------------------
-        @IBOutlet private weak var eventListTableView: UITableView!
+    @IBOutlet private weak var eventListTableView: UITableView!
+    
     //--------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         eventList = [Dictionary<String, AnyObject>]()
         
-        // =========== NAVBAR SETUP ==============
-        // set navbar fonts
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: fontColor]
+        navigationController?.navigationBar.applyDefaultShadow(UIColor.materialMainGreen)
+        navigationController?.navigationBar.setNavbarFonts()
         
-        // set navbar shadow
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1.0).CGColor
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.6
-        self.navigationController?.navigationBar.layer.shadowRadius = 5.0
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 2.0)
+        let userID = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID) as! String
         
-        // set navbar color
-        self.navigationController?.navigationBar.barTintColor = UIColor.materialMainGreen
-        
-        //we force the uid unwrapp because they have a UID from log in
-        let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_ID)!
-        
-        let ref = DataService.ds.getReferenceForUser(uid as! String)
+        let ref = DataService.ds.getReferenceForUser(userID)
         query = ref.observeEventType(.Value, withBlock: { user in
             self.userName = (user.value.objectForKey(KEY_DISPLAY_NAME) as? String)!
             guard let eventsIDList = user.value.objectForKey("joined_events") as? [String]
-                else {
-                    return
-            }
+                else { return }
             
-            for i in 0..<eventsIDList.count {
-                let eventID = eventsIDList[i]
+            for eventID in eventsIDList {
+                let eventID = eventID
                 let url = "\(DataService.ds.REF_EVENTS)/\(eventID)"
                 let ref = Firebase(url: url)
                 
-                ref.observeSingleEventOfType(.Value, withBlock: { event in
+                ref.observeEventType(.Value, withBlock: { event in
                     var eventDictionary = Dictionary<String, AnyObject>()
                     eventDictionary["event_title"] = event.value.objectForKey("name")
                     eventDictionary["event_id"] = eventID
                     
                     self.eventList.append(eventDictionary)
-                
                     self.eventListTableView.reloadData()
                     
                     }, withCancelBlock: { err in
                         print(err.description)
                 })
             }
-            
             }, withCancelBlock: { error in
                 print(error.description)
         })
@@ -81,16 +67,15 @@ class MessagesTableViewController: UIViewController {
     override func viewDidLoad() {
         eventListTableView.dataSource = self
         eventListTableView.delegate = self
+        eventListTableView.tableFooterView = UIView()
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         if query != nil {
             DataService.ds.REF_USERS.removeAllObservers()
             DataService.ds.REF_EVENTS.removeAllObservers()
         }
-        
     }
     
     //--------------------------------------------------

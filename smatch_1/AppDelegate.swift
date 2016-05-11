@@ -41,8 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(application: UIApplication) {
         FBSDKAppEvents.activateApp()
-        //This starts updates in order to grab user Location
-        let _ = UserLocation.userLocation
     }
     func application(application: UIApplication, openURL url: NSURL,
         sourceApplication: String?, annotation: AnyObject) -> Bool {

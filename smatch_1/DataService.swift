@@ -38,8 +38,8 @@ class DataService {
         return _REF_EVENTS
     }
     
-    func createFirebaseUser(uid: String, user: Dictionary<String, AnyObject>) {
-        REF_USERS.childByAppendingPath(uid).setValue(user)
+    func createFirebaseUser(userID: String, user: Dictionary<String, AnyObject>) {
+        REF_USERS.childByAppendingPath(userID).setValue(user)
     }
     
     func createEvent(event: Dictionary<String, AnyObject>) -> String {
@@ -48,20 +48,20 @@ class DataService {
         return newEventRef.key
     }
     
-    func getReferenceForUser(uid: String) -> Firebase {
-        return REF_USERS.childByAppendingPath(uid)
+    func getReferenceForUser(userID: String) -> Firebase {
+        return REF_USERS.childByAppendingPath(userID)
     }
     
-    func getReferenceForEvent(eventId: String) -> Firebase {
-        return REF_EVENTS.childByAppendingPath(eventId)
+    func getReferenceForEvent(eventID: String) -> Firebase {
+        return REF_EVENTS.childByAppendingPath(eventID)
     }
     
-    func getReferenceForEventMessages(eventId: String) -> Firebase {
-        return getReferenceForEvent(eventId).childByAppendingPath("/messages")
+    func getReferenceForEventMessages(eventID: String) -> Firebase {
+        return getReferenceForEvent(eventID).childByAppendingPath("/messages")
     }
     
-    func getReferenceForEventAttendees(eventId: String) -> Firebase {
-        return getReferenceForEvent(eventId).childByAppendingPath("/attendees")
+    func getReferenceForEventAttendees(eventID: String) -> Firebase {
+        return getReferenceForEvent(eventID).childByAppendingPath("/attendees")
     }
     
     //--------------------------------------
@@ -177,25 +177,14 @@ class DataService {
             if let sport = snapshot.value.objectForKey("sport") {
                 for index in sports {
                     if sport as! String == index {
-                        let eventName = snapshot.value.objectForKey("name") as! String
-                        let eventKey = snapshot.key
-                        let eventAddress = snapshot.value.objectForKey("address") as! String
-                        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                        let eventDate = snapshot.value.objectForKey("date") as! String
-                        let eventGender = snapshot.value.objectForKey("gender") as! String
-                        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                        let eventSport = snapshot.value.objectForKey("sport") as! String
-                        let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
-                        let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                        let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
-                        events.append(newEvent)
+                        events.append(self.createEventFromSnapshot(snapshot))
                     }
                 }
                 completion(events: events, error: queryError)
             }
             }, withCancelBlock: { error in
-            queryError = error
-            completion(events: events, error: queryError)
+                queryError = error
+                completion(events: events, error: queryError)
         })
     }
     
@@ -209,18 +198,7 @@ class DataService {
             let singleEventRef = DataService.ds.REF_EVENTS.childByAppendingPath(eventID)
             singleEventRef.queryOrderedByKey().observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
-                let eventName = snapshot.value.objectForKey("name") as! String
-                let eventKey = snapshot.key
-                let eventAddress = snapshot.value.objectForKey("address") as! String
-                let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
-                let eventDate = snapshot.value.objectForKey("date") as! String
-                let eventGender = snapshot.value.objectForKey("gender") as! String
-                let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
-                let eventSport = snapshot.value.objectForKey("sport") as! String
-                let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
-                let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
-                
-                let newEvent = Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
+                let newEvent = self.createEventFromSnapshot(snapshot)
                 userEvents.append(newEvent)
                 completion(events: userEvents, error: queryError)
                 }, withCancelBlock: { (error) in
@@ -228,6 +206,62 @@ class DataService {
                     completion(events: userEvents, error: queryError)
             })
         }
+    }
+    
+    /*
+        Given event, update it's attendees list
+     */
+    func updateEventAttendees(event: Event,
+                              viewState: EventDetailViewState,
+                              userID: String,
+                              completion: (event: Event) -> Void) {
+    
+        var attendees = event.attendees
+        var attendeesDict = Dictionary<String, AnyObject>()
+        switch viewState {
+        case .Creator:
+            break
+        case .Attendee:
+            attendees = attendees.filter() { $0 != userID }
+        case .Viewer:
+            attendees.append(userID)
+        }
+        attendeesDict["attendees"] = attendees
+        DataService.ds.getReferenceForEvent(event.eventKey).updateChildValues(attendeesDict) { (error, ref) in
+            event.attendees = attendees
+            completion(event: event)
+        }
+    }
+    
+    /*
+        Given event, update it's attendees list
+     */
+    func updateUserJoinedEvents(event: Event,
+                                viewState: EventDetailViewState,
+                                userID: String,
+                                completion: (error: NSError?) -> Void) {
+        DataService.ds.getReferenceForUser(userID).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            
+            var joinedEventsDict = Dictionary<String, AnyObject>()
+            var joinedEvents = [String]()
+            
+            if let events = snapshot.value.objectForKey("joined_events") {
+                joinedEvents = events as! [String]
+            }
+            
+            switch viewState {
+            case .Viewer:
+                joinedEvents.append(event.eventKey)
+            default:
+                joinedEvents = joinedEvents.filter() { $0 != event.eventKey }
+            }
+            
+            joinedEventsDict["joined_events"] = joinedEvents
+            
+            DataService.ds.getReferenceForUser(userID).updateChildValues(joinedEventsDict, withCompletionBlock: { (error, ref) in
+                completion(error: error)
+            })
+        })
     }
     
     //--------------------------------------
@@ -243,5 +277,22 @@ class DataService {
         let facebookProfileUrl = NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")
         guard let data = NSData(contentsOfURL: facebookProfileUrl!) else { return NSData() }
         return data
+    }
+    
+    /*
+        Setup an array of Event objects given a snapshot value of the database
+     */
+    private func createEventFromSnapshot(snapshot: FDataSnapshot) -> Event {
+        let eventName = snapshot.value.objectForKey("name") as! String
+        let eventKey = snapshot.key
+        let eventAddress = snapshot.value.objectForKey("address") as! String
+        let eventCompetition = snapshot.value.objectForKey("competition_level") as! String
+        let eventDate = snapshot.value.objectForKey("date") as! String
+        let eventGender = snapshot.value.objectForKey("gender") as! String
+        let eventPlayers = snapshot.value.objectForKey("number_of_players") as! String
+        let eventSport = snapshot.value.objectForKey("sport") as! String
+        let eventAttendees = snapshot.value.objectForKey("attendees") as! [String]
+        let eventCreatorId = snapshot.value.objectForKey("creator_id") as! String
+        return Event(title: eventName, eventKey: eventKey, date: eventDate, sport: eventSport, address: eventAddress, numberOfPlayers: eventPlayers, gender: eventGender, competition: eventCompetition, attendees: eventAttendees, creator_id: eventCreatorId)
     }
 }

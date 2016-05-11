@@ -43,6 +43,9 @@ class EventsTableViewController: UITableViewController {
     //--------------------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let _ = UserLocation.userLocation
+        
         tableView.registerNib(UINib(nibName: "EventTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "event_cell")
         tableView.contentInset = UIEdgeInsetsMake(0, 0, -50, 0)
     }
