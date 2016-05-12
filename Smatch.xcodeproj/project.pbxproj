@@ -711,13 +711,13 @@
 			baseConfigurationReference = D7EDDA08FB634FEB8FBAD634 /* Pods-smatch_1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = smatch_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kabirkhan.smatch-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueberries.smatch;
 				PRODUCT_NAME = Smatch;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "71ab376c-45a3-419f-be6f-2461af2ef973";
 			};
 			name = Debug;
 		};
@@ -726,13 +726,13 @@
 			baseConfigurationReference = 79E518CF00F20420133E9563 /* Pods-smatch_1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Kabir Khan (5FT392BGQ5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kabir Khan (5FT392BGQ5)";
 				INFOPLIST_FILE = smatch_1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.kabirkhan.smatch-1";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueberries.smatch;
 				PRODUCT_NAME = Smatch;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "71ab376c-45a3-419f-be6f-2461af2ef973";
 			};
 			name = Release;
 		};
